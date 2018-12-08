@@ -1,6 +1,6 @@
 describe('Registration tests', () => {
     it('Fast registration', () => {
-        cy.visit('http://master.tests.1win-prodlike.tech/');
+        cy.visit(Cypress.config('baseUrl'));
 
         cy.get('.header-button').last().click();
 
