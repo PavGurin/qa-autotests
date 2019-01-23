@@ -1,8 +1,9 @@
 describe('Registration tests', () => {
     it('Fast registration', () => {
-        cy.visit(Cypress.config('baseUrl'));
-
-        cy.get('.header-button').last().click();
+        cy.visit('/');
+        
+        // Click on the "Registration" button
+        cy.get('.level-right > :nth-child(2) > .button').click();
 
         cy.get('.modal-container').as('modal');
         cy.get('@modal')
