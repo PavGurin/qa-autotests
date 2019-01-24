@@ -12,6 +12,9 @@ describe('Registration tests', () => {
 
         cy.get('@modal').find('button').click();
         cy.get('@modal').get('.user-info').get('.user-info__content__item__value');
+        cy.get('.user-name.text-with-arrow').should(() => {
+            assert.isString(localStorage.getItem('token'), 'Token had set');
+        });
         cy.screenshot();
     });
 });
