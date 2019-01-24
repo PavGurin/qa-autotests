@@ -17,5 +17,6 @@ describe('Authorization tests', () => {
         cy.get('.user-name.text-with-arrow').should(() => {
             assert.isString(localStorage.getItem('token'), 'Token had set');
         });
+        cy.screenshot();
     });
 });
