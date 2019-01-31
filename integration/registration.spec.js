@@ -10,5 +10,7 @@ describe('Registration tests', () => {
             .click();
 
         cy.get('@modal').find('button').click();
+        cy.get('@modal').get('.user-info').get('.user-info__content__item__value');
+        cy.screenshot();
     });
 });
