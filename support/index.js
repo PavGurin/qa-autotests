@@ -14,12 +14,12 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
+import './socketLogget';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-beforeEach( () => {
-    cy.setCookie('session-id', '', { domain: '1win-auth.com' })
-
+beforeEach(() => {
+    cy.setCookie('session-id', '', { domain: '1win-auth.com' });
 });
