@@ -1,8 +1,9 @@
 describe('Registration tests', () => {
     it('Fast registration', () => {
-        cy.visit(Cypress.config('baseUrl'));
-
-        cy.get('.header-button').last().click();
+        cy.visit('/');
+        
+        // Click on the "Registration" button
+        cy.get('.level-right > :nth-child(2) > .button').click();
 
         cy.get('.modal-container').as('modal');
         cy.get('@modal')
@@ -11,6 +12,9 @@ describe('Registration tests', () => {
 
         cy.get('@modal').find('button').click();
         cy.get('@modal').get('.user-info').get('.user-info__content__item__value');
+        cy.get('.user-name.text-with-arrow').should(() => {
+            assert.isString(localStorage.getItem('token'), 'Token had set');
+        });
         cy.screenshot();
     });
 });
