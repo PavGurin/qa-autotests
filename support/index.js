@@ -126,5 +126,6 @@ import './socketLogget';
 // require('./commands')
 
 beforeEach(() => {
+    cy.clearCookies();
     cy.setCookie('session-id', '', { domain: '1win-auth.com' });
 });
