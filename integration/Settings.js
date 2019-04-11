@@ -1,46 +1,40 @@
-describe('Настройки', function() {
-  it('adds xpath command', () => {
-    expect(cy)
-      .property('xpath')
-      .to.be.a('function')
-  })
+describe('Настройки', () => {
+    it('adds xpath command', () => {
+        expect(cy)
+            .property('xpath')
+            .to.be.a('function');
+    });
 
 
-  it('Clear Cookies', function() {
-      cy.clearCookies()
-})
+    it('Clear Cookies', () => {
+        cy.clearCookies();
+    });
 
 
-  it('Login in home page', function() {
+    it('Login in home page', () => {
+        cy.clearCookies();
+        cy.visit('/');
+        cy.contains('Войти').click();
+        cy.get('input[name=login]').type('testfor1win1@gmail.com');
+        cy.get('input[name=password]').type('123456');
+        cy.contains('Войти').click();
+        // cy.wait(2000)
 
-    cy.clearCookies()
-    cy.visit('/')
-    cy.contains('Войти').click()
-    cy.get('input[name=login]').type('testfor1win1@gmail.com')
-    cy.get('input[name=password]').type('123456')
-    cy.contains('Войти').click()
-    cy.wait(2000)
+        cy.xpath('//span[@class="user-name text-with-arrow"]').trigger('mouseover');
 
-    cy.xpath('//span[@class="user-name text-with-arrow"]').trigger('mouseover')
+        cy.contains('Настройки').click();
+        // cy.wait(1000)
 
-    cy.contains('Настройки').click()
-    cy.wait(1000)
-
-    cy.xpath('(//input[@required="required"])[1]').type('{selectall}{del}').type('cote')
-
-
-    cy.xpath('//input[@type="password"]').type('123456')
-
-    cy.xpath('//button[contains(.,"Сохранить")]').click()
+        cy.xpath('(//input[@required="required"])[1]').type('{selectall}{del}').type('cote');
 
 
+        cy.xpath('//input[@type="password"]').type('123456');
 
-  })
+        cy.xpath('//button[contains(.,"Сохранить")]').click();
+    });
 
-  it('Exit', function() {
-
-    cy.contains('Выйти').click()
-    cy.contains('Да').click()
-    })
-
-})
+    it('Exit', () => {
+        cy.contains('Выйти').click();
+        cy.contains('Да').click();
+    });
+});
