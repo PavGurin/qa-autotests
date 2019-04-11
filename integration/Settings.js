@@ -20,7 +20,7 @@ describe('Настройки', () => {
         cy.contains('Войти').click();
         // cy.wait(2000)
 
-        cy.xpath('//span[@class="user-name text-with-arrow"]').trigger('mouseover');
+        cy.get('.user-name.text-with-arrow').trigger('mouseover');
 
         cy.contains('Настройки').click();
         // cy.wait(1000)
