@@ -7,7 +7,7 @@ describe('Логин тест', function() {
 
 
   it('Login in home page', function() {
-  
+
     cy.clearCookies()
     cy.visit('/')
     cy.contains('Войти').click()
@@ -15,7 +15,7 @@ describe('Логин тест', function() {
     cy.get('input[name=password]').type('123456')
     cy.contains('Войти').click()
     cy.wait(5000)
-    cy.contains('cote')
+    
     cy.screenshot()
     cy.wait(1000)
 
@@ -26,6 +26,7 @@ describe('Логин тест', function() {
   it('Exit', function() {
 
     cy.contains('Выйти').click()
+    cy.screenshot()
     cy.contains('Да').click()
     })
 
