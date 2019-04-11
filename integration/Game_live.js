@@ -25,13 +25,10 @@ describe('Лайв-Игры', () => {
     it('Play Game', () => {
         cy.contains('Live games').click();
 
-        // cy.wait(2000)
-
-        cy.xpath('//div[@class="game-name"][contains(.,"LiveCasino Dealer Roulette Turkish")]').trigger('mouseover');
-
-        cy.xpath('//span[contains(.,"Play")]');
-
-        // cy.wait(2000)
+        cy.get('.casino-games-list__wrapper').then(() => {
+            cy.xpath('//div[@class="game-name"][contains(.,"LiveCasino Dealer Roulette Turkish")]').trigger('mouseover');
+            cy.xpath('//span[contains(.,"Play")]');
+        });
     });
 
     it('Play Game', () => {
