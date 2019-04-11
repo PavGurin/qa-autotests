@@ -1,4 +1,4 @@
-describe('Лайв-Игры', function() {
+describe('Лайв-Игры', () => {
     it('Clear Cookies', function() {
       cy.clearCookies()
     })
@@ -41,7 +41,7 @@ describe('Лайв-Игры', function() {
 
       })
 
-      it('Play Game', function() {
+      it('Play asd', function() {
 
         cy.contains('Казино').click()
 
@@ -56,4 +56,4 @@ describe('Лайв-Игры', function() {
               cy.contains('Да').click()
       })
 
-})
+});
