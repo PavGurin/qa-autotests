@@ -17,9 +17,11 @@ describe('Лайв-Игры', () => {
         cy.contains('Live games').click();
 
         cy.get('.casino-games-list__wrapper')
-            .find('.scroller__item')
+            .find('.game')
             .first()
-            .trigger('mouseover');
+            .find('.game-button')
+            .click({ force: true });
+        cy.wait(5000);
     });
 
     it('Exit', () => {
