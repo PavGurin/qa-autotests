@@ -19,8 +19,9 @@ describe('Лайв-Игры', () => {
         cy.get('.casino-games-list__wrapper')
             .find('.game')
             .first()
+            .presudoHover()
             .find('.game-button')
-            .click({ force: true });
+            .click();
         cy.wait(5000);
     });
 
