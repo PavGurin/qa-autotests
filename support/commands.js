@@ -23,3 +23,13 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('presudoHover', { prevSubject: true }, (subject) => {
+    subject[0].childNodes.forEach((child) => {
+        if (child.tagName) {
+            const { display } = window.getComputedStyle(child);
+            if (display === 'none') child.style.display = 'flex';
+        }
+    });
+    return subject;
+});
