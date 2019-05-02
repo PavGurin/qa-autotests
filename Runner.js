@@ -2,12 +2,20 @@ const cypress = require('cypress');
 const recursive = require('recursive-readdir');
 const cypressConfig = require('../cypress.json');
 
-recursive('cypress/integration', (err, specs) => {
-    const totalRunners = process.env.CI_NODE_TOTAL || 1;
-    const runner = process.env.CI_NODE_INDEX || 1;
+const specsForRunner = (specs, runners, currentRunner) => {
+    const specsInRunner = Math.round(specs.length / runners);
 
-    const specToRunner = Math.round(specs.length / totalRunners);
-    const currentRunnerSpecs = specs.slice(specToRunner * (runner - 1), specToRunner * runner);
+    const to = specsInRunner * currentRunner;
+    const from = to - specsInRunner;
+
+    return specs.slice(from, to);
+};
+
+recursive('cypress/integration', (err, specs) => {
+    const runners = process.env.CI_NODE_TOTAL || 1;
+    const currentRunner = process.env.CI_NODE_INDEX || 1;
+
+    const currentRunnerSpecs = specsForRunner(specs, runners, currentRunner);
 
     if (!currentRunnerSpecs.length) {
         console.log('Nothing to run');
