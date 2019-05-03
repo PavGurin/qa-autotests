@@ -28,13 +28,19 @@ recursive('cypress/integration', (err, specs) => {
             baseURL: process.env.CYPRESS_BASE_URL,
         },
         spec: currentRunnerSpecs.join(','),
-        reporter: 'cypress/reporters/testrail.js',
+        reporter: 'mocha-multi-reporters',
         reporterOptions: {
-            domain: '1win.testrail.io',
-            username: 'niki4@1win.pro',
-            password: 'sntFAzot0AaT4m54nJgw-RqFWK7K0fwEB4PjbURfC',
-            projectId: 5,
-            runId: 252,
+            reporterEnabled: 'spec, mocha-junit-reporter, cypress/reporters/testrail.js',
+            mochaJunitReporterReporterOptions: {
+                mochaFile: 'results/test-output-[hash].xml',
+            },
+            cypressReportersTestrailJsReporterOptions: {
+                domain: '1win.testrail.io',
+                username: 'niki4@1win.pro',
+                password: 'sntFAzot0AaT4m54nJgw-RqFWK7K0fwEB4PjbURfC',
+                projectId: 5,
+                runId: 252,
+            },
         },
     });
 });

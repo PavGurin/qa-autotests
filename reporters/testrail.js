@@ -1,11 +1,6 @@
 const Mocha = require('mocha');
 const axios = require('axios');
 
-const {
-    EVENT_TEST_FAIL,
-    EVENT_TEST_PASS,
-} = Mocha.Runner.constants;
-
 class TestrailReporter {
     constructor(runner, options) {
         options = options.reporterOptions;
@@ -22,8 +17,8 @@ class TestrailReporter {
         });
 
         runner
-            .on(EVENT_TEST_PASS, this.addResult.bind(this))
-            .on(EVENT_TEST_FAIL, this.addResult.bind(this));
+            .on('pass', this.addResult.bind(this))
+            .on('fail', this.addResult.bind(this));
     }
 
     addResult(test) {
