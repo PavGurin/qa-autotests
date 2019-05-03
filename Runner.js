@@ -28,5 +28,13 @@ recursive('cypress/integration', (err, specs) => {
             baseURL: process.env.CYPRESS_BASE_URL,
         },
         spec: currentRunnerSpecs.join(','),
+        reporter: 'cypress/reporters/testrail.js',
+        reporterOptions: {
+            domain: '1win.testrail.io',
+            username: 'niki4@1win.pro',
+            password: 'sntFAzot0AaT4m54nJgw-RqFWK7K0fwEB4PjbURfC',
+            projectId: 5,
+            runId: 252,
+        },
     });
 });
