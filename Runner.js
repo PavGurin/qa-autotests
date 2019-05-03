@@ -3,7 +3,7 @@ const recursive = require('recursive-readdir');
 const cypressConfig = require('../cypress.json');
 
 const specsForRunner = (specs, runners, currentRunner) => {
-    const specsInRunner = Math.round(specs.length / runners);
+    const specsInRunner = Math.ceil(specs.length / runners);
 
     const to = specsInRunner * currentRunner;
     const from = to - specsInRunner;
