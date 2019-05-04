@@ -1,6 +1,8 @@
 const Mocha = require('mocha');
 const axios = require('axios');
 
+const titleToCaseId = testTitle => /\bT?C(\d+)\b/g.exec(testTitle)[1];
+
 class TestrailReporter {
     constructor(runner, options) {
         options = options.reporterOptions;
@@ -28,7 +30,7 @@ class TestrailReporter {
         }[test.state];
 
         const result = {
-            case_id: test.title,
+            case_id: titleToCaseId(test.title),
             status_id,
             comment: test.err && `${test.err.message}\n${test.err.stack}`,
             elapsed: test.duration && `${test.duration / 1000}s`,
