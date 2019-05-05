@@ -23,7 +23,8 @@ it('C16283', () => {
     cy
         .get('@register-form')
         .find('.button-container button')
-        .click();
+        .click()
+        .wait(1000);
 
     cy
         .get('.modal-container .user-info .user-info__content__item')
