@@ -1,5 +1,7 @@
 const cypress = require('cypress');
 const recursive = require('recursive-readdir');
+const fs = require('fs');
+const TestrailReporter = require('./reporters/testrail.js');
 const cypressConfig = require('../cypress.json');
 
 const specsForRunner = (specs, runners, currentRunner) => {
@@ -22,25 +24,34 @@ recursive('cypress/integration', (err, specs) => {
         return;
     }
 
-    cypress.run({
-        config: {
-            ...cypressConfig,
-            baseURL: process.env.CYPRESS_BASE_URL,
-        },
-        spec: currentRunnerSpecs.join(','),
-        reporter: 'mocha-multi-reporters',
-        reporterOptions: {
-            reporterEnabled: 'spec, mocha-junit-reporter, cypress/reporters/testrail.js',
-            mochaJunitReporterReporterOptions: {
-                mochaFile: 'results/test-output-[hash].xml',
+    const reporter = new TestrailReporter({
+        domain: '1win.testrail.io',
+        username: 'niki4@1win.pro',
+        password: 'sntFAzot0AaT4m54nJgw-RqFWK7K0fwEB4PjbURfC',
+        projectId: 5,
+        runId: 252,
+    });
+
+    currentRunnerSpecs.map(async (spec) => {
+        const { runs } = await cypress.run({
+            config: {
+                ...cypressConfig,
+                baseURL: process.env.CYPRESS_BASE_URL,
             },
-            cypressReportersTestrailJsReporterOptions: {
-                domain: '1win.testrail.io',
-                username: 'niki4@1win.pro',
-                password: 'sntFAzot0AaT4m54nJgw-RqFWK7K0fwEB4PjbURfC',
-                projectId: 5,
-                runId: 252,
+            spec,
+            reporter: 'mocha-multi-reporters',
+            reporterOptions: {
+                reporterEnabled: 'spec, mocha-junit-reporter',
+                mochaJunitReporterReporterOptions: {
+                    mochaFile: 'results/test-output-[hash].xml',
+                },
             },
-        },
+        });
+
+        const run = runs[0];
+
+        run.tests.forEach(async (test) => {
+            const { id } = await reporter.addTestResult(test, run);
+        });
     });
 });
