@@ -16,6 +16,17 @@ const specsForRunner = (specs, runners, currentRunner) => {
 recursive('cypress/integration', (err, specs) => {
     const runners = process.env.CI_NODE_TOTAL || 1;
     const currentRunner = process.env.CI_NODE_INDEX || 1;
+    const baseUrl = process.env.CYPRESS_BASE_URL || cypressConfig.baseUrl;
+
+    const reporter = new TestrailReporter({
+        domain: '1win.testrail.io',
+        username: 'niki4@1win.pro',
+        password: 'sntFAzot0AaT4m54nJgw-RqFWK7K0fwEB4PjbURfC',
+        projectId: 5,
+        runId: 252,
+        fileBaseUrl: `${process.env.CI_JOB_URL}/artifacts/file/`,
+    });
+
 
     const currentRunnerSpecs = specsForRunner(specs, runners, currentRunner);
 
@@ -24,34 +35,12 @@ recursive('cypress/integration', (err, specs) => {
         return;
     }
 
-    const reporter = new TestrailReporter({
-        domain: '1win.testrail.io',
-        username: 'niki4@1win.pro',
-        password: 'sntFAzot0AaT4m54nJgw-RqFWK7K0fwEB4PjbURfC',
-        projectId: 5,
-        runId: 252,
-    });
-
     currentRunnerSpecs.map(async (spec) => {
         const { runs } = await cypress.run({
-            config: {
-                ...cypressConfig,
-                baseURL: process.env.CYPRESS_BASE_URL,
-            },
+            config: { ...cypressConfig, baseUrl },
             spec,
-            reporter: 'mocha-multi-reporters',
-            reporterOptions: {
-                reporterEnabled: 'spec, mocha-junit-reporter',
-                mochaJunitReporterReporterOptions: {
-                    mochaFile: 'results/test-output-[hash].xml',
-                },
-            },
         });
 
-        const run = runs[0];
-
-        run.tests.forEach(async (test) => {
-            const { id } = await reporter.addTestResult(test, run);
-        });
+        runs[0].tests.forEach(test => reporter.addTestResult(test, runs[0]));
     });
 });

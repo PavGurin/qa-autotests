@@ -6,22 +6,25 @@ it('C16283', () => {
         .click();
 
     cy
-        .get('.modal-container .form')
+        .get('.modal-container')
         .last()
-        .as('register-form');
+        .as('modal');
+    cy.screenshot();
 
     cy
-        .get('@register-form')
+        .get('@modal')
         .find('.country-select input')
         .should('have.value', 'Russia (Россия)');
 
     cy
-        .get('@register-form')
+        .get('@modal')
         .find('input[type="checkbox"]')
         .check();
 
+    cy.screenshot();
+
     cy
-        .get('@register-form')
+        .get('@modal')
         .find('.button-container button')
         .click()
         .wait(1000);
@@ -36,5 +39,6 @@ it('C16283', () => {
             expect(password).not.to.be.empty;
 
             cy.log(`Логин - ${login}, Пароль - ${password}`);
+            cy.screenshot();
         });
 });
