@@ -55,7 +55,7 @@ class TestrailReporter {
             },
         });
         const run = data.find(r => r.name === this.runName);
-        this.runId = run.id;
+        if (run) this.runId = run.id;
     }
 
     async addTestResult(test, run) {

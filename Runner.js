@@ -1,8 +1,9 @@
 const cypress = require('cypress');
 const recursive = require('recursive-readdir');
-const fs = require('fs');
 const TestrailReporter = require('./reporters/testrail.js');
+
 const cypressConfig = require('../cypress.json');
+const Config = require('./Config');
 
 const specsForRunner = (specs, runners, currentRunner) => {
     const specsInRunner = Math.ceil(specs.length / runners);
@@ -14,29 +15,24 @@ const specsForRunner = (specs, runners, currentRunner) => {
 };
 
 recursive('cypress/integration', async (err, specs) => {
-    const runners = process.env.CI_NODE_TOTAL || 1;
-    const currentRunner = process.env.CI_NODE_INDEX || 1;
-    const baseUrl = process.env.CYPRESS_BASE_URL || cypressConfig.baseUrl;
-    const runName = `${process.env.CI_COMMIT_REF_NAME}#${process.env.CI_PIPELINE_ID}`;
-
     const reporter = new TestrailReporter({
         domain: '1win.testrail.io',
         username: 'niki4@1win.pro',
         password: 'sntFAzot0AaT4m54nJgw-RqFWK7K0fwEB4PjbURfC',
         projectId: 5,
-        runName,
-        fileBaseUrl: `${process.env.CI_JOB_URL}/artifacts/file/`,
+        runName: Config.runName,
+        fileBaseUrl: Config.fileBaseUrl,
     });
 
 
-    const currentRunnerSpecs = specsForRunner(specs, runners, currentRunner);
+    const currentRunnerSpecs = specsForRunner(specs, Config.runners, Config.currentRunner);
 
     if (!currentRunnerSpecs.length) {
         console.log('Nothing to run');
         return;
     }
 
-    if (+currentRunner === 1) {
+    if (+Config.currentRunner === 1) {
         await reporter.createRun();
     } else {
         await new Promise(res => setTimeout(res, 10000));
@@ -45,7 +41,7 @@ recursive('cypress/integration', async (err, specs) => {
 
     currentRunnerSpecs.map(async (spec) => {
         const { runs } = await cypress.run({
-            config: { ...cypressConfig, baseUrl },
+            config: { ...cypressConfig, baseUrl: Config.baseUrl },
             spec,
         });
 
