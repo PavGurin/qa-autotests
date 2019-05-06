@@ -24,7 +24,7 @@ const buildComment = (test, run, fileBaseUrl) => {
 class TestrailReporter {
     constructor(options) {
         this.projectId = options.projectId;
-        this.runId = options.runId;
+        this.runName = options.runName;
         this.fileBaseUrl = options.fileBaseUrl;
 
         this.instance = axios.create({
@@ -35,6 +35,22 @@ class TestrailReporter {
                 password: options.password,
             },
         });
+    }
+
+    async createRun() {
+        const { data } = await this.instance.post(`/add_run/${this.projectId}`, {
+            name: this.runName,
+            include_all: true,
+        });
+        this.runId = data.id;
+    }
+
+    async getRunId() {
+        // sry, idk how to await for run creation with paralelized jobs
+        await new Promise(res => setTimeout(res, 10000));
+        const { data } = await this.instance.get(`/get_runs/${this.projectId}`);
+        const run = data.find(r => r.name === this.runName);
+        this.runId = run.id;
     }
 
     async addTestResult(test, run) {

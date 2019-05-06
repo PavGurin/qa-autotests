@@ -13,17 +13,18 @@ const specsForRunner = (specs, runners, currentRunner) => {
     return specs.slice(from, to);
 };
 
-recursive('cypress/integration', (err, specs) => {
+recursive('cypress/integration', async (err, specs) => {
     const runners = process.env.CI_NODE_TOTAL || 1;
     const currentRunner = process.env.CI_NODE_INDEX || 1;
     const baseUrl = process.env.CYPRESS_BASE_URL || cypressConfig.baseUrl;
+    const runName = `${process.env.CI_COMMIT_REF_NAME}#${process.env.CI_PIPELINE_ID}`;
 
     const reporter = new TestrailReporter({
         domain: '1win.testrail.io',
         username: 'niki4@1win.pro',
         password: 'sntFAzot0AaT4m54nJgw-RqFWK7K0fwEB4PjbURfC',
         projectId: 5,
-        runId: 252,
+        runName,
         fileBaseUrl: `${process.env.CI_JOB_URL}/artifacts/file/`,
     });
 
@@ -33,6 +34,12 @@ recursive('cypress/integration', (err, specs) => {
     if (!currentRunnerSpecs.length) {
         console.log('Nothing to run');
         return;
+    }
+
+    if (+currentRunner === 1) {
+        await reporter.createRun();
+    } else {
+        await reporter.getRunId();
     }
 
     currentRunnerSpecs.map(async (spec) => {
