@@ -35,8 +35,14 @@ recursive('cypress/integration', async (err, specs) => {
     if (+Config.currentRunner === 1) {
         await reporter.createRun();
     } else {
-        await new Promise(res => setTimeout(res, 10000));
-        await reporter.getRunId();
+        const runIdRequest = async () => {
+            await new Promise(res => setTimeout(res, 10000));
+            try {
+                await reporter.getRunId();
+            } catch (e) {
+                await runIdRequest();
+            }
+        };
     }
 
     currentRunnerSpecs.map(async (spec) => {
