@@ -59,9 +59,10 @@ class TestrailReporter {
     }
 
     async addTestResult(test, run) {
+        console.log(test, run);
         const result = {
             status_id: getStatusId(test.state),
-            case_id: titleToCaseId(test.title[0]),
+            case_id: titleToCaseId(test.title[test.title.length - 1]),
             comment: buildComment(test, run, this.fileBaseUrl),
             elapsed: test.wallClockDuration && `${test.wallClockDuration / 1000}s`,
         };
