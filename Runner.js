@@ -17,9 +17,9 @@ const specsForRunner = (specs, runners, currentRunner) => {
 recursive('cypress/integration', async (err, specs) => {
     const reporter = new TestrailReporter({
         domain: '1win.testrail.io',
-        username: 'niki4@1win.pro',
-        password: 'sntFAzot0AaT4m54nJgw-RqFWK7K0fwEB4PjbURfC',
-        projectId: 5,
+        username: Config.testrailUsername,
+        password: Config.testrailPassword,
+        projectId: Config.testrailProjectId,
         runName: Config.runName,
         fileBaseUrl: Config.fileBaseUrl,
     });
