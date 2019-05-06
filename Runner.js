@@ -39,6 +39,7 @@ recursive('cypress/integration', async (err, specs) => {
     if (+currentRunner === 1) {
         await reporter.createRun();
     } else {
+        await new Promise(res => setTimeout(res, 10000));
         await reporter.getRunId();
     }
 
