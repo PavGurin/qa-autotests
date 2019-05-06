@@ -4,9 +4,9 @@ const axios = require('axios');
 // Map testrail status id to cypress test state
 const getStatusId = (test) => {
     switch (test.state) {
-    case 'passed': return 1;
-    case 'failed': return 5;
-    default: throw new Error();
+        case 'passed': return 1;
+        case 'failed': return 5;
+        default: throw new Error();
     }
 };
 
