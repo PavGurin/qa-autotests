@@ -7,7 +7,7 @@ export const navReg = {
 // button Регистрация
 click_register(){
 
-  cy.contains('Регистрация').click();
+  cy.get('.level-item > .green').click();
 },
 
 //Radio button User Agreement of usage
@@ -154,6 +154,15 @@ password_social(password){
 //social form - password2
 password2_social(password2) {
   cy.get(':nth-child(2) > .control > .input').type(password2);
+},
+
+application_ios() {
+  cy.get('.application-card-ios').first();
+},
+
+application_android() {
+  cy.get('.application-card-android').first();
 }
+
 
 }
