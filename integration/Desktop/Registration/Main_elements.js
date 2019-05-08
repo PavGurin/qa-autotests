@@ -57,7 +57,7 @@ it('C16787 - Aggree with rules in eng', () => {
 
 });
 
-it.only('C16786 - Dowload apps', () => {
+it('C16786 - Dowload apps', () => {
 
   cy.visit('/');
   cy.wait(5000)
@@ -76,6 +76,26 @@ it.only('C16786 - Dowload apps', () => {
   navReg.registration_form('По e-mail');
   navReg.application_ios();
   navReg.application_android();
+
+});
+
+it.only('C18503 - Modal window dowload apps', () => {
+
+  cy.visit('/');
+  cy.wait(5000)
+
+  navReg.click_register();
+  //Check on contains liks on app in 1 ckick form
+  navReg.application_ios_click();
+
+  //Check button 'close'
+  cy.get('.ios-instruction > .svg')
+
+  //Check button dowloaded app
+  cy.get('.ios-instruction > .ios-instruction-download')
+
+  //Check text on detailed instructions
+  cy.get('.ios-instruction > .ios-instruction-details')
 
 });
 
