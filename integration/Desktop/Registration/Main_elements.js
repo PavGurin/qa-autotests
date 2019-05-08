@@ -17,13 +17,10 @@ it('C16787 - Aggree with rules in ru', () => {
 
   //Check on contains text in social network form
   navReg.registration_form('Соц. сети');
-
-  cy.should('have.class', 'form-tabs__link form-tabs__link_active');
   text.text_ru_rule_reg();
 
   //Check on contains text in e--mail form
   navReg.registration_form('По e-mail');
-  cy.should('have.class', 'form-tabs__link form-tabs__link_active');
   text.text_ru_rule_reg();
 });
 
@@ -36,21 +33,31 @@ it('C16787 - Aggree with rules in eng', () => {
   cy.contains('Registration');
   navReg.click_register();
   //Check on contains text in 1 ckick form
+  cy.get('.form-tabs > div').should(($lis) => {
+  expect($lis, '3 items').to.have.length(3)
+  expect($lis.eq(0), 'first item').to.have.class('form-tabs__link form-tabs__link_active')
+})
   text.text_eng_rule_reg();
 
   //Check on contains text in social network form
   navReg.registration_form('Social networks');
-  cy.should('have.class', 'form-tabs__link form-tabs__link_active');
+  cy.get('.form-tabs > div').should(($lis) => {
+  expect($lis, '3 items').to.have.length(3)
+  expect($lis.eq(1), 'first item').to.have.class('form-tabs__link form-tabs__link_active')
+})
   text.text_eng_rule_reg();
 
   //Check on contains text in e--mail form
   navReg.registration_form('By e-mail');
-  cy.should('have.class', 'form-tabs__link form-tabs__link_active');
+  cy.get('.form-tabs > div').should(($lis) => {
+  expect($lis, '3 items').to.have.length(3)
+  expect($lis.eq(2), 'first item').to.have.class('form-tabs__link form-tabs__link_active')
+})
   text.text_eng_rule_reg();
 
 });
 
-it('C16786 - Dowload apps', () => {
+it.only('C16786 - Dowload apps', () => {
 
   cy.visit('/');
   cy.wait(5000)
@@ -61,12 +68,12 @@ it('C16786 - Dowload apps', () => {
   navReg.application_android();
 
   //Check on contains liks on app  in social network form
-  navReg.registration_form('Social networks');
+  navReg.registration_form('Соц. сети');
   navReg.application_ios();
   navReg.application_android();
 
   //Check on contains liks on app  in e--mail form
-  navReg.registration_form('By e-mail');
+  navReg.registration_form('По e-mail');
   navReg.application_ios();
   navReg.application_android();
 
