@@ -160,6 +160,10 @@ application_ios() {
   cy.get('.application-card-ios').first();
 },
 
+application_ios_click() {
+  cy.get('.application-card-ios').first().click();
+},
+
 application_android() {
   cy.get('.application-card-android').first();
 }
