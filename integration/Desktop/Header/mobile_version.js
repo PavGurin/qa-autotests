@@ -1,7 +1,7 @@
 describe('Switch to mobile version', () => {
     it('C16321 Мобильная версия', function () {
         cy.visit('/');
-        // Проверяем видимость навигации ставок
+        // проверяем видимость навигации ставок
         cy.get('div.bets-navigation')
             .should('visible', 'div.bets-navigation');
         // жмем на кнопку мобильной версии
