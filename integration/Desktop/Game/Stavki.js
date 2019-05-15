@@ -4,7 +4,7 @@ import { basecom } from '../../../support/desktop/BaseCommands';
 
 
 describe('Stavka', () => {
-    it('Ставка валид', () => {
+    it('C18766 - Ставка валид', () => {
         cy.visit('/');
 
 //        cy.wait(5000);
@@ -18,7 +18,7 @@ describe('Stavka', () => {
         basecom.logout();
     });
 
-    it('Ставка нe валид', () => {
+    it('C18767 - Ставка с "Сумма ставки" = 0', () => {
         cy.visit('/');
 
 //        cy.wait(5000);
