@@ -39,7 +39,10 @@ add_promocode(promo){
   logout(){
 
   cy.screenshot()
-    .contains('Выйти');
+    .contains('Выйти')
+    .click();
+  cy.get('.cancel-button')
+    .click();
 },
 
   //Select country
