@@ -1,10 +1,14 @@
 const Mocha = require('mocha');
 const axios = require('axios');
 
-const getStatusId = testState => ({
-    passed: 1,
-    failed: 5,
-}[testState]);
+// Map testrail status id to cypress test state
+const getStatusId = (test) => {
+    switch (test.state) {
+        case 'passed': return 1;
+        case 'failed': return 5;
+        default: throw new Error();
+    }
+};
 
 const titleToCaseId = testTitle => /\bT?C(\d+)\b/g.exec(testTitle)[1];
 
@@ -24,7 +28,7 @@ const buildComment = (test, run, fileBaseUrl) => {
 class TestrailReporter {
     constructor(options) {
         this.projectId = options.projectId;
-        this.runName = options.runName;
+        this.runId = options.runId;
         this.fileBaseUrl = options.fileBaseUrl;
 
         this.instance = axios.create({
@@ -37,31 +41,9 @@ class TestrailReporter {
         });
     }
 
-    async createRun() {
-        await this.getRunId();
-        if (this.runId) return;
-        const { data } = await this.instance.post(`/add_run/${this.projectId}`, {
-            name: this.runName,
-            include_all: true,
-        });
-        this.runId = data.id;
-    }
-
-    async getRunId() {
-        // sry, idk how to await for run creation with paralelized jobs
-        const { data } = await this.instance.get(`/get_runs/${this.projectId}`, {
-            params: {
-                is_completed: 0,
-            },
-        });
-        const run = data.find(r => r.name === this.runName);
-        if (run) this.runId = run.id;
-    }
-
     async addTestResult(test, run) {
-        console.log(test, run);
         const result = {
-            status_id: getStatusId(test.state),
+            status_id: getStatusId(test),
             case_id: titleToCaseId(test.title[test.title.length - 1]),
             comment: buildComment(test, run, this.fileBaseUrl),
             elapsed: test.wallClockDuration && `${test.wallClockDuration / 1000}s`,
