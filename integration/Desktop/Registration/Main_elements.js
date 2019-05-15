@@ -5,7 +5,7 @@ import { text } from '../../../support/desktop/text';
 describe('Check all elements in modal window register', () => {
     it('C16787 - Aggree with rules in ru', () => {
         cy.visit('/');
-        cy.wait(5000);
+        //cy.wait(5000);
 
         cy.contains('Регистрация');
         navReg.click_register();
@@ -24,7 +24,7 @@ describe('Check all elements in modal window register', () => {
 
     it('C16787 - Aggree with rules in eng', () => {
         cy.visit('/');
-        cy.wait(5000);
+        //cy.wait(5000);
         basecom.switch_language();
 
         cy.contains('Registration');
@@ -55,7 +55,7 @@ describe('Check all elements in modal window register', () => {
 
     it('C16786 - Dowload apps', () => {
         cy.visit('/');
-        cy.wait(5000);
+        //cy.wait(5000);
 
         navReg.click_register();
         // Check on contains liks on app in 1 ckick form
@@ -73,9 +73,9 @@ describe('Check all elements in modal window register', () => {
         navReg.application_android();
     });
 
-    it.only('C18503 - Modal window dowload apps', () => {
+    it('C18503 - Modal window dowload apps', () => {
         cy.visit('/');
-        cy.wait(5000);
+        //cy.wait(5000);
 
         navReg.click_register();
         // Check on contains liks on app in 1 ckick form

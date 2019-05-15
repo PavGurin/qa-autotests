@@ -3,7 +3,7 @@ import { navReg } from '../../../support/desktop/NavReg';
 describe('Registration by social network', () => {
     it('C16293 - VK with promocode', () => {
         cy.visit('/');
-        cy.wait(5000);
+        //cy.wait(5000);
         navReg.click_register();
         navReg.registration_form('Соц. сети');
         navReg.vk();
@@ -16,7 +16,7 @@ describe('Registration by social network', () => {
 
     it('C16294 - Ok with promocode', () => {
         cy.visit('/');
-        cy.wait(5000);
+        //cy.wait(5000);
         navReg.click_register();
         navReg.registration_form('Соц. сети');
         navReg.ok();
@@ -29,7 +29,7 @@ describe('Registration by social network', () => {
 
     it('C16295 - Google with promocode', () => {
         cy.visit('/');
-        cy.wait(5000);
+        //cy.wait(5000);
         navReg.click_register();
         navReg.registration_form('Соц. сети');
         navReg.google();
@@ -42,7 +42,7 @@ describe('Registration by social network', () => {
 
     it('C16290 - VK without promocode', () => {
         cy.visit('/');
-        cy.wait(5000);
+        //cy.wait(5000);
         navReg.click_register();
         navReg.registration_form('Соц. сети');
         navReg.vk();
@@ -54,7 +54,7 @@ describe('Registration by social network', () => {
 
     it('C16291 - Ok without promocode', () => {
         cy.visit('/');
-        cy.wait(5000);
+        //cy.wait(5000);
         navReg.click_register();
         navReg.registration_form('Соц. сети');
         navReg.ok();
@@ -66,7 +66,7 @@ describe('Registration by social network', () => {
 
     it('C16292 - Google without promocode', () => {
         cy.visit('/');
-        cy.wait(5000);
+        //cy.wait(5000);
         navReg.click_register();
         navReg.registration_form('Соц. сети');
         navReg.google();

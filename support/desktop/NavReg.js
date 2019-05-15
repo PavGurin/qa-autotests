@@ -19,37 +19,26 @@ agreement(){
 //Button Sign up not social
 sign_up() {
 
-  cy.contains('Зарегистрироваться').click();
+  cy.get('.button-container > .button').click();
 },
 
-//Button Sign up not social
+//Button next only for social
 next() {
 
-  cy.contains('Далее').click();
+  cy.get('[data-layer="Padding"]').click();
 },
 
 //Button add promocode
 add_promocode(promo){
 
   cy.get('.add_promocode').click()
-    .get('.marginless > .input').type(promo);
-},
-
-  //Logout
-  logout(){
-
-  cy.screenshot()
-    .contains('Выйти')
-    .click();
-  cy.get('.cancel-button')
-    .click();
+    .get('.field > .control > .control-input-wrapper > .input').type(promo);
 },
 
   //Select country
   set_country(country) {
 
-    cy.get('.row .selected-flag').click()
-      .get('.highlight > .country-name')
+    cy.get('.trigger').click()
       .get(country).click();
   },
 
@@ -75,45 +64,45 @@ registration_form(button) {
 //email form - name
 name_field(name){
 
-  cy.get(':nth-child(1) > .input').type(name);
+  cy.get('.form > :nth-child(1) > .control-input-wrapper > .input').type(name);
 },
 
 //email form - email
 email_field(email){
 
-  cy.get(':nth-child(5) > .input').type(email);
+  cy.get(':nth-child(5) > .control-input-wrapper > .input').type(email);
 },
 
 //email form - password
 password_field(password){
 
-  cy.get(':nth-child(6) > .input').type(password);
+  cy.get(':nth-child(6) > .control-input-wrapper > .input').type(password);
 },
 
 //email form - password second field
 password2_field(password2){
 
-  cy.get(':nth-child(7) > .input').type(password2);
+  cy.get(':nth-child(7) > .control-input-wrapper > .input').type(password2);
 },
 
 //email form - day
 day_field(day){
 
-  cy.get(':nth-child(1) > .default-select > .select')
+  cy.get('div:nth-child(1) > .default-select > .select')
     .select(day);
 },
 
 //email form - month
 month_field(month){
 
-  cy.get(':nth-child(2) > .default-select > .select')
+  cy.get('div:nth-child(2) > .default-select > .select')
     .select(month);
 },
 
 //email form - year
 year_field(year){
 
-  cy.get(':nth-child(3) > .default-select > .select')
+  cy.get('div:nth-child(3) > .default-select > .select')
     .select(year);
 },
 
@@ -127,48 +116,50 @@ country_phone_field(country_phone){
 //email form -  phone
 phone_field(phone){
 
-  cy.get('.form > .tel-input > .intl-tel-input > input').type(phone);
+  cy.get('.intl-tel-input > .control > .control-input-wrapper > .input').type(phone);
 },
 
 //social form -  vk
 vk(){
 
-  cy.contains('ВКонтакте').click();
+  cy.get(' div.block.lg.level-center.gap-sm.register-block > div > div:nth-child(1)').click();
 },
 
 //social form -  ok
 ok(){
 
-  cy.contains('Одноклассники').click();
+  cy.get(' div.block.lg.level-center.gap-sm.register-block > div > div:nth-child(2)').click();
+
 },
 
 //social form -  google
 google(){
 
-  cy.contains('Google').click();;
+  cy.get(' div.block.lg.level-center.gap-sm.register-block > div > div:nth-child(3)').click();
+;
 },
 
 //social form - password
 password_social(password){
 
-  cy.get('.col > :nth-child(1) > .control > .input').type(password);
+  cy.get(':nth-child(1) > .control > .control-input-wrapper > .input').type(password);
 },
 
 //social form - password2
 password2_social(password2) {
-  cy.get(':nth-child(2) > .control > .input').type(password2);
+  cy.get(':nth-child(2) > .control > .control-input-wrapper > .input').type(password2);
 },
 
 application_ios() {
-  cy.get('.application-card-ios').first();
+  cy.get('.application-items > .application-card-ios').first();
 },
 
 application_ios_click() {
-  cy.get('.application-card-ios').first().click();
+  cy.get('.application-items > .application-card-ios').first().click();
 },
 
 application_android() {
-  cy.get('.application-card-android').first();
+  cy.get('.application-items > .application-card-android').first();
 }
 
 

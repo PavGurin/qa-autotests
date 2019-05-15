@@ -1,17 +1,19 @@
 import { login } from '../../../support/desktop/login';
-import { navReg } from '../../../support/desktop/NavReg';
+import { basecom } from '../../../support/desktop/BaseCommands';
 
 
 describe('Stavka', () => {
     it('C16300 - Авторизация по email', () => {
-        login.log_ins();
+      cy.visit('/');
 
-        navReg.logout();
-    });
+      login.log_ins();
+      basecom.logout();
+  });
 
     it('C16300 - Авторизация по email, Невалидные данные', () => {
-        login.log_ins_nevalid();
+      cy.visit('/');
 
-        navReg.logout();
+      login.log_ins_nevalid();
+      basecom.logout();
     });
 });
