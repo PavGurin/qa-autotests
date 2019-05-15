@@ -25,7 +25,7 @@ sign_up() {
 //Button next only for social
 next() {
 
-  cy.get('[data-layer="Padding"]').click();
+  cy.contains('Далее').click();
 },
 
 //Button add promocode

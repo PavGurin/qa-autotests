@@ -22,7 +22,7 @@ describe('Check all elements in modal window register', () => {
         text.text_ru_rule_reg();
     });
 
-    it('C16787 - Aggree with rules in eng', () => {
+    it('C18765 - Aggree with rules in eng', () => {
         cy.visit('/');
         //cy.wait(5000);
         basecom.switch_language();
