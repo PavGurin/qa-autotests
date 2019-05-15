@@ -1,39 +1,34 @@
 import { gameStav } from '../../../support/desktop/gameStav';
 import { login } from '../../../support/desktop/login';
-import { navReg } from '../../../support/desktop/navReg';
+import { navReg } from '../../../support/desktop/NavReg';
 
 
 describe('Stavka', () => {
+    it('Ставка валид', () => {
+        cy.visit('/');
 
-  it('Ставка валид', () => {
-      cy.visit('/');
+        cy.wait(5000);
 
-      cy.wait(5000)
+        login.log_ins();
 
-      login.log_ins();
+        gameStav.click_stavka_valid();
 
-      gameStav.click_stavka_valid();
+        cy.wait(5000);
 
-      cy.wait(5000)
-
-      navReg.logout();
-
+        navReg.logout();
     });
 
-    it('Ставка ne валид',()=> {
+    it('Ставка ne валид', () => {
+        cy.visit('/');
 
-      cy.visit('/');
+        cy.wait(5000);
 
-      cy.wait(5000)
+        login.log_ins();
 
-      login.log_ins();
+        gameStav.click_stavka_Ne_val();
 
-      gameStav.click_stavka_Ne_val();
+        cy.wait(5000);
 
-      cy.wait(5000)
-
-      navReg.logout();
-
-
+        navReg.logout();
     });
 });
