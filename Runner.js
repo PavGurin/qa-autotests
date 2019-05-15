@@ -20,37 +20,22 @@ recursive('cypress/integration', async (err, specs) => {
         username: Config.testrailUsername,
         password: Config.testrailPassword,
         projectId: Config.testrailProjectId,
-        runName: Config.runName,
+        runId: Config.testrailRunId,
         fileBaseUrl: Config.fileBaseUrl,
     });
 
-
     const currentRunnerSpecs = specsForRunner(specs, Config.runners, Config.currentRunner);
 
-    if (!currentRunnerSpecs.length) {
-        console.log('Nothing to run');
-        return;
-    }
+    if (currentRunnerSpecs.length) {
+        currentRunnerSpecs.map(async (spec) => {
+            const { runs } = await cypress.run({
+                config: { ...cypressConfig, baseUrl: Config.baseUrl },
+                spec,
+            });
 
-    if (+Config.currentRunner === 1) {
-        await reporter.createRun();
-    } else {
-        const runIdRequest = async () => {
-            await new Promise(res => setTimeout(res, 10000));
-            try {
-                await reporter.getRunId();
-            } catch (e) {
-                await runIdRequest();
-            }
-        };
-    }
-
-    currentRunnerSpecs.map(async (spec) => {
-        const { runs } = await cypress.run({
-            config: { ...cypressConfig, baseUrl: Config.baseUrl },
-            spec,
+            runs[0].tests.forEach(test => reporter.addTestResult(test, runs[0]));
         });
-
-        runs[0].tests.forEach(test => reporter.addTestResult(test, runs[0]));
-    });
+    } else {
+        console.warn('Nothing to run');
+    }
 });
