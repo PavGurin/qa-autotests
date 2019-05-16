@@ -21,7 +21,7 @@ describe('Sign up in 1 click', () => {
             });
     });
 
-    it.only('C16285 - 1 click with Russia country with promo code', () => {
+    it('C16285 - 1 click with Russia country with promo code', () => {
         cy.visit('/');
         //cy.wait(5000);
         navReg.click_register();
