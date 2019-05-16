@@ -2,7 +2,7 @@ import { login } from '../../../support/desktop/login';
 import { basecom } from '../../../support/desktop/BaseCommands';
 
 
-describe('Stavka', () => {
+describe('Авторизация по email', () => {
     it('C16300 - Авторизация по email', () => {
       cy.visit('/');
 
@@ -10,7 +10,7 @@ describe('Stavka', () => {
       basecom.logout();
   });
 
-    it('C16300 - Авторизация по email, Невалидные данные', () => {
+    it('C18769 - Авторизация по email, Невалидные данные', () => {
       cy.visit('/');
 
       login.log_ins_nevalid();
