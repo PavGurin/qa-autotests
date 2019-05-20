@@ -1,19 +1,21 @@
-import { auth } from '../../../support/desktop/Authorization';
-import { baseCom } from '../../../support/desktop/BaseCommands';
-
+import {auth} from '../../../support/desktop/authorization';
 
 describe('Авторизация по email', () => {
-    it('C16300 - Авторизация по email', () => {
-      cy.visit('/');
-
-      auth.login();
-      baseCom.logout();
-  });
+    // it('C16300 - Авторизация по email', () => {
+    //     cy.visit('/');
+    //     // авторизация
+    //     auth.login();
+    //     cy.screenshot();
+    //     // выход
+    //     auth.logout();
+    // });
 
     it('C18769 - Авторизация по email, Невалидные данные', () => {
-      cy.visit('/');
+        cy.visit('/');
+        // авторизация с невалидными данными
+        // auth.login_invalid();
 
-      auth.login_invalid();
-      baseCom.logout();
+auth.login()
+        cy.screenshot();
     });
 });

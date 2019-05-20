@@ -1,6 +1,6 @@
-import { auth } from '../../../support/desktop/Authorization';
+import {auth} from '../../../support/desktop/authorization';
 
-describe('Logout', () => {
+describe('Выход', () => {
 
     it('C18768 Выход', () => {
         cy.visit('/');

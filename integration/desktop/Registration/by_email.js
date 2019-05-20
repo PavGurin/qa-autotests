@@ -1,4 +1,4 @@
-import { navReg } from '../../../support/desktop/NavReg';
+import { navReg } from '../../../support/desktop/navReg';
 
 describe('Registration by email', () => {
     const randomNub = Math.floor(Math.random() * 9999999) + 1;
