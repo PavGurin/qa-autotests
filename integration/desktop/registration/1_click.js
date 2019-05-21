@@ -1,4 +1,4 @@
-import { navReg } from '../../../support/desktop/navReg';
+import { navReg } from '../../../support/desktop/NavReg';
 
 describe('Sign up in 1 click', () => {
     it('C16283 - 1 click with Russia country without promo code', () => {

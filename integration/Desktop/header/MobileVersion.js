@@ -1,4 +1,4 @@
-import {baseCom} from '../../../support/desktop/baseCommands';
+import {basicCom} from '../../../support/desktop/BasicCommands';
 
 describe('Переключение на мобильную версию', () => {
     it('C16321 Мобильная версия', function () {
@@ -7,7 +7,7 @@ describe('Переключение на мобильную версию', () => 
         cy.get('div.bets-navigation')
           .should('be.visible');
         // переключаемся на мобильную версию
-        baseCom.switch_to_mobile();
+        basicCom.switch_to_mobile();
         // проверяем количество секций на сайте (4 - Live/Линия/Live Games/Casino)
         cy.get('section.section')
           .should('have.length', 4);

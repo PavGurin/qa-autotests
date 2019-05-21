@@ -1,4 +1,4 @@
-import {auth} from '../../../support/desktop/authorization';
+import {auth} from '../../../support/desktop/Authorization';
 
 describe('Выход', () => {
 

@@ -1,4 +1,4 @@
-import { navReg } from '../../../support/desktop/navReg';
+import { navReg } from '../../../support/desktop/NavReg';
 
 describe('Registration by social network', () => {
     it('C16293 - VK with promocode', () => {

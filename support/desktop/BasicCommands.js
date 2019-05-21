@@ -1,4 +1,4 @@
-export const baseCom = {
+export const basicCom = {
 
     // switch language
     switch_language() {

@@ -1,5 +1,5 @@
-import {bets} from '../../../support/desktop/bets';
-import {auth} from '../../../support/desktop/authorization';
+import {bets} from '../../../support/desktop/Bets';
+import {auth} from '../../../support/desktop/Authorization';
 
 describe('Ставки', () => {
     it('C18766 - Успешная ставка (Main page)', () => {

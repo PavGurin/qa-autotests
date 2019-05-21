@@ -1,6 +1,6 @@
-import { navReg } from '../../../support/desktop/navReg';
-import { baseCom } from '../../../support/desktop/baseCommands';
-import { text } from '../../../support/desktop/text';
+import { navReg } from '../../../support/desktop/NavReg';
+import { basicCom } from '../../../support/desktop/BasicCommands';
+import { text } from '../../../support/desktop/Descriptions';
 
 describe('Check all elements in modal window register', () => {
     it('C16787 - Aggree with rules in ru', () => {
@@ -25,7 +25,7 @@ describe('Check all elements in modal window register', () => {
     it('C18765 - Aggree with rules in eng', () => {
         cy.visit('/');
         //cy.wait(5000);
-        baseCom.switch_language();
+        basicCom.switch_language();
 
         cy.contains('Registration');
         navReg.click_register();
