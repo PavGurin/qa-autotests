@@ -1,66 +1,64 @@
-// ***********************************************
-// This file only for registration commands
-// ***********************************************
+/**
+ Registration commands
+ **/
 
 export const navReg = {
 
-    // button Регистрация
+    // registration button
     click_register() {
 
         cy.get('.level-item > .green')
           .click();
     },
 
-    //Radio button User Agreement of usage
-    agreement() {
-
-        cy.get('.checkmark')
+    // radio button 'User Agreement of usage'
+    accept_agreement() {
+        cy.get('span.checkmark')
           .click();
     },
 
-    //Button Sign up not social
+    // sign up button
     sign_up() {
-
         cy.get('.button-container > .button')
           .click();
     },
 
+    // close window with new user's login/pass
+    close_new_user_info(){
+        cy.get("i.fa-times").click()
+    },
+
     //Button next only for social
     next() {
-
         cy.contains('Далее')
           .click();
     },
 
     //Button add promocode
-    add_promocode(promo) {
+    add_promocode(promocode) {
 
         cy.get('.add_promocode')
           .click()
-          .get('.field > .control > .control-input-wrapper > .input')
-          .type(promo);
+          .get('.field > .control > .input-wrapper > .input')
+          .type(promocode);
     },
 
     //Select country
     set_country(country) {
-
         cy.get('.trigger')
           .click()
           .get(country)
           .click();
     },
 
-    //Ckeck country
-    check_country(country1) {
-        cy
-            .get('.modal-container')
-            .last()
-            .as('modal');
-
-        cy
-            .get('@modal')
-            .find('.country-select input')
-            .should('have.value', country1);
+    // check default country
+    check_country_default(country) {
+        cy.get('.modal-container')
+          .last()
+          .as('selected_country');
+        cy.get('@selected_country')
+          .find('.country-select input')
+          .should('have.value', country);
     },
 
     //Switch on e-mail form registration

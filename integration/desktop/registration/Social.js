@@ -8,7 +8,7 @@ describe('Registration by social network', () => {
         navReg.registration_form('Соц. сети');
         navReg.vk();
         navReg.add_promocode('autotest1');
-        navReg.agreement();
+        navReg.accept_agreement();
         navReg.next();
         navReg.password_social('111111');
         navReg.password2_social('111111');
@@ -21,7 +21,7 @@ describe('Registration by social network', () => {
         navReg.registration_form('Соц. сети');
         navReg.ok();
         navReg.add_promocode('autotest1');
-        navReg.agreement();
+        navReg.accept_agreement();
         navReg.next();
         navReg.password_social('111111');
         navReg.password2_social('111111');
@@ -34,7 +34,7 @@ describe('Registration by social network', () => {
         navReg.registration_form('Соц. сети');
         navReg.google();
         navReg.add_promocode('autotest1');
-        navReg.agreement();
+        navReg.accept_agreement();
         navReg.next();
         navReg.password_social('111111');
         navReg.password2_social('111111');
@@ -46,7 +46,7 @@ describe('Registration by social network', () => {
         navReg.click_register();
         navReg.registration_form('Соц. сети');
         navReg.vk();
-        navReg.agreement();
+        navReg.accept_agreement();
         navReg.next();
         navReg.password_social('111111');
         navReg.password2_social('111111');
@@ -58,7 +58,7 @@ describe('Registration by social network', () => {
         navReg.click_register();
         navReg.registration_form('Соц. сети');
         navReg.ok();
-        navReg.agreement();
+        navReg.accept_agreement();
         navReg.next();
         navReg.password_social('111111');
         navReg.password2_social('111111');
@@ -70,7 +70,7 @@ describe('Registration by social network', () => {
         navReg.click_register();
         navReg.registration_form('Соц. сети');
         navReg.google();
-        navReg.agreement();
+        navReg.accept_agreement();
         navReg.next();
         navReg.password_social('111111');
         navReg.password2_social('111111');

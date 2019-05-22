@@ -30,8 +30,6 @@ export const bets = {
 
     // делает ставку со страницы 'Live'
     bet_live_page() {
-        // ожидание, необходимое для прогрузки элементов
-        cy.wait(1000);
         // проверяет прогрузку страницы 'Live'
         cy.get('div.sport-title')
           .should('be.visible');
@@ -66,5 +64,11 @@ export const bets = {
         // проверяет, что ставка невозможна, выходит ошибка
         cy.get(bet_isnt_done)
           .should('exist');
+    },
+
+    // закрывает все отмеченные купоны (жмет 'крестик')
+    close_coupons() {
+        cy.get('i.coupon-close')
+          .click({multiple: true});
     }
 };

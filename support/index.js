@@ -30,12 +30,12 @@ const xpath = (selector, options = {}) => {
     // options to log later
     const log = {
         name: 'xpath',
-        message: selector,
+        message: selector
     };
 
     const getValue = () => {
         const nodes = [];
-        const { document } = cy.state('window');
+        const {document} = cy.state('window');
         const iterator = document.evaluate(selector, document);
 
         if (isNumber(iterator)) {
@@ -43,7 +43,7 @@ const xpath = (selector, options = {}) => {
             log.consoleProps = () => ({
                 XPath: selector,
                 type: 'number',
-                result,
+                result
             });
             return result;
         }
@@ -53,7 +53,7 @@ const xpath = (selector, options = {}) => {
             log.consoleProps = () => ({
                 XPath: selector,
                 type: 'string',
-                result,
+                result
             });
             return result;
         }
@@ -63,7 +63,7 @@ const xpath = (selector, options = {}) => {
             log.consoleProps = () => ({
                 XPath: selector,
                 type: 'boolean',
-                result,
+                result
             });
             return result;
         }
@@ -77,7 +77,7 @@ const xpath = (selector, options = {}) => {
             }
 
             log.consoleProps = () => ({
-                XPath: selector,
+                XPath: selector
             });
 
             return nodes;
@@ -88,18 +88,20 @@ const xpath = (selector, options = {}) => {
         }
     };
 
-    const resolveValue = () => Cypress.Promise.try(getValue).then(value => cy.verifyUpcomingAssertions(value, options, {
-        onRetry: resolveValue,
-    }));
+    const resolveValue = () => Cypress.Promise.try(getValue)
+                                      .then(value => cy.verifyUpcomingAssertions(value, options, {
+                                          onRetry: resolveValue
+                                      }));
 
-    return resolveValue().then((value) => {
-    // TODO set found elements on the command log?
-        Cypress.log(log);
-        if (isPrimitive(value)) {
-            return value;
-        }
-        return Cypress.$(value);
-    });
+    return resolveValue()
+        .then((value) => {
+            // TODO set found elements on the command log?
+            Cypress.log(log);
+            if (isPrimitive(value)) {
+                return value;
+            }
+            return Cypress.$(value);
+        });
 };
 
 Cypress.Commands.add('xpath', xpath);
@@ -124,8 +126,15 @@ import './socketLogget';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-
-beforeEach(() => {
+//
+before(() => {
     cy.clearCookies();
-    cy.setCookie('session-id', '', { domain: '1win-auth.com' });
+    cy.setCookie('session-id', '', {domain: '1win-auth.com'});
+    cy.visit('/');
 });
+
+// beforeEach(() => {
+//     cy.clearCookies();
+//     cy.setCookie('session-id', '', {domain: '1win-auth.com'});
+//     cy.visit('/');
+// });

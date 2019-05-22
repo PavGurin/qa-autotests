@@ -9,10 +9,10 @@ const password_input = 'input[name=password]';
 const login_confirm = 'button[type=submit]';
 const auth_window = 'div.modal-container';
 const logout_question = '.logout-question';
+const notification = '.notification-content';
 
 export const auth = {
 
-    // успешная авторизация
     login() {
         // нажимаем кнопку 'Войти' со стартовой страницы
         cy.get(entry_button)
@@ -31,7 +31,25 @@ export const auth = {
           .should('exist');
     },
 
-    // logout
+    // авторизация по параметрам логина/пароля
+    loginAs(login, password) {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get(entry_button)
+          .click();
+        // вводим логин/пароль
+        cy.get(login_input)
+          .type(login)
+          .should('have.value', login);
+        cy.get(password_input)
+          .type(password);
+        // нажимаем кнопку 'Войти' в меню авторизации
+        cy.get(login_confirm)
+          .click();
+        // проверяем, что пользователь залогинился
+        cy.get(user_info)
+          .should('exist');
+    },
+
     logout() {
         // нажимаем 'Выйти'
         cy.get('button.button.secondary')
@@ -49,11 +67,28 @@ export const auth = {
           .should('not.exist');
     },
 
-    // невалидная попытка авторизации
-    login_nonexistent_user() {
-        // нажимаем кнопку 'Войти'
+    // авторизация с пустыми обязательными полями
+    login_empty_mandatory_fields() {
+        // жмем кнопку 'Войти' на странице авторизации
         cy.get(entry_button)
           .click();
+        cy.get(login_input)
+          .type('test')
+          .should('have.value', 'test');
+        // жмем кнопку 'Войти' на странице авторизации
+        cy.get(login_confirm)
+          .click();
+        // проверяем, что окно авторизации все еще активно
+        cy.get(auth_window)
+          .should('exist');
+        cy.screenshot();
+        // очищаем поле ввода логина
+        cy.get(login_input)
+          .clear();
+    },
+
+    // невалидная попытка авторизации
+    login_nonexistent_user() {
         // вводим невалидные логин/пароль
         cy.get(login_input)
           .type('nonexistent@test.com')
@@ -64,60 +99,42 @@ export const auth = {
         cy.get(login_confirm)
           .click();
         // проверяем ошибку и ее текст
-        cy.get('.notification-content')
+        cy.get(notification)
           .should('visible')
           .and('have.text', '«пользователь» не существует.');
+        cy.screenshot();
         // проверяем, что пользователь все еще не залогинен
         cy.get(user_info)
           .should('not.exist');
-        // закрываем окно авторизации
-        cy.get('i.fa-times')
-          .click();
+        // очищаем поля ввода логина/пароля
+        cy.get(login_input)
+          .clear();
+        cy.get(password_input)
+          .clear();
     },
 
     login_invalid_password() {
-        // нажимаем кнопку 'Войти' со стартовой страницы
-        cy.get(entry_button)
-          .click();
         // вводим логин с неправильным паролем
-        cy.get('input[name=login]')
+        cy.get(login_input)
           .type('nogm75@1win.xyz')
           .should('have.value', 'nogm75@1win.xyz');
-        cy.get('input[name=password]')
+        cy.get(password_input)
           .type('123456555');
         // нажимаем кнопку 'Войти' в меню авторизации
         cy.get(login_confirm)
           .click();
         // проверяем ошибку и ее текст
-        cy.get('.notification-content')
+        cy.get(notification)
           .should('visible')
           .and('have.text', 'Неверный пароль');
+        cy.screenshot();
         // проверяем, что пользователь все еще не залогинен
         cy.get(user_info)
           .should('not.exist');
-        // закрываем окно авторизации
-        cy.get('i.fa-times')
-          .click();
-    },
-
-    login_empty_mandatory_fields() {
-        // жмем кнопку 'Войти' на странице авторизации
-        cy.get(entry_button)
-          .click();
-        // проверяем, что окно авторизации все еще активно
-        cy.get(auth_window)
-          .should('exist');
+        // очищаем поля ввода логина/пароля
         cy.get(login_input)
-          .type('test')
-          .should('have.value', 'test');
-        // жмем кнопку 'Войти' на странице авторизации
-        cy.get(login_confirm)
-          .click();
-        // проверяем, что окно авторизации все еще активно
-        cy.get(auth_window)
-          .should('exist');
-        // закрываем окно авторизации
-        cy.get('i.fa-times')
-          .click();
+          .clear();
+        cy.get(password_input)
+          .clear();
     }
 };
