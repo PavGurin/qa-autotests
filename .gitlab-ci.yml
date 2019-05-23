@@ -13,15 +13,15 @@ stages:
   - build
   - run
 
-build:
-  tags:
-    - docker
-  stage: build
-  script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker-compose pull -q || true
-    - docker-compose build
-    - docker-compose push
+# build:
+#   tags:
+#     - docker
+#   stage: build
+#   script:
+#     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+#     - docker-compose pull -q || true
+#     - docker-compose build
+#     - docker-compose push
 
 run:
   tags:
@@ -30,6 +30,7 @@ run:
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker-compose pull -q || true
+    - export CYPRESS_TESTRAIL_RUN_ID=$(./cypress/createRun.sh)
     - docker-compose run e2e
   artifacts:
     reports:
@@ -39,3 +40,6 @@ run:
     - cypress/screenshots
     expire_in: 1 week
     when: always
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: https://1win.testrail.io/index.php?/projects/overview/${CYPRESS_TESTRAIL_PROJECT_ID}

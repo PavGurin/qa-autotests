@@ -26,6 +26,8 @@ recursive('cypress/integration', async (err, specs) => {
 
     const currentRunnerSpecs = specsForRunner(specs, Config.runners, Config.currentRunner);
 
+    console.log(process.env)
+
     if (currentRunnerSpecs.length) {
         for (const spec of currentRunnerSpecs) {
             // eslint-disable-next-line no-await-in-loop
