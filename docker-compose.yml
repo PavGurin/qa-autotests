@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  e2e:
+    image: $CI_REGISTRY_IMAGE/image:$CI_COMMIT_REF_SLUG
+    environment:
+      - CI_NODE_TOTAL=$CI_NODE_TOTAL
+      - CI_NODE_INDEX=$CI_NODE_INDEX
+      - CI_PIPELINE_ID=$CI_PIPELINE_ID
+      - CI_JOB_URL=$CI_JOB_URL
+      - CI_COMMIT_REF_NAME=$CI_COMMIT_REF_NAME
+      - CYPRESS_TESTRAIL_PROJECT_ID=$CYPRESS_TESTRAIL_PROJECT_ID
+      - CYPRESS_TESTRAIL_PASSWORD=$CYPRESS_TESTRAIL_PASSWORD
+      - CYPRESS_TESTRAIL_USER=$CYPRESS_TESTRAIL_USER
+      - CYPRESS_BASE_URL=$CYPRESS_BASE_URL
+      - CYPRESS_TESTRAIL_RUN_ID=$CYPRESS_TESTRAIL_RUN_ID
+    volumes:
+      - ./cypress:/usr/src/app/cypress/
+      - ./results:/usr/src/app/results/
+    build:
+      context: .
+      cache_from:
+        - $CI_REGISTRY_IMAGE/image:$CI_COMMIT_REF_SLUG
