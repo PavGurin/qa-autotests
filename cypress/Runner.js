@@ -27,14 +27,21 @@ recursive('cypress/integration', async (err, specs) => {
     const currentRunnerSpecs = specsForRunner(specs, Config.runners, Config.currentRunner);
 
     if (currentRunnerSpecs.length) {
-        currentRunnerSpecs.map(async (spec) => {
+        for (const spec of currentRunnerSpecs) {
+            // eslint-disable-next-line no-await-in-loop
             const { runs } = await cypress.run({
-                config: { ...cypressConfig, baseUrl: Config.baseUrl },
+                config: {
+                    ...cypressConfig,
+                    baseUrl: Config.baseUrl,
+                    trashAssetsBeforeRuns: false,
+                },
                 spec,
             });
-
-            runs[0].tests.forEach(test => reporter.addTestResult(test, runs[0]));
-        });
+            runs
+                .forEach(run =>
+                    run.tests.forEach(test =>
+                        reporter.addTestResult(test, run)));
+        }
     } else {
         console.warn('Nothing to run');
     }
