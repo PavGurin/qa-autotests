@@ -13,15 +13,18 @@ stages:
   - build
   - run
 
-# build:
-#   tags:
-#     - docker
-#   stage: build
-#   script:
-#     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-#     - docker-compose pull -q || true
-#     - docker-compose build
-#     - docker-compose push
+build:
+  tags:
+    - docker
+  stage: build
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker-compose pull -q || true
+    - docker-compose build
+    - docker-compose push
+  except:
+    variables:
+      - $CYPRESS_BASE_URL
 
 run:
   tags:
