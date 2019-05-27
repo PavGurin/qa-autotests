@@ -1,5 +1,5 @@
-import {navReg} from '../../../support/desktop/NavReg';
-import {auth} from '../../../support/desktop/Authorization';
+import {navReg} from '@support/desktop/NavReg';
+import {auth} from '@support/desktop/Authorization';
 
 describe('Registration by email', () => {
     afterEach(function () {
