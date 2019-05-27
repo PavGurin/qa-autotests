@@ -50,6 +50,7 @@ recursive('cypress/integration', async (err, specs) => {
                 titles
                     .forEach(title => reporter.addTestResult(
                         { state: 'failed', title: [ title ], error: 'chrome crashed' },
+                        {}
                     ))
             }
         }
