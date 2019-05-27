@@ -1,4 +1,4 @@
-import {navReg} from '../../../support/desktop/NavReg';
+import {navReg} from '@support/desktop/NavReg';
 
 const password = 111111;
 

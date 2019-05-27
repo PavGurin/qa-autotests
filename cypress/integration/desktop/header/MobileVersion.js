@@ -1,4 +1,4 @@
-import {basicCom} from '../../../support/desktop/BasicCommands';
+import {basicCom} from '@support/desktop/BasicCommands';
 
 describe('Переключение на мобильную версию', () => {
 

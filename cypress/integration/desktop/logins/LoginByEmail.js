@@ -1,4 +1,4 @@
-import {auth} from '../../../support/desktop/Authorization';
+import {auth} from '@support/desktop/Authorization';
 
 describe('Авторизация', () => {
 

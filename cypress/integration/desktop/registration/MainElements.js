@@ -1,6 +1,6 @@
-import { navReg } from '../../../support/desktop/NavReg';
-import { basicCom } from '../../../support/desktop/BasicCommands';
-import { text } from '../../../support/desktop/Descriptions';
+import { navReg } from '@support/desktop/NavReg';
+import { basicCom } from '@support/desktop/BasicCommands';
+import { text } from '@support/desktop/Descriptions';
 
 describe('Check all elements in modal window register', () => {
     it('C16787 - Rules agreement rus', () => {

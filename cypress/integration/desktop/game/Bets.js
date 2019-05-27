@@ -1,5 +1,5 @@
-import {bets} from '../../../support/desktop/Bets';
-import {auth} from '../../../support/desktop/Authorization';
+import {bets} from '@support/desktop/Bets';
+import {auth} from '@support/desktop/Authorization';
 
 describe('Ставки', () => {
 

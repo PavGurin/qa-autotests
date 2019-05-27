@@ -1,5 +1,5 @@
-import {navReg} from '../../../support/desktop/NavReg';
-import {auth} from '../../../support/desktop/Authorization';
+import {navReg} from '@support/desktop/NavReg';
+import {auth} from '@support/desktop/Authorization';
 
 describe('Sign up in One click', () => {
     it('C16283 - One click sign up with default country without promo code', () => {
