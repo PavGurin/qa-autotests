@@ -5,7 +5,7 @@
 const make_bet_button = 'button.make-bet';
 const bet_amount_input = 'input[type=number]';
 const bet_is_done = 'div.coupon-status.success';
-const bet_isnt_done = 'div.coupon-status.error';
+const bet_not_done = 'div.coupon-status.error';
 const available_for_bet_element = '(//td[contains(@class,\'coupon-element\')][not(contains(@class,\'disabled\'))]' +
     '/span[@class=\'value\'])[1]';
 
@@ -62,7 +62,7 @@ export const bets = {
         cy.get(make_bet_button)
           .click();
         // проверяет, что ставка невозможна, выходит ошибка
-        cy.get(bet_isnt_done)
+        cy.get(bet_not_done)
           .should('exist');
     },
 

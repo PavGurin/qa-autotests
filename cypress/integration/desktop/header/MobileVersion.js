@@ -1,7 +1,8 @@
 import {basicCom} from '../../../support/desktop/BasicCommands';
 
 describe('Переключение на мобильную версию', () => {
-    it('C16321 Мобильная версия', function () {
+
+    it('C16321 - Мобильная версия', function () {
         // проверяем видимость навигации ставок
         cy.get('div.bets-navigation')
           .should('be.visible');

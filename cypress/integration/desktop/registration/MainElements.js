@@ -3,14 +3,12 @@ import { basicCom } from '../../../support/desktop/BasicCommands';
 import { text } from '../../../support/desktop/Descriptions';
 
 describe('Check all elements in modal window register', () => {
-    it('C16787 - Aggree with rules in ru', () => {
-        cy.visit('/');
-        //cy.wait(5000);
+    it('C16787 - Rules agreement rus', () => {
 
         cy.contains('Регистрация');
         navReg.click_register();
 
-        // Check on contains text in 1 ckick form
+        // Check on contains text in 1 click form
         text.text_ru_rule_reg();
 
         // Check on contains text in social network form
@@ -22,14 +20,14 @@ describe('Check all elements in modal window register', () => {
         text.text_ru_rule_reg();
     });
 
-    it('C18765 - Aggree with rules in eng', () => {
+    it('C18765 - Rules agreement eng', () => {
         cy.visit('/');
         //cy.wait(5000);
         basicCom.switch_language();
 
         cy.contains('Registration');
         navReg.click_register();
-        // Check on contains text in 1 ckick form
+        // Check on contains text in 1 click form
         cy.get('.form-tabs > div').should(($lis) => {
             expect($lis, '3 items').to.have.length(3);
             expect($lis.eq(0), 'first item').to.have.class('form-tabs__link form-tabs__link_active');
@@ -53,32 +51,32 @@ describe('Check all elements in modal window register', () => {
         text.text_eng_rule_reg();
     });
 
-    it('C16786 - Dowload apps', () => {
+    it('C16786 - Download apps', () => {
         cy.visit('/');
         //cy.wait(5000);
 
         navReg.click_register();
-        // Check on contains liks on app in 1 ckick form
+        // Check on contains links on app in 1 click form
         navReg.application_ios();
         navReg.application_android();
 
-        // Check on contains liks on app  in social network form
+        // Check on contains links on app  in social network form
         navReg.registration_form('Соц. сети');
         navReg.application_ios();
         navReg.application_android();
 
-        // Check on contains liks on app  in e--mail form
+        // Check on contains links on app  in e--mail form
         navReg.registration_form('По e-mail');
         navReg.application_ios();
         navReg.application_android();
     });
 
-    it('C18503 - Modal window dowload apps', () => {
+    it('C18503 - Modal window download apps', () => {
         cy.visit('/');
         //cy.wait(5000);
 
         navReg.click_register();
-        // Check on contains liks on app in 1 ckick form
+        // Check on contains links on app in 1 click form
         navReg.application_ios_click();
 
         // Check button 'close'

@@ -2,6 +2,7 @@ import {bets} from '../../../support/desktop/Bets';
 import {auth} from '../../../support/desktop/Authorization';
 
 describe('Ставки', () => {
+
     it('C18766 - Успешная ставка (Main page)', () => {
         auth.login();
         // делает ставку на главной странице

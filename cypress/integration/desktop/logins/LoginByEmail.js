@@ -1,6 +1,7 @@
 import {auth} from '../../../support/desktop/Authorization';
 
 describe('Авторизация', () => {
+
     it('C16300 - Авторизация по email', () => {
         auth.login();
         cy.screenshot();
@@ -22,4 +23,3 @@ describe('Авторизация', () => {
         cy.screenshot();
     });
 });
-

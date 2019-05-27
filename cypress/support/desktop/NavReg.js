@@ -2,11 +2,13 @@
  Registration commands
  **/
 
+const password_input = '.input[name=password]';
+const password_input_repeat = 'input[name=repeatPassword]';
+
 export const navReg = {
 
     // registration button
     click_register() {
-
         cy.get('.level-item > .green')
           .click();
     },
@@ -24,30 +26,31 @@ export const navReg = {
     },
 
     // close window with new user's login/pass
-    close_new_user_info(){
-        cy.get("i.fa-times").click()
-    },
-
-    //Button next only for social
-    next() {
-        cy.contains('Далее')
+    close_new_user_info() {
+        cy.get('i.fa-times')
           .click();
     },
 
-    //Button add promocode
-    add_promocode(promocode) {
+    // button click_next only for social
+    click_next() {
+        cy.get('button.button.dark')
+          .click();
+    },
 
+    // enter promocode
+    add_promocode(promocode) {
         cy.get('.add_promocode')
           .click()
           .get('.field > .control > .input-wrapper > .input')
           .type(promocode);
     },
 
-    //Select country
+    // select country from registration page
     set_country(country) {
         cy.get('.trigger')
           .click()
-          .get(country)
+          .get('div.modal-container span')
+          .contains(country)
           .click();
     },
 
@@ -61,108 +64,82 @@ export const navReg = {
           .should('have.value', country);
     },
 
-    //Switch on e-mail form registration
-    registration_form(button) {
-
-        cy.contains(button)
+    // switch registration form type
+    registration_form(type) {
+        cy.contains(type)
           .click();
     },
 
-    //email form - name
-    name_field(name) {
-
-        cy.get('.form > :nth-child(1) > .control-input-wrapper > .input')
+    // email form - name
+    set_name(name) {
+        cy.get('.form > :nth-child(1) > .input-wrapper > .input')
           .type(name);
     },
 
-    //email form - email
-    email_field(email) {
-
-        cy.get(':nth-child(5) > .control-input-wrapper > .input')
+    // email form - email
+    set_email(email) {
+        cy.get(':nth-child(5) > .input-wrapper > .input')
           .type(email);
     },
 
-    //email form - password
-    password_field(password) {
-
-        cy.get(':nth-child(6) > .control-input-wrapper > .input')
+    // email form - password
+    set_pwd(password) {
+        cy.get(':nth-child(6) > .input-wrapper > .input')
           .type(password);
     },
 
-    //email form - password second field
-    password2_field(password2) {
-
-        cy.get(':nth-child(7) > .control-input-wrapper > .input')
+    // email form - repeat password field
+    repeat_pwd(password2) {
+        cy.get(':nth-child(7) > .input-wrapper > .input')
           .type(password2);
     },
 
-    //email form - day
-    day_field(day) {
-
+    // email form - day of birth
+    set_birth_day(day) {
         cy.get('div:nth-child(1) > .default-select > .select')
           .select(day);
     },
 
-    //email form - month
-    month_field(month) {
-
+    // email form - month of birth
+    set_birth_month(month) {
         cy.get('div:nth-child(2) > .default-select > .select')
           .select(month);
     },
 
-    //email form - year
-    year_field(year) {
-
+    // email form - year of birth
+    set_birth_year(year) {
         cy.get('div:nth-child(3) > .default-select > .select')
           .select(year);
     },
 
-    //email form - country phone
+    // email form - country phone
     country_phone_field(country_phone) {
-
         cy.get('.form > .control > .separate-dial-code')
           .click(country_phone);
     },
 
-    //email form -  phone
-    phone_field(phone) {
-
-        cy.get('.intl-tel-input > .control > .control-input-wrapper > .input')
+    // email form -  phone
+    set_phone_numb(phone) {
+        cy.get('.intl-tel-input > .control > .input-wrapper > .input')
           .type(phone);
     },
 
-    //social form -  vk
-    vk() {
-        cy.get(' div.block.lg.level-center.gap-sm.register-block > div > div:nth-child(1)')
+    // choose social network for registration (both language versions got same social network names)
+    set_social_network(social_network) {
+        cy.contains(social_network)
           .click();
     },
 
-    //social form -  ok
-    ok() {
-
-        cy.get(' div.block.lg.level-center.gap-sm.register-block > div > div:nth-child(2)')
-          .click();
-
-    },
-
-    //social form -  google
-    google() {
-
-        cy.get(' div.block.lg.level-center.gap-sm.register-block > div > div:nth-child(3)')
-          .click();
-    },
-
-    //social form - password
-    password_social(password) {
-
-        cy.get(':nth-child(1) > .control > .control-input-wrapper > .input')
+    // social form - password
+    password_input(password) {
+        cy.get(password_input)
           .type(password);
     },
 
-    //social form - password2
-    password2_social(password2) {
-        cy.get(':nth-child(2) > .control > .control-input-wrapper > .input')
-          .type(password2);
+    // social form - password repeat
+    password_input_repeat(password) {
+        cy.get(password_input_repeat)
+          .type(password);
     },
 
     application_ios() {
@@ -179,5 +156,34 @@ export const navReg = {
     application_android() {
         cy.get('.application-items > .application-card-android')
           .first();
+    },
+
+    check_reg_result() {
+        cy.get('.modal-container .user-info .user-info__content__item')
+          .then(($new_user_info) => {
+              const login = $new_user_info[0].lastChild.outerText;
+              const password = $new_user_info[1].lastChild.outerText;
+
+              expect(login).not.to.be.empty;
+              expect(password).not.to.be.empty;
+
+              cy.log(`Логин - ${login}, Пароль - ${password}`);
+              cy.screenshot();
+          });
+    },
+
+    // check that reg window is closed and username equals requested during reg
+    check_sign_up(userName) {
+        cy.get('div.modal-container')
+          .should('not.exist');
+        cy.get('.user-name > span')
+          .should('have.text', userName);
+        cy.screenshot();
+    },
+
+    // check redirection to vk oauth page
+    check_vk_reg() {
+        cy.url().should("include", "oauth.vk.com")
+
     }
 };
