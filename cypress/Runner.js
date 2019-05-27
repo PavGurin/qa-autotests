@@ -1,4 +1,5 @@
 const cypress = require('cypress');
+const fs = require('fs');
 const recursive = require('recursive-readdir');
 const TestrailReporter = require('./reporters/testrail.js');
 
@@ -37,10 +38,20 @@ recursive('cypress/integration', async (err, specs) => {
                 },
                 spec,
             });
-            runs
+            try {
+                runs
                 .forEach(run =>
                     run.tests.forEach(test =>
                         reporter.addTestResult(test, run)));
+            } catch (e) {
+                const content = fs.readFileSync(spec, "utf8").replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1');
+                const titles = []
+                content.replace(/it\('(.*)'/, (_, title) => { titles.push(title) })
+                titles
+                    .forEach(title => reporter.addTestResult(
+                        { state: 'failed', title: [ title ], error: 'chrome crashed' },
+                    ))
+            }
         }
     } else {
         console.warn('Nothing to run');
