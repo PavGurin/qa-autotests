@@ -69,9 +69,6 @@ export const auth = {
 
     // авторизация с пустыми обязательными полями
     login_empty_mandatory_fields() {
-        // очищаем поле ввода логина
-        cy.get(login_input)
-          .clear();
         // жмем кнопку 'Войти' на странице авторизации
         cy.get(entry_button)
           .click();
@@ -85,15 +82,15 @@ export const auth = {
         cy.get(auth_window)
           .should('exist');
         cy.screenshot();
+        // очищаем поле ввода логина
+        cy.get(login_input)
+            .clear();
+        cy.get(password_input)
+            .clear();
     },
 
     // невалидная попытка авторизации
     login_nonexistent_user() {
-        // очищаем поля ввода логина/пароля
-        cy.get(login_input)
-          .clear();
-        cy.get(password_input)
-          .clear();
         // вводим невалидные логин/пароль
         cy.get(login_input)
           .type('nonexistent@test.com')
@@ -106,19 +103,18 @@ export const auth = {
         // проверяем ошибку и ее текст
         cy.get(notification)
           .should('visible')
-          .and('have.text', '«пользователь» не существует.');
+          .and('have.text', 'Неверный email или пароль');
         cy.screenshot();
         // проверяем, что пользователь все еще не залогинен
         cy.get(user_info)
           .should('not.exist');
+        cy.get(login_input)
+            .clear();
+        cy.get(password_input)
+            .clear();
     },
 
     login_invalid_password() {
-        // очищаем поля ввода логина/пароля
-        cy.get(login_input)
-          .clear();
-        cy.get(password_input)
-          .clear();
         // вводим логин с неправильным паролем
         cy.get(login_input)
           .type('nogm75@1win.xyz')
@@ -131,10 +127,14 @@ export const auth = {
         // проверяем ошибку и ее текст
         cy.get(notification)
           .should('visible')
-          .and('have.text', 'Неверный пароль');
+          .and('have.text', 'Неверный email или пароль');
         cy.screenshot();
         // проверяем, что пользователь все еще не залогинен
         cy.get(user_info)
           .should('not.exist');
+        cy.get(login_input)
+            .clear();
+        cy.get(password_input)
+            .clear();
     }
 };
