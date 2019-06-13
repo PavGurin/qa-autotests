@@ -91,6 +91,9 @@ export const auth = {
 
     // невалидная попытка авторизации
     login_nonexistent_user() {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get(entry_button)
+            .click();
         // вводим невалидные логин/пароль
         cy.get(login_input)
           .type('nonexistent@test.com')
@@ -115,6 +118,9 @@ export const auth = {
     },
 
     login_invalid_password() {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get(entry_button)
+            .click();
         // вводим логин с неправильным паролем
         cy.get(login_input)
           .type('nogm75@1win.xyz')

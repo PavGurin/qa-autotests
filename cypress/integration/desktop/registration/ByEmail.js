@@ -16,12 +16,12 @@ describe('Registration by email', () => {
         navReg.click_register();
         navReg.registration_form('По e-mail');
         navReg.set_name('test_' + randomStr);
+        navReg.set_birth_day('7');
+        navReg.set_birth_month();
+        navReg.set_birth_year('1919');
         navReg.set_email(`${randomStr}test@xyz.com`);
         navReg.set_pwd('111111');
         navReg.repeat_pwd('111111');
-        navReg.set_birth_day('7');
-        navReg.set_birth_month('Февраль');
-        navReg.set_birth_year('1919');
         navReg.set_phone_numb(`921${randomNum}`);
         navReg.accept_agreement();
         navReg.sign_up();
@@ -35,10 +35,22 @@ describe('Registration by email', () => {
         navReg.set_pwd('111111');
         navReg.repeat_pwd('111111');
         navReg.set_birth_day('7');
-        navReg.set_birth_month('Февраль');
+        navReg.set_birth_month();
         navReg.set_birth_year('1919');
         navReg.set_phone_numb(`911${randomNum}`);
         navReg.add_promocode('test001');
+        navReg.accept_agreement();
+        navReg.sign_up();
+    });
+
+    it('C20490 - with birthday default', () => {
+        navReg.click_register();
+        navReg.registration_form('По e-mail');
+        navReg.set_name('test_' + randomStr);
+        navReg.set_email(`${randomStr}test@zyx.com`);
+        navReg.set_pwd('111111');
+        navReg.repeat_pwd('111111');
+        navReg.set_phone_numb(`911${randomNum}`);
         navReg.accept_agreement();
         navReg.sign_up();
     });
