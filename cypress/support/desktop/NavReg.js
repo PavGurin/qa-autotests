@@ -49,7 +49,7 @@ export const navReg = {
     set_country(country) {
         cy.get('.trigger')
           .click()
-          .get('div.modal-container span')
+          .get('div.dropdown-item span')
           .contains(country)
           .click();
     },

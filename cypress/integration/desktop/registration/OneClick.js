@@ -37,7 +37,7 @@ describe('Sign up in One click', () => {
 
     it('C16286 - One click sign up with @country with promo code', () => {
         navReg.click_register();
-        navReg.set_country('Barbados');
+        navReg.set_country('Angola');
         navReg.accept_agreement();
         navReg.add_promocode('test001');
         navReg.sign_up();
