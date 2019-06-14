@@ -127,14 +127,14 @@ import './socketLogget';
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 //
-before(() => {
-    cy.clearCookies();
-    cy.setCookie('session-id', '', {domain: '1win-auth.com'});
-    cy.visit('/');
-});
-
-// beforeEach(() => {
+// before(() => {
 //     cy.clearCookies();
 //     cy.setCookie('session-id', '', {domain: '1win-auth.com'});
 //     cy.visit('/');
 // });
+
+beforeEach(() => {
+    cy.clearCookies();
+    cy.setCookie('session-id', '', {domain: '1win-auth.com'});
+    cy.visit('/');
+});

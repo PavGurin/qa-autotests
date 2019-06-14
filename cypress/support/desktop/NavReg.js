@@ -49,7 +49,7 @@ export const navReg = {
     set_country(country) {
         cy.get('.trigger')
           .click()
-          .get('div.modal-container span')
+          .get('div.dropdown-item span')
           .contains(country)
           .click();
     },
@@ -96,20 +96,24 @@ export const navReg = {
 
     // email form - day of birth
     set_birth_day(day) {
-        cy.get('div:nth-child(1) > .default-select > .select')
-          .select(day);
+        cy.get('.date .input')
+            .type('{selectall}{del}')
+            .type(day);
     },
 
     // email form - month of birth
     set_birth_month(month) {
-        cy.get('div:nth-child(2) > .default-select > .select')
-          .select(month);
+        cy.get('.date-item.month')
+            .click()
+            .find('div.dropdown-item')
+            .first();
     },
 
     // email form - year of birth
     set_birth_year(year) {
-        cy.get('div:nth-child(3) > .default-select > .select')
-          .select(year);
+        cy.get('.year .input')
+            .type('{selectall}{del}')
+            .type(year);
     },
 
     // email form - country phone
