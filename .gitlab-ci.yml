@@ -35,7 +35,6 @@ run:
     - docker-compose pull -q || true
     - export CYPRESS_TESTRAIL_RUN_ID=$(./cypress/createRun.sh)
     - docker-compose run e2e
-    - curl -X GET "http://176.9.17.49:16161/add?name=$CI_COMMIT_REF_NAME:$CYPRESS_BASE_URL$CI_PIPELINE_ID&url=https://1win.testrail.io/index.php?/runs/view/$CYPRESS_TESTRAIL_RUN_ID"
   artifacts:
     reports:
       junit: results/test-output-*.xml
@@ -46,4 +45,4 @@ run:
     when: always
   environment:
     name: review/$CI_COMMIT_REF_NAME
-    url: http://176.9.17.49:16161/?name=$CI_COMMIT_REF_NAME:$CYPRESS_BASE_URL$CI_PIPELINE_ID
+    url: https://1win.testrail.io/index.php?/projects/overview/${CYPRESS_TESTRAIL_PROJECT_ID}
