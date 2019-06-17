@@ -49,12 +49,6 @@ class TestrailReporter {
             elapsed: test.wallClockDuration && `${test.wallClockDuration / 1000}s`,
         };
 
-        if (result.statusId === 5) {
-            process.on('beforeExit', (code) => {
-                process.exit(1)
-            });
-        }
-
         const { data } = await this.instance.post(`/add_results_for_cases/${this.runId}`, {
             results: [result],
         });
