@@ -6,7 +6,7 @@ const user_info = 'div.user-info';
 const entry_button = 'button.button.secondary';
 const login_input = 'input[name=login]';
 const password_input = 'input[name=password]';
-const login_confirm = '.modal-button';
+const login_confirm = 'button[type=submit]';
 const auth_window = 'div.modal-container';
 const logout_question = '.logout-question';
 const notification = '.notification-content';
@@ -292,15 +292,15 @@ export const auth = {
             .type('qwerty');
         // нажимаем кнопку 'Войти' в меню авторизации
         cy.get(login_confirm)
-            .click();
+          .click();
         // проверяем ошибку и ее текст
         cy.get(notification)
-            .should('visible')
-            .and('have.text', 'Неверный email или пароль');
+          .should('visible')
+          .and('have.text', 'Неверный email или пароль');
         cy.screenshot();
         // проверяем, что пользователь все еще не залогинен
         cy.get(user_info)
-            .should('not.exist');
+          .should('not.exist');
         cy.get(login_input)
             .clear();
         cy.get(password_input)
