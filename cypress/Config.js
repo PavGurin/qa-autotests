@@ -1,5 +1,5 @@
-const cypressConfig = require('../cypress.json');
 
+let cypressConfig = require('../cypress.json');
 module.exports = {
     runners: process.env.CI_NODE_TOTAL || 1,
     currentRunner: process.env.CI_NODE_INDEX || 1,

@@ -4,11 +4,13 @@
 
 const password_input = '.input[name=password]';
 const password_input_repeat = 'input[name=repeatPassword]';
+const new_password =  ':nth-child(3) > .control > .input-wrapper > .input';
+const close_modal_windows = '.modal-container__header__row > :nth-child(2) > .icon';
 
 export const navReg = {
 
     // registration button
-    click_register() {
+        click_register() {
         cy.get('.level-item > .green')
           .click();
     },
@@ -133,7 +135,12 @@ export const navReg = {
         cy.contains(social_network)
           .click();
     },
-
+    // social_network - OK
+    set_social_network_OK(social_network) {
+        cy.contains(social_network)
+            .click();
+    },
+    //
     // social form - password
     password_input(password) {
         cy.get(password_input)
@@ -142,7 +149,7 @@ export const navReg = {
 
     // social form - password repeat
     password_input_repeat(password) {
-        cy.get(password_input_repeat)
+        cy.get(new_password)
           .type(password);
     },
 
@@ -158,8 +165,9 @@ export const navReg = {
     },
 
     application_android() {
-        cy.get('.application-items > .application-card-android')
-          .first();
+        cy.get('.level-item > .application-card-android')
+            .first()
+            .click();
     },
 
     check_reg_result() {
@@ -187,7 +195,13 @@ export const navReg = {
 
     // check redirection to vk oauth page
     check_vk_reg() {
-        cy.url().should("include", "oauth.vk.com")
+        cy.url()
+            .should("contains", "oauth.vk.com");
+    },
+    // close modal container register
+    close_modal_windows() {
+            cy.get(close_modal_windows)
+                .click();
+    },
 
-    }
 };
