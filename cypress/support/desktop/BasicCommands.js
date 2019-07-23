@@ -2,16 +2,16 @@ export const basicCom = {
 
     // switch language
     switch_language() {
-        cy.get('.button > .image')
+        cy.get('img.country-icon')
             .trigger('mouseover');
-        cy.get('.dropdown-item > .image')
+        cy.get('.dropdown-item > .country-icon')
             .click();
     },
 
     // switch to mobile version
     switch_to_mobile(){
         // click mobile version button
-        cy.get('div.mobile > div > svg')
+        cy.get('.icon-mobile')
           .click();
     }
 };
