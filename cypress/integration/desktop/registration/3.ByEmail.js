@@ -25,7 +25,7 @@ describe.skip('Registration by email', () => {
         navReg.sign_up();
     });
 
-    it.skip('C16298 - with promocode', () => {
+    it('C16298 - with promocode', () => {
         navReg.click_register();
         navReg.registration_form('По e-mail');
         navReg.set_name('test_' + randomStr);
