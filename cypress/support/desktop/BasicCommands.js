@@ -3,6 +3,7 @@ export const basicCom = {
     // switch language
     switch_language() {
         cy.get('img.country-icon')
+            .first()
             .trigger('mouseover');
         cy.get('.dropdown-item > .country-icon')
             .click();
