@@ -18,22 +18,33 @@ const new_password_repeat =':nth-child(4) > .control > .input-wrapper > .input';
 export const auth = {
     // Logout
     logout() {
-        cy.get('.level-item > .green')
+        cy.get('.level-right > .level-item > .button > span')
+            .click();
+        // должен появиться вопрос-подтверждение выхода
+        //logout_question() {
+         cy.get(logout_question)
+             .should('exist');
+        // 'подтверждаем' выход
+        cy.get('div.logout-buttons > button.cancel-button')
             .click();
     },
+    login() {
             // нажимаем кнопку 'Войти' со стартовой страницы
-        click_auth() {
+        //click_auth() {
             cy.get(entry_button)
                 .click();
-    },
+
         // вводим логин/пароль
-        login_input() {
+       // login_input() {
         cy.get(login_input)
-            .type('where100@mail.ru');
-    },   // вводим пароль
-         password_input() {
+            .type('nogm75@1win.xyz ');
+      // вводим пароль
+        // password_input() {
              cy.get(password_input)
-                 .type('tk7oqj');
+                 .type('123456');
+        // нажимаем кнопку "войти"
+        cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
+            .click();
     },   // нажимаем на кнопку "забыли пароль"
          password_forget() {
               cy.get(forget_button)
@@ -105,5 +116,53 @@ export const auth = {
         cy.get(password_input)
             .clear();
     },
+    // авторизация с пустыми обязательными полями
+    login_empty_mandatory_fields(){
+        // жмем кнопку 'Войти' на странице авторизации
+        cy.get(entry_button)
+            .click();
+        cy.get(login_input)
+            .type('test')
+            .should('have.value', 'test');
+        // проверяем, что окно авторизации все еще активно
+        cy.get(auth_window)
+            .should('exist');
+        cy.screenshot();
+        // очищаем поле ввода логина
+        cy.get(login_input)
+            .clear();
+        cy.get(password_input)
+            .clear();
+    },
+     login_invalid_password(){
+        // жмем кнопку 'Войти' на странице авторизации
+         cy.get(entry_button)
+             .click();
+         // вводим логин с неправильным паролем
+    cy.get(login_input)
+        .type('nogm75@1win.xyz')
+        .should('have.value', 'nogm75@1win.xyz');
+     cy.get(password_input)
+        .type('123456555');
+     cy.get('.modal-button')
+         .click();
+     // проверяем ошибку и ее текст
+     cy.get(notification)
+        .should('be.visible')
+        .and('have.text', 'Неверный email или пароль');
+     cy.screenshot();
+     // проверяем, что пользователь все еще не залогинен
+     cy.get(user_info)
+        .should('not.exist');
+     cy.get(login_input)
+        .clear();
+     cy.get(password_input)
+        .clear();
+     },
+     // проверяем, что пользователь залогинился
+       user_info() {
+      cy.get(user_info)
+        .should('exist');
+      },
 };
 

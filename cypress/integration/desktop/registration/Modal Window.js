@@ -27,18 +27,15 @@ describe('Modal window', () => {
             .click();
     });
     it('C27798 - Modal window Authorization', function() {
-        auth.click_auth();
-        auth.login_input();
-        auth.password_input();
-        cy.get(modal_login_container)
+        auth.login();
+          cy.get(modal_login_container)
             .should('have.text','ВходДобро пожаловать в 1WIN' );
         auth.button_registration();
         navReg.close_modal_windows();
     });
     it('C27799 - Modal window forget_password', function() {
-        auth.click_auth();
-        auth.login_input();
-        auth.password_input();
+        auth.login();
+        //auth.password_input();
         auth.password_forget();
         auth.forget_set_email('where100@mail.ru');
         auth.password_forget_send();
@@ -55,9 +52,7 @@ describe('Modal window', () => {
         navReg.close_modal_windows();
     });
     it('C27800 - Modal window Deposit', function() {
-        auth.click_auth();
-        auth.login_input();
-        auth.password_input();
+        auth.login();
         auth.login_confirm();
         prof.deposit();
         prof.deposit_assert();
@@ -69,9 +64,7 @@ describe('Modal window', () => {
         navReg.close_modal_windows();
     });
     it('C27801 - Modal window Withdrawal', function() {
-        auth.click_auth();
-        auth.login_input();
-        auth.password_input();
+        auth.login();
         auth.login_confirm();
         prof.withdrawal('Вывод средств');
         prof.deposit_change();
@@ -87,9 +80,7 @@ describe('Modal window', () => {
         navReg.close_modal_windows();
     });
     it('C27802 - Modal window Transfer', function() {
-        auth.click_auth();
-        auth.login_input();
-        auth.password_input();
+        auth.login();
         auth.login_confirm();
         prof.withdrawal('Перевод');
         prof.transfer_assert_disabled();
@@ -100,9 +91,7 @@ describe('Modal window', () => {
         navReg.close_modal_windows();
     });
     it('C27803 - Modal window Settings', function() {
-        auth.click_auth();
-        auth.login_input();
-        auth.password_input();
+        auth.login();
         auth.login_confirm();
         prof.withdrawal('Настройки');
         prof.settings_hidebalance();
