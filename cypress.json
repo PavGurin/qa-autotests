@@ -1,5 +1,5 @@
 {
-    "baseUrl": "https://master.production.1win-prodlike.tech/bets/home",
+    "baseUrl": "https://master.production.1win-prodlike.tech/",
     "ignoreTestFiles": "*.html",
     "viewportWidth": 1920,
     "viewportHeight": 1080,

@@ -76,6 +76,11 @@ export const navReg = {
           .type(name);
     },
 
+    set_date_of_birth(date){
+        cy.get(':nth-child(2) > .input-wrapper > .input')
+            .type(date)
+    },
+
     // email form - email
     set_email(email) {
         cy.get(':nth-child(5) > .input-wrapper > .input')
