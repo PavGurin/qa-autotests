@@ -80,12 +80,12 @@ describe('Check all elements in modal window register', () => {
         navReg.application_ios_click();
 
         // Check button 'close'
-        cy.get('.ios-instruction > .svg');
+        cy.get('svg.ios-instruction-close');
 
-        // Check button dowloaded app
-        cy.get('.ios-instruction > .ios-instruction-download');
+        // Check button downloaded app
+        cy.get('a.ios-instruction-download');
 
         // Check text on detailed instructions
-        cy.get('.ios-instruction > .ios-instruction-details');
+        cy.get('a.ios-instruction-details');
     });
 });

@@ -8,19 +8,21 @@ describe('Ставки', () => {
         // делает ставку на главной странице
         bets.bet_main_page();
         cy.screenshot();
+        // auth.logout();
     });
 
     it('C18767 - Ставка с "Сумма ставки" = 0', () => {
-        auth.login();
+        // auth.login();
         // делает нулевую ставку
         bets.bet_live_zero();
         cy.screenshot();
         // закрывает все отмеченные купоны
         bets.close_coupons();
+        // auth.logout();
     });
 
     it('C18783 - Успешная ставка (Live)', () => {
-        auth.login();
+        // auth.login();
         // переключается на вкладку 'Live'
         cy.get('a.navigation-item:nth-child(2)')
           .click();

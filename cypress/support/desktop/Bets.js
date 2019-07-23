@@ -73,7 +73,7 @@ export const bets = {
 
     // закрывает все отмеченные купоны (жмет 'крестик')
     close_coupons() {
-        cy.get('i.coupon-close')
+        cy.get('svg.coupon-close')
           .click({multiple: true});
     }
 };
