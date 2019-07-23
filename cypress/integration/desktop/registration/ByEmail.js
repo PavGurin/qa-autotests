@@ -12,7 +12,7 @@ describe('Registration by email', () => {
                           .toString(36)
                           .slice(-5);
 
-    it('C16297 - without promocode', () => {
+    it.skip('C16297 - without promocode', () => {
         navReg.click_register();
         navReg.registration_form('По e-mail');
         navReg.set_name('test_' + randomStr);
