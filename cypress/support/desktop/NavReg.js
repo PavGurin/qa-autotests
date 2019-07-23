@@ -27,7 +27,7 @@ export const navReg = {
 
     // close window with new user's login/pass
     close_new_user_info() {
-        cy.get('i.fa-times')
+        cy.get('svg.icon-times')
           .click();
     },
 
