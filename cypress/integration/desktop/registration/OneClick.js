@@ -1,7 +1,7 @@
 import {navReg} from '@support/desktop/NavReg';
 import {auth} from '@support/desktop/Authorization';
 
-describe('Sign up in One click', () => {
+describe.skip('Sign up in One click', () => {
     it('C16283 - One click sign up with default country without promo code', () => {
         navReg.click_register();
         navReg.check_country_default('Russia (Россия)');

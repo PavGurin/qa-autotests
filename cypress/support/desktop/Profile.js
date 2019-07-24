@@ -111,7 +111,7 @@ export const prof = {
     },
     //проверка модального окна "Настройки"
     settings_assert_modal_container() {
-        cy.get('div:nth-child(1) > div')
+        cy.get('.modal-container__header__row__cell__title')
             .should('have.text','Настройки');
     },
     //Заполнение и проверка полей и кнопок в настройках
