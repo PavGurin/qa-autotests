@@ -5,7 +5,7 @@
 const password_input = '.input[name=password]';
 const password_input_repeat = 'input[name=repeatPassword]';
 const new_password =  ':nth-child(3) > .control > .input-wrapper > .input';
-const close_modal_windows = '.modal-container__header__row > :nth-child(2) > .icon';
+const close_modal_windows ='.modal-container__header__row > :nth-child(2) > .icon';
 
 export const navReg = {
 

@@ -1,7 +1,7 @@
 /**
  Методы авторизации
  **/
-const button_registration = 'div:nth-child(2) > div.register-adv > span.register-adv__link';
+const button_registration = '.register-adv__link';
 const user_info = 'div.user-info';
 const entry_button = 'button.button.secondary';
 const login_input = 'input[name=login]';
@@ -11,7 +11,7 @@ const auth_window = 'div.modal-container';
 const logout_question = '.logout-question';
 const notification = '.notification-content';
 const forget_button = '.field > .button > span';
-const email_forget_send = '.row > .button';
+const email_forget_send = 'div.modal-container__container > div > form > form > div > button';
 const code_operation = ':nth-child(2) > .control > .input-wrapper > .input';
 const new_password =  ':nth-child(3) > .control > .input-wrapper > .input';
 const new_password_repeat =':nth-child(4) > .control > .input-wrapper > .input';
@@ -164,5 +164,28 @@ export const auth = {
       cy.get(user_info)
         .should('exist');
       },
-};
+    // проверяем, что пользователь разлогинился
+       //user_logout_expect() {
+    //cy.get(user_info)
+        //.should('not.exist');
+       //cy.get(logout_question)
+           //.should('not.exist');
+    login_without_enter() {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        //click_auth() {
+        cy.get(entry_button)
+            .click();
 
+        // вводим логин/пароль
+        // login_input() {
+        cy.get(login_input)
+            .type('nogm75@1win.xyz ');
+        // вводим пароль
+        // password_input() {
+        cy.get(password_input)
+            .type('123456');
+        // нажимаем кнопку "войти"
+        //cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
+           // .click();
+    },
+};

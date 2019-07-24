@@ -27,17 +27,17 @@ describe('Modal window', () => {
             .click();
     });
     it('C27798 - Modal window Authorization', function() {
-        auth.login();
+        auth.login_without_enter();
           cy.get(modal_login_container)
             .should('have.text','ВходДобро пожаловать в 1WIN' );
         auth.button_registration();
         navReg.close_modal_windows();
     });
     it('C27799 - Modal window forget_password', function() {
-        auth.login();
+        auth.login_without_enter();
         //auth.password_input();
         auth.password_forget();
-        auth.forget_set_email('where100@mail.ru');
+        auth.forget_set_email('nogm75@1win.xyz');
         auth.password_forget_send();
         //проверить, что кнопка "сменить пароль" недоступна
         cy.get(' div:nth-child(5) > button')
@@ -53,7 +53,7 @@ describe('Modal window', () => {
     });
     it('C27800 - Modal window Deposit', function() {
         auth.login();
-        auth.login_confirm();
+        //auth.login_confirm();
         prof.deposit();
         prof.deposit_assert();
         prof.deposit_change();
@@ -65,7 +65,7 @@ describe('Modal window', () => {
     });
     it('C27801 - Modal window Withdrawal', function() {
         auth.login();
-        auth.login_confirm();
+        //auth.login_confirm();
         prof.withdrawal('Вывод средств');
         prof.deposit_change();
         prof.pass_how_many_elements();
@@ -81,7 +81,7 @@ describe('Modal window', () => {
     });
     it('C27802 - Modal window Transfer', function() {
         auth.login();
-        auth.login_confirm();
+        //auth.login_confirm();
         prof.withdrawal('Перевод');
         prof.transfer_assert_disabled();
         prof.transfer_mail_();
@@ -92,12 +92,13 @@ describe('Modal window', () => {
     });
     it('C27803 - Modal window Settings', function() {
         auth.login();
-        auth.login_confirm();
+        //auth.login_confirm();
         prof.withdrawal('Настройки');
         prof.settings_hidebalance();
         cy.wait(1000);
         prof.settings_hidebalance();
         prof.settings_form();
+        prof.settings_assert_modal_container();
         navReg.close_modal_windows();
     });
 });
