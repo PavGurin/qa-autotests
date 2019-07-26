@@ -1,6 +1,7 @@
 /**
  Registration commands
  **/
+import {auth} from "@support/desktop/Authorization";
 
 const password_input = '.input[name=password]';
 const password_input_repeat = 'input[name=repeatPassword]';
