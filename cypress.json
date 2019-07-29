@@ -1,5 +1,6 @@
 {
     "baseUrl": "https://master.staging.1win-prodlike.tech/",
+    "video": false,
     "ignoreTestFiles": "*.html",
     "viewportWidth": 1920,
     "viewportHeight": 1080,
