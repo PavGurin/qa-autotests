@@ -18,7 +18,7 @@ const buildComment = (test, run, fileBaseUrl) => {
     const sections = [];
     const addSection = (title, message) => sections.push(`##${title}:\n${message}\n`);
 
-    if (run.video) addSection('Video', toGitlabURL(run.video));
+    // if (run.video) addSection('Video', toGitlabURL(run.video));
     if (run.screenshots && run.screenshots.length) addSection('Screenshots', run.screenshots.map(screenshot => toGitlabURL(screenshot.path)).join('\n'));
     if (test.error) addSection('Error', test.error);
 

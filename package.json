@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "cypress": "cypress open",
-    "cypress:run": "node cypress/Runner.js"
+    "cypress:run": "--parallel node cypress/Runner.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
