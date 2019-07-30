@@ -40,11 +40,11 @@ export const auth = {
         // вводим логин/пароль
        // login_input() {
         cy.get(login_input)
-            .type('nogm75@1win.xyz ');
+            .type('where100@mail.ru ');
       // вводим пароль
         // password_input() {
              cy.get(password_input)
-                 .type('123456');
+                 .type('tk7oqj');
         // нажимаем кнопку "войти"
         cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
             .click();

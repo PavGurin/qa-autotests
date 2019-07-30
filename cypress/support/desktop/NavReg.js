@@ -162,20 +162,22 @@ export const navReg = {
     },
 
     application_ios() {
-        cy.get('.application-items > .application-card-ios')
-          .first();
+        cy.get('div:nth-child(2) > a.application-card.left-block-item-ios.application-card-ios > div > svg')
+              .click();
     },
 
     application_ios_click() {
-        cy.get('.application-items > .application-card-ios')
+        cy.get('div:nth-child(2) > a.application-card.left-block-item-ios.application-card-ios > div > svg')
           .first()
           .click();
     },
 
     application_android() {
-        cy.get('.level-item > .application-card-android')
+        cy.get('div:nth-child(2) > a.application-card.left-block-item-android.application-card-android')
             .first()
             .click();
+        cy.get('.level-item > .application-card-android')
+            .should('have.attr', 'href').and('include', '/apk-folder/1win-1wtis.xyz.apk');
     },
 
     check_reg_result() {
@@ -235,5 +237,15 @@ export const navReg = {
         register_next_assert_visible() {
             cy.get('div.button-container > button')
                 .should('be.visible');
+    },
+        //проверка модального окна "Приложение iOS"
+     iOS_app_assert_modal_container() {
+        cy.get('#main-container > div.modal-wrapper > div > h1')
+            .should('have.text', 'Приложение iOS');
+     },
+       //Подробная инструкция от Apple
+    iOS_app_instruction() {
+        cy.get('#main-container > div.modal-wrapper > div > a.ios-instruction-details')
+            .should('have.attr', 'href').and('include', 'https://support.apple.com/ru-ru/HT204460');
     },
 };

@@ -1,6 +1,7 @@
 import { navReg } from '@support/desktop/NavReg';
 import { auth} from "@support/desktop/Authorization";
 import {prof} from "@support/desktop/Profile";
+import {text} from "@support/desktop/Descriptions";
 describe('Modal window', () => {
     it('C27797 - Modal window register', function() {
         navReg.click_register();
@@ -8,6 +9,7 @@ describe('Modal window', () => {
         navReg.set_country("Angola");
         navReg.add_promocode('test123');
         navReg.close_promocode();
+        text.text_ru_rule_reg();
         navReg.accept_agreement();
         navReg.register_assert_modal_container();
         navReg.register_assert_visible();
@@ -19,6 +21,7 @@ describe('Modal window', () => {
         navReg.set_social_network('Google');
         navReg.add_promocode('test001');
         navReg.close_promocode();
+        text.text_ru_rule_reg();
         navReg.accept_agreement();
         navReg.register_next_assert_visible();
         navReg.registration_form('По e-mail');
@@ -26,6 +29,7 @@ describe('Modal window', () => {
         cy.wait(1000);
         navReg.add_promocode('test001');
         navReg.close_promocode();
+        text.text_ru_rule_reg();
         navReg.accept_agreement();
         navReg.set_name('test123');
         navReg.set_email('test@zyx.com');
