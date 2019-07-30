@@ -34,6 +34,7 @@ run:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker-compose pull -q || true
     - export CYPRESS_TESTRAIL_RUN_ID=$(./cypress/createRun.sh)
+    - docker run --ipc=host
     - docker-compose run e2e
   artifacts:
     reports:
