@@ -1,4 +1,4 @@
-image:  
+image:
   name: docker/compose:1.23.2
   entrypoint: ["/bin/sh", "-c"]
 
@@ -39,7 +39,7 @@ run:
     reports:
       junit: results/test-output-*.xml
     paths:
-    - cypress/videos
+#    - cypress/videos
     - cypress/screenshots
     expire_in: 1 week
     when: always

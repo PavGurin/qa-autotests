@@ -35,6 +35,7 @@ recursive('cypress/integration', async (err, specs) => {
                     ...cypressConfig,
                     baseUrl: Config.baseUrl,
                     trashAssetsBeforeRuns: false,
+                    video: false
                 },
                 spec,
             });
@@ -45,7 +46,7 @@ recursive('cypress/integration', async (err, specs) => {
                         reporter.addTestResult(test, run)));
             } catch (e) {
                 const content = fs.readFileSync(spec, "utf8").replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1');
-                const titles = []
+                const titles = [];
                 content.replace(/it\('(.*)'/, (_, title) => { titles.push(title) })
                 titles
                     .forEach(title => reporter.addTestResult(
