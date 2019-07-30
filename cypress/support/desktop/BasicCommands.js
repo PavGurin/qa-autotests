@@ -3,6 +3,7 @@ export const basicCom = {
     // switch language
     switch_language() {
         cy.get('img.country-icon')
+            .first()
             .trigger('mouseover');
         cy.get('.dropdown-item > .country-icon')
             .click();
@@ -11,7 +12,7 @@ export const basicCom = {
     // switch to mobile version
     switch_to_mobile(){
         // click mobile version button
-        cy.get('.mobile > .svg-icon-container > .svg-icon')
+        cy.get('.mobile')
           .click();
     }
 };

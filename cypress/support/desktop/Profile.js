@@ -14,11 +14,14 @@ export const prof = {
     // раскрыть весь список способов пополнения
     deposit_change() {
         cy.get('.select-icon')
+           .first()
+           .trigger('mouseover');
+        cy.get('.name')
             .click();
     },
     // выбрать последний элемент из списка
-    deposit_change_Ethereum() {
-        cy.contains('Ethereum')
+    deposit_change_switch(text) {
+        cy.contains(text)
             .click();
     },
     // Ввести номер карты
@@ -33,7 +36,7 @@ export const prof = {
     },
     //проверка, что кнопка "пополнить" активна
     deposit_assert_visible() {
-    cy.get('#main-container > div.modal-wrapper > div > div.modal-container__container > div.modal-container__body > form > div.send-row > button')
+    cy.get('div.modal-container__body > form > div.send-row > button')
         .should('be.visible');
     },
     //проверка модального окна "Пополнение"
@@ -44,20 +47,20 @@ export const prof = {
     //вывод средств
     withdrawal(text) {
         cy.get('.user-name > span')
-            .click();
+            .trigger("mouseover");
         cy.get('.dropdown-content')
             .contains(text)
-            .click();
-    },
-        // нажатие на список способов оплаты
-    pass_how_many_elements(){
-         cy.get('.select-icon')
             .click();
     },
     // Кнопка "открыть/закрыть историю выводов"
     open_close_withdrawal_history(){
         cy.get('.swiper')
             .click();
+    },
+    //проверка модального окна "Вывод средств"
+    withdrawal_history_modal_container() {
+        cy.get('div:nth-child(2) > div.modal-container__header')
+            .should('have.text','История выводов');
     },
     //Внести сумму(модальное окно "Вывод")
     withdrawal_number_() {
@@ -108,6 +111,13 @@ export const prof = {
     settings_hidebalance() {
         cy.get('.swiper')
             .click();
+        cy.get('#header > div.container.level.header__line.header__line--top > div.level-center.gap-md.header-block-center > div:nth-child(1) > div > div:nth-child(2)')
+            .should('not.exist');
+        cy.wait(1000);
+        cy.get('.swiper')
+            .click();
+        cy.get('#header > div.container.level.header__line.header__line--top > div.level-center.gap-md.header-block-center > div:nth-child(1) > div > div:nth-child(2)')
+            .should('exist');
     },
     //проверка модального окна "Настройки"
     settings_assert_modal_container() {
@@ -123,7 +133,14 @@ export const prof = {
             .type('01061999');
         cy.get('div.country-select.row > div > div > div > div')
             .click();
+        cy.get('div.modal-container__container > div > form > div.field > div > div > input')
+            .type('123456');
     },
+    //проверка модального окна "Настройки"
+    settings_mail_disabled() {
+         cy.get('div:nth-child(5) > div > input')
+             .should('be.disabled');
+},
 
 };
 

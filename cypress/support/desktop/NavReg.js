@@ -3,8 +3,7 @@
  **/
 
 const password_input = '.input[name=password]';
-const password_input_repeat = 'input[name=repeatPassword]';
-const new_password =  ':nth-child(3) > .control > .input-wrapper > .input';
+const new_password =  ':nth-child(2) > .control > .input-wrapper > .input';
 const close_modal_windows ='.modal-container__header__row > :nth-child(2) > .icon';
 
 export const navReg = {
@@ -29,7 +28,7 @@ export const navReg = {
 
     // close window with new user's login/pass
     close_new_user_info() {
-        cy.get('i.fa-times')
+        cy.get('.modal-container__header__row__cell__overlay')
           .click();
     },
 
@@ -46,7 +45,11 @@ export const navReg = {
           .get('.field > .control > .input-wrapper > .input')
           .type(promocode);
     },
-
+    // закрыть (нажать крестик) поле промокода
+    close_promocode(promocode) {
+        cy.get('.form > .field > .button')
+            .click();
+    },
     // select country from registration page
     set_country(country) {
         cy.get('.trigger')
@@ -208,5 +211,29 @@ export const navReg = {
             cy.get(close_modal_windows)
                 .click();
     },
-
+    //проверка модального окна "Регистрация"
+    register_assert_modal_container() {
+        cy.get('#main-container > div.modal-wrapper > div > div.modal-container__header')
+            .should('have.text', 'Регистрация');
+    },
+    // Проверка, что кнопка "Зарегистрироваться"(внутри модального окна) неактивна
+    register_assert_disabled() {
+        cy.get('div.button-container > button')
+            .should('be.disabled');
+    },
+    //проверка, что кнопка "Зарегистрироваться" активна
+    register_assert_visible() {
+        cy.get('div.button-container > button')
+            .should('be.visible');
+    },
+        // Проверка, что кнопка "далее"(внутри модального окна регистрция-соц.сети) неактивна
+     register_next_assert_disabled() {
+            cy.get('div.button-container > button')
+                .should('be.disabled');
+    },
+        //проверка, что кнопка "Зарегистрироваться" активна
+        register_next_assert_visible() {
+            cy.get('div.button-container > button')
+                .should('be.visible');
+    },
 };

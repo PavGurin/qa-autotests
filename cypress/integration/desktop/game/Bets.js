@@ -19,17 +19,17 @@ describe('Ставки', () => {
         bets.close_coupons();
     });
 
-    it('C18783 - Успешная ставка (Live)', () => {
+    it('C18783 - Успешная ставка (live)', () => {
         auth.login();
-        // переключается на вкладку 'Live'
+        // переключается на вкладку 'Линия'
         cy.get('a.navigation-item:nth-child(2)')
           .click();
-        // проверяет, что выбрана 'Live' вкладка
+        // проверяет, что выбрана 'Линия' вкладка
         cy.get('a.active > div > div.item-text-active')
           .should('have.text', 'Live');
         // ожидание, необходимое для прогрузки элементов
         cy.wait(1000);
-        // делает ставку на live-событие
+        // делает ставку на линия-событие
         bets.bet_live_page();
         cy.screenshot();
         auth.logout();
