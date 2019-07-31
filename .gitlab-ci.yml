@@ -39,7 +39,7 @@ run:
     reports:
       junit: results/test-output-*.xml
     paths:
-#    - cypress/videos
+    - cypress/videos
     - cypress/screenshots
     expire_in: 1 week
     when: always
