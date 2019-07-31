@@ -47,7 +47,7 @@ recursive('cypress/integration', async (err, specs) => {
             } catch (e) {
                 const content = fs.readFileSync(spec, "utf8").replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1');
                 const titles = [];
-                content.replace(/it\('(.*)'/, (_, title) => { titles.push(title) })
+                content.replace(/it\('(.*)'/, (_, title) => { titles.push(title) });
                 titles
                     .forEach(title => reporter.addTestResult(
                         { state: 'failed', title: [ title ], error: 'chrome crashed' },
