@@ -2,7 +2,7 @@ import { navReg } from '@support/desktop/NavReg';
 import { basicCom } from '@support/desktop/BasicCommands';
 import { text } from '@support/desktop/Descriptions';
 
-describe.skip('Check all elements in modal window register', () => {
+describe('Check all elements in modal window register', () => {
     it('C16787 - Rules agreement rus', () => {
 
         cy.contains('Регистрация');
@@ -51,25 +51,22 @@ describe.skip('Check all elements in modal window register', () => {
         text.text_eng_rule_reg();
     });
 
-    it('C16786 - Download apps', () => {
+    it.only('C16786 - Download apps', () => {
         //cy.visit('/');
         //cy.wait(5000);
 
         navReg.click_register();
         // Check on contains links on app in 1 click form
-        navReg.application_ios();
-        navReg.application_android();
+        navReg.click_ios_download();
 
         // Check on contains links on app  in social network form
         navReg.registration_form('Соц. сети');
         cy.wait(1000);
-        navReg.application_ios();
-        navReg.application_android();
+        navReg.click_ios_download();
 
         // Check on contains links on app  in e--mail form
         navReg.registration_form('По e-mail');
-        navReg.application_ios();
-        navReg.application_android();
+        navReg.click_ios_download();
     });
 
     it('C18503 - Modal window download apps', () => {
