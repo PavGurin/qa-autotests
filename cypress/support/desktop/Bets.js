@@ -7,7 +7,7 @@ const bet_amount_input = 'input[type=number]';
 const bet_is_done = 'div.coupon-status.success';
 const bet_not_done = 'div.coupon-status.error';
 const available_for_bet_element = () => cy
-    .get('div.matches-block > div.matches-block-content.matches-block')
+    .get('.matches-block-content')
     .find('.odd-cell')
     .not('.disabled')
     .find('.odd-coefficient')
@@ -73,7 +73,7 @@ export const bets = {
 
     // закрывает все отмеченные купоны (жмет 'крестик')
     close_coupons() {
-        cy.get('div.coupon-container > div.coupon-header > svg')
+        cy.get('svg.coupon-close')
           .click({multiple: true});
     }
 };

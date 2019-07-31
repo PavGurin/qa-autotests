@@ -10,15 +10,20 @@ const login_confirm = '.modal-button';
 const auth_window = 'div.modal-container';
 const logout_question = '.logout-question';
 const notification = '.notification-content';
-const forget_button = '.field > .button > span';
+const forget_button = '#main-container > div.modal-wrapper > div > div.modal-container__container > div > form > form > div:nth-child(2) > div > button > span';
 const email_forget_send = 'div.modal-container__container > div > form > form > div > button';
 const code_operation = ':nth-child(2) > .control > .input-wrapper > .input';
 const new_password =  ':nth-child(3) > .control > .input-wrapper > .input';
 const new_password_repeat =':nth-child(4) > .control > .input-wrapper > .input';
+const modal_login_container = '#main-container > div.modal-wrapper > div > div.modal-container__header';
+const vk_social_button = 'div:nth-child(2) > div.socials > img:nth-child(1)';
+const password_recovery = '.modal-container__header__row__cell__title';
+const change_password = ' div:nth-child(5) > button';
 export const auth = {
     // Logout
     logout() {
         cy.get('.level-right > .level-item > .button > span')
+            .first()
             .click();
         // должен появиться вопрос-подтверждение выхода
         //logout_question() {
@@ -30,18 +35,16 @@ export const auth = {
     },
     login() {
             // нажимаем кнопку 'Войти' со стартовой страницы
-        //click_auth() {
-            cy.get(entry_button)
-                .click();
-
+        cy.get(entry_button)
+            .click();
         // вводим логин/пароль
        // login_input() {
         cy.get(login_input)
-            .type('nogm75@1win.xyz ');
+            .type('where100@mail.ru ');
       // вводим пароль
         // password_input() {
              cy.get(password_input)
-                 .type('123456');
+                 .type('tk7oqj');
         // нажимаем кнопку "войти"
         cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
             .click();
@@ -151,13 +154,6 @@ export const auth = {
         .should('be.visible')
         .and('have.text', 'Неверный email или пароль');
      cy.screenshot();
-     // проверяем, что пользователь все еще не залогинен
-     cy.get(user_info)
-        .should('not.exist');
-     cy.get(login_input)
-        .clear();
-     cy.get(password_input)
-        .clear();
      },
      // проверяем, что пользователь залогинился
        user_info() {
@@ -175,17 +171,55 @@ export const auth = {
         //click_auth() {
         cy.get(entry_button)
             .click();
-
-        // вводим логин/пароль
-        // login_input() {
+    },
+        // вводим логин
+         login_input() {
         cy.get(login_input)
             .type('nogm75@1win.xyz ');
+    },
         // вводим пароль
-        // password_input() {
+         password_input() {
         cy.get(password_input)
             .type('123456');
-        // нажимаем кнопку "войти"
-        //cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
-           // .click();
+    },
+
+    // нажимаем кнопку 'Войти' со стартовой страницы
+    click_auth(){
+        cy.get(entry_button)
+            .click();
+    },
+    // Проверяем модальное окно "вход"
+    modal_container_enter() {
+        cy.get(modal_login_container)
+            .should('have.text','ВходДобро пожаловать в 1WIN' );
+    },
+    // Жмем "войти с помощью VK"
+    vk_social_button() {
+        cy.get(vk_social_button)
+            .click();
+    },
+    // проверяем, что пользователь все еще не залогинен
+    check_login_dont() {
+    cy.get(user_info)
+        .should('not.exist');
+    cy.get(login_input)
+        .clear();
+    cy.get(password_input)
+        .clear();
+    },
+    // Проверяем модальное окно "Восстановление пароля"
+    modal_container_password_recovery() {
+        cy.get(password_recovery)
+            .should('have.text','Восстановление пароля' );
+    },
+    //проверить, что кнопка "сменить пароль" недоступна
+    change_password_disabled() {
+    cy.get(change_password)
+        .should('be.disabled');
+    },
+    //проверить, что кнопка "сменить пароль" доступна
+    change_password_visible() {
+        cy.get(change_password)
+            .should('be.visible');
     },
 };

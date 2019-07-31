@@ -1,14 +1,14 @@
 {
-    "baseUrl": "https://master.staging.1win-prodlike.tech",
+    "baseUrl": "https://1wtis.xyz",
     "ignoreTestFiles": "*.html",
     "viewportWidth": 1920,
     "viewportHeight": 1080,
     "defaultCommandTimeout": 12000,
     "reporter": "mocha-multi-reporters",
     "reporterOptions": {
-    "reporterEnabled": "spec, mocha-junit-reporter",
-    "mochaJunitReporterReporterOptions": {
-    "mochaFile": "results/test-output-[hash].xml"
+        "reporterEnabled": "spec, mocha-junit-reporter",
+        "mochaJunitReporterReporterOptions": {
+            "mochaFile": "results/test-output-[hash].xml"
         }
     }
 }

@@ -4,8 +4,7 @@
 import {auth} from "@support/desktop/Authorization";
 
 const password_input = '.input[name=password]';
-const password_input_repeat = 'input[name=repeatPassword]';
-const new_password =  ':nth-child(3) > .control > .input-wrapper > .input';
+const new_password =  ':nth-child(2) > .control > .input-wrapper > .input';
 const close_modal_windows ='.modal-container__header__row > :nth-child(2) > .icon';
 
 export const navReg = {
@@ -30,7 +29,7 @@ export const navReg = {
 
     // close window with new user's login/pass
     close_new_user_info() {
-        cy.get('svg.icon-times')
+        cy.get('.modal-container__header__row__cell__overlay')
           .click();
     },
 
@@ -47,7 +46,11 @@ export const navReg = {
           .get('.field > .control > .input-wrapper > .input')
           .type(promocode);
     },
-
+    // закрыть (нажать крестик) поле промокода
+    close_promocode(promocode) {
+        cy.get('.form > .field > .button')
+            .click();
+    },
     // select country from registration page
     set_country(country) {
         cy.get('.trigger')
@@ -160,20 +163,22 @@ export const navReg = {
     },
 
     application_ios() {
-        cy.get('.application-items > .application-card-ios')
-          .first();
+        cy.get('div:nth-child(2) > a.application-card.left-block-item-ios.application-card-ios > div > svg')
+              .click();
     },
 
     application_ios_click() {
-        cy.get('.application-items > .application-card-ios')
+        cy.get('div:nth-child(2) > a.application-card.left-block-item-ios.application-card-ios > div > svg')
           .first()
           .click();
     },
 
     application_android() {
-        cy.get('.level-item > .application-card-android')
+        cy.get('div:nth-child(2) > a.application-card.left-block-item-android.application-card-android')
             .first()
             .click();
+        cy.get('.level-item > .application-card-android')
+            .should('have.attr', 'href').and('include', '/apk-folder/1win-1wtis.xyz.apk');
     },
 
     check_reg_result() {
@@ -209,5 +214,39 @@ export const navReg = {
             cy.get(close_modal_windows)
                 .click();
     },
-
+    //проверка модального окна "Регистрация"
+    register_assert_modal_container() {
+        cy.get('#main-container > div.modal-wrapper > div > div.modal-container__header')
+            .should('have.text', 'Регистрация');
+    },
+    // Проверка, что кнопка "Зарегистрироваться"(внутри модального окна) неактивна
+    register_assert_disabled() {
+        cy.get('div.button-container > button')
+            .should('be.disabled');
+    },
+    //проверка, что кнопка "Зарегистрироваться" активна
+    register_assert_visible() {
+        cy.get('div.button-container > button')
+            .should('be.visible');
+    },
+        // Проверка, что кнопка "далее"(внутри модального окна регистрция-соц.сети) неактивна
+     register_next_assert_disabled() {
+            cy.get('div.button-container > button')
+                .should('be.disabled');
+    },
+        //проверка, что кнопка "Зарегистрироваться" активна
+        register_next_assert_visible() {
+            cy.get('div.button-container > button')
+                .should('be.visible');
+    },
+        //проверка модального окна "Приложение iOS"
+     iOS_app_assert_modal_container() {
+        cy.get('#main-container > div.modal-wrapper > div > h1')
+            .should('have.text', 'Приложение iOS');
+     },
+       //Подробная инструкция от Apple
+    iOS_app_instruction() {
+        cy.get('#main-container > div.modal-wrapper > div > a.ios-instruction-details')
+            .should('have.attr', 'href').and('include', 'https://support.apple.com/ru-ru/HT204460');
+    },
 };

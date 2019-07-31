@@ -1,7 +1,7 @@
 import {navReg} from '@support/desktop/NavReg';
 import {auth} from '@support/desktop/Authorization';
 
-describe.skip('Registration by email', () => {
+describe('Registration by email', () => {
     afterEach(function () {
         // check that user logged in with requested username
         navReg.check_sign_up('test_' + randomStr);
@@ -12,7 +12,7 @@ describe.skip('Registration by email', () => {
                           .toString(36)
                           .slice(-5);
 
-    it.skip('C16297 - without promocode', () => {
+    it('C16297 - without promocode', () => {
         navReg.click_register();
         navReg.registration_form('По e-mail');
         navReg.set_name('test_' + randomStr);

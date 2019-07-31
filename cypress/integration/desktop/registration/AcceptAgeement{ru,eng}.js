@@ -1,8 +1,7 @@
 import { navReg } from '@support/desktop/NavReg';
 import { basicCom } from '@support/desktop/BasicCommands';
 import { text } from '@support/desktop/Descriptions';
-
-describe.skip('Check all elements in modal window register', () => {
+describe('Rules agreement', () => {
     it('C16787 - Rules agreement rus', () => {
 
         cy.contains('Регистрация');
@@ -49,44 +48,5 @@ describe.skip('Check all elements in modal window register', () => {
             expect($lis.eq(2), 'first item').to.have.class('form-tabs__link form-tabs__link_active');
         });
         text.text_eng_rule_reg();
-    });
-
-    it('C16786 - Download apps', () => {
-        //cy.visit('/');
-        //cy.wait(5000);
-
-        navReg.click_register();
-        // Check on contains links on app in 1 click form
-        navReg.application_ios();
-        navReg.application_android();
-
-        // Check on contains links on app  in social network form
-        navReg.registration_form('Соц. сети');
-        cy.wait(1000);
-        navReg.application_ios();
-        navReg.application_android();
-
-        // Check on contains links on app  in e--mail form
-        navReg.registration_form('По e-mail');
-        navReg.application_ios();
-        navReg.application_android();
-    });
-
-    it('C18503 - Modal window download apps', () => {
-        cy.visit('/');
-        //cy.wait(5000);
-
-        navReg.click_register();
-        // Check on contains links on app in 1 click form
-        navReg.application_ios_click();
-
-        // Check button 'close'
-        cy.get('svg.ios-instruction-close');
-
-        // Check button downloaded app
-        cy.get('a.ios-instruction-download');
-
-        // Check text on detailed instructions
-        cy.get('a.ios-instruction-details');
     });
 });
