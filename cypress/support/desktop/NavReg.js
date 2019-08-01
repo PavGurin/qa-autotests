@@ -1,7 +1,6 @@
 /**
  Registration commands
  **/
-import {auth} from "@support/desktop/Authorization";
 
 const password_input = '.input[name=password]';
 const new_password = ':nth-child(2) > .control > .input-wrapper > .input';
@@ -171,7 +170,7 @@ export const navReg = {
 
     click_ios_download() {
         cy.get('div:nth-child(2) > a.application-card.left-block-item-ios.application-card-ios > div > svg')
-            .click()
+            .click();
     },
 
     application_ios_click() {
@@ -257,5 +256,30 @@ export const navReg = {
     button_set_email(email) {
         cy.get('.user-info__btns > :nth-child(3) > .icon')
             .click();
+    },
+    // Check on contains text in 1 click form
+    contains_check_1click() {
+        cy.get('.form-tabs > div').should(($lis) => {
+            expect($lis, '3 items').to.have.length(3);
+            expect($lis.eq(0), 'first item').to.have.class('form-tabs__link form-tabs__link_active');
+        });
+    },
+        // Check on contains text in social network form
+    contains_check_social() {
+        cy.get('.form-tabs > div').should(($lis) => {
+            expect($lis, '3 items').to.have.length(3);
+            expect($lis.eq(1), 'first item').to.have.class('form-tabs__link form-tabs__link_active');
+        });
+    },
+    // Check on contains text in e--mail form
+    contains_check_mail() {
+        cy.get('.form-tabs > div').should(($lis) => {
+            expect($lis, '3 items').to.have.length(3);
+            expect($lis.eq(2), 'first item').to.have.class('form-tabs__link form-tabs__link_active');
+        });
+    },
+    copy_login_password(){
+    cy.get('div.modal-container__container > div > div > div.user-info__btns > button:nth-child(1)')
+        .click();
     },
 };

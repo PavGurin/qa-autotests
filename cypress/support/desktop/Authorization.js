@@ -228,4 +228,4 @@ export const auth = {
         .should('be.visible')
         .and('have.text', 'Данные скопированы');
     },
-};
+   };
