@@ -1,12 +1,17 @@
-import { navReg } from '@support/desktop/NavReg';
+import {navReg} from '@support/desktop/NavReg';
+import {auth} from "@support/desktop/Authorization";
+
 let token;
 const randomStr = Math.random()
     .toString(36)
     .slice(-5);
 let mail = randomStr;
 let mailId;
+let login;
+let password;
 describe('Sign up in One click', () => {
     it('C16289 - send by mail login/password ', () => {
+
         navReg.click_register();
         navReg.accept_agreement();
         navReg.sign_up();
@@ -14,6 +19,12 @@ describe('Sign up in One click', () => {
         navReg.check_reg_result();
         navReg.button_set_email();
         navReg.set_email(`${mail}@ahem.email`);
+        cy.get(':nth-child(1) > .user-info__content__item__value').should(($div) => {
+            login = $div.text();
+        });
+        cy.get(':nth-child(2) > .user-info__content__item__value').should(($div) => {
+            password = $div.text();
+        });
         cy.request({
             method: 'POST',
             url: 'https://www.ahem.email/api/auth/token',
@@ -25,7 +36,7 @@ describe('Sign up in One click', () => {
 
         })
             .then((resp) => {
-                token=(resp.body.token);
+                token = (resp.body.token);
                 console.log(token);
                 cy.wait(4000);
                 cy.request({
@@ -39,7 +50,7 @@ describe('Sign up in One click', () => {
 
                 })
                     .then((resp) => {
-                        mailId=(resp.body[0].emailId);
+                        mailId = (resp.body[0].emailId);
                         console.log(mailId);
                         cy.request({
                             method: 'GET',
@@ -49,17 +60,14 @@ describe('Sign up in One click', () => {
                                 Authorization: `Bearer ${token}`,
                                 Accept: 'application/json',
 
-                    }})
-                                .then((resp) => {
-                                    const text = resp.body.html;
-                                    console.log(text);
-                                    //text.match(/Login: .*<br>Password: .*$/)[0]
-                                //cy.contains(text,/Login: .*<br>Password: .*$/)
-
-                                })
-
+                            }
+                        })
+                            .then((resp) => {
+                                const text = resp.body.html;
+                                console.log(text);
+                                expect(text).equal(`Login: ${login}<br>Password: ${password}\n`)
+                            })
                     });
-        });
-
+            });
     });
 });
