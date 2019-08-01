@@ -52,7 +52,7 @@ export const navReg = {
             .type(promocode);
     },
     // закрыть (нажать крестик) поле промокода
-    close_promocode(promocode) {
+    close_promocode() {
         cy.get('.form > .field > .button')
             .click();
     },
@@ -94,8 +94,10 @@ export const navReg = {
 
     // email form - email
     set_email(email) {
-        cy.get(':nth-child(5) > .input-wrapper > .input')
+        cy.get('.input-wrapper > .input')
             .type(email);
+        cy.get('.user-info__email > .button')
+            .click();
     },
 
     // email form - password
@@ -250,5 +252,10 @@ export const navReg = {
             .should('have.text', 'Приложение iOS');
         cy.get('#main-container > div.modal-wrapper > div > a.ios-instruction-details')
             .should('have.attr', 'href').and('include', 'https://support.apple.com/ru-ru/HT204460');
-    }
+    },
+    // email form - email
+    button_set_email(email) {
+        cy.get('.user-info__btns > :nth-child(3) > .icon')
+            .click();
+    },
 };
