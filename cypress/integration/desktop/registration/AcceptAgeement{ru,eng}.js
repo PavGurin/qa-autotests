@@ -20,33 +20,21 @@ describe('Rules agreement', () => {
     });
 
     it('C18765 - Rules agreement eng', () => {
-        cy.visit('/');
-        //cy.wait(5000);
         basicCom.switch_language();
-
+        // Check on contains text in 1 click form
         cy.contains('Registration');
         navReg.click_register();
-        // Check on contains text in 1 click form
-        cy.get('.form-tabs > div').should(($lis) => {
-            expect($lis, '3 items').to.have.length(3);
-            expect($lis.eq(0), 'first item').to.have.class('form-tabs__link form-tabs__link_active');
-        });
+        navReg.contains_check_1click();
         text.text_eng_rule_reg();
 
         // Check on contains text in social network form
         navReg.registration_form('Social networks');
-        cy.get('.form-tabs > div').should(($lis) => {
-            expect($lis, '3 items').to.have.length(3);
-            expect($lis.eq(1), 'first item').to.have.class('form-tabs__link form-tabs__link_active');
-        });
+        navReg.contains_check_social();
         text.text_eng_rule_reg();
 
         // Check on contains text in e--mail form
         navReg.registration_form('By e-mail');
-        cy.get('.form-tabs > div').should(($lis) => {
-            expect($lis, '3 items').to.have.length(3);
-            expect($lis.eq(2), 'first item').to.have.class('form-tabs__link form-tabs__link_active');
-        });
+        navReg.contains_check_mail();
         text.text_eng_rule_reg();
     });
 });
