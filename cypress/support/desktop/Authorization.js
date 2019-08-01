@@ -40,11 +40,11 @@ export const auth = {
         // вводим логин/пароль
        // login_input() {
         cy.get(login_input)
-            .type('where100@mail.ru ');
+            .type('nogm75@1win.xyz');
       // вводим пароль
         // password_input() {
              cy.get(password_input)
-                 .type('tk7oqj');
+                 .type('testerQA');
         // нажимаем кнопку "войти"
         cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
             .click();
@@ -221,5 +221,11 @@ export const auth = {
     change_password_visible() {
         cy.get(change_password)
             .should('be.visible');
+    },
+    // проверяем ошибку и ее текст
+    check_notification() {
+    cy.get(notification)
+        .should('be.visible')
+        .and('have.text', 'Данные скопированы');
     },
 };

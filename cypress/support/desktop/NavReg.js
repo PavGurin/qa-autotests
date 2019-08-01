@@ -5,7 +5,8 @@
 const password_input = '.input[name=password]';
 const new_password =  ':nth-child(2) > .control > .input-wrapper > .input';
 const close_modal_windows ='.modal-container__header__row > :nth-child(2) > .icon';
-
+const copy_login_password = '.user-info__btns > :nth-child(1)';
+const send_login_password = 'div.user-info > div.user-info__btns > button:nth-child(3)';
 export const navReg = {
 
     // registration button
@@ -248,4 +249,19 @@ export const navReg = {
         cy.get('#main-container > div.modal-wrapper > div > a.ios-instruction-details')
             .should('have.attr', 'href').and('include', 'https://support.apple.com/ru-ru/HT204460');
     },
+    // copy login/password
+    copy_login_password() {
+        cy.get(copy_login_password)
+            .click();
+    },
+    // copy login/password
+    send_login_password(email) {
+        cy.get(send_login_password)
+            .click();
+        cy.get('div > div.user-info__email > div > div > input')
+            .type(email);
+         cy.get('div > div.user-info__email > button')
+             .click();
+    },
+
 };
