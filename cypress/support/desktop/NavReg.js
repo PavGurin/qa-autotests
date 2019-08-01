@@ -1,50 +1,55 @@
 /**
  Registration commands
  **/
+import {auth} from "@support/desktop/Authorization";
 
 const password_input = '.input[name=password]';
-const new_password =  ':nth-child(2) > .control > .input-wrapper > .input';
-const close_modal_windows ='.modal-container__header__row > :nth-child(2) > .icon';
-const copy_login_password = '.user-info__btns > :nth-child(1)';
-const send_login_password = 'div.user-info > div.user-info__btns > button:nth-child(3)';
+const new_password = ':nth-child(2) > .control > .input-wrapper > .input';
+const close_modal_windows = '.modal-container__header__row > :nth-child(2) > .icon';
+
 export const navReg = {
 
     // registration button
-        click_register() {
+    click_register() {
         cy.get('.level-item > .green')
-          .click();
+            .click();
     },
 
     // radio button 'User Agreement of usage'
     accept_agreement() {
         cy.get('span.checkmark')
-          .click();
+            .click();
     },
 
     // sign up button
     sign_up() {
         cy.get('.button-container > .button')
-          .click();
+            .click();
+    },
+
+    sign_up_check(){
+        cy.get('.button-container > .button')
+            .should('be.visible');
     },
 
     // close window with new user's login/pass
     close_new_user_info() {
         cy.get('.modal-container__header__row__cell__overlay')
-          .click();
+            .click();
     },
 
     // button click_next only for social
     click_next() {
         cy.get('button.button.dark')
-          .click();
+            .click();
     },
 
     // enter promocode
     add_promocode(promocode) {
         cy.get('.add_promocode')
-          .click()
-          .get('.field > .control > .input-wrapper > .input')
-          .type(promocode);
+            .click()
+            .get('.field > .control > .input-wrapper > .input')
+            .type(promocode);
     },
     // закрыть (нажать крестик) поле промокода
     close_promocode(promocode) {
@@ -54,35 +59,35 @@ export const navReg = {
     // select country from registration page
     set_country(country) {
         cy.get('.trigger')
-          .click()
-          .get('div.dropdown-item span')
-          .contains(country)
-          .click();
+            .click()
+            .get('div.dropdown-item span')
+            .contains(country)
+            .click();
     },
 
     // check default country
     check_country_default(country) {
         cy.get('.modal-container')
-          .last()
-          .as('selected_country');
+            .last()
+            .as('selected_country');
         cy.get('@selected_country')
-          .find('.country-select input')
-          .should('have.value', country);
+            .find('.country-select input')
+            .should('have.value', country);
     },
 
     // switch registration form type
     registration_form(type) {
         cy.contains(type)
-          .click();
+            .click();
     },
 
     // email form - name
     set_name(name) {
         cy.get('.form > :nth-child(1) > .input-wrapper > .input')
-          .type(name);
+            .type(name);
     },
 
-    set_date_of_birth(date){
+    set_date_of_birth(date) {
         cy.get(':nth-child(2) > .input-wrapper > .input')
             .type(date)
     },
@@ -90,19 +95,19 @@ export const navReg = {
     // email form - email
     set_email(email) {
         cy.get(':nth-child(5) > .input-wrapper > .input')
-          .type(email);
+            .type(email);
     },
 
     // email form - password
     set_pwd(password) {
         cy.get(':nth-child(6) > .input-wrapper > .input')
-          .type(password);
+            .type(password);
     },
 
     // email form - repeat password field
     repeat_pwd(password2) {
         cy.get(':nth-child(7) > .input-wrapper > .input')
-          .type(password2);
+            .type(password2);
     },
 
     // email form - day of birth
@@ -130,19 +135,19 @@ export const navReg = {
     // email form - country phone
     country_phone_field(country_phone) {
         cy.get('.form > .control > .separate-dial-code')
-          .click(country_phone);
+            .click(country_phone);
     },
 
     // email form -  phone
     set_phone_numb(phone) {
         cy.get('.intl-tel-input > .control > .input-wrapper > .input')
-          .type(phone);
+            .type(phone);
     },
 
     // choose social network for registration (both language versions got same social network names)
     set_social_network(social_network) {
         cy.contains(social_network)
-          .click();
+            .click();
     },
     // social_network - OK
     set_social_network_OK(social_network) {
@@ -153,54 +158,54 @@ export const navReg = {
     // social form - password
     password_input(password) {
         cy.get(password_input)
-          .type(password);
+            .type(password);
     },
 
     // social form - password repeat
     password_input_repeat(password) {
         cy.get(new_password)
-          .type(password);
+            .type(password);
     },
 
-    application_ios() {
+    click_ios_download() {
         cy.get('div:nth-child(2) > a.application-card.left-block-item-ios.application-card-ios > div > svg')
-              .click();
+            .click()
     },
 
     application_ios_click() {
         cy.get('div:nth-child(2) > a.application-card.left-block-item-ios.application-card-ios > div > svg')
-          .first()
-          .click();
-    },
-
-    application_android() {
-        cy.get('div:nth-child(2) > a.application-card.left-block-item-android.application-card-android')
             .first()
             .click();
+    },
+
+    check_android_download() {
+        cy.get('div:nth-child(2) > a.application-card.left-block-item-android.application-card-android')
+            .should('be.visible');
         cy.get('.level-item > .application-card-android')
             .should('have.attr', 'href').and('include', '/apk-folder/1win-1wtis.xyz.apk');
     },
 
+
     check_reg_result() {
         cy.get('.modal-container .user-info .user-info__content__item')
-          .then(($new_user_info) => {
-              const login = $new_user_info[0].lastChild.outerText;
-              const password = $new_user_info[1].lastChild.outerText;
+            .then(($new_user_info) => {
+                const login = $new_user_info[0].lastChild.outerText;
+                const password = $new_user_info[1].lastChild.outerText;
 
-              expect(login).not.to.be.empty;
-              expect(password).not.to.be.empty;
+                expect(login).not.to.be.empty;
+                expect(password).not.to.be.empty;
 
-              cy.log(`Логин - ${login}, Пароль - ${password}`);
-              cy.screenshot();
-          });
+                cy.log(`Логин - ${login}, Пароль - ${password}`);
+                cy.screenshot();
+            });
     },
 
     // check that reg window is closed and username equals requested during reg
     check_sign_up(userName) {
         cy.get('div.modal-container')
-          .should('not.exist');
+            .should('not.exist');
         cy.get('.user-name > span')
-          .should('have.text', userName);
+            .should('have.text', userName);
         cy.screenshot();
     },
 
@@ -211,8 +216,8 @@ export const navReg = {
     },
     // close modal container register
     close_modal_windows() {
-            cy.get(close_modal_windows)
-                .click();
+        cy.get(close_modal_windows)
+            .click();
     },
     //проверка модального окна "Регистрация"
     register_assert_modal_container() {
@@ -229,39 +234,21 @@ export const navReg = {
         cy.get('div.button-container > button')
             .should('be.visible');
     },
-        // Проверка, что кнопка "далее"(внутри модального окна регистрция-соц.сети) неактивна
-     register_next_assert_disabled() {
-            cy.get('div.button-container > button')
-                .should('be.disabled');
+    // Проверка, что кнопка "далее"(внутри модального окна регистрция-соц.сети) неактивна
+    register_next_assert_disabled() {
+        cy.get('div.button-container > button')
+            .should('be.disabled');
     },
-        //проверка, что кнопка "Зарегистрироваться" активна
-        register_next_assert_visible() {
-            cy.get('div.button-container > button')
-                .should('be.visible');
+    //проверка, что кнопка "Зарегистрироваться" активна
+    register_next_assert_visible() {
+        cy.get('div.button-container > button')
+            .should('be.visible');
     },
-        //проверка модального окна "Приложение iOS"
-     iOS_app_assert_modal_container() {
+    //проверка модального окна "Приложение iOS"
+    check_ios_download_window() {
         cy.get('#main-container > div.modal-wrapper > div > h1')
             .should('have.text', 'Приложение iOS');
-     },
-       //Подробная инструкция от Apple
-    iOS_app_instruction() {
         cy.get('#main-container > div.modal-wrapper > div > a.ios-instruction-details')
             .should('have.attr', 'href').and('include', 'https://support.apple.com/ru-ru/HT204460');
-    },
-    // copy login/password
-    copy_login_password() {
-        cy.get(copy_login_password)
-            .click();
-    },
-    // copy login/password
-    send_login_password(email) {
-        cy.get(send_login_password)
-            .click();
-        cy.get('div > div.user-info__email > div > div > input')
-            .type(email);
-         cy.get('div > div.user-info__email > button')
-             .click();
-    },
-
+    }
 };

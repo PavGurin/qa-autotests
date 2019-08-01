@@ -75,6 +75,7 @@ describe('Modal window', () => {
         prof.deposit_assert_visible();
         prof.deposit_assert_modal_container();
         navReg.close_modal_windows();
+        auth.logout();
     });
     it('C27801 - Modal window Withdrawal', function() {
         auth.login();
@@ -91,6 +92,7 @@ describe('Modal window', () => {
         prof.withdrawal_assert_visible();
         prof.withdrawal_assert_modal_container();
         navReg.close_modal_windows();
+        auth.logout();
     });
     it('C27802 - Modal window Transfer', function() {
         auth.login();
@@ -101,6 +103,7 @@ describe('Modal window', () => {
         prof.transfer_assert_visible();
         prof.transfer_assert_modal_container();
         navReg.close_modal_windows();
+        auth.logout();
     });
     it('C27803 - Modal window settings', function() {
         auth.login();
@@ -110,6 +113,7 @@ describe('Modal window', () => {
         prof.settings_mail_disabled();
         prof.settings_assert_modal_container();
         navReg.close_modal_windows();
+        auth.logout();
     });
 });
 

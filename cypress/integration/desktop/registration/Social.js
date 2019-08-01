@@ -12,7 +12,7 @@ describe('Registration by social network', () => {
         navReg.click_next();
         navReg.password_input(password);
         navReg.password_input_repeat(password);
-        navReg.sign_up();
+        navReg.sign_up_check();
         //cy.url().should('include', 'oauth.vk.com')
     });
 
@@ -25,7 +25,7 @@ describe('Registration by social network', () => {
         navReg.click_next();
         navReg.password_input('111111');
         navReg.password_input_repeat('111111');
-        navReg.sign_up();
+        navReg.sign_up_check();
         //cy.url().should('include', 'connect.ok.ru')
      });
 
@@ -39,7 +39,7 @@ describe('Registration by social network', () => {
         navReg.click_next();
         navReg.password_input('111111');
         navReg.password_input_repeat('111111');
-        navReg.sign_up();
+        navReg.sign_up_check();
         //cy.location().should('include', 'https://accounts.google.com')
      });
      it('C16290 - VK without promocode', () => {
@@ -51,7 +51,7 @@ describe('Registration by social network', () => {
          navReg.click_next();
          navReg.password_input('111111');
          navReg.password_input_repeat('111111');
-         navReg.sign_up();
+         navReg.sign_up_check();
      });
 
      it('C16291 - Ok without promocode', () => {
@@ -62,7 +62,7 @@ describe('Registration by social network', () => {
          navReg.click_next();
          navReg.password_input('111111');
          navReg.password_input_repeat('111111');
-         navReg.sign_up();
+         navReg.sign_up_check();
      });
      it('C16292 - Google without promocode', () => {
          navReg.click_register();
@@ -73,6 +73,6 @@ describe('Registration by social network', () => {
          navReg.click_next();
          navReg.password_input('111111');
          navReg.password_input_repeat('111111');
-         navReg.sign_up();
+         navReg.sign_up_check();
      });
 });
