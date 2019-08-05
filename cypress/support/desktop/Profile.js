@@ -1,5 +1,5 @@
 //Профиль игрока
-
+const notification = '.notification-content';
 export const prof = {
     // Кнопка "пополнить"
     deposit() {
@@ -127,20 +127,127 @@ export const prof = {
     //Заполнение и проверка полей и кнопок в настройках
     settings_form() {
         cy.get('.form > :nth-child(1) > .input-wrapper > .input')
-            .type('1234');
+          .clear()
+            .type('test1234');
         cy.get('div:nth-child(2) > div > input')
           .clear()
             .type('01061999');
         cy.get('div.country-select.row > div > div > div > div')
             .click();
         cy.get('div.modal-container__container > div > form > div.field > div > div > input')
-            .type('123456');
+            .type('testerQA');
+        cy.get('div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input')
+            .clear()
+            .type('905999888700');
+
     },
     //проверка модального окна "Настройки"
     settings_mail_disabled() {
          cy.get('div:nth-child(5) > div > input')
              .should('be.disabled');
-},
+     },
+    //Cохранить настройки
+    click_save_settings() {
+        cy.get('.button-wrapper > .button')
+            .click();
+    },
+    // проверяем, что изменение пароля успешно
+    check_change_settings(){
+        cy.get(notification)
+            .should('be.visible')
+            .and('have.text', 'Настройки сохранены');
+    },
+    //Заполнение поля "имя" в настройках
+    settings_form_name(name) {
+        cy.get('.form > :nth-child(1) > .input-wrapper > .input')
+            .clear()
+            .type(name);
+    },
+    //Заполнение поля "имя" в настройках
+    settings_form_pass() {
+    cy.get('div.modal-container__container > div > form > div.field > div > div > input')
+        .type('testerQA');
+    },
+    //Заполнение поля "имя" в настройках
+    settings_form_name_2or16_symbols() {
+        cy.get('.form > :nth-child(1) > .input-wrapper > .input')
+            .clear()
+            .type('Q2');
+        cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
+                .should('be.disabled');
+        cy.get('.form > :nth-child(1) > .input-wrapper > .input')
+            .clear()
+            .type('Q2Bvfrbkdblgblfgnflnfnlflglndsvsdv');
+        cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
+            .should('be.disabled');
 
+    },
+    //Заполнение поля "дата рождения" в настройках
+    settings_form_birthday() {
+    cy.get('div:nth-child(2) > div > input')
+        .clear()
+        .type('00000000');
+    cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
+         .should('be.disabled');
+    cy.get('div:nth-child(2) > div > input')
+        .clear()
+         .type('02082015');
+    cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
+         .should('be.disabled');
+    cy.get('div:nth-child(2) > div > input')
+         .clear()
+         .type('30022000');
+    cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
+         .should('be.disabled');
+    cy.get('div:nth-child(2) > div > input')
+         .clear()
+         .type('15011990');
+
+    },
+    //Заполнение поля "номер телефона" в настройках
+    settings_form_numbPhone_Andorra() {
+    cy.get('div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input')
+        .clear()
+        .type('666321');
+    },
+    // Выбор страны, где номер телефона
+    set_country_number_phone(country) {
+        cy.get('.intl-tel-input > .control > .input-wrapper > .dropdown-container > .country-dropdown > .dropdown > .dropdown-trigger > .trigger')
+            .click()
+            .get('.recycle-list')
+            .contains(country)
+            .click();
+    },
+    //Заполнение поля "номер телефона" в настройках
+    settings_form_numbPhone() {
+        cy.get('div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input')
+            .clear()
+            .type('9219963214');
+    },
+    //Заполнение поля "Текущий пароль" в настройках
+    settings_form_newpass() {
+        cy.get('div.modal-container__container > div > form > div.field > button > span')
+            .click();
+        cy.get('div.modal-container__container > div > form > div.field > div > div > input')
+            .type('qwerty1');
+        cy.get('div.modal-container__container > div > form > div:nth-child(7) > div > input')
+            .type('qwerty');
+        cy.get('div.modal-container__container > div > form > div:nth-child(8) > div > input')
+            .type('qwerty');
+
+
+    },
+    // проверяем, что изменение пароля  не успешно
+    new_pass_wrong(){
+        cy.get(notification)
+            .should('be.visible')
+            .and('have.text', 'Неверный пароль');
+    },
+    //Заполнение поля "Текущий пароль" в настройках
+      correct_pass() {
+         cy.get('div.modal-container__container > div > form > div.field > div > div > input')
+             .clear()
+            .type('qwerty');
+   },
 };
 

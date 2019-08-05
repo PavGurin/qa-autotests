@@ -172,6 +172,10 @@ export const navReg = {
         cy.get('div:nth-child(2) > a.application-card.left-block-item-ios.application-card-ios > div > svg')
             .click();
     },
+    ios_modal_close() {
+        cy.get('#main-container > div.modal-wrapper > div > svg')
+            .click();
+    },
 
     application_ios_click() {
         cy.get('div:nth-child(2) > a.application-card.left-block-item-ios.application-card-ios > div > svg')

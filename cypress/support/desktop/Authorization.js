@@ -48,7 +48,41 @@ export const auth = {
         // нажимаем кнопку "войти"
         cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
             .click();
-    },   // нажимаем на кнопку "забыли пароль"
+    },
+    login_with_new_pass_settings(pass) {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get(entry_button)
+           .click();
+        // вводим логин/пароль
+        // login_input() {
+        cy.get(login_input)
+            .type('testpass@ahem.email');
+        // вводим пароль
+        // password_input() {
+        cy.get(password_input)
+            .type(pass);
+        // нажимаем кнопку "войти"
+        cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
+            .click();
+    },
+
+    login_with_new_pass(pass) {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        //cy.get(entry_button)
+        //    .click();
+        // вводим логин/пароль
+        // login_input() {
+        cy.get(login_input)
+            .type('1wintest@ahem.email');
+        // вводим пароль
+        // password_input() {
+        cy.get(password_input)
+            .type(pass);
+        // нажимаем кнопку "войти"
+        cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
+            .click();
+    },
+    // нажимаем на кнопку "забыли пароль"
          password_forget() {
               cy.get(forget_button)
                  .click();
@@ -227,5 +261,49 @@ export const auth = {
     cy.get(notification)
         .should('be.visible')
         .and('have.text', 'Данные скопированы');
+    },
+    // Проверка модального онка "Установите новый пароль,текст снизу"
+    new_password_text_mail() {
+        cy.get('.fullwidth > .email')
+            .should('have.text',' 1wintest@ahem.email')
+    },
+    //нажать на  кнопку "сменить пароль"
+    change_password_click() {
+        cy.get(change_password)
+            .first()
+            .click();
+    },
+    // проверяем, что изменение пароля успешно
+    check_change_pass(){
+        cy.get(notification)
+            .should('be.visible')
+            .and('have.text', 'Пароль успешно изменен.');
+    },
+    // невалидная попытка авторизации
+    old_password() {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get(entry_button)
+            .click();
+        // вводим валидный логин и невалидный пароль
+        cy.get(login_input)
+            .type('1wintest@ahem.email')
+            .should('have.value', '1wintest@ahem.email');
+        cy.get(password_input)
+            .type('qwerty');
+        // нажимаем кнопку 'Войти' в меню авторизации
+        cy.get(login_confirm)
+            .click();
+        // проверяем ошибку и ее текст
+        cy.get(notification)
+            .should('visible')
+            .and('have.text', 'Неверный email или пароль');
+        cy.screenshot();
+        // проверяем, что пользователь все еще не залогинен
+        cy.get(user_info)
+            .should('not.exist');
+        cy.get(login_input)
+            .clear();
+        cy.get(password_input)
+            .clear();
     },
    };
