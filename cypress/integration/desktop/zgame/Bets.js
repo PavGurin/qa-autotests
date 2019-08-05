@@ -8,25 +8,23 @@ describe('Ставки', () => {
         // делает ставку на главной странице
         bets.bet_main_page();
         cy.screenshot();
-        // auth.logout();
     });
 
     it('C18767 - Ставка с "Сумма ставки" = 0', () => {
-        // auth.login();
+        auth.login();
         // делает нулевую ставку
         bets.bet_live_zero();
         cy.screenshot();
         // закрывает все отмеченные купоны
         bets.close_coupons();
-        // auth.logout();
     });
 
-    it('C18783 - Успешная ставка (Live)', () => {
-        // auth.login();
-        // переключается на вкладку 'Live'
+    it('C18783 - Успешная ставка (live)', () => {
+        auth.login();
+        // переключается на вкладку 'live'
         cy.get('a.navigation-item:nth-child(2)')
           .click();
-        // проверяет, что выбрана 'Live' вкладка
+        // проверяет, что выбрана 'live' вкладка
         cy.get('a.active > div > div.item-text-active')
           .should('have.text', 'Live');
         // ожидание, необходимое для прогрузки элементов

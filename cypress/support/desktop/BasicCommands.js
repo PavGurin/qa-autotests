@@ -12,7 +12,8 @@ export const basicCom = {
     // switch to mobile version
     switch_to_mobile(){
         // click mobile version button
-        cy.get('.icon-mobile')
+        cy.get('div:nth-child(2) > svg')
+          .first()
           .click();
     }
 };
