@@ -93,10 +93,8 @@ export const navReg = {
 
     // email form - email
     set_email(email) {
-        cy.get('.input-wrapper > .input')
+        cy.get(':nth-child(5) > .input-wrapper > .input')
             .type(email);
-        cy.get('.user-info__email > .button')
-            .click();
     },
 
     // email form - password
