@@ -11,6 +11,7 @@ describe('Ставки', () => {
     });
 
     it('C18767 - Ставка с "Сумма ставки" = 0', () => {
+        auth.login();
         // делает нулевую ставку
         bets.bet_live_zero();
         cy.screenshot();
@@ -19,6 +20,7 @@ describe('Ставки', () => {
     });
 
     it('C18783 - Успешная ставка (live)', () => {
+        auth.login();
         // переключается на вкладку 'live'
         cy.get('a.navigation-item:nth-child(2)')
           .click();
