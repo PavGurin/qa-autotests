@@ -1,5 +1,8 @@
 // / <reference types="cypress" />
 
+import '@applitools/eyes-cypress/commands'
+
+
 /**
  * Adds XPath support to Cypress using a custom command.
  *
@@ -11,8 +14,10 @@
     cy.xpath('//ul[@class="todo-list"]//li')
       .should('have.length', 3)
   })
+
  ```
  */
+
 const xpath = (selector, options = {}) => {
     /* global XPathResult */
     const isNumber = xpathResult => xpathResult.resultType === XPathResult.NUMBER_TYPE;
