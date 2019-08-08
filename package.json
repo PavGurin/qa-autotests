@@ -10,8 +10,10 @@
     "axios": "^0.18.0",
     "clipboard": "^2.0.4",
     "cypress": "3.3.1",
+    "cypress-blink-test": "^0.1.5",
+    "cypress-image-snapshot": "^3.1.1",
     "cypress-testrail-reporter": "^1.1.0",
-    "cypress-visual-regression": "^1.0.3",
+    "cypress-visual-regression": "^1.0.4",
     "minimatch": "^3.0.4",
     "mocha": "5.2.0",
     "mocha-junit-reporter": "^1.22.0",
@@ -20,6 +22,7 @@
     "selenium-webdriver": "^4.0.0-alpha.4"
   },
   "devDependencies": {
+    "@applitools/eyes-cypress": "^3.6.46",
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@cypress/webpack-preprocessor": "^4.0.3",

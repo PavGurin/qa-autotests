@@ -22,7 +22,7 @@ export const auth = {
             .type('nogm75@1win.xyz')
             .should('have.value', 'nogm75@1win.xyz');
         cy.get(password_input)
-            .type('123456');
+            .type('testerQA');
         // нажимаем кнопку 'Войти' в меню авторизации
         cy.get(login_confirm)
             .click();

@@ -1,8 +1,10 @@
-let percyHealthCheck = require('@percy/cypress/task')
-
+const {
+  addMatchImageSnapshotPlugin,
+} = require('cypress-image-snapshot/plugin');
 module.exports = (on, config) => {
-  on("task", percyHealthCheck);
+  addMatchImageSnapshotPlugin(on, config);
 };
+
 const webpack = require('@cypress/webpack-preprocessor')
 
 module.exports = (on) => {
@@ -13,11 +15,3 @@ module.exports = (on) => {
 
   on('file:preprocessor', webpack(options))
 }
-const {
-  addMatchImageSnapshotPlugin,
-} = require('cypress-image-snapshot/plugin');
-module.exports = (on, config) => {
-  addMatchImageSnapshotPlugin(on, config);
-};
-
-require('@applitools/eyes-cypress')(module);
