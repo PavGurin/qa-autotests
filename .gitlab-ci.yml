@@ -49,8 +49,16 @@ install:
 
 # actual job definitions
 # all steps are the same, they come from the template above
+.job1: &job1
+  stage: test2
+  script:
+    - cypress run
+
 test1:
-  <<: *job
+  <<: *job1
+
+
+
 #electrons-2:
 #  <<: *job
 #electrons-3:
