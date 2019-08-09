@@ -24,9 +24,9 @@ install:
   stage: build
 
   script:
-    - npm install --no-optional
+    - npm install
     - npm ci
-    - $(npm bin)/print-env CI
+#    - $(npm bin)/print-env CI
     - npm run cy:verify
 
 # all jobs that actually run tests can use the same definition
