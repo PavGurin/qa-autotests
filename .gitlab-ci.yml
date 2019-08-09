@@ -52,7 +52,7 @@ install:
 .job1: &job1
   stage: test
   script:
-    - $(npm bin)/cypress run
+    - cypress run
 
 test1:
   <<: *job1
