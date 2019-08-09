@@ -24,7 +24,6 @@ install:
   stage: build
 
   script:
-    - npm install cypress --save-dev
     - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
@@ -35,11 +34,11 @@ install:
   stage: test
   script:
     # print CI environment variables for reference
-#    - $(npm bin)/print-env CI
+    - $(npm bin)/print-env CI
     # start the server in the background
     - npm run start:ci &
     # run Cypress test in load balancing mode
-    - npm run e2e:record
+    - npm run e2e:record:parallel
   artifacts:
     when: always
     paths:
@@ -49,16 +48,8 @@ install:
 
 # actual job definitions
 # all steps are the same, they come from the template above
-.job1: &job1
-  stage: test
-  script:
-    - cypress run
-
-test1:
-  <<: *job1
-
-
-
+electrons-1:
+  <<: *job
 #electrons-2:
 #  <<: *job
 #electrons-3:
