@@ -49,13 +49,13 @@ install:
 
 # actual job definitions
 # all steps are the same, they come from the template above
-electrons-1:
+test1:
   <<: *job
-electrons-2:
-  <<: *job
-electrons-3:
-  <<: *job
-electrons-4:
-  <<: *job
-electrons-5:
-  <<: *job
+#electrons-2:
+#  <<: *job
+#electrons-3:
+#  <<: *job
+#electrons-4:
+#  <<: *job
+#electrons-5:
+#  <<: *job
