@@ -8,6 +8,7 @@ stages:
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+  CI_NODE_TOTAL: 2
 
 # cache using branch name
 # https://gitlab.com/help/ci/caching/index.md
