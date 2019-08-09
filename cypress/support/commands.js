@@ -1,6 +1,6 @@
 import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
 addMatchImageSnapshotCommand({
-    failureThreshold: 0.05,
+    failureThreshold: 0.1,
     failureThresholdType: 'percent',
     customDiffConfig: { threshold: 0.0 },
     capture: 'viewport',
@@ -12,6 +12,7 @@ Cypress.Commands.add("setResolution", (size) => {
     } else {
         cy.viewport(size);
     }
+
 });
 // ***********************************************
 // This example commands.js shows you how to
