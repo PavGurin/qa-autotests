@@ -1,48 +1,64 @@
-image:
-  name: docker/compose:1.23.2
-  entrypoint: ["/bin/sh", "-c"]
+# Docker images provided by https://github.com/cypress-io/cypress-docker-images
+# this example mostly follows the GitLab example in
+# https://github.com/cypress-io/cypress-example-kitchensink
 
-variables:
-  DOCKER_HOST: tcp://docker:2375/
-  DOCKER_DRIVER: overlay2
-
-services:
-  - docker:dind
-
+# first, install Cypress, then run all tests (in parallel)
 stages:
   - build
-  - run
+  - test
 
-build:
-  tags:
-    - docker
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
+
+# this job installs NPM dependencies and Cypress
+install:
+  image: cypress/base:10
   stage: build
-  script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker-compose pull -q || true
-    - docker-compose build
-    - docker-compose push
-  except:
-    variables:
-      - $CYPRESS_BASE_URL
 
-run:
-  tags:
-    - docker
-  stage: run
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker-compose pull -q || true
-    - export CYPRESS_TESTRAIL_RUN_ID=$(./cypress/createRun.sh)
-    - docker-compose run e2e
+    - npm ci
+    # show where the Cypress test runner binaries are cached
+    - $(npm bin)/cypress cache path
+    # show all installed versions of Cypress binary
+    - $(npm bin)/cypress cache list
+    - $(npm bin)/cypress verify
+
+# two jobs that run after "install" job finishes
+# NPM dependencies and Cypress binary should be already installed
+cypress-e2e:
+  image: cypress/base:10
+  stage: test
+  script:
+    - $(npm bin)/cypress run
   artifacts:
-    reports:
-      junit: results/test-output-*.xml
-    paths:
-#    - cypress/videos
-    - cypress/screenshots
     expire_in: 1 week
     when: always
-  environment:
-    name: review/$CI_COMMIT_REF_NAME
-    url: https://1win.testrail.io/index.php?/projects/overview/${CYPRESS_TESTRAIL_PROJECT_ID}
+    paths:
+      - cypress/screenshots
+      - cypress/videos
+
+cypress-e2e-chrome:
+  image: cypress/browsers:chrome67
+  stage: test
+  script:
+    - $(npm bin)/cypress run --browser chrome
+  artifacts:
+    expire_in: 1 week
+    when: always
+    paths:
+      - cypress/screenshots
+      - cypress/videos
+
+# tip: lint this file using https://gitlab.com/ci/lint
