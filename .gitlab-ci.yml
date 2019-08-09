@@ -1,7 +1,3 @@
-# Docker images provided by https://github.com/cypress-io/cypress-docker-images
-# this example mostly follows the GitLab example in
-# https://github.com/cypress-io/cypress-example-kitchensink
-
 # first, install Cypress, then run all tests (in parallel)
 stages:
   - build
@@ -29,36 +25,36 @@ install:
 
   script:
     - npm ci
-    # show where the Cypress test runner binaries are cached
-    - $(npm bin)/cypress cache path
-    # show all installed versions of Cypress binary
-    - $(npm bin)/cypress cache list
-    - $(npm bin)/cypress verify
+    - $(npm bin)/print-env CI
+    - npm run cy:verify
 
-# two jobs that run after "install" job finishes
-# NPM dependencies and Cypress binary should be already installed
-cypress-e2e:
+# all jobs that actually run tests can use the same definition
+.job_template: &job
   image: cypress/base:10
   stage: test
   script:
-    - $(npm bin)/cypress run
+    # print CI environment variables for reference
+    - $(npm bin)/print-env CI
+    # start the server in the background
+    - npm run start:ci &
+    # run Cypress test in load balancing mode
+    - npm run e2e:record
   artifacts:
-    expire_in: 1 week
     when: always
     paths:
-      - cypress/screenshots
-      - cypress/videos
+      - cypress/videos/**/*.mp4
+      - cypress/screenshots/**/*.png
+    expire_in: 1 day
 
-cypress-e2e-chrome:
-  image: cypress/browsers:chrome67
-  stage: test
-  script:
-    - $(npm bin)/cypress run --browser chrome
-  artifacts:
-    expire_in: 1 week
-    when: always
-    paths:
-      - cypress/screenshots
-      - cypress/videos
-
-# tip: lint this file using https://gitlab.com/ci/lint
+# actual job definitions
+# all steps are the same, they come from the template above
+electrons-1:
+  <<: *job
+electrons-2:
+  <<: *job
+electrons-3:
+  <<: *job
+electrons-4:
+  <<: *job
+electrons-5:
+  <<: *job
