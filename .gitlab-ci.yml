@@ -24,7 +24,7 @@ install:
   stage: build
 
   script:
-    - npm install
+    - npm install --no-optional
     - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
