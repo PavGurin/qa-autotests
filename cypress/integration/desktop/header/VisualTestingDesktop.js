@@ -16,7 +16,7 @@ describe('Visual regression tests', () => {
                 shot.screen_coupons_and_bets();
     });
             it('C28683 - главная страница хэдер-зареганный пользователь', () => {
-                auth.login();
+                auth.login2();
                 cy.wait(1000);
                 shot.screen_headers();
             });
