@@ -322,4 +322,5 @@ export const auth = {
         cy.get(password_input)
             .clear();
     },
-   };
+
+};

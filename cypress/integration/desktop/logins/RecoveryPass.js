@@ -5,7 +5,7 @@ import { navReg } from '@support/desktop/NavReg';
 import { auth} from "@support/desktop/Authorization";
 import {prof} from "@support/desktop/Profile";
 import {req} from "@support/desktop/Request";
-describe('Recovery Password', () => {
+describe.skip('Recovery Password', () => {
         const password = randomStr;
     it('C16304 - Recovery Password', function() {
             auth.login_without_enter();

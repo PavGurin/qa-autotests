@@ -58,4 +58,8 @@ export const shot = {
         cy.get('#main-container > div.content-wrapper > div > div > div.aside.aside-right > div.coupon-block.panel')
             .matchImageSnapshot();
     },
+    screen_cases_inTest() {
+        cy.get('#main-container > div.content-wrapper > div > div > div.main-content')
+            .matchImageSnapshot('Кейсы - Classic');
+    },
 };

@@ -14,8 +14,8 @@ export const prof = {
     // раскрыть весь список способов пополнения
     deposit_change() {
         cy.get('.select-icon')
-           .first()
-           .trigger('mouseover');
+            .first()
+            .trigger('mouseover');
         cy.get('.name')
             .click();
     },
@@ -27,7 +27,7 @@ export const prof = {
     // Ввести номер карты
     credit_card_number() {
         cy.get(':nth-child(2) > .control > .input-wrapper > .input')
-             .type('55504321554321');
+            .type('55504321554321');
     },
     //Внести сумму(модальное окно "пополнить"
     deposit_number() {
@@ -36,13 +36,13 @@ export const prof = {
     },
     //проверка, что кнопка "пополнить" активна
     deposit_assert_visible() {
-    cy.get('div.modal-container__body > form > div.send-row > button')
-        .should('be.visible');
+        cy.get('div.modal-container__body > form > div.send-row > button')
+            .should('be.visible');
     },
     //проверка модального окна "Пополнение"
     deposit_assert_modal_container() {
         cy.get('.modal-container__header__row__cell__title')
-            .should('have.text','Пополнение');
+            .should('have.text', 'Пополнение');
     },
     //вывод средств
     withdrawal(text) {
@@ -53,14 +53,14 @@ export const prof = {
             .click();
     },
     // Кнопка "открыть/закрыть историю выводов"
-    open_close_withdrawal_history(){
+    open_close_withdrawal_history() {
         cy.get('.swiper')
             .click();
     },
     //проверка модального окна "Вывод средств"
     withdrawal_history_modal_container() {
         cy.get('div:nth-child(2) > div.modal-container__header')
-            .should('have.text','История выводов');
+            .should('have.text', 'История выводов');
     },
     //Внести сумму(модальное окно "Вывод")
     withdrawal_number_() {
@@ -80,7 +80,7 @@ export const prof = {
     //проверка модального окна "Вывод средств"
     withdrawal_assert_modal_container() {
         cy.get('.modal-container__header__row__cell__title')
-            .should('have.text','Вывод средств');
+            .should('have.text', 'Вывод средств');
     },
     //Ввести почту
     transfer_mail_() {
@@ -90,7 +90,7 @@ export const prof = {
     //проверка модального окна "Перевод средств"
     transfer_assert_modal_container() {
         cy.get('.modal-container__header__row__cell__title')
-            .should('have.text','Перевод средств');
+            .should('have.text', 'Перевод средств');
     },
     // Проверка, что кнопка "Перевести"(внутри модального окна) неактивна
     transfer_assert_disabled() {
@@ -122,15 +122,15 @@ export const prof = {
     //проверка модального окна "Настройки"
     settings_assert_modal_container() {
         cy.get('.modal-container__header__row__cell__title')
-            .should('have.text','Настройки');
+            .should('have.text', 'Настройки');
     },
     //Заполнение и проверка полей и кнопок в настройках
     settings_form() {
         cy.get('.form > :nth-child(1) > .input-wrapper > .input')
-          .clear()
+            .clear()
             .type('test1234');
         cy.get('div:nth-child(2) > div > input')
-          .clear()
+            .clear()
             .type('01061999');
         cy.get('div.country-select.row > div > div > div > div')
             .click();
@@ -143,16 +143,16 @@ export const prof = {
     },
     //проверка модального окна "Настройки"
     settings_mail_disabled() {
-         cy.get('div:nth-child(5) > div > input')
-             .should('be.disabled');
-     },
+        cy.get('div:nth-child(5) > div > input')
+            .should('be.disabled');
+    },
     //Cохранить настройки
     click_save_settings() {
         cy.get('.button-wrapper > .button')
             .click();
     },
     // проверяем, что изменение пароля успешно
-    check_change_settings(){
+    check_change_settings() {
         cy.get(notification)
             .should('be.visible')
             .and('have.text', 'Настройки сохранены');
@@ -165,8 +165,8 @@ export const prof = {
     },
     //Заполнение поля "имя" в настройках
     settings_form_pass() {
-    cy.get('div.modal-container__container > div > form > div.field > div > div > input')
-        .type('testerQA');
+        cy.get('div.modal-container__container > div > form > div.field > div > div > input')
+            .type('testerQA');
     },
     //Заполнение поля "имя" в настройках
     settings_form_name_2or16_symbols() {
@@ -174,7 +174,7 @@ export const prof = {
             .clear()
             .type('Q2');
         cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
-                .should('be.disabled');
+            .should('be.disabled');
         cy.get('.form > :nth-child(1) > .input-wrapper > .input')
             .clear()
             .type('Q2Bvfrbkdblgblfgnflnfnlflglndsvsdv');
@@ -184,31 +184,31 @@ export const prof = {
     },
     //Заполнение поля "дата рождения" в настройках
     settings_form_birthday() {
-    cy.get('div:nth-child(2) > div > input')
-        .clear()
-        .type('00000000');
-    cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
-         .should('be.disabled');
-    cy.get('div:nth-child(2) > div > input')
-        .clear()
-         .type('02082015');
-    cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
-         .should('be.disabled');
-    cy.get('div:nth-child(2) > div > input')
-         .clear()
-         .type('30022000');
-    cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
-         .should('be.disabled');
-    cy.get('div:nth-child(2) > div > input')
-         .clear()
-         .type('15011990');
+        cy.get('div:nth-child(2) > div > input')
+            .clear()
+            .type('00000000');
+        cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
+            .should('be.disabled');
+        cy.get('div:nth-child(2) > div > input')
+            .clear()
+            .type('02082015');
+        cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
+            .should('be.disabled');
+        cy.get('div:nth-child(2) > div > input')
+            .clear()
+            .type('30022000');
+        cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
+            .should('be.disabled');
+        cy.get('div:nth-child(2) > div > input')
+            .clear()
+            .type('15011990');
 
     },
     //Заполнение поля "номер телефона" в настройках
     settings_form_numbPhone_Andorra() {
-    cy.get('div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input')
-        .clear()
-        .type('666321');
+        cy.get('div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input')
+            .clear()
+            .type('666321');
     },
     // Выбор страны, где номер телефона
     set_country_number_phone(country) {
@@ -238,16 +238,26 @@ export const prof = {
 
     },
     // проверяем, что изменение пароля  не успешно
-    new_pass_wrong(){
+    new_pass_wrong() {
         cy.get(notification)
             .should('be.visible')
             .and('have.text', 'Неверный пароль');
     },
     //Заполнение поля "Текущий пароль" в настройках
-      correct_pass() {
-         cy.get('div.modal-container__container > div > form > div.field > div > div > input')
-             .clear()
+    correct_pass() {
+        cy.get('div.modal-container__container > div > form > div.field > div > div > input')
+            .clear()
             .type('qwerty');
-   },
+    },
+    // Раскрыть ставку
+    bets_history() {
+        cy.get('.level-center > :nth-child(2) > .button > span')
+            .click();
+    },
+    // проыерка, что внутри ставки отображаются данные
+    bets_history_notBeEmpty() {
+        cy.get('#main-container > div.content-wrapper > div > div > div > div.panel-body > div > div:nth-child(1)')
+            .should('not.to.be.empty');
+    },
 };
 

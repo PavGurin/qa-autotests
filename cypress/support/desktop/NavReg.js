@@ -185,7 +185,7 @@ export const navReg = {
         cy.get('div:nth-child(2) > a.application-card.left-block-item-android.application-card-android')
             .should('be.visible');
         cy.get('.level-item > .application-card-android')
-            .should('have.attr', 'href').and('include', '/apk-folder/1win-1wtis.xyz.apk');
+            .should('have.attr', 'href').and('include', '/apk-folder/1win-1wenx.xyz.apk');
     },
 
 
@@ -283,5 +283,9 @@ export const navReg = {
     copy_login_password(){
     cy.get('div.modal-container__container > div > div > div.user-info__btns > button:nth-child(1)')
         .click();
+    },
+    download_login_password(){
+        cy.get('div.modal-container__container > div > div > div.user-info__btns > button:nth-child(2)')
+            .click();
     },
 };
