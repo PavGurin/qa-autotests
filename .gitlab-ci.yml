@@ -28,7 +28,7 @@ install:
     - $(npm bin)/print-env CI
     - npm run cy:verify
 
-cache:
+  cache:
         key: ${CI_COMMIT_REF_SLUG}
         paths:
           - .npm
