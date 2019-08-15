@@ -11,12 +11,12 @@ variables:
   CI_NODE_TOTAL: 2
 
 # cache using branch name
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - .npm
-    - /root/.cache/Cypress
-    - node_modules
+#cache:
+#  key: ${CI_COMMIT_REF_SLUG}
+#  paths:
+#    - .npm
+#    - /root/.cache/Cypress
+#    - node_modules
 
 # this job installs NPM dependencies and Cypress
 install:
@@ -27,6 +27,13 @@ install:
     - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
+
+cache:
+        key: ${CI_COMMIT_REF_SLUG}
+        paths:
+          - .npm
+          - /root/.cache/Cypress
+          - node_modules
 
 # all jobs that actually run tests can use the same definition
 .job_template: &job
