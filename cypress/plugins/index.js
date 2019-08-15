@@ -1,3 +1,4 @@
+const getCompareSnapshotsPlugin = require('cypress-visual-regression/dist/plugin');
 const webpack = require('@cypress/webpack-preprocessor');
 const {
   addMatchImageSnapshotPlugin,
@@ -10,6 +11,7 @@ module.exports = (on, config) => {
   };
 
   addMatchImageSnapshotPlugin(on, config);
+  getCompareSnapshotsPlugin(on);
 
   on('file:preprocessor', webpack(options))
 };

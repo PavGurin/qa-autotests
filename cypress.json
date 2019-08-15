@@ -8,7 +8,9 @@
   "reporterOptions": {
     "reporterEnabled": "spec, mocha-junit-reporter",
     "mochaJunitReporterReporterOptions": {
-      "mochaFile": "results/test-output-[hash].xml"
+      "mochaFile": "results/test-output-[hash].xml",
+      "screenshotsFolder": "cypress/snapshots/actual",
+      "trashAssetsBeforeRuns": true
     }
   },
   "projectId": "igtnti"
