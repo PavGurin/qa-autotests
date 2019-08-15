@@ -32,12 +32,15 @@ install:
 .job_template: &job
   image: cypress/browsers:chrome69
   stage: test
+  parallel: 2
   script:
     # print CI environment variables for reference
     - $(npm bin)/print-env CI
 
     # run Cypress test in load balancing mode
     - npm run e2e:chrome:parallel
+  retry: 2
+
   artifacts:
     when: always
     paths:
