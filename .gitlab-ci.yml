@@ -8,7 +8,7 @@ stages:
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
-  CI_NODE_TOTAL: 2
+  CI_NODE_TOTAL: 4
 
 # cache using branch name
 cache:
@@ -53,9 +53,9 @@ runner-1:
   <<: *job
 runner-2:
   <<: *job
-#electrons-3:
-#  <<: *job
-#electrons-4:
-#  <<: *job
+runner-3:
+  <<: *job
+runner-4:
+  <<: *job
 #electrons-5:
 #  <<: *job
