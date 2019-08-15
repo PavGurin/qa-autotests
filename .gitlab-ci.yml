@@ -21,7 +21,6 @@ install:
 #  - 'export CYPRESS_CACHE_FOLDER=cache/Cypress'
 #  - 'npm run ci'
   script:
-    - export ${CYPRESS_CACHE_FOLDER}
     - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
