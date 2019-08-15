@@ -16,7 +16,7 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - .npm
-    - cache/Cypress
+#    - cache/Cypress
     - node_modules
 
 # this job installs NPM dependencies and Cypress
