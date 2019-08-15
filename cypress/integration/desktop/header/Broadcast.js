@@ -1,19 +1,19 @@
 import {auth} from "@support/desktop/Authorization";
 import {broadcast} from "@support/desktop/Broadcast";
 describe('Profile Settings', () => {
-    it.skip('C16317 - Open broadcast', function() {
+    it('C16317 - Open broadcast', function() {
         auth.login();
         broadcast.search();
         cy.wait(2000);
         broadcast.open();
     });
-    it.skip('C16622 - Open broadcast on page', function() {
+    it('C16622 - Open broadcast on page', function() {
         auth.login2();
         cy.wait(1000);
         broadcast.open_match();
         broadcast.should_exist();
     });
-    it.skip('C16625 - Close broadcast', function() {
+    it('C16625 - Close broadcast', function() {
         auth.login();
         broadcast.search();
         broadcast.open();
@@ -33,10 +33,5 @@ describe('Profile Settings', () => {
         //     .trigger('dragstart');
         // cy.get('#main-container > div.translation-container > div.translation-container-drag')
         //     .trigger('drop');
-
-
-
-
-
     });
 });
