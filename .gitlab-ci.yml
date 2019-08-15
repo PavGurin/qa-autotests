@@ -42,8 +42,8 @@ install:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
       - .npm
-      - .cache/Cypress
-      - node_modules    
+      - /root/.cache/Cypress
+      - node_modules
   artifacts:
     when: always
     paths:
