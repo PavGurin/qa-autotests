@@ -43,16 +43,6 @@
     "ci:set-port": "node ./scripts/set-port",
     "semantic-release": "semantic-release"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cypress-io/cypress-example-kitchensink.git"
-  },
-  "author": "Brian Mann",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cypress-io/cypress-example-kitchensink/issues"
-  },
-  "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
     "npm-run-all": "^4.1.2",
     "serve": "11.1.0"
