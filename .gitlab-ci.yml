@@ -38,6 +38,12 @@ install:
 #    - npm run start:ci &
     # run Cypress test in load balancing mode
     - npm run e2e:chrome:parallel
+    cache:
+      key: ${CI_COMMIT_REF_SLUG}
+      paths:
+        - .npm
+        - .cache/Cypress
+        - node_modules
   artifacts:
     when: always
     paths:
