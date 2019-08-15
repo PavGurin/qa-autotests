@@ -15,7 +15,13 @@ install:
   image: cypress/browsers:chrome69
   stage: build
 
+#script:
+#  - 'export CYPRESS_CACHE_FOLDER=../../cache/Cypress'
+#  - 'npm ci'
+#  - 'export CYPRESS_CACHE_FOLDER=cache/Cypress'
+#  - 'npm run ci'
   script:
+    - export ${CYPRESS_CACHE_FOLDER}
     - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
@@ -34,6 +40,8 @@ install:
   script:
     # print CI environment variables for reference
     - $(npm bin)/print-env CI
+    - 'export ${CYPRESS_CACHE_FOLDER}'
+
     # start the server in the background
 #    - npm run start:ci &
     # run Cypress test in load balancing mode
