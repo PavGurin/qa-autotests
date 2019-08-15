@@ -11,13 +11,12 @@ variables:
   CI_NODE_TOTAL: 2
 
 # cache using branch name
-# https://gitlab.com/help/ci/caching/index.md
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - .npm
-#    - cache/Cypress
-    - node_modules
+    - /root/.cache/Cypress
+#    - node_modules
 
 # this job installs NPM dependencies and Cypress
 install:
