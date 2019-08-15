@@ -38,9 +38,7 @@ install:
 
     # run Cypress test in load balancing mode
     - npm run e2e:chrome:parallel
-  retry:
-    max: 1
-    when: always
+  retry: 2
 
   artifacts:
     when: always
