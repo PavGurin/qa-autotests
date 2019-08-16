@@ -17,7 +17,6 @@ cache:
     - .npm
     - cache/Cypress
     - node_modules
-  policy: push
 
 # this job installs NPM dependencies and Cypress
 install:
