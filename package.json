@@ -55,6 +55,7 @@
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
     "npm-run-all": "^4.1.2",
+    "pug": "2.0.4",
     "serve": "11.1.0"
   },
   "devDependencies": {
@@ -62,6 +63,7 @@
     "@cypress/webpack-preprocessor": "^4.0.3",
     "colon-names": "1.0.0",
     "cypress": "3.4.1",
+    "cypress-testrail-reporter": "1.1.0",
     "eslint": "5.16.0",
     "eslint-plugin-cypress": "2.6.0",
     "eslint-plugin-cypress-dev": "2.1.0",
