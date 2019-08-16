@@ -27,7 +27,9 @@ install:
     - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
-
+#    - npm install cypress-testrail-reporter --save-dev
+  tags:
+    - do
 
 # all jobs that actually run tests can use the same definition
 .job_template: &job
@@ -48,6 +50,8 @@ install:
       #      - cypress/videos/**/*.mp4
       - cypress/screenshots/**/*.png
     expire_in: 1 day
+  tags:
+     - do
 
 # actual job definitions
 # all steps are the same, they come from the template above
