@@ -1,7 +1,7 @@
 // const cypress = require('cypress');
 // const fs = require('fs');
 // const recursive = require('recursive-readdir');
-// const TestrailReporter = require('./reporters/testrail.js');
+// const TestrailReporter = require('./reporters/testrail1.js');
 //
 // const cypressConfig = require('../cypress.json');
 // const Config = require('./Config');

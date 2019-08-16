@@ -27,6 +27,7 @@ install:
     - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
+    - npm install cypress-testrail-reporter --save-dev
 
 
 # all jobs that actually run tests can use the same definition
