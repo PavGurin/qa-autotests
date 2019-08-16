@@ -28,8 +28,8 @@ install:
     - $(npm bin)/print-env CI
     - npm run cy:verify
 #    - npm install cypress-testrail-reporter --save-dev
-  tags:
-    - docker
+#  tags:
+#    - docker
 
 # all jobs that actually run tests can use the same definition
 .job_template: &job
@@ -37,7 +37,7 @@ install:
   stage: test
   script:
     # print CI environment variables for reference
-#    - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
+    - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
     - $(npm bin)/print-env CI
 
     # run Cypress test in load balancing mode
@@ -50,8 +50,8 @@ install:
       #      - cypress/videos/**/*.mp4
       - cypress/screenshots/**/*.png
     expire_in: 1 day
-  tags:
-    - docker
+#  tags:
+#    - docker
 
       # actual job definitions
 # all steps are the same, they come from the template above
