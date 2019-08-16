@@ -8,14 +8,14 @@ stages:
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
-  CI_NODE_TOTAL: 8
+  CI_NODE_TOTAL: 2
 
 # cache using branch name
 cache:
-  key: ${CI_JOB_NAME}
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - .npm
-    - "$CI_PROJECT_DIR/cache/Cypress"
+    - cache/Cypress
     - node_modules
 
 # this job installs NPM dependencies and Cypress
@@ -54,16 +54,4 @@ install:
 runner-1:
   <<: *job
 runner-2:
-  <<: *job
-runner-3:
-  <<: *job
-runner-4:
-  <<: *job
-runner-5:
-  <<: *job
-runner-6:
-  <<: *job
-runner-7:
-  <<: *job
-runner-8:
-  <<: *job
+  <<: *jobs
