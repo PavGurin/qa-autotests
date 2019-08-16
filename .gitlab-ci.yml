@@ -20,7 +20,7 @@ cache:
 
 # this job installs NPM dependencies and Cypress
 install:
-  image: cypress/browsers:chrome69
+  image: browsers:node11.13.0-chrome73
   stage: build
 
   script:
@@ -31,11 +31,11 @@ install:
 
 # all jobs that actually run tests can use the same definition
 .job_template: &job
-  image: cypress/browsers:chrome69
+  image: browsers:node11.13.0-chrome73
   stage: test
   script:
     # print CI environment variables for reference
-    - npm ci
+    - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
     - $(npm bin)/print-env CI
 
     # run Cypress test in load balancing mode
