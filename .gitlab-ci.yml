@@ -13,11 +13,11 @@ variables:
 # cache using branch name
 cache:
   key: "$CI_COMMIT_REF_SLUG"
-  untracked: true
   paths:
     - .npm
     - cache/Cypress
     - node_modules
+  policy: push
 
 # this job installs NPM dependencies and Cypress
 install:
@@ -29,8 +29,6 @@ install:
     - $(npm bin)/print-env CI
     - npm run cy:verify
 #    - npm install cypress-testrail-reporter --save-dev
-  tags:
-    - docker
 
 # all jobs that actually run tests can use the same definition
 .job_template: &job
