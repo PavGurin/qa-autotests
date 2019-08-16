@@ -17,9 +17,7 @@ cache:
     - .npm
     - cache/Cypress
     - node_modules
-before_script:
-  - npm ci
-  
+
 # this job installs NPM dependencies and Cypress
 install:
   image: cypress/browsers:chrome69
