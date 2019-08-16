@@ -12,7 +12,7 @@ variables:
 
 # cache using branch name
 cache:
-  key: "$"$CI_PIPELINE_ID""
+  key: "$CI_PIPELINE_ID"
   paths:
     - .npm
     - cache/Cypress
