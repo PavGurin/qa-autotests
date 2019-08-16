@@ -10,7 +10,7 @@ variables:
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
   CI_NODE_TOTAL: 2
 
-before_scripts:
+before_script:
   - npm ci
 
 # cache using branch name
