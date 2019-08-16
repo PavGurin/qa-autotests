@@ -29,6 +29,8 @@ install:
     - $(npm bin)/print-env CI
     - npm run cy:verify
 #    - npm install cypress-testrail-reporter --save-dev
+  tags:
+    - macos
 
 # all jobs that actually run tests can use the same definition
 .job_template: &job
@@ -50,9 +52,9 @@ install:
       - cypress/screenshots/**/*.png
     expire_in: 1 day
   tags:
-     - docker
+    - macos
 
-# actual job definitions
+      # actual job definitions
 # all steps are the same, they come from the template above
 runner-1:
   <<: *job
