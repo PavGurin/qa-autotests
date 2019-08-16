@@ -12,7 +12,7 @@ variables:
 
 # cache using branch name
 cache:
-  key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
+  key: "$"$CI_PIPELINE_ID""
   paths:
     - .npm
     - cache/Cypress
