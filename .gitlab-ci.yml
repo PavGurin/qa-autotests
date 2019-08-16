@@ -12,7 +12,8 @@ variables:
 
 # cache using branch name
 cache:
-  key: "$CI_PIPELINE_ID"
+  key: "$CI_COMMIT_REF_SLUG"
+  untracked: true
   paths:
     - .npm
     - cache/Cypress
