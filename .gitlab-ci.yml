@@ -28,12 +28,14 @@ install:
     - $(npm bin)/print-env CI
     - npm run cy:verify
 
+
 # all jobs that actually run tests can use the same definition
 .job_template: &job
   image: cypress/browsers:chrome69
   stage: test
   script:
     # print CI environment variables for reference
+    - npm ci
     - $(npm bin)/print-env CI
 
     # run Cypress test in load balancing mode
@@ -41,7 +43,7 @@ install:
   retry: 2
 
   artifacts:
-    when: always
+    when: on_success
     paths:
       #      - cypress/videos/**/*.mp4
       - cypress/screenshots/**/*.png
