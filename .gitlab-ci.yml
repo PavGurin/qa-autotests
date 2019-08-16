@@ -10,6 +10,9 @@ variables:
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
   CI_NODE_TOTAL: 2
 
+before_scripts:
+  - npm ci
+
 # cache using branch name
 cache:
   key: "$CI_COMMIT_REF_SLUG"
@@ -25,7 +28,6 @@ install:
   stage: build
 
   script:
-    - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
 
