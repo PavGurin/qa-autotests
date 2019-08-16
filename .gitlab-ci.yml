@@ -10,18 +10,16 @@ variables:
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
   CI_NODE_TOTAL: 2
 
-before_script:
-  - npm ci
-
 # cache using branch name
 cache:
   key: "$CI_COMMIT_REF_SLUG"
-  untracked: true
   paths:
     - .npm
     - cache/Cypress
     - node_modules
-
+before_script:
+  - npm ci
+  
 # this job installs NPM dependencies and Cypress
 install:
   image: cypress/browsers:chrome69
