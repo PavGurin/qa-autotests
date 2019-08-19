@@ -50,7 +50,7 @@ install:
     - npm run e2e:chrome:parallel
   retry: 2
   dependencies:
-    - build
+    - install
 
   artifacts:
     when: on_success
