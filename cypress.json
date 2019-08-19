@@ -7,7 +7,7 @@
   "reporter": "cypress-testrail-reporter",
   "reporterOptions": {
     "domain": "1win.testrail.io",
-    "username": "autotests",
+    "username": "tst22tst33@yandex.ru",
     "password": "12345678#a",
     "projectId": 1,
     "suiteId": 1
