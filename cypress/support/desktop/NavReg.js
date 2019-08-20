@@ -14,15 +14,30 @@ export const navReg = {
             .click();
     },
 
+    // registration button на мобильной версии
+    click_register_for_mobile() {
+        cy.get('#header > div > button.registration.control-item.button.sm.success')
+            .click();
+    },
+
     // radio button 'User Agreement of usage'
     accept_agreement() {
         cy.get('span.checkmark')
+            .click();
+    },
+    // radio button 'User Agreement of usage'
+    accept_agreement_for_mobile() {
+        cy.get('#reg-one-click > form > div.level.rules > div > label > span')
             .click();
     },
 
     // sign up button
     sign_up() {
         cy.get('.button-container > .button')
+            .click();
+    },
+    sign_up_for_mobile() {
+        cy.get('.submit-btn > .button-content')
             .click();
     },
 
@@ -34,6 +49,11 @@ export const navReg = {
     // close window with new user's login/pass
     close_new_user_info() {
         cy.get('.modal-container__header__row__cell__overlay')
+            .click();
+    },
+    // close window with new user's login/pass
+    close_new_user_info_for_mobile() {
+        cy.get('#app > div > div.modal-layout-default > header > div.controls > button')
             .click();
     },
 
@@ -48,6 +68,13 @@ export const navReg = {
         cy.get('.add_promocode')
             .click()
             .get('.field > .control > .input-wrapper > .input')
+            .type(promocode);
+    },
+    // enter promocode
+    add_promocode_for_mobile(promocode) {
+        cy.get('#reg-one-click > form > div:nth-child(2) > div > button > span')
+            .click()
+            .get('.promo-code > .control > .input-container > .input')
             .type(promocode);
     },
     // закрыть (нажать крестик) поле промокода
@@ -67,6 +94,14 @@ export const navReg = {
     // check default country
     check_country_default(country) {
         cy.get('.modal-container')
+            .last()
+            .as('selected_country');
+        cy.get('@selected_country')
+            .find('.country-select input')
+            .should('have.value', country);
+    },
+    check_country_default_for_mobile(country) {
+        cy.get('#reg-one-click > form > div:nth-child(1)')
             .last()
             .as('selected_country');
         cy.get('@selected_country')
@@ -93,8 +128,14 @@ export const navReg = {
 
     // email form - email
     set_email(email) {
-        cy.get(':nth-child(5) > .input-wrapper > .input')
+        cy.get('.input-wrapper > .input')
             .type(email);
+    },
+    set_email_for_mobile(email) {
+        cy.get('.input')
+            .type(email);
+        cy.get('button.success-reg-modal-send.button.md.primary > span')
+            .click();
     },
 
     // email form - password
@@ -202,6 +243,12 @@ export const navReg = {
                 cy.screenshot();
             });
     },
+    check_reg_result_for_mobile() {
+        cy.get('div.success-reg-modal-columns > div:nth-child(1)')
+            .should('not.be.empty');
+        cy.get('div.success-reg-modal-columns > div:nth-child(2)')
+            .should('not.be.empty');
+    },
 
     // check that reg window is closed and username equals requested during reg
     check_sign_up(userName) {
@@ -284,8 +331,20 @@ export const navReg = {
     cy.get('div.modal-container__container > div > div > div.user-info__btns > button:nth-child(1)')
         .click();
     },
+    copy_login_pass_for_mobile(){
+        cy.get('div.success-reg-modal-controls > button:nth-child(1) > span')
+            .click();
+    },
     download_login_password(){
         cy.get('div.modal-container__container > div > div > div.user-info__btns > button:nth-child(2)')
+            .click();
+    },
+    send_login_pass_for_mobile(){
+        cy.get('div.success-reg-modal-controls > button:nth-child(2) > span')
+            .click();
+    },
+    click_send_login_pass(){
+        cy.get('.user-info__email > .button')
             .click();
     },
 };

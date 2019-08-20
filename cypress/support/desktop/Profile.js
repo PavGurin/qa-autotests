@@ -1,6 +1,26 @@
 //Профиль игрока
 const notification = '.notification-content';
 export const prof = {
+    // Кнопка "войти в профиль"
+    profile_for_mobile() {
+        cy.get('#header > div > div > div.control-item > button > span')
+            .click();
+    },
+    // служба поддержки
+    support_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(1) > div > div')
+            .click();
+    },
+    // история ставок
+    bets_history_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(1) > div > a:nth-child(2) > div')
+            .click();
+    },
+    // настройки в моб.версии
+    settings_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(1) > a')
+            .click();
+    },
     // Кнопка "пополнить"
     deposit() {
         cy.get('.level-center > :nth-child(2) > .button > span')
