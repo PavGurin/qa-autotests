@@ -4,5 +4,3 @@ beforeEach(function () {
   // //     cy.setCookie('session-id', '', {domain: '1win-auth.com'});
   cy.visit('')
 })
-
-module.exports = require('./dist/cypress-testrail-reporter').CypressTestRailReporter
