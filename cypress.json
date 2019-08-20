@@ -6,9 +6,9 @@
   "projectId": "kb155o",
   "reporter": "salty-cypress-testrail-reporter",
   "reporterOptions": {
-    "domain": "yourdomain.testrail.com",
-    "username": "username",
-    "password": "password",
+    "domain": "1win.testrail.io",
+    "username": "tst22tst33@yandex.ru",
+    "password": "12345678#a",
     "projectId": 5,
     "suiteId": 1,
     "createTestRun": "true",
