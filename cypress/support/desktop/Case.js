@@ -59,4 +59,14 @@ export const cases = {
         cy.get('#main-container > div.content-wrapper > div > div > div > div > div > div.case-page__left.df-aifs-jcfs.df.fw > button')
             .click();
     },
+    //нажать на кнопку кейсы Сlassic
+    open_case_classic() {
+        cy.get('#cases-list > div.theme-row > div:nth-child(1) > button > span')
+            .click();
+    },
+    open_case_classic() {
+        cy.get('#cases-list > div.theme-row > div:nth-child(1) > button > span')
+            .click();
+    },
+
 };
