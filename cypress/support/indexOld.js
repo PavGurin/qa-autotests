@@ -14,97 +14,104 @@
  ```
  */
 const xpath = (selector, options = {}) => {
-    /* global XPathResult */
-    const isNumber = xpathResult => xpathResult.resultType === XPathResult.NUMBER_TYPE;
-    const numberResult = xpathResult => xpathResult.numberValue;
+  /* global XPathResult */
+  const isNumber = (xpathResult) => xpathResult.resultType === XPathResult.NUMBER_TYPE
+  const numberResult = (xpathResult) => xpathResult.numberValue
 
-    const isString = xpathResult => xpathResult.resultType === XPathResult.STRING_TYPE;
-    const stringResult = xpathResult => xpathResult.stringValue;
+  const isString = (xpathResult) => xpathResult.resultType === XPathResult.STRING_TYPE
+  const stringResult = (xpathResult) => xpathResult.stringValue
 
-    const isBoolean = xpathResult => xpathResult.resultType === XPathResult.BOOLEAN_TYPE;
-    const booleanResult = xpathResult => xpathResult.booleanValue;
+  const isBoolean = (xpathResult) => xpathResult.resultType === XPathResult.BOOLEAN_TYPE
+  const booleanResult = (xpathResult) => xpathResult.booleanValue
 
-    const isPrimitive = x =>
-        Cypress._.isNumber(x) || Cypress._.isString(x) || Cypress._.isBoolean(x);
+  const isPrimitive = (x) =>
+    Cypress._.isNumber(x) || Cypress._.isString(x) || Cypress._.isBoolean(x)
 
     // options to log later
-    const log = {
-        name: 'xpath',
-        message: selector
-    };
+  const log = {
+    name: 'xpath',
+    message: selector,
+  }
 
-    const getValue = () => {
-        const nodes = [];
-        const {document} = cy.state('window');
-        const iterator = document.evaluate(selector, document);
+  const getValue = () => {
+    const nodes = []
+    const { document } = cy.state('window')
+    const iterator = document.evaluate(selector, document)
 
-        if (isNumber(iterator)) {
-            const result = numberResult(iterator);
-            log.consoleProps = () => ({
-                XPath: selector,
-                type: 'number',
-                result
-            });
-            return result;
-        }
+    if (isNumber(iterator)) {
+      const result = numberResult(iterator)
 
-        if (isString(iterator)) {
-            const result = stringResult(iterator);
-            log.consoleProps = () => ({
-                XPath: selector,
-                type: 'string',
-                result
-            });
-            return result;
-        }
+      log.consoleProps = () => ({
+        XPath: selector,
+        type: 'number',
+        result,
+      })
 
-        if (isBoolean(iterator)) {
-            const result = booleanResult(iterator);
-            log.consoleProps = () => ({
-                XPath: selector,
-                type: 'boolean',
-                result
-            });
-            return result;
-        }
+      return result
+    }
 
-        try {
-            let node = iterator.iterateNext();
+    if (isString(iterator)) {
+      const result = stringResult(iterator)
 
-            while (node) {
-                nodes.push(node);
-                node = iterator.iterateNext();
-            }
+      log.consoleProps = () => ({
+        XPath: selector,
+        type: 'string',
+        result,
+      })
 
-            log.consoleProps = () => ({
-                XPath: selector
-            });
+      return result
+    }
 
-            return nodes;
-        } catch (e) {
-            console.error('Document tree modified during iteration', e);
+    if (isBoolean(iterator)) {
+      const result = booleanResult(iterator)
 
-            return null;
-        }
-    };
+      log.consoleProps = () => ({
+        XPath: selector,
+        type: 'boolean',
+        result,
+      })
 
-    const resolveValue = () => Cypress.Promise.try(getValue)
-                                      .then(value => cy.verifyUpcomingAssertions(value, options, {
-                                          onRetry: resolveValue
-                                      }));
+      return result
+    }
 
-    return resolveValue()
+    try {
+      let node = iterator.iterateNext()
+
+      while (node) {
+        nodes.push(node)
+        node = iterator.iterateNext()
+      }
+
+      log.consoleProps = () => ({
+        XPath: selector,
+      })
+
+      return nodes
+    } catch (e) {
+      console.error('Document tree modified during iteration', e)
+
+      return null
+    }
+  }
+
+  const resolveValue = () => Cypress.Promise.try(getValue)
+                                      .then((value) => cy.verifyUpcomingAssertions(value, options, {
+                                        onRetry: resolveValue,
+                                      }))
+
+  return resolveValue()
         .then((value) => {
-            // TODO set found elements on the command log?
-            Cypress.log(log);
-            if (isPrimitive(value)) {
-                return value;
-            }
-            return Cypress.$(value);
-        });
-};
+          // TODO set found elements on the command log?
+          Cypress.log(log)
+          if (isPrimitive(value)) {
+            return value
+          }
 
-Cypress.Commands.add('xpath', xpath);
+          return Cypress.$(value)
+        })
+}
+
+Cypress.Commands.add('xpath', xpath)
 // ***********************************************************
 // This example support/indexOld.js is processed and
 // loaded automatically before your test files.
@@ -121,8 +128,8 @@ Cypress.Commands.add('xpath', xpath);
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands';
-import './socketLogget';
+import './commands'
+import './socketLogget'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
@@ -134,7 +141,7 @@ import './socketLogget';
 // });
 
 beforeEach(() => {
-    cy.clearCookies();
-    cy.setCookie('session-id', '', {domain: '1win-auth.com'});
-    cy.visit('/');
-});
+  cy.clearCookies()
+  cy.setCookie('session-id', '', { domain: '1win-auth.com' })
+  cy.visit('/')
+})
