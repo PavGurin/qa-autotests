@@ -1,7 +1,7 @@
 import {auth} from "@support/desktop/Authorization";
 import {shot} from "@support/desktop/Screenshots";
 import {cases} from "@support/desktop/Case";
-describe.skip('Play Case', () => {
+describe('Play Case', () => {
     it('C16311 - Case "Новичок"', function() {
         auth.login();
         shot.case_button();
