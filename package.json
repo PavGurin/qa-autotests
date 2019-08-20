@@ -9,12 +9,8 @@
   ],
   "scripts": {
     "build": "npm run lint && npm run types && npm run stop-only",
-    "start": "serve --listen ${PORT:-8080}",
-    "start:ci": "serve --no-clipboard --listen ${PORT:-8080}",
-    "start:ci:windows": "serve --no-clipboard --listen 8080",
     "dev": "npm start",
     "types": "tsc --noEmit",
-    "test": "npm start & cypress run",
     "pretest": "npm run lint && npm run types",
     "print-env": "print-env",
     "lint": "eslint --fix cypress/**/*.js app/assets/js/scripts.js",
@@ -25,6 +21,7 @@
     "e2e:record": "cypress run --record --key 9b2d81d5-35f6-4b0f-8d27-10c3250d95f5",
     "e2e:record:parallel": "cypress run --record --key 9b2d81d5-35f6-4b0f-8d27-10c3250d95f5 --parallel",
     "e2e:chrome:parallel": "cypress run --record --key 9b2d81d5-35f6-4b0f-8d27-10c3250d95f5 --group 4x-chrome --browser chrome --parallel --reporter cypress run --reporter reporters/jest-testrail.js",
+    "test": "jest --testTimeout=10000 --reporters=\"./src/reporters/jest-testrail.js\" --maxWorkers=4",
     "test:ci": "run-p --race start:ci e2e",
     "test:ci:chrome": "run-p --race start:ci e2e:chrome",
     "test:ci:record": "run-p --race start:ci e2e:record",
@@ -34,14 +31,21 @@
     "cy:version": "cypress version",
     "cy:run": "cypress run",
     "cy:run:record": "cypress run --record",
-    "cy:open": "cypress open",
-    "local:open": "start-test 8080 cy:open",
-    "local:run": "start-test 8080 cy:run",
-    "local:run:record": "start-test 8080 cy:run:record",
     "stop-only": "stop-only -f cypress/integration",
     "warn-only": "stop-only -f cypress/integration --warn",
     "ci:set-port": "node ./scripts/set-port",
     "semantic-release": "semantic-release"
+  },
+  "jest": {
+    "testRegex": "./test/.*.[js]?$",
+    "transform": {
+      ".*": "./node_modules/babel-jest"
+    },
+    "setupFilesAfterEnv": ["./test/global.js"],
+    "reporters": [
+      "default",
+      "./src/reporters/jest-testrail.js"
+    ]
   },
   "repository": {
     "type": "git",
