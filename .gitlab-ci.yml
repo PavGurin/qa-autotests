@@ -57,9 +57,9 @@ install:
 # all steps are the same, they come from the template above
 runner-1:
   <<: *job
-runner-2:
-  <<: *job
-runner-3:
-  <<: *job
-runner-4:
-  <<: *job
+#runner-2:
+#  <<: *job
+#runner-3:
+#  <<: *job
+#runner-4:
+#  <<: *job
