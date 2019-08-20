@@ -1,4 +1,4 @@
-FROM cypress/browsers:node11.13.0-chrome73
+FROM cypress/browsers:node10.2.1-chrome74
 
 WORKDIR /usr/src/app
 COPY . ./
