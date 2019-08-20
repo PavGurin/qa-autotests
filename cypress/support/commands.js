@@ -1,4 +1,5 @@
-
+const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
+compareSnapshotCommand();
 import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
 addMatchImageSnapshotCommand({
     failureThreshold: 0.1,

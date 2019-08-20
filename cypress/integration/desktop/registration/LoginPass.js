@@ -12,7 +12,7 @@ describe('Sign up in One click', () => {
         auth.check_notification();
         navReg.close_new_user_info();
     });
-    it.skip('C16289 - send by mail login/password ', () => {
+    it('C16289 - send by mail login/password ', () => {
         navReg.click_register();
         navReg.accept_agreement();
         navReg.sign_up();
