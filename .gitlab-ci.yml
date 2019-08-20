@@ -34,7 +34,7 @@ install:
 
 # all jobs that actually run tests can use the same definition
 .job_template: &job
-  image: cypress/browsers:chrome69
+  image: cypress/browsers:node11.13.0-chrome73
   stage: test
   script:
     # print CI environment variables for reference
