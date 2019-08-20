@@ -21,7 +21,6 @@
     "e2e:record": "cypress run --record --key 9b2d81d5-35f6-4b0f-8d27-10c3250d95f5",
     "e2e:record:parallel": "cypress run --record --key 9b2d81d5-35f6-4b0f-8d27-10c3250d95f5 --parallel",
     "e2e:chrome:parallel": "cypress run --record --key 9b2d81d5-35f6-4b0f-8d27-10c3250d95f5 --group 4x-chrome --browser chrome --parallel",
-    "test": "jest --testTimeout=10000 --reporters=\"./src/reporters/jest-testrail.js\" --maxWorkers=4",
     "test:ci": "run-p --race start:ci e2e",
     "test:ci:chrome": "run-p --race start:ci e2e:chrome",
     "test:ci:record": "run-p --race start:ci e2e:record",
@@ -35,17 +34,6 @@
     "warn-only": "stop-only -f cypress/integration --warn",
     "ci:set-port": "node ./scripts/set-port",
     "semantic-release": "semantic-release"
-  },
-  "jest": {
-    "testRegex": "./test/.*.[js]?$",
-    "transform": {
-      ".*": "./node_modules/babel-jest"
-    },
-    "setupFilesAfterEnv": ["./test/global.js"],
-    "reporters": [
-      "default",
-      "./src/reporters/jest-testrail.js"
-    ]
   },
   "repository": {
     "type": "git",
