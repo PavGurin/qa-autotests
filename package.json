@@ -58,7 +58,7 @@
     "babel-eslint": "7.2.3",
     "colon-names": "1.0.0",
     "cypress": "3.4.1",
-    "cypress-testrail-reporter": "1.1.0",
+    "cypress-testrail-accumulative-reporter": "1.1.4",
     "eslint": "4.19.1",
     "eslint-plugin-cypress": "2.6.0",
     "eslint-plugin-cypress-dev": "2.1.0",
