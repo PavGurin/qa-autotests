@@ -10,6 +10,7 @@
     "username": "tst22tst33@yandex.ru",
     "password": "12345678#a",
     "projectId": 5,
-    "suiteId": 1
+    "suiteId": 1,
+    "runName": "test"
   }
 }
