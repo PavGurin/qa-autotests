@@ -4,12 +4,15 @@
   "viewportWidth": 1920,
   "viewportHeight": 1080,
   "projectId": "kb155o",
-  "reporter": "cypress-testrail-reporter",
+  "reporter": "salty-cypress-testrail-reporter",
   "reporterOptions": {
     "domain": "1win.testrail.io",
     "username": "tst22tst33@yandex.ru",
     "password": "12345678#a",
     "projectId": 5,
-    "runName": "test"
+    "suiteId": 1,
+    "createTestRun": "boolean",
+    "runId": 1,
+    "runName": "Test Run Name"
   }
 }
