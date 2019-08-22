@@ -16,6 +16,7 @@ describe('Profile Settings', () => {
     });
 
     it('C16312 - Change name', function() {
+        cy.screenshot();
         auth.login();
         prof.withdrawal('Настройки');
         prof.settings_form_name_2or16_symbols();
