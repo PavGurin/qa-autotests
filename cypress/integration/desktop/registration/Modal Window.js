@@ -115,7 +115,7 @@ describe('Modal window', () => {
         navReg.close_modal_windows();
         auth.logout();
     });
-    it('C18503 - Download IOS(modal window)', () => {
+    it.skip('C18503 - Download IOS(modal window)', () => {
         navReg.click_ios_download();
         navReg.check_ios_download_window();
         navReg.ios_modal_close();
