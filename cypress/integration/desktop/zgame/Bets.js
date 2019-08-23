@@ -6,7 +6,7 @@ describe('Ставки', () => {
     it('C18766 - Успешная ставка (Main page)', () => {
         auth.login();
         // делает ставку на главной странице
-        bets.bet_main_page();
+        bets.bet_main_page(10);
         cy.screenshot();
     });
 
@@ -30,7 +30,7 @@ describe('Ставки', () => {
         // ожидание, необходимое для прогрузки элементов
         cy.wait(1000);
         // делает ставку на live-событие
-        bets.bet_live_page();
+        bets.bet_live_page(10);
         cy.screenshot();
         auth.logout();
     });
