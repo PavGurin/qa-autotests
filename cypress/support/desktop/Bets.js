@@ -12,7 +12,13 @@ const available_for_bet_element = () => cy
     .find('.odd-cell')
     .not('.disabled')
     .find('.odd-coefficient')
-    .first();
+    .eq(3);
+const available_for_bet_element2 = () => cy
+    .get('#main-container > div.content-wrapper > div > div > div.main-content > div > div.matches-block-content.block')
+    .find('.odd-cell')
+    .not('.disabled')
+    .find('.odd-coefficient')
+    .eq(3);
 
 const second_bets_in_one_match = () => cy
     .get('.matches-block-content')
@@ -46,7 +52,7 @@ export const bets = {
          // жмет кнопку 'Сделать ставку'
          cy.get(make_bet_button)
              .click();
-         cy.wait(2000);
+         cy.wait(5000);
          // сверяет, что ставка сделана успешно
          cy.get(bet_is_done)
              .should('exist');
@@ -94,26 +100,27 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
+        cy.wait(7000);
         // сверяет, что ставка сделана успешно
         cy.get(bet_is_done)
             .should('exist');
     },
-
-    // делает ставку со страницы 'Live'
+// делает ставку со страницы 'Live'
     bet_live_page() {
         // проверяет прогрузку страницы 'Live'
         cy.get('div.sport-title')
             .should('be.visible');
         // выбирает первый доступный для ставки элемент
-        available_for_bet_element()
+        available_for_bet_element2()
             .click();
         // выделяет окно ввода суммы ставки, очищает данное поле и вводит '1'
         cy.get('input[type=number]')
             .type('{selectall}{del}')
-            .type('{selectall}1');
+            .type('{selectall}10');
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
+        cy.wait(6000);
         // сверяет, что ставка сделана успешно
         cy.get(bet_is_done)
             .should('exist');
@@ -190,7 +197,7 @@ export const bets = {
             .should('not.exist');
     },
     // делает ставку с главной страницы
-    bets_two_bets_in_one_match_series() {
+    two_bets_in_one_match_series() {
         available_for_bet_element()
             .click();
         cy.wait(2000);
@@ -207,6 +214,7 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
+        cy.wait(6000);
         // сверяет, что ставка сделана успешно
         cy.get(bet_is_done)
             .should('exist');
@@ -226,6 +234,7 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
+        cy.wait(6000);
         // сверяет, что ставка сделана успешно
         cy.get(bet_is_done)
             .should('exist');
@@ -248,6 +257,7 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
+        cy.wait(6000);
         // сверяет, что ставка сделана успешно
         cy.get('div.coupons-list.panel-body')
             .should('exist');
@@ -284,6 +294,7 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
+        cy.wait(7000);
         // сверяет, что ставка сделана успешно
         cy.get(bet_is_done)
             .should('exist');

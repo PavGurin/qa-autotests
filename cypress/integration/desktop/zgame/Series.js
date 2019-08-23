@@ -5,7 +5,7 @@ describe('Ставки', () => {
 
     it('C439785 - добавление 2ух купонов по одному матчу - сделать ставку ', () => {
         auth.login();
-        bets.bets_two_bets_in_one_match_series();
+        bets.two_bets_in_one_match_series();
     });
     it('C439786  - добавить 2 купона по разным матчам - сделать ставку', () => {
         auth.login();
