@@ -28,6 +28,11 @@ install:
     - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
+  artifacts:
+    paths:
+      - build/.npm
+      - build/node_modules
+      - build/cache/Cypress
 #    - npm install cypress-testrail-reporter --save-dev
 #  tags:
 #    - docker
