@@ -28,6 +28,11 @@ install:
     - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
+#  artifacts:
+#    paths:
+#      - .npm
+#      - node_modules
+#      - cache/Cypress
 #    - npm install cypress-testrail-reporter --save-dev
 #  tags:
 #    - docker
@@ -38,10 +43,10 @@ install:
   stage: test
   script:
     # print CI environment variables for reference
-    - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
+#    - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
     - $(npm bin)/print-env CI
     # run Cypress test in load balancing mode
-    - npm run e2e:chrome:parallel
+    - npm run e2e:chrome
   retry: 2
 
   artifacts:
