@@ -12,12 +12,12 @@ variables:
   CYPRESS_TESTRAIL_USER: $CYPRESS_TESTRAIL_USER
 
 # cache using branch name
-#cache:
-#  key: "$CI_COMMIT_REF_SLUG"
-#  paths:
-#    - .npm
-#    - cache/Cypress
-#    - node_modules
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
 
 # this job installs NPM dependencies and Cypress
 install:
@@ -28,11 +28,11 @@ install:
     - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
-  artifacts:
-    paths:
-      - .npm
-      - node_modules
-      - cache/Cypress
+#  artifacts:
+#    paths:
+#      - .npm
+#      - node_modules
+#      - cache/Cypress
 #    - npm install cypress-testrail-reporter --save-dev
 #  tags:
 #    - docker
@@ -43,7 +43,7 @@ install:
   stage: test
   script:
     # print CI environment variables for reference
-    - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
+#    - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
     - $(npm bin)/print-env CI
     # run Cypress test in load balancing mode
     - npm run e2e:chrome:parallel
