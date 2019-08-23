@@ -1,7 +1,7 @@
 import {navReg} from '@support/desktop/NavReg';
 import {auth} from '@support/desktop/Authorization';
 
-describe.skip('Registration by email', () => {
+describe('Registration by email', () => {
     afterEach(function () {
         // check that user logged in with requested username
         navReg.check_sign_up('test_' + randomStr);

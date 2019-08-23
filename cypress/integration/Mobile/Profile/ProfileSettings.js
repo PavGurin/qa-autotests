@@ -12,7 +12,7 @@ describe('Profile Settings', () => {
         basicCom.switch_to_mobile();
         cy.viewport(375, 812);
     });
-    it.skip('C476378 - Изменение имени', function() {
+    it('C476378 - Изменение имени', function() {
         auth.login_for_mobile3('qwerty');
         navReg.click_settings_main_page_for_mobile();
         prof.settings_for_mobile();
@@ -22,7 +22,7 @@ describe('Profile Settings', () => {
         prof.click_save_settings_for_mobile();
         navReg.check_sign_up_for_mobile_without_enter('test_' + randomStr);
     });
-    it.skip('C476379 - Изменение номера телефона', function() {
+    it('C476379 - Изменение номера телефона', function() {
         auth.login_for_mobile3('qwerty');
         navReg.click_settings_main_page_for_mobile();
         prof.settings_for_mobile();
@@ -30,7 +30,7 @@ describe('Profile Settings', () => {
         prof.settings_form_pass_for_mobile('qwerty');
         prof.click_save_settings_for_mobile();
     });
-    it.skip('C476380 - Изменение поля "дата рождения" ', function() {
+    it('C476380 - Изменение поля "дата рождения" ', function() {
         auth.login_for_mobile3('qwerty');
         navReg.click_settings_main_page_for_mobile();
         prof.settings_for_mobile();
@@ -43,7 +43,7 @@ describe('Profile Settings', () => {
         prof.settings_for_mobile();
         prof.assert_date_birthday_for_mobile();
     });
-    it.skip('C476381 - Изменение пароля', function() {
+    it('C476381 - Изменение пароля', function() {
         auth.login_for_mobile3('qwerty');
         navReg.click_settings_main_page_for_mobile();
         prof.settings_for_mobile();
@@ -52,7 +52,7 @@ describe('Profile Settings', () => {
         prof.new_pass_for_mobile();
         prof.click_save_settings_for_mobile();
     });
-    it.skip('C476382 - Рега в 1 клик - активно поле e-mail ', function() {
+    it('C476382 - Рега в 1 клик - активно поле e-mail ', function() {
         navReg.click_register_for_mobile();
         navReg.check_country_default_for_mobile('Russia (Россия)');
         navReg.accept_agreement_for_mobile();

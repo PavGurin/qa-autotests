@@ -1,7 +1,6 @@
 const randomStr = Math.random()
     .toString(36)
     .slice(-5);
-import { navReg } from '@support/desktop/NavReg';
 import { auth} from "@support/desktop/Authorization";
 import {prof} from "@support/desktop/Profile";
 import {req} from "@support/desktop/Request";

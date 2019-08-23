@@ -46,6 +46,7 @@ export const bets = {
          // жмет кнопку 'Сделать ставку'
          cy.get(make_bet_button)
              .click();
+         cy.wait(2000);
          // сверяет, что ставка сделана успешно
          cy.get(bet_is_done)
              .should('exist');
@@ -68,6 +69,7 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
+        cy.wait(2000);
         // сверяет, что ставка сделана успешно
         cy.get(bet_is_done)
             .should('exist');

@@ -3,7 +3,7 @@ import {shot} from "@support/desktop/Screenshots";
 import {prof} from "@support/desktop/Profile";
 import {basicCom} from "@support/desktop/BasicCommands";
 import {cases} from "@support/desktop/Case";
-describe('Visual regression tests for mobile', () => {
+describe.skip('Visual regression tests for mobile', () => {
     beforeEach(function () {
         basicCom.switch_to_mobile();
         cy.viewport(375, 812);

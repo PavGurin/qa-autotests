@@ -2,7 +2,7 @@ import { navReg } from '@support/desktop/NavReg';
 import {auth} from "@support/desktop/Authorization";
 import {req} from "@support/desktop/Request";
 describe('Sign up in One click', () => {
-    it.skip('C16287 - Copy login/password', () => {
+    it('C16287 - Copy login/password', () => {
         navReg.click_register();
         navReg.accept_agreement();
         navReg.sign_up();

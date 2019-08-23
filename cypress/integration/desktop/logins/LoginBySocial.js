@@ -1,7 +1,7 @@
 import {auth} from "@support/desktop/Authorization";
 import {navReg} from "@support/desktop/NavReg";
 
-describe.skip('Авторизация по social', () => {
+describe('Авторизация по social', () => {
 
     it('C16300 - Авторизация по vk', () => {
         auth.click_auth();

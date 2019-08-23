@@ -2,7 +2,7 @@ import {navReg} from '@support/desktop/NavReg';
 
 const password = 111111;
 
-describe.skip('Registration by social network', () => {
+describe('Registration by social network', () => {
     it('C16293 - VK with promocode', () => {
         navReg.click_register();
         navReg.registration_form('Соц. сети');

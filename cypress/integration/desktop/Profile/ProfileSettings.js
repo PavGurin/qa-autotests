@@ -4,7 +4,7 @@ const randomStr = Math.random()
     .toString(36)
     .slice(-5);
 
-describe.skip('Profile Settings', () => {
+describe('Profile Settings', () => {
     it('C16311 - Modal window settings', function() {
         auth.login();
         cy.wait(1000);
