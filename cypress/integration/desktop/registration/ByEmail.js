@@ -38,4 +38,5 @@ describe.skip('Registration by email', () => {
         navReg.accept_agreement();
         navReg.sign_up();
     });
+
 });

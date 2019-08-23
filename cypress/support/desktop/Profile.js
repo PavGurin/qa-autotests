@@ -171,9 +171,20 @@ export const prof = {
         cy.get('.button-wrapper > .button')
             .click();
     },
+    //Cохранить настройки y на моб.версии
+    click_save_settings_for_mobile() {
+        cy.get('.submit-btn > .button-content')
+            .click();
+    },
     // проверяем, что изменение пароля успешно
     check_change_settings() {
         cy.get(notification)
+            .should('be.visible')
+            .and('have.text', 'Настройки сохранены');
+    },
+    // проверяем, что изменение пароля успешно на моб.версии
+    check_change_settings_for_mobile() {
+        cy.get('#notifications-container')
             .should('be.visible')
             .and('have.text', 'Настройки сохранены');
     },
@@ -182,6 +193,18 @@ export const prof = {
         cy.get('.form > :nth-child(1) > .input-wrapper > .input')
             .clear()
             .type(name);
+    },
+    //Заполнение поля "имя" в настройках на моб.версии
+    settings_form_name_for_mobile(name) {
+        cy.get('.form > :nth-child(1) > .control > .input-container > .input')
+            .clear()
+            .type(name);
+    },
+    //Заполнение поля "пароль" в настройках на моб.версии
+    settings_form_pass_for_mobile(pass) {
+        cy.get('.form > :nth-child(6) > .control > .input-container > .input')
+            .clear()
+            .type(pass);
     },
     //Заполнение поля "имя" в настройках
     settings_form_pass() {
@@ -200,7 +223,19 @@ export const prof = {
             .type('Q2Bvfrbkdblgblfgnflnfnlflglndsvsdv');
         cy.get('div.modal-container__container > div > form > div.button-wrapper > button')
             .should('be.disabled');
-
+    },
+    //Заполнение поля "имя" в настройках для мобильной версии
+    settings_form_name_4_or_16_symbols() {
+        cy.get('#profile-edit > form > div:nth-child(1) > div > div.input-container > input')
+            .clear()
+            .type('T2w');
+        cy.get('#profile-edit > form > div:nth-child(1) > div > div.input-container > div')
+            .should('have.text', 'Минимум 4 символов');
+        cy.get('#profile-edit > form > div:nth-child(1) > div > div.input-container > input')
+            .clear()
+            .type('Q2Bvfrbkdblgblfgnflnfnlflglndsvsdv');
+        cy.get('#profile-edit > form > div:nth-child(1) > div > div.input-container > div')
+            .should('have.text', 'Максимум 16 символов');
     },
     //Заполнение поля "дата рождения" в настройках
     settings_form_birthday() {
@@ -224,6 +259,17 @@ export const prof = {
             .type('15011990');
 
     },
+    //Заполнение поля "дата рождения" в настройках моб.версии
+    settings_birthday_for_mobile() {
+        cy.get('#profile-edit > form > div:nth-child(2) > div > div.input-container > input')
+            .clear()
+            .type('2006-12-31');
+    },
+    settings_correct_birthday_for_mobile() {
+        cy.get('#profile-edit > form > div:nth-child(2) > div > div.input-container > input')
+            .clear()
+            .type('2000-01-30');
+    },
     //Заполнение поля "номер телефона" в настройках
     settings_form_numbPhone_Andorra() {
         cy.get('div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input')
@@ -243,6 +289,12 @@ export const prof = {
         cy.get('div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input')
             .clear()
             .type('9219963214');
+    },
+    //Заполнение поля "номер телефона" в настройках
+    settings_form_numbPhone_for_mobile(phone) {
+        cy.get('#profile-edit > form > div:nth-child(4) > div > div > div.input-container > input')
+            .clear()
+            .type(phone);
     },
     //Заполнение поля "Текущий пароль" в настройках
     settings_form_newpass() {
@@ -274,10 +326,48 @@ export const prof = {
         cy.get('.level-center > :nth-child(2) > .button > span')
             .click();
     },
-    // проыерка, что внутри ставки отображаются данные
+    // проверка, что внутри ставки отображаются данные
     bets_history_notBeEmpty() {
         cy.get('#main-container > div.content-wrapper > div > div > div > div.panel-body > div > div:nth-child(1)')
             .should('not.to.be.empty');
+    },
+
+    error_date_birthday_for_mobile() {
+    cy.get('#profile-edit > form > div:nth-child(2) > div > div.input-container > div')
+        .should('have.text', 'Вам меньше 18 лет');
+    },
+    // проверка, что внутри ставки отображаются данные
+    assert_date_birthday_for_mobile() {
+        cy.get('#profile-edit > form > div:nth-child(2) > div > div.input-container')
+            .should('not.be.empty');
+    },
+    // проверка, что внутри ставки отображаются данные
+    change_pass_for_mobile() {
+        cy.get('#profile-edit > form > div:nth-child(6) > div > div.control-right > button > span')
+            .click();
+    },
+    old_pass_for_mobile() {
+        cy.get('#profile-edit > form > div:nth-child(6) > div > div.input-container > input')
+            .click()
+            .type('qwerty');
+    },
+    new_pass_for_mobile() {
+        cy.get('#profile-edit > form > div:nth-child(7) > div > div.input-container > input')
+            .click()
+            .type('qwerty');
+        cy.get('#profile-edit > form > div:nth-child(8) > div > div.input-container > input')
+            .click()
+            .type('qwerty');
+    },
+    // проверка, что внутри ставки отображаются данные
+    assert_mail_visible_for_mobile() {
+        cy.get('#profile-edit > form > div:nth-child(5) > div > div.input-container > input')
+            .should('be.visible');
+    },
+    // проверка, что внутри ставки отображаются данные
+    assert_mail_disabled_for_mobile() {
+        cy.get('#profile-edit > form > div:nth-child(5) > div > div.input-container > input')
+            .should('be.disabled');
     },
 };
 

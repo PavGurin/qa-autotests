@@ -6,6 +6,7 @@ const make_bet_button = 'button.make-bet';
 const bet_amount_input = 'input[type=number]';
 const bet_is_done = 'div.coupon-status.success';
 const bet_not_done = 'div.coupon-status.error';
+
 const available_for_bet_element = () => cy
     .get('div.matches-block-content.matches-block')
     .find('.odd-cell')
@@ -13,13 +14,13 @@ const available_for_bet_element = () => cy
     .find('.odd-coefficient')
     .first();
 
-
 const second_bets_in_one_match = () => cy
     .get('.matches-block-content')
     .find('.odd-cell')
     .not('.disabled')
     .find('.odd-coefficient')
-    .eq(2);
+    .eq(1);
+
 const two_bets_in_different_match = () => cy
     .get('.matches-block-content')
     .find('.odd-cell')
@@ -27,9 +28,8 @@ const two_bets_in_different_match = () => cy
     .find('.odd-coefficient')
     .eq(10);
 
-
-
-
+    //.contains(/\d{2,}/g);
+//.contains(/[1-9]\{1,\}\.[0-9]\{2,\}/);
 
 export const bets = {
 
@@ -139,6 +139,12 @@ export const bets = {
         cy.get('svg.coupon-close')
             .click({multiple: true});
     },
+    // закрывает один купон (жмет 'крестик')
+    close_one_coupons() {
+        cy.get('svg.coupon-close')
+            .first()
+            .click();
+    },
     // делает ставку с главной страницы
     bet_main_page_without_click_ok() {
         available_for_bet_element()
@@ -152,7 +158,13 @@ export const bets = {
         cy.get('div.coupons-list.panel-body > div')
             .should('not.exist');
     },
-    // ставка без подтверждения
+    // проверка, что купон закрыт
+    assert_close_one_coupons() {
+        cy.get('div.coupons-list.panel-body > div')
+            .should('have.length', 2);
+
+    },
+   // ставка по двум разным матчам
     two_bets_in_different_match_without_ok() {
         available_for_bet_element()
             .click();
@@ -174,5 +186,118 @@ export const bets = {
     assert_all_close_coupons() {
         cy.get('div.coupons-list.panel-body')
             .should('not.exist');
+    },
+    // делает ставку с главной страницы
+    bets_two_bets_in_one_match_series() {
+        available_for_bet_element()
+            .click();
+        cy.wait(2000);
+        second_bets_in_one_match()
+            .click();
+        cy.wait(2000);
+        cy.get('.coupon-type-list > :nth-child(3)')
+            .click();
+        // выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
+        cy.get(bet_amount_input)
+            .first()
+            .type('{selectall}{del}')
+            .type('{selectall}10');
+        // жмет кнопку 'Сделать ставку'
+        cy.get(make_bet_button)
+            .click();
+        // сверяет, что ставка сделана успешно
+        cy.get(bet_is_done)
+            .should('exist');
+    },
+    // ставка по двум разным матчам
+    two_bets_in_different_match_series() {
+        available_for_bet_element()
+            .click();
+        two_bets_in_different_match()
+            .click();
+        cy.get(':nth-child(3) > .radio-mark')
+            .click();
+        //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
+        cy.get(bet_amount_input)
+            .type('{selectall}{del}')
+            .type('{selectall}10');
+        // жмет кнопку 'Сделать ставку'
+        cy.get(make_bet_button)
+            .click();
+        // сверяет, что ставка сделана успешно
+        cy.get(bet_is_done)
+            .should('exist');
+    },
+    // ставка по трем  матчам
+    three_bets_in_different_match_series() {
+        available_for_bet_element()
+            .click();
+        second_bets_in_one_match()
+            .click();
+        cy.get(':nth-child(3) > .radio-mark')
+            .click();
+       two_bets_in_different_match()
+            .click();
+        //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
+        cy.get(bet_amount_input)
+            .first()
+            .type('{selectall}{del}')
+            .type('{selectall}10');
+        // жмет кнопку 'Сделать ставку'
+        cy.get(make_bet_button)
+            .click();
+        // сверяет, что ставка сделана успешно
+        cy.get('div.coupons-list.panel-body')
+            .should('exist');
+    },
+    // ставка по трем  матчам
+    three_bets_in_different_match_without_ok_series() {
+        available_for_bet_element()
+            .click();
+        second_bets_in_one_match()
+            .click();
+        cy.get(':nth-child(3) > .radio-mark')
+            .click();
+        two_bets_in_different_match()
+            .click();
+        //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
+        cy.get(bet_amount_input)
+            .first()
+            .type('{selectall}{del}')
+            .type('{selectall}10');
+
+    },
+    // ставка по двум разным матчам
+    two_bets_in_different_match_express() {
+        available_for_bet_element()
+            .click();
+        two_bets_in_different_match()
+            .click();
+        cy.get(':nth-child(2) > .radio-mark')
+            .click();
+        //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
+        cy.get(bet_amount_input)
+            .type('{selectall}{del}')
+            .type('{selectall}10');
+        // жмет кнопку 'Сделать ставку'
+        cy.get(make_bet_button)
+            .click();
+        // сверяет, что ставка сделана успешно
+        cy.get(bet_is_done)
+            .should('exist');
+    },
+    // проверка, что експресс нельзя выбрать
+    assert_express_disabled() {
+        cy.get('label.radio.disabled > input')
+            .should('be.disabled');
+    },
+    // делает ставку с главной страницы
+    two_bets_in_one_match_express() {
+        available_for_bet_element()
+            .click();
+        second_bets_in_one_match()
+            .click();
+        cy.wait(1000);
+
     },
 };

@@ -19,7 +19,7 @@ describe.skip('Profile Settings', () => {
         auth.login();
         prof.withdrawal('Настройки');
         prof.settings_form_name_2or16_symbols();
-        prof.settings_form_name('test_' + randomStr);
+        prof.settings_form_name('testPass_' + randomStr);
         prof.settings_mail_disabled();
         prof.settings_form_pass();
         prof.click_save_settings();
