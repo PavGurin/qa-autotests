@@ -23,8 +23,7 @@ cache:
 install:
   image: cypress/browsers:chrome69
   stage: build
-  tags:
-    - docker
+
   script:
     - npm ci
     - $(npm bin)/print-env CI
@@ -42,8 +41,7 @@ install:
 .job_template: &job
   image: cypress/browsers:node10.2.1-chrome74
   stage: test
-  tags:
-    - docker
+
   script:
     # print CI environment variables for reference
 #    - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
