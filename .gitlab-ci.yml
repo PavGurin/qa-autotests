@@ -23,7 +23,8 @@ cache:
 install:
   image: cypress/browsers:chrome69
   stage: build
-
+  tags:
+    - docker
   script:
     - npm ci
     - $(npm bin)/print-env CI
