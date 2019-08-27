@@ -1,48 +1,71 @@
-image:
-  name: docker/compose:1.23.2
-  entrypoint: ["/bin/sh", "-c"]
-
-variables:
-  DOCKER_HOST: tcp://docker:2375/
-  DOCKER_DRIVER: overlay2
-
-services:
-  - docker:dind
-
+# first, install Cypress, then run all tests (in parallel)
 stages:
   - build
-  - run
+  - test
 
-build:
-  tags:
-    - docker
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+  CI_NODE_TOTAL: 4
+  CYPRESS_TESTRAIL_USER: $CYPRESS_TESTRAIL_USER
+
+# cache using branch name
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
+
+# this job installs NPM dependencies and Cypress
+install:
+  image: cypress/browsers:chrome69
   stage: build
-  script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker-compose pull -q || true
-    - docker-compose build
-    - docker-compose push
-  except:
-    variables:
-      - $CYPRESS_BASE_URL
 
-run:
-  tags:
-    - docker
-  stage: run
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker-compose pull -q || true
-    - export CYPRESS_TESTRAIL_RUN_ID=$(./cypress/createRun.sh)
-    - docker-compose run e2e
+    - npm ci
+    - $(npm bin)/print-env CI
+    - npm run cy:verify
+#  artifacts:
+#    paths:
+#      - .npm
+#      - node_modules
+#      - cache/Cypress
+#    - npm install cypress-testrail-reporter --save-dev
+#  tags:
+#    - docker
+
+# all jobs that actually run tests can use the same definition
+.job_template: &job
+  image: cypress/browsers:node10.2.1-chrome74
+  stage: test
+
+  script:
+    # print CI environment variables for reference
+    - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
+    - $(npm bin)/print-env CI
+    # run Cypress test in load balancing mode
+    - npm run e2e:chrome
+  retry: 2
+
   artifacts:
-    reports:
-      junit: results/test-output-*.xml
+    when: on_success
     paths:
-    - cypress/videos
-    - cypress/screenshots
-    expire_in: 1 week
-    when: always
-  environment:
-    name: review/$CI_COMMIT_REF_NAME
-    url: https://1win.testrail.io/index.php?/projects/overview/${CYPRESS_TESTRAIL_PROJECT_ID}
+      #      - cypress/videos/**/*.mp4
+      - cypress/screenshots/**/*.png
+    expire_in: 1 day
+#  tags:
+#    - docker
+
+      # actual job definitions
+# all steps are the same, they come from the template above
+runner-1:
+  <<: *job
+#runner-2:
+#  <<: *job
+#runner-3:
+#  <<: *job
+#runner-4:
+#  <<: *job

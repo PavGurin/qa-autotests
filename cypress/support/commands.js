@@ -2,18 +2,18 @@ const compareSnapshotCommand = require('cypress-visual-regression/dist/command')
 compareSnapshotCommand();
 import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
 addMatchImageSnapshotCommand({
-    failureThreshold: 0.1,
-    failureThresholdType: 'percent',
-    customDiffConfig: { threshold: 0.0 },
-    capture: 'viewport',
+  failureThreshold: 0.1,
+  failureThresholdType: 'percent',
+  customDiffConfig: { threshold: 0.0 },
+  capture: 'viewport',
 });
 
 Cypress.Commands.add("setResolution", (size) => {
-    if (Cypress._.isArray(size)) {
-        cy.viewport(size[0], size[1]);
-    } else {
-        cy.viewport(size);
-    }
+  if (Cypress._.isArray(size)) {
+    cy.viewport(size[0], size[1]);
+  } else {
+    cy.viewport(size);
+  }
 
 });
 // ***********************************************
@@ -43,11 +43,11 @@ Cypress.Commands.add("setResolution", (size) => {
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('presudoHover', { prevSubject: true }, (subject) => {
-    subject[0].childNodes.forEach((child) => {
-        if (child.tagName) {
-            const { display } = window.getComputedStyle(child);
-            if (display === 'none') child.style.display = 'flex';
-        }
-    });
-    return subject;
+  subject[0].childNodes.forEach((child) => {
+    if (child.tagName) {
+      const { display } = window.getComputedStyle(child);
+      if (display === 'none') child.style.display = 'flex';
+    }
+  });
+  return subject;
 });

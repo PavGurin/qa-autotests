@@ -1,14 +1,16 @@
 {
-    "baseUrl": "https://1wenx.xyz",
-    "ignoreTestFiles": "*.html",
-    "viewportWidth": 1920,
-    "viewportHeight": 1080,
-    "defaultCommandTimeout": 12000,
-    "reporter": "mocha-multi-reporters",
-    "reporterOptions": {
-        "reporterEnabled": "spec, mocha-junit-reporter",
-        "mochaJunitReporterReporterOptions": {
-            "mochaFile": "results/test-output-[hash].xml"
-        }
-    }
+  "baseUrl": "https://1wnmh.xyz/bets/home/",
+  "numTestsKeptInMemory": 1,
+  "execTimeout": 180000,
+  "viewportWidth": 1920,
+  "viewportHeight": 1080,
+  "projectId": "kb155o",
+  "reporter": "cypress-testrail-accumulative-reporter",
+  "reporterOptions": {
+    "domain": "1win.testrail.io",
+    "username": "tst22tst33@yandex.ru",
+    "password": "12345678#a",
+    "projectId": 5,
+    "suiteId": 1
+}
 }

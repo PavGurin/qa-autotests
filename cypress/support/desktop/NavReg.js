@@ -1,6 +1,7 @@
 /**
  Registration commands
  **/
+import {auth} from "@support/desktop/Authorization";
 
 const password_input = '.input[name=password]';
 const new_password = ':nth-child(2) > .control > .input-wrapper > .input';

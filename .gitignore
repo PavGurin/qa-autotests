@@ -1,9 +1,7 @@
 node_modules/
 .idea/
-node_modules/
 yarn-error.log
 yarn.lock
-package-lock.json
 cypress/screenshots/
 cypress/videos/
 results/
