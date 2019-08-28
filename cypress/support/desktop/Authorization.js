@@ -45,7 +45,7 @@ export const auth = {
     },
     login() {
             // нажимаем кнопку 'Войти' со стартовой страницы
-        cy.get(entry_button)
+        cy.get(entry_button, {timeout:7000})
             .click();
         // вводим логин/пароль
        // login_input() {
