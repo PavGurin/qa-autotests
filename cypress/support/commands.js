@@ -1,21 +1,23 @@
-const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
-compareSnapshotCommand();
-import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
+const compareSnapshotCommand = require('cypress-visual-regression/dist/command')
+
+compareSnapshotCommand()
+import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command'
+
 addMatchImageSnapshotCommand({
   failureThreshold: 0.1,
   failureThresholdType: 'percent',
   customDiffConfig: { threshold: 0.0 },
   capture: 'viewport',
-});
+})
 
-Cypress.Commands.add("setResolution", (size) => {
+Cypress.Commands.add('setResolution', (size) => {
   if (Cypress._.isArray(size)) {
-    cy.viewport(size[0], size[1]);
+    cy.viewport(size[0], size[1])
   } else {
-    cy.viewport(size);
+    cy.viewport(size)
   }
 
-});
+})
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -45,9 +47,11 @@ Cypress.Commands.add("setResolution", (size) => {
 Cypress.Commands.add('presudoHover', { prevSubject: true }, (subject) => {
   subject[0].childNodes.forEach((child) => {
     if (child.tagName) {
-      const { display } = window.getComputedStyle(child);
-      if (display === 'none') child.style.display = 'flex';
+      const { display } = window.getComputedStyle(child)
+
+      if (display === 'none') child.style.display = 'flex'
     }
-  });
-  return subject;
-});
+  })
+
+  return subject
+})
