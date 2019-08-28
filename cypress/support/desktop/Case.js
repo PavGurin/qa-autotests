@@ -64,9 +64,4 @@ export const cases = {
         cy.get('#cases-list > div.theme-row > div:nth-child(1) > button > span')
             .click();
     },
-    open_case_classic() {
-        cy.get('#cases-list > div.theme-row > div:nth-child(1) > button > span')
-            .click();
-    },
-
 };
