@@ -29,6 +29,5 @@ describe('Play Case', () => {
         cy.wait(1000);
         shot.screen_cases_inTest();
 
-
     });
 });
