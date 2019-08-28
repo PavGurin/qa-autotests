@@ -39,11 +39,12 @@ install:
 
 # all jobs that actually run tests can use the same definition
 .job_template: &job
-  image: cypress/browsers:node10.2.1-chrome74
   stage: test
+  tags:
+    - macos
   script:
     # print CI environment variables for reference
-#    - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
+    - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
     - $(npm bin)/print-env CI
     # run Cypress test in load balancing mode
     - npm run e2e:chrome

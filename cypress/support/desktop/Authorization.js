@@ -95,10 +95,9 @@ export const auth = {
     // нажимаем кнопку 'Войти' со стартовой страницы
     cy.get(entry_button)
         .click();
-    cy.wait(2000);
     // вводим логин/пароль
     // login_input() {
-    cy.get(login_input)
+    cy.get(login_input, {timeout:6000})
         .type('where100@mail.ru');
     // вводим пароль
     // password_input() {
