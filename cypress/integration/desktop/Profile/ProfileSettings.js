@@ -4,7 +4,7 @@ const randomStr = Math.random()
     .toString(36)
     .slice(-5);
 
-describe('Profile Settings', () => {
+describe.skip('Profile Settings', () => {
     it('C16311 - Modal window settings', function() {
         auth.login();
         cy.wait(1000);
@@ -16,7 +16,6 @@ describe('Profile Settings', () => {
     });
 
     it('C16312 - Change name', function() {
-        cy.screenshot();
         auth.login();
         prof.withdrawal('Настройки');
         prof.settings_form_name_2or16_symbols();
@@ -56,5 +55,16 @@ describe('Profile Settings', () => {
         prof.correct_pass();
         prof.click_save_settings();
         prof.check_change_settings();
+    });
+    it('C16316 - hide balance', function() {
+        auth.login();
+        prof.withdrawal('Настройки');
+        prof.settings_hidebalance();
+    });
+    it('C16317 - Bets history', function() {
+        auth.login2();
+        prof.withdrawal('История ставок');
+        prof.bets_history();
+        prof.bets_history_notBeEmpty();
     });
 });

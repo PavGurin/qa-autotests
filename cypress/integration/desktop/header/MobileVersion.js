@@ -1,6 +1,6 @@
 import {basicCom} from '@support/desktop/BasicCommands';
 
-describe('Переключение на мобильную версию', () => {
+describe.skip('Переключение на мобильную версию', () => {
 
     it('C16321 - Мобильная версия', function () {
         // проверяем видимость навигации ставок

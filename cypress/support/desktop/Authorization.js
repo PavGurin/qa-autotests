@@ -46,9 +46,41 @@ export const auth = {
              cy.get(password_input)
                  .type('testerQA');
         // нажимаем кнопку "войти"
-        cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
+        cy.get('.modal-button')
             .click();
     },
+    login_for_mobile() {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get('#header > div > button.login.control-item.button.sm.default')
+            .click();
+        // вводим логин/пароль
+        // login_input() {
+        cy.get(':nth-child(1) > .input-container > .input')
+            .type('where100@mail.ru');
+        // вводим пароль
+        // password_input() {
+        cy.get('div:nth-child(2) > div.input-container > input')
+            .type('tk7oqj');
+        // нажимаем кнопку "войти"
+        cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
+            .click();
+    },
+    login2() {
+    // нажимаем кнопку 'Войти' со стартовой страницы
+    cy.get(entry_button)
+        .click();
+    // вводим логин/пароль
+    // login_input() {
+    cy.get(login_input, {timeout:6000})
+        .type('where100@mail.ru');
+    // вводим пароль
+    // password_input() {
+    cy.get(password_input)
+        .type('tk7oqj');
+    // нажимаем кнопку "войти"
+    cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
+        .click();
+},
     login_with_new_pass_settings(pass) {
         // нажимаем кнопку 'Войти' со стартовой страницы
         cy.get(entry_button)
@@ -306,4 +338,16 @@ export const auth = {
         cy.get(password_input)
             .clear();
     },
-   };
+    // проверяем ошибку и ее текст
+    check_notification_for_mobile() {
+        cy.get('#notifications-container')
+            .should('be.visible')
+            .and('have.text', 'Данные скопированы в буфер обмена');
+    },
+    // проверяем ошибку и ее текст
+    check_notification_set_login_email_for_mobile() {
+        cy.get('#notifications-container')
+            .should('be.visible')
+            .and('have.text', 'Письмо успешно отправлено!');
+    },
+};
