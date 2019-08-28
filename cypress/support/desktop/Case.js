@@ -23,6 +23,7 @@ export const cases = {
     chance_improve_30_percent() {
         cy.get('div:nth-child(4) > div.roulette-form__input > div')
             .click();
+
 },
     //Кнопка изменила сумму, согласно увеличителю шансов
     open_for_12() {
