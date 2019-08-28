@@ -5,7 +5,7 @@ const available_for_broadcast_element = () => cy
     .first();
 
 const match_with_translation = () => cy
-    .get('div.main-content')
+    .get('div.main-content', {timeout:5000})
     //.find('.match-translation > .icon > path')
     //.find('td.match-details')
     .find('td.match-details > div.match-translation')
@@ -20,7 +20,7 @@ export const broadcast = {
             .click();
     },
     open() {
-        cy.get('.translation-iframe')
+        cy.get('.translation-iframe', {timeout:6000})
             .should('exist');
     },
     play() {
@@ -50,7 +50,8 @@ export const broadcast = {
             .trigger('mousedown');
     },
     moving_container2() {
-        cy.get('#main-container > div.translation-container > div.translation-container-drag')
+        cy.get('#main-container > div.translation-container > div.translation-container-drag',
+          {timeout:5000})
             .trigger('mouseleave');
     },
     button_moving_exist() {

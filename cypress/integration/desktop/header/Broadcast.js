@@ -4,12 +4,10 @@ describe('Profile Settings', () => {
     it('C16317 - Open broadcast', function() {
         auth.login();
         broadcast.search();
-        cy.wait(2000);
         broadcast.open();
     });
     it('C16622 - Open broadcast on page', function() {
         auth.login2();
-        cy.wait(1000);
         broadcast.open_match();
         broadcast.should_exist();
     });
@@ -25,7 +23,6 @@ describe('Profile Settings', () => {
         broadcast.search();
         broadcast.open();
         broadcast.moving_container();
-        cy.wait(1000);
         broadcast.moving_container2();
         broadcast.button_moving_exist();
         //cy.get('#main-container > div.content-wrapper > div > div > div.main-content > div > div.matches-block > div.navigation > nav > ul > li:nth-child(1) > a > span');
