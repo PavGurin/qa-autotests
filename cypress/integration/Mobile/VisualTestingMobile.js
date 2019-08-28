@@ -18,7 +18,7 @@ describe('Visual regression tests for mobile', () => {
         shot.screen_headers();
     });
     it('C380576 - навигационное меню', () => {
-        cy.wait(3000);
+        cy.wait(2000);
         shot.screen_nav_menu();
     });
     it('C385879 - Кейсы - Classic', () => {
@@ -30,6 +30,7 @@ describe('Visual regression tests for mobile', () => {
     it('C385880 - Кейсы - Memes', () => {
         shot.case_button_for_mobile();
         cy.wait(1000);
+        cy.get('#cases-list > div.cases-list').scrollIntoView({ duration: 2000 })
         cy.matchImageSnapshot();
     });
     it('C385881 - Казино', () => {

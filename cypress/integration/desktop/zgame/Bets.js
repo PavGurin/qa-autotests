@@ -7,7 +7,6 @@ describe('Ставки', () => {
         auth.login();
         // делает ставку на главной странице
         bets.bet_main_page(10);
-        cy.screenshot();
     });
 
     it('C18767 - Ставка с "Сумма ставки" = 0', () => {
@@ -28,10 +27,8 @@ describe('Ставки', () => {
         cy.get('a.active > div > div.item-text-active')
           .should('have.text', 'Live');
         // ожидание, необходимое для прогрузки элементов
-        cy.wait(1000);
+        cy.wait(2000);
         // делает ставку на live-событие
         bets.bet_live_page(10);
-        cy.screenshot();
-        auth.logout();
     });
 });

@@ -1,11 +1,9 @@
 const randomStr = Math.random()
     .toString(36)
     .slice(-5);
-import { navReg } from '@support/desktop/NavReg';
 import { auth} from "@support/desktop/Authorization";
-import {prof} from "@support/desktop/Profile";
 import {req} from "@support/desktop/Request";
-describe.skip('Recovery Password', () => {
+describe('Recovery Password', () => {
         const password = randomStr;
     it('C16304 - Recovery Password', function() {
             auth.login_without_enter();

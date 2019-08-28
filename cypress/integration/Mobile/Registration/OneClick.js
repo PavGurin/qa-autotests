@@ -7,10 +7,9 @@ describe('Sign up in One click', () => {
     beforeEach(function () {
         basicCom.switch_to_mobile();
        cy.viewport(375, 812);
-    });
-    it.skip('C396391 - One click sign up with default country without promo code', () => {
-        //basicCom.switch_to_mobile();
         navReg.click_register_for_mobile();
+    });
+    it('C396391 - One click sign up with default country without promo code', () => {
         navReg.check_country_default_for_mobile('Russia (Россия)');
         navReg.accept_agreement_for_mobile();
         navReg.sign_up_for_mobile();
@@ -19,8 +18,7 @@ describe('Sign up in One click', () => {
         navReg.close_new_user_info_for_mobile();
     });
 
-    it.skip('C396393 - One click sign up with Russia country with promo code', () => {
-        navReg.click_register_for_mobile();
+    it('C396393 - One click sign up with Russia country with promo code', () => {
         navReg.accept_agreement_for_mobile();
         navReg.add_promocode_for_mobile('test001');
         navReg.sign_up_for_mobile();
@@ -29,8 +27,7 @@ describe('Sign up in One click', () => {
         navReg.close_new_user_info_for_mobile();
     });
 
-    it.skip('C396392 - One click sign up with @country without promo code', () => {
-        navReg.click_register_for_mobile();
+    it('C396392 - One click sign up with @country without promo code', () => {
         navReg.set_country("Andorra");
         navReg.accept_agreement_for_mobile();
         navReg.sign_up_for_mobile();
@@ -39,8 +36,7 @@ describe('Sign up in One click', () => {
         navReg.close_new_user_info_for_mobile();
     });
 
-    it.skip('C396394 - One click sign up with @country with promo code', () => {
-        navReg.click_register_for_mobile();
+    it('C396394 - One click sign up with @country with promo code', () => {
         navReg.set_country('Angola');
         navReg.accept_agreement_for_mobile();
         navReg.add_promocode_for_mobile('test001');
@@ -49,8 +45,7 @@ describe('Sign up in One click', () => {
         cy.wait(1000);
         navReg.close_new_user_info_for_mobile();
     });
-    it.skip('C396395 - copy login/password', () => {
-        navReg.click_register_for_mobile();
+    it('C396395 - copy login/password', () => {
         navReg.check_country_default_for_mobile('Russia (Россия)');
         navReg.accept_agreement_for_mobile();
         navReg.sign_up_for_mobile();
@@ -60,7 +55,6 @@ describe('Sign up in One click', () => {
         navReg.close_new_user_info_for_mobile();
     });
     it('C396396 - send e-mail login/password', () => {
-        navReg.click_register_for_mobile();
         navReg.check_country_default_for_mobile('Russia (Россия)');
         navReg.accept_agreement_for_mobile();
         navReg.sign_up_for_mobile();

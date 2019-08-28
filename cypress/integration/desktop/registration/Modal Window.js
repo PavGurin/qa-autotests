@@ -2,7 +2,7 @@ import { navReg } from '@support/desktop/NavReg';
 import { auth} from "@support/desktop/Authorization";
 import {prof} from "@support/desktop/Profile";
 import {text} from "@support/desktop/Descriptions";
-describe.skip('Modal window', () => {
+describe('Modal window', () => {
     it('C27797 - Modal window register', function() {
         navReg.click_register();
         navReg.register_assert_disabled();

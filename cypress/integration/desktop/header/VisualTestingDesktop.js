@@ -8,7 +8,7 @@ import {shot} from "@support/desktop/Screenshots";
 describe('Visual regression tests', () => {
              //sizes.forEach((size) => {
             it('C28681 - главная страница хэдер', () => {
-                cy.wait(5000);
+                cy.wait(2000);
                 shot.screen_headers();
             });
             it('C28682 - купоны и ставки - незареганный пользователь', () => {

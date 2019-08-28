@@ -31,6 +31,11 @@ export const navReg = {
         cy.get('#reg-one-click > form > div.level.rules > div > label > span')
             .click();
     },
+    // radio button 'User Agreement of usage'
+    accept_agreement_by_email_for_mobile() {
+        cy.get('.v-checkbox > .input')
+            .click();
+    },
 
     // sign up button
     sign_up() {
@@ -78,6 +83,12 @@ export const navReg = {
             .get('.promo-code > .control > .input-container > .input')
             .type(promocode);
     },
+    add_promocode_by_email_for_mobile(promocode) {
+        cy.get('#reg-full > form > div:nth-child(8) > div > button > span')
+            .click()
+            .get('#reg-full > form > div:nth-child(8) > div > div > div.input-container > input')
+            .type(promocode);
+    },
     // закрыть (нажать крестик) поле промокода
     close_promocode() {
         cy.get('.form > .field > .button')
@@ -88,6 +99,14 @@ export const navReg = {
         cy.get('.trigger')
             .click()
             .get('div.dropdown-item span')
+            .contains(country)
+            .click();
+    },
+    // select country from registration page
+    set_country_for_mobile(country) {
+        cy.get('#reg-full > form > div:nth-child(3) > div > div > div.control-left > div > div > div > div > div')
+            .click()
+            .get('#reg-full > form > div:nth-child(3) > div > div > div.control-left > div > div > div > div.dropdown-menu')
             .contains(country)
             .click();
     },
@@ -121,10 +140,19 @@ export const navReg = {
         cy.get('.form > :nth-child(1) > .input-wrapper > .input')
             .type(name);
     },
+    // email form - name
+    set_name_for_mobile(name) {
+        cy.get('.form > :nth-child(1) > .control > .input-container > .input')
+            .type(name);
+    },
 
     set_date_of_birth(date) {
         cy.get(':nth-child(2) > .input-wrapper > .input')
-            .type(date)
+            .type(date);
+    },
+    set_date_of_birth_for_mobile(date) {
+        cy.get(':nth-child(2) > .control > .input-container > .input')
+            .type(date);
     },
 
     // email form - email
@@ -138,16 +166,29 @@ export const navReg = {
         cy.get('button.success-reg-modal-send.button.md.primary > span')
             .click();
     },
+    set_email_register_for_mobile(email) {
+        cy.get(':nth-child(5) > .control > .input-container > .input')
+            .type(email);
+    },
 
     // email form - password
     set_pwd(password) {
         cy.get(':nth-child(6) > .input-wrapper > .input')
             .type(password);
     },
-
+    set_pwd_for_mobile(password) {
+        cy.get(':nth-child(6) > .control > .input-container > .input')
+            .type(password);
+    },
     // email form - repeat password field
     repeat_pwd(password2) {
         cy.get(':nth-child(7) > .input-wrapper > .input')
+            .type(password2);
+    },
+
+    // email form - repeat password field
+    repeat_pwd_for_mobile(password2) {
+        cy.get(':nth-child(7) > .control > .input-container > .input')
             .type(password2);
     },
 
@@ -182,6 +223,11 @@ export const navReg = {
     // email form -  phone
     set_phone_numb(phone) {
         cy.get('.intl-tel-input > .control > .input-wrapper > .input')
+            .type(phone);
+    },
+    // email form -  phone
+    set_phone_numb_for_mobile(phone) {
+        cy.get('#reg-full > form > div:nth-child(4) > div > div > div.input-container > input')
             .type(phone);
     },
 
@@ -259,7 +305,21 @@ export const navReg = {
             .should('have.text', userName);
         cy.screenshot();
     },
-
+    check_sign_up_for_mobile(userName) {
+        cy.get('#header > div > div > div.control-item > button > span')
+            .click();
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div.block.top > div.top__username')
+            .should('have.text', userName);
+    },
+    check_sign_up_for_mobile_without_enter(userName) {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div.block.top > div.top__username')
+            .should('have.text', userName);
+    },
+    //кнопка - "Войти в профиль с главной страницы"
+    click_settings_main_page_for_mobile() {
+        cy.get('#header > div > div > div.control-item > button > span')
+            .click();
+     },
     // check redirection to vk oauth page
     check_vk_reg() {
         cy.url()
@@ -347,5 +407,13 @@ export const navReg = {
     click_send_login_pass(){
         cy.get('.user-info__email > .button')
             .click();
+    },
+    clear_number_phone_for_mobile(){
+        cy.get('#reg-full > form > div:nth-child(4) > div > div > div.input-container > input')
+            .clear();
+    },
+    clear_mail_for_mobile(){
+        cy.get('#reg-full > form > div:nth-child(5) > div > div.input-container > input')
+            .clear();
     },
 };

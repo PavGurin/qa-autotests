@@ -19,7 +19,7 @@ describe('Play Case', () => {
         cases.chance_improve_30_percent();
         cases.button_open_case();
         //ждем, пока прокрутится кейс
-        cy.wait(3000);
+        cy.wait(7000);
         cases.modal_container_case();
         cases.repeat_open_case();
         //ждем, пока прокрутится кейс, до появления модалки выигрыша
@@ -28,7 +28,6 @@ describe('Play Case', () => {
         cases.button_another_cases();
         cy.wait(1000);
         shot.screen_cases_inTest();
-
 
     });
 });
