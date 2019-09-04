@@ -27,6 +27,7 @@ describe('Visual regression tests for mobile', () => {
         cy.wait(1000);
         cy.matchImageSnapshot();
     });
+
     it('C385880 - Кейсы - Memes', () => {
         shot.case_button_for_mobile();
         cy.wait(1000);
