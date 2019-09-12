@@ -2,7 +2,6 @@ import {auth} from "@support/desktop/Authorization";
 import {basicCom} from "@support/desktop/BasicCommands";
 import {navReg} from "@support/desktop/NavReg";
 import {prof} from "@support/desktop/Profile";
-
 describe('Опции профиля', () => {
     beforeEach(function () {
         basicCom.switch_to_mobile();
