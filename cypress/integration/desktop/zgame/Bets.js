@@ -13,6 +13,7 @@ describe('Ставки', () => {
         auth.login();
         // делает нулевую ставку
         bets.bet_live_zero();
+        cy.screenshot();
         // закрывает все отмеченные купоны
         bets.close_coupons();
     });
@@ -23,7 +24,7 @@ describe('Ставки', () => {
         cy.get('a.navigation-item:nth-child(2)')
           .click();
         // проверяет, что выбрана 'live' вкладка
-        cy.get('a.active > div > div.item-text-active', {timeout:10000})
+        cy.get('a.active > div > div.item-text-active')
           .should('have.text', 'Live');
         // ожидание, необходимое для прогрузки элементов
         cy.wait(2000);
