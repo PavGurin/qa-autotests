@@ -52,7 +52,7 @@ describe('Profile Settings', () => {
         prof.new_pass_for_mobile();
         prof.click_save_settings_for_mobile();
     });
-    it.only('C476382 - Рега в 1 клик - активно поле e-mail ', function() {
+    it('C476382 - Рега в 1 клик - активно поле e-mail ', function() {
         navReg.click_register_for_mobile();
         navReg.check_country_default_for_mobile('Russia (Россия)');
         navReg.accept_agreement_for_mobile();
