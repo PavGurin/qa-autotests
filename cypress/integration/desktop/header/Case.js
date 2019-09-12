@@ -2,7 +2,7 @@ import {auth} from "@support/desktop/Authorization";
 import {shot} from "@support/desktop/Screenshots";
 import {cases} from "@support/desktop/Case";
 describe('Play Case', () => {
-    it('C16311 - Case "Новичок"', function() {
+    it('C521875 - Case "Новичок"', function() {
         auth.login();
         shot.case_button();
         shot.case_classic();
@@ -18,16 +18,19 @@ describe('Play Case', () => {
         cases.open_for_15();
         cases.chance_improve_30_percent();
         cases.button_open_case();
-        //ждем, пока прокрутится кейс
-        cy.wait(7000);
+        cases.modal_container_case();
+    });
+    it('C521876 - Кнопка "сыграть снова" ', function() {
+        auth.login();
+        shot.case_button();
+        shot.case_classic();
+        cases.choose_case();
+        cases.button_open_case();
         cases.modal_container_case();
         cases.repeat_open_case();
-        //ждем, пока прокрутится кейс, до появления модалки выигрыша
-        cy.wait(11000);
         cases.close_modal_container_case();
         cases.button_another_cases();
         cy.wait(1000);
         shot.screen_cases_inTest();
-
     });
 });
