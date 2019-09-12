@@ -64,7 +64,7 @@ describe('Profile Settings', () => {
         prof.settings_for_mobile();
         prof.assert_mail_visible_for_mobile();
     });
-    it.only('C476383 - Рега по e-mail - невозможно изменить почту ', function() {
+    it('C476383 - Рега по e-mail - невозможно изменить почту ', function() {
         navReg.click_register_for_mobile();
         navReg.registration_form('По email');
         navReg.set_name_for_mobile('test_' + randomStr);
