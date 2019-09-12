@@ -23,6 +23,7 @@ describe('Visual regression tests for mobile', () => {
     });
     it('C385879 - Кейсы - Classic', () => {
         shot.case_button_for_mobile();
+
         cases.open_case_classic();
         cy.wait(1000);
         cy.matchImageSnapshot();
