@@ -1,6 +1,6 @@
 import {auth} from "@support/desktop/Authorization";
 
-describe.skip('Авторизация', () => {
+describe('Авторизация', () => {
 
     it('C16300 - Авторизация по email', () => {
         auth.login();
