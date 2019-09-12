@@ -1,12 +1,12 @@
 export const games = {
      //перейти в игры
     choose_games() {
-        cy.get(':nth-child(1) > .case > .case-info > .case-info-wrapper > .case-info-contains')
+        cy.get('a:nth-child(4) > div > div.item-text')
             .click();
     },
     //нажать на кнопку "играть"
     play_games() {
-        cy.get('#main-container > div.content-wrapper > div > div > div > div:nth-child(1) > div > div.preview > div > button.button.play-button')
+        cy.get('#main-container > main > div > div > div:nth-child(1) > div > div.preview > div > button.button.play-button')
             .click();
     },
     //проверить, что окно игры активно

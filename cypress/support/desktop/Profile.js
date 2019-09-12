@@ -1,5 +1,8 @@
 //Профиль игрока
+import {navReg} from "@support/desktop/NavReg";
+
 const notification = '.notification-content';
+//let password;
 export const prof = {
     // Кнопка "войти в профиль"
     profile_for_mobile() {
@@ -206,10 +209,10 @@ export const prof = {
             .clear()
             .type(pass);
     },
-    //Заполнение поля "имя" в настройках
-    settings_form_pass() {
+    //Заполнение поля "пароль" в настройках
+    settings_form_pass(pass) {
         cy.get('div.modal-container__container > div > form > div.field > div > div > input')
-            .type('testerQA');
+            .type(pass);
     },
     //Заполнение поля "имя" в настройках
     settings_form_name_2or16_symbols() {
@@ -368,6 +371,108 @@ export const prof = {
     assert_mail_disabled_for_mobile() {
         cy.get('#profile-edit > form > div:nth-child(5) > div > div.input-container > input')
             .should('be.disabled');
+    },
+    // проверка, поле mail доступно
+    assert_mail_visible() {
+        cy.get('#main-container > div.modal-wrapper > div > div.modal-container__container > div > form > div:nth-child(5) > div > input')
+            .should('be.visible');
+    },
+    // проверка, поле mail доступно
+    assert_mail_disabled() {
+        cy.get('#main-container > div.modal-wrapper > div > div.modal-container__container > div > form > div:nth-child(5) > div > input')
+            .should('be.disabled');
+    },
+    // заполнить поле mail
+    settings_mail(mail) {
+        cy.get('#main-container > div.modal-wrapper > div > div.modal-container__container > div > form > div:nth-child(5) > div > input')
+            .clear()
+            .type(mail);
+    },
+    // проверка, что баланс,id, имя отображаются
+    assert_name_id_balance_bonus() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div:nth-child(2) > div.balance > div')
+            .should('exist');
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div.block.top > div.top__id')
+            .should('exist');
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div.block.top > div.top__username')
+            .should('exist');
+    },
+    // нажать на  кнопка "пополнить"
+    button_deposit_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div:nth-child(2) > div.balance > button > span')
+            .click();
+    },
+    // проверка, что кнопка "вывод" существует
+    assert_button_withdrawal_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div:nth-child(2) > div.balance > button > span')
+            .should('exist');
+    },
+    // проверка, в "пополнение" мы имеем 10 способов полнения
+    assert_button_deposit_for_mobile() {
+        cy.get('div.payments-row > button')
+            //.find('#main-layout > div.wrapper.has-tabs > div > div > div.deposit-payments > div.payments-row > button:nth-child(1)' )
+                .should('have.length', 10);
+    },
+    // проверка, что кнопка "вывод" существует
+    assert_button_transfer_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div:nth-child(2) > div.box-links > div:nth-child(2) > a:nth-child(2) > div')
+            .should('exist');
+    },
+    // нажать на  кнопка "пополнить"
+    button_withdrawal_history_for_mobile() {
+    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div:nth-child(2) > div.box-links > div:nth-child(1) > a')
+        .click();
+    },
+    // проверка, что история выводов существует
+    assert_withdrawal_history_for_mobile() {
+        cy.get('#withdrawal-history-page > div.withdrawal-history-content')
+            .should('exist');
+    },
+    // нажать на  кнопка "пополнить"
+    button_bets_history_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(1) > div > a:nth-child(2)')
+            .click();
+    },
+    // проверка, что история ставок существует
+    assert_bets_history_for_mobile() {
+        cy.get('#bets-history > div.bets-history-content')
+            .should('exist');
+    },
+
+    // нажать на  кнопка "скрыть баланс"
+    button_hide_balance_for_mobile() {
+        cy.get('#profile-edit > form > div.level.level--between > label')
+            .click();
+    },
+    // проверка, что баланс исчез
+    assert_hide_balance_for_mobile() {
+        cy.get('#header > div > div > div.balance')
+            .should('not.exist');
+    },
+    // проверка, что баланс исчез
+    assert2_hide_balance_for_mobile() {
+        cy.get('#header > div > div > div.balance')
+            .should('not.to.be.empty');
+    },
+    // избранное
+    favorites_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(1) > div > a:nth-child(3) > div > div.big-links__name')
+            .click();
+    },
+    // проверка,избранное
+    assert_favorites_for_mobile() {
+        cy.get('#favourites > section')
+           .should('not.to.be.empty');
+    },
+    // проверка,избранное
+    button_exit_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(2) > div > div')
+            .click();
+    },
+    // проверка служба поддержки
+    assert_support_for_mobile() {
+        cy.get('#jcont')
+            .should('exist');
     },
 };
 

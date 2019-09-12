@@ -20,7 +20,7 @@ export const broadcast = {
             .click();
     },
     open() {
-        cy.get('.translation-iframe', {timeout:6000})
+        cy.get('.translation-iframe', {timeout:10000})
             .should('exist');
     },
     play() {

@@ -52,9 +52,8 @@ export const bets = {
          // жмет кнопку 'Сделать ставку'
          cy.get(make_bet_button)
              .click();
-         cy.wait(5000);
          // сверяет, что ставка сделана успешно
-         cy.get(bet_is_done)
+         cy.get(bet_is_done, {timeout:10000})
              .should('exist');
     },
     // делает ставку с главной страницы
@@ -75,9 +74,8 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
-        cy.wait(2000);
         // сверяет, что ставка сделана успешно
-        cy.get(bet_is_done)
+        cy.get(bet_is_done, {timeout:10000})
             .should('exist');
     },
     // делает ставку с главной страницы
@@ -100,15 +98,14 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
-        cy.wait(7000);
         // сверяет, что ставка сделана успешно
-        cy.get(bet_is_done)
+        cy.get(bet_is_done, {timeout:10000})
             .should('exist');
     },
 // делает ставку со страницы 'Live'
     bet_live_page() {
         // проверяет прогрузку страницы 'Live'
-        cy.get('div.sport-title')
+        cy.get('div.sport-title',{timeout:10000} )
             .should('be.visible');
         // выбирает первый доступный для ставки элемент
         available_for_bet_element2()
@@ -120,9 +117,8 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
-        cy.wait(6000);
         // сверяет, что ставка сделана успешно
-        cy.get(bet_is_done)
+        cy.get(bet_is_done, {timeout:10000})
             .should('exist');
     },
 
@@ -140,7 +136,7 @@ export const bets = {
         cy.get(make_bet_button)
             .click();
         // проверяет, что ставка невозможна, выходит ошибка
-        cy.get(bet_not_done)
+        cy.get(bet_not_done, {timeout:10000})
             .should('exist');
     },
     // закрывает все отмеченные купоны (жмет 'крестик')
@@ -203,8 +199,7 @@ export const bets = {
         cy.wait(2000);
         second_bets_in_one_match()
             .click();
-        cy.wait(2000);
-        cy.get('.coupon-type-list > :nth-child(3)')
+        cy.get('.coupon-type-list > :nth-child(3)',{timeout:2000})
             .click();
         // выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
         cy.get(bet_amount_input)
@@ -214,9 +209,8 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
-        cy.wait(6000);
         // сверяет, что ставка сделана успешно
-        cy.get(bet_is_done)
+        cy.get(bet_is_done, {timeout:10000})
             .should('exist');
     },
     // ставка по двум разным матчам
@@ -234,9 +228,8 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
-        cy.wait(6000);
         // сверяет, что ставка сделана успешно
-        cy.get(bet_is_done)
+        cy.get(bet_is_done, {timeout:10000})
             .should('exist');
     },
     // ставка по трем  матчам
@@ -257,9 +250,8 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
-        cy.wait(6000);
         // сверяет, что ставка сделана успешно
-        cy.get('div.coupons-list.panel-body')
+        cy.get('div.coupons-list.panel-body',{timeout:10000})
             .should('exist');
     },
     // ставка по трем  матчам
@@ -294,9 +286,8 @@ export const bets = {
         // жмет кнопку 'Сделать ставку'
         cy.get(make_bet_button)
             .click();
-        cy.wait(7000);
         // сверяет, что ставка сделана успешно
-        cy.get(bet_is_done)
+        cy.get(bet_is_done, {timeout:10000})
             .should('exist');
     },
     // проверка, что експресс нельзя выбрать

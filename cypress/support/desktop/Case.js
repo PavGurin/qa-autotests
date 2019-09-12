@@ -42,7 +42,7 @@ export const cases = {
 },
     //нажать на кнопку открыть кейс
     button_open_case() {
-        cy.get('#main-container > div.content-wrapper > div > div > div > div > div > div.case-page__pg-wp.df-aic-jcfs.fdc > div.case-page__roulette-after.df-aifs-jcsb > div:nth-child(2) > div > div')
+        cy.get('#roulette-start')
             .click();
     },
     //нажать на кнопку открыть кейс
@@ -52,12 +52,12 @@ export const cases = {
     },
     //Проверка модального окна выигрыша в кейс
     modal_container_case() {
-        cy.get('#main-container > div.modal-wrapper > div > div > div > div.case.df-aic-jcc.fdc.color--5 > div.case-top-wrapper.fdc.df-aic-jcc.color--5 > p')
+        cy.get('#main-container > div.modal-wrapper > div > div > div > div.case.df-aic-jcc.fdc.color--5 > div.case-top-wrapper.fdc.df-aic-jcc.color--5 > p',{timeout:15000})
             .should('have.text','Вы выиграли');
     },
     //Проверка модального окна выигрыша в кейс
     modal_container_case_for_mobile() {
-        cy.get('#app > div > div.modal-layout-default > main > div > div.text-row')
+        cy.get('#app > div > div.modal-layout-default > main > div > div.text-row',{timeout:15000})
             .should('have.text','Поздравляем!Вы выиграли');
     },
     //нажать на кнопку открыть кейс
@@ -72,7 +72,7 @@ export const cases = {
     },
     //закрываем модальное окно выигрыша, кликая в любое место экрана
     close_modal_container_case() {
-        cy.get('#main-container > div.modal-wrapper > div')
+        cy.get('#main-container > div.modal-wrapper > div',{timeout:15000})
             .click('topRight');
     },
     //закрываем модальное окно выигрыша, кликая в любое место экрана

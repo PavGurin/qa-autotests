@@ -39,4 +39,25 @@ export const basicCom = {
         cy.get('#navigation > section > a.menu-bar-item.router-link-exact-active.router-link-active.active')
             .should('have.text', 'Main');
     },
+    result_button(){
+        cy.get('a:nth-child(8) > div > div.item-text')
+            .click();
+    },
+    assert_result(){
+        cy.get('#main-container > div.content-wrapper > div > div > div.main-content > div')
+            .should('not.to.be.empty');
+    },
+    result_button_for_mobile(){
+        cy.get('#navigation > section > a:nth-child(2)')
+            .click();
+        cy.get('#navigation > section > a:nth-child(3)')
+            .click();
+        cy.get('#results > section > header > a')
+            .click();
+    },
+    assert_result_for_mobile(){
+        cy.get('#results-last > ul')
+            .should('not.to.be.empty');
+
+    },
 };

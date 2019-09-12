@@ -11,13 +11,13 @@ export const navReg = {
 
     // registration button
     click_register() {
-        cy.get('.level-item > .green')
+        cy.get('.level-item > .green',{timeout:10000})
             .click();
     },
 
     // registration button на мобильной версии
     click_register_for_mobile() {
-        cy.get('#header > div > button.registration.control-item.button.sm.success')
+        cy.get('#header > div > button.registration.control-item.button.sm.success',{timeout:10000})
             .click();
     },
 
@@ -157,6 +157,11 @@ export const navReg = {
 
     // email form - email
     set_email(email) {
+        cy.get(':nth-child(5)>.input-wrapper > .input')
+            .type(email);
+    },
+    // email form - email
+    set_email2(email) {
         cy.get('.input-wrapper > .input')
             .type(email);
     },
@@ -415,5 +420,14 @@ export const navReg = {
     clear_mail_for_mobile(){
         cy.get('#reg-full > form > div:nth-child(5) > div > div.input-container > input')
             .clear();
+    },
+
+    assert_login_for_mobile(){
+        cy.get('#header > div > div > div.balance')
+            .should('exist');
+    },
+    assert_logout_for_mobile(){
+        cy.get('#header > div > div > div.balance')
+            .should('not.exist');
     },
 };

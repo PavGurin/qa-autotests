@@ -11,7 +11,7 @@ let password;
 export const req = {
     // отправка на почту логина/пароля
     login_pass_for_mail() {
-        navReg.set_email(`${mail}@ahem.email`);
+        navReg.set_email2(`${mail}@ahem.email`);
         navReg.click_send_login_pass();
         cy.get(':nth-child(1) > .user-info__content__item__value').should(($div) => {
             login = $div.text();
@@ -59,7 +59,8 @@ export const req = {
                expect(text).equal(`Login: ${login}<br>Password: ${password}\n`)
         })
     });
-})},  // отправка на почту логина/пароля
+})},
+     // отправка на почту логина/пароля моб.версия
     login_pass_for_mail_for_mobile() {
         navReg.set_email_for_mobile(`${mail}@ahem.email`);
         auth.check_notification_set_login_email_for_mobile();
@@ -154,8 +155,7 @@ export const req = {
                                     .type(code);
                         })
                     });
-            })}
-
+            })},
 };
 
 

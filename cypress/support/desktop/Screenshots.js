@@ -80,7 +80,7 @@ export const shot = {
             .matchImageSnapshot();
     },
     screen_coupons_and_bets() {
-        cy.get('#main-container > div.content-wrapper > div > div > div.aside.aside-right > div')
+        cy.get('#main-container > div.content-wrapper > div > div > div.aside.aside-right > div.coupon-block.panel')
             .matchImageSnapshot();
     },
     screen_cases_inTest() {

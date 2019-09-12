@@ -39,17 +39,25 @@ export const auth = {
         cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(2) > div')
             .click();
     },
+    logout_for_mobile2() {
+        cy.get('.profile-button > .button-content > .icon')
+            .first()
+            .click();
+         cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(2)')
+             .click();
+
+    },
     logout_ByEmail_for_mobile() {
         cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(2) > div')
             .click();
     },
     login() {
             // нажимаем кнопку 'Войти' со стартовой страницы
-        cy.get(entry_button, {timeout:7000})
+        cy.get(entry_button, {timeout:15000})
             .click();
         // вводим логин/пароль
        // login_input() {
-        cy.get(login_input)
+        cy.get(login_input,{timeout:15000})
             .type('nogm75@1win.xyz');
       // вводим пароль
         // password_input() {
@@ -61,7 +69,7 @@ export const auth = {
     },
     login_for_mobile() {
         // нажимаем кнопку 'Войти' со стартовой страницы
-        cy.get('#header > div > button.login.control-item.button.sm.default')
+        cy.get('#header > div > button.login.control-item.button.sm.default',{timeout:7000})
             .click();
         // вводим логин/пароль
         // login_input() {
@@ -77,7 +85,7 @@ export const auth = {
     },
     login_for_mobile2() {
         // нажимаем кнопку 'Войти' со стартовой страницы
-        cy.get('#header > div > button.login.control-item.button.sm.default')
+        cy.get('#header > div > button.login.control-item.button.sm.default',{timeout:7000})
             .click();
         // вводим логин/пароль
         // login_input() {
@@ -125,7 +133,7 @@ export const auth = {
     },
     login_for_mobile3(pass) {
         // нажимаем кнопку 'Войти' со стартовой страницы
-        cy.get('#header > div > button.login.control-item.button.sm.default')
+        cy.get('#header > div > button.login.control-item.button.sm.default',{timeout:7000})
             .click();
         // вводим логин/пароль
         // login_input() {
@@ -475,4 +483,5 @@ export const auth = {
             .should('be.visible')
             .and('have.text', 'Bad request, login is invalid');
     },
+
 };
