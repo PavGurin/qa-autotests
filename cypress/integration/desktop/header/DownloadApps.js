@@ -1,5 +1,5 @@
 import { navReg } from '@support/desktop/NavReg';
-describe('Download apps', () => {
+describe.skip('Download apps', () => {
 
     it('C16786 - Download android', () => {
         navReg.check_android_download();
