@@ -15,6 +15,5 @@ describe.skip('Переключение на мобильную версию', (
         // проверяем видимость кнопки переключения на десктопную версию
         cy.get('svg.icon-app-desktop')
           .should('be.visible');
-        cy.screenshot();
     });
 });
