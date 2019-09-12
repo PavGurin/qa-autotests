@@ -1,6 +1,6 @@
 import {basicCom} from '@support/desktop/BasicCommands';
 
-describe('Переключение языка', () => {
+describe.skip('Переключение языка', () => {
     const header_first_elem = 'a:nth-child(1) > div > div.item-text';
 
     it('C16323 - Переключение языка', () => {

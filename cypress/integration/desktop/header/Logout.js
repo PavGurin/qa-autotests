@@ -1,6 +1,6 @@
 import {auth} from '@support/desktop/Authorization';
 
-describe('Выход', () => {
+describe.skip('Выход', () => {
 
     it('C18768 - Выход', () => {
         auth.login();
