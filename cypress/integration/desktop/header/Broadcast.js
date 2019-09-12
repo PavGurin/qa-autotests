@@ -1,7 +1,7 @@
 import {auth} from "@support/desktop/Authorization";
 import {broadcast} from "@support/desktop/Broadcast";
-describe('Profile Settings', () => {
-    it('C16317 - Open broadcast', function() {
+describe('Broadcast', () => {
+    it('C16620 - Open broadcast', function() {
         auth.login();
         broadcast.search();
         broadcast.open();
