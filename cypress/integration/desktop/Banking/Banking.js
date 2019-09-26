@@ -22,7 +22,7 @@ describe('Banking Desktop', () => {
         prof.deposit_button();
         bank.assert_deposit_desktop();
     });
-    it.only('C27095 - перевод', function() {
+    it('C27095 - перевод', function() {
         auth.login_mail();
         prof.withdrawal('Перевод');
         prof.transfer_mail('1wintesting2@mail.ru');
