@@ -40,10 +40,9 @@ export const auth = {
             .click();
     },
     logout_for_mobile2() {
-        cy.get('.profile-button > .button-content > .icon')
-            .first()
-            .click();
-         cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(2)')
+        //cy.get('#header > div > div > div.control-item > button')
+           // .click();
+         cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(2) > div > div')
              .click();
 
     },
@@ -99,6 +98,47 @@ export const auth = {
         cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
             .click();
     },
+    login_for_mobile_mail() {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get('#header > div > button.login.control-item.button.sm.default',{timeout:7000})
+            .click();
+        // вводим логин/пароль
+        // login_input() {
+        cy.get(':nth-child(1) > .input-container > .input')
+            .type('1wintesting@mail.ru');
+        // вводим пароль
+        // password_input() {
+        cy.get('div:nth-child(2) > div.input-container > input')
+            .type('qwerty');
+        // нажимаем кнопку "войти"
+        cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
+            .click();
+    },
+    login_for_mobile_mail2() {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get('#header > div > button.login.control-item.button.sm.default',{timeout:7000})
+            .click();
+        // вводим логин/пароль
+        // login_input() {
+        cy.get(':nth-child(1) > .input-container > .input')
+            .type('1wintesting2@mail.ru');
+        // вводим пароль
+        // password_input() {
+        cy.get('div:nth-child(2) > div.input-container > input')
+            .type('qwerty');
+        // нажимаем кнопку "войти"
+        cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
+            .click();
+    },
+    repeat_login_for_mobile2() {
+        cy.get('#main-layout > div.wrapper.has-tabs > div > div > form > div:nth-child(2) > div.input-container > input',{timeout:7000})
+            .type('nogm75@1win.xyz');
+        cy.get('#main-layout > div.wrapper.has-tabs > div > div > form > div:nth-child(3) > div.input-container > input')
+            .type('testerQA');
+        // нажимаем кнопку "продолжить"
+        cy.contains('Продолжить')
+            .click();
+    },
     login2() {
     // нажимаем кнопку 'Войти' со стартовой страницы
     cy.get(entry_button)
@@ -115,6 +155,22 @@ export const auth = {
     cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
         .click();
 },
+    login3() {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get(entry_button)
+            .click();
+        // вводим логин/пароль
+        // login_input() {
+        cy.get(login_input, {timeout:6000})
+            .type('outdead186@gmail.com');
+        // вводим пароль
+        // password_input() {
+        cy.get(password_input)
+            .type('qwerty12');
+        // нажимаем кнопку "войти"
+        cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
+            .click();
+    },
     login_with_new_pass_settings(pass) {
         // нажимаем кнопку 'Войти' со стартовой страницы
         cy.get(entry_button)
@@ -482,6 +538,11 @@ export const auth = {
         cy.get('#notifications-container')
             .should('be.visible')
             .and('have.text', 'Bad request, login is invalid');
+    },
+    // закрываем окно "доступ к сайту"
+    close_window_site() {
+        cy.get('#main-container > div.modal-wrapper > div > div.modal-container__header > div > div:nth-child(2)', {timeout: 10000})
+            .click();
     },
 
 };

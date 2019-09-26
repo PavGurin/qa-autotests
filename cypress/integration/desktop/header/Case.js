@@ -28,6 +28,8 @@ describe('Play Case', () => {
         cases.button_open_case();
         cases.modal_container_case();
         cases.repeat_open_case();
+        //auth.close_window_site();
+        cy.wait(2000);
         cases.close_modal_container_case();
         cases.button_another_cases();
         cy.wait(1000);

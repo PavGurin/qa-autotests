@@ -60,7 +60,7 @@ export const cases = {
         cy.get('#app > div > div.modal-layout-default > main > div > div.text-row',{timeout:15000})
             .should('have.text','Поздравляем!Вы выиграли');
     },
-    //нажать на кнопку открыть кейс
+    //нажать на кнопку открыть снова
     repeat_open_case() {
         cy.get('.case-info-contains > span')
             .click();
@@ -82,7 +82,7 @@ export const cases = {
     },
     //нажимаем на кнопку "другие кейсы"
     button_another_cases() {
-        cy.get('#main-container > div.content-wrapper > div > div > div > div > div > div.case-page__left.df-aifs-jcfs.df.fw > button')
+        cy.get('.case-page__back')
             .click();
     },
     //нажать на кнопку кейсы Сlassic

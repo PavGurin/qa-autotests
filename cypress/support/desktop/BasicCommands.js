@@ -19,7 +19,7 @@ export const basicCom = {
     // switch to mobile version
     switch_to_mobile(){
         // click mobile version button
-        cy.get('div:nth-child(2) > svg')
+        cy.get('div:nth-child(2) > svg',{timeout:6000})
           .first()
           .click();
     },
@@ -58,6 +58,11 @@ export const basicCom = {
     assert_result_for_mobile(){
         cy.get('#results-last > ul')
             .should('not.to.be.empty');
-
     },
+    bonus_main_page(){
+        cy.get('#header > div.level.header__line.header__line--top > div.level-center.gap-md.header-block-center > div:nth-child(1) > div > div.level-item.tooltip-trigger > span.bonus-tooltip.tooltip > div.df-aifs-jcfs.fdc > span')
+            .click()
+            .should('have.text','Делайте ординарные ставки с коэффициентом больше 3 и получайте деньги с бонусного счета в размере 5% от суммы выигранной ставки!');
+    },
+
 };

@@ -25,8 +25,8 @@ export const shot = {
             .click();
     },
     screen_cases() {
-        cy.get('#main-container > div.content-wrapper > div > div > div.main-content')
-            .matchImageSnapshot();
+        //cy.get('.case-list__list')
+            cy.matchImageSnapshot();
     },
     screen_cases_for_mobile() {
         cy.get('#cases-list > div.cases-list')
@@ -46,7 +46,7 @@ export const shot = {
             .click();
     },
     screen_casino() {
-        cy.get('#main-container > div.content-wrapper > div > section > div > aside')
+        cy.get('#main-container > main > article > aside > main > div')
             .matchImageSnapshot();
     },
     line_for_mobile() {
@@ -64,7 +64,7 @@ export const shot = {
             .click();
     },
     screen_rules() {
-        cy.get('body')
+        cy.get('body', {timeout:10000})
             .matchImageSnapshot();
     },
     bonuses() {
@@ -72,19 +72,19 @@ export const shot = {
             .click();
     },
     screen_bonuses() {
-        cy.get('body')
+        cy.get('body', {timeout:10000})
             .matchImageSnapshot();
     },
     screen_history_bets() {
-        cy.get('#main-container > div.content-wrapper > div > div')
+        cy.get('#main-container > main')
             .matchImageSnapshot();
     },
     screen_coupons_and_bets() {
-        cy.get('#main-container > div.content-wrapper > div > div > div.aside.aside-right > div.coupon-block.panel')
+        cy.get('#main-container > main > div > div.aside.aside-right > div')
             .matchImageSnapshot();
     },
     screen_cases_inTest() {
-        cy.get('#main-container > div.content-wrapper > div > div > div.main-content')
+        cy.get('#main-container > main > article > main > div')
             .matchImageSnapshot('Кейсы - Classic');
     },
     screen_support_for_mobile() {

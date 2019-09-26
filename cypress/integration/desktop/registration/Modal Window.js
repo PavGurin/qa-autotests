@@ -106,7 +106,7 @@ describe('Modal window', () => {
         auth.logout();
     });
     it('C27803 - Modal window settings', function() {
-        auth.login();
+        auth.login2();
         prof.withdrawal('Настройки');
         prof.settings_hidebalance();
         prof.settings_form();

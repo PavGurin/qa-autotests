@@ -50,12 +50,17 @@ export const prof = {
     // Ввести номер карты
     credit_card_number() {
         cy.get(':nth-child(2) > .control > .input-wrapper > .input')
-            .type('55504321554321');
+            .type('4276554443216987');
     },
-    //Внести сумму(модальное окно "пополнить"
+    //Внести сумму(модальное окно "пополнить")
     deposit_number() {
         cy.get('.send-row > .control > .input-wrapper > .input')
             .type('750');
+    },
+    //Внести номер телефона(модальное окно "пополнить")
+    deposit_number_phone() {
+        cy.get('#main-container > div.modal-wrapper > div > div.modal-container__container > div.modal-container__body > form > div.control > div > input')
+            .type('+79215432312');
     },
     //проверка, что кнопка "пополнить" активна
     deposit_assert_visible() {
@@ -94,6 +99,12 @@ export const prof = {
     withdrawal_assert_disabled() {
         cy.get('div:nth-child(3) > button')
             .should('be.disabled');
+    },
+    //проверка, что кнопка "пополнить" активна
+    withdrawal_button() {
+        cy.get('div:nth-child(3) > button')
+            .first()
+            .click();
     },
     //проверка, что кнопка "пополнить" активна
     withdrawal_assert_visible() {
@@ -139,7 +150,7 @@ export const prof = {
         cy.wait(1000);
         cy.get('.swiper')
             .click();
-        cy.get('#header > div.container.level.header__line.header__line--top > div.level-center.gap-md.header-block-center > div:nth-child(1) > div > div:nth-child(2)')
+        cy.get('#header > div.level.header__line.header__line--top > div.level-center.gap-md.header-block-center > div:nth-child(1) > div > div:nth-child(2)')
             .should('exist');
     },
     //проверка модального окна "Настройки"

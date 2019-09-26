@@ -11,7 +11,7 @@ export const navReg = {
 
     // registration button
     click_register() {
-        cy.get('.level-item > .green',{timeout:10000})
+        cy.get('#header > div.level.header__line.header__line--top > div.level-right.gap-md.expanded > div:nth-child(2)',{timeout:10000})
             .click();
     },
 

@@ -1,8 +1,8 @@
 import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
 addMatchImageSnapshotCommand({
-  failureThreshold: 0.5,
+  failureThreshold: 10.0,
   failureThresholdType: 'percent',
-  customDiffConfig: { threshold: 0.5 },
+  customDiffConfig: { threshold: 10.0 },
   capture: 'viewport',
 });
 

@@ -8,21 +8,21 @@ const bet_is_done = 'div.coupon-status.success';
 const bet_not_done = 'div.coupon-status.error';
 
 const available_for_bet_element = () => cy
-    .get('div.matches-block-content.matches-block')
-    .find('.odd-cell')
+    .get('#main-container > main > div > div.main-content > div > div.matches-block > div.matches-block-content.matches-block', {timeout:20000})
+    .find('.odd-cell', {timeout:10000})
     .not('.disabled')
     .find('.odd-coefficient')
     .eq(3);
 const available_for_bet_element2 = () => cy
-    .get('#main-container > div.content-wrapper > div > div > div.main-content > div > div.matches-block-content.block')
-    .find('.odd-cell')
+    .get('#main-container > main > div > div.main-content > div > div.matches-block > div.matches-block-content.matches-block', {timeout:20000})
+    .find('.odd-cell', {timeout:10000})
     .not('.disabled')
     .find('.odd-coefficient')
     .eq(3);
 
 const second_bets_in_one_match = () => cy
     .get('.matches-block-content')
-    .find('.odd-cell')
+    .find('.odd-cell', {timeout:10000})
     .not('.disabled')
     .find('.odd-coefficient')
     .eq(1);
@@ -30,9 +30,21 @@ const second_bets_in_one_match = () => cy
 const two_bets_in_different_match = () => cy
     .get('.matches-block-content')
     .find('.odd-cell')
-    .not('.disabled')
+    .not('.disabled', {timeout:10000})
     .find('.odd-coefficient')
     .eq(10);
+const available_for_live_element = () => cy
+    .get('#main-container > main > div > div.main-content > div > div.matches-block-content.block', {timeout:20000})
+    .find('.odd-cell', {timeout:10000})
+    .not('.disabled')
+    .find('.odd-coefficient')
+    .eq(1);
+const available_for_bet_element_virtual_sport = () => cy
+    .get('#main-container > main > div > div.main-content > div > div > div.virtual-sport-wrapper.virtual-sport-wrapper-body > table', {timeout:20000})
+    .find('.odd-cell', {timeout:10000})
+    .not('.disabled')
+    .find('.odd-coefficient')
+    .eq(1);
 
     //.contains(/\d{2,}/g);
 //.contains(/[1-9]\{1,\}\.[0-9]\{2,\}/);
@@ -105,10 +117,11 @@ export const bets = {
 // делает ставку со страницы 'Live'
     bet_live_page() {
         // проверяет прогрузку страницы 'Live'
-        cy.get('div.sport-title',{timeout:10000} )
+        cy.get('div.sport-title')
             .should('be.visible');
         // выбирает первый доступный для ставки элемент
-        available_for_bet_element2()
+        available_for_live_element()
+            .trigger('mouseover')
             .click();
         // выделяет окно ввода суммы ставки, очищает данное поле и вводит '1'
         cy.get('input[type=number]')
@@ -303,5 +316,20 @@ export const bets = {
             .click();
         cy.wait(1000);
 
+    },
+    // делает ставку
+    bet_virtual_sport() {
+        available_for_bet_element_virtual_sport()
+            .click();
+        //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
+        cy.get(bet_amount_input)
+            .type('{selectall}{del}')
+            .type('{selectall}10');
+        // жмет кнопку 'Сделать ставку'
+        cy.get(make_bet_button)
+            .click();
+        // сверяет, что ставка сделана успешно
+        cy.get(bet_is_done, {timeout:10000})
+            .should('exist');
     },
 };

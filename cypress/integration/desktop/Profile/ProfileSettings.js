@@ -9,7 +9,7 @@ const randomNum = Math.floor(Math.random() * 9999999) + 1;
 //let password;
 describe('Profile Settings', () => {
     it('C16311 - Modal window settings', function () {
-        auth.login();
+        auth.login2();
         cy.wait(1000);
         prof.withdrawal('Настройки');
         prof.settings_form();
@@ -19,7 +19,7 @@ describe('Profile Settings', () => {
     });
 
     it('C16312 - Change name', function () {
-        auth.login();
+        auth.login2();
         prof.withdrawal('Настройки');
         prof.settings_form_name_2or16_symbols();
         prof.settings_form_name('testPass_' + randomStr);
@@ -29,7 +29,7 @@ describe('Profile Settings', () => {
         prof.check_change_settings();
     });
     it('C16313 - Change date of birthday', function () {
-        auth.login();
+        auth.login2();
         prof.withdrawal('Настройки');
         prof.settings_form_birthday();
         prof.settings_mail_disabled();
@@ -38,7 +38,7 @@ describe('Profile Settings', () => {
         prof.check_change_settings();
     });
     it('C16314 - Change number phone', function () {
-        auth.login();
+        auth.login2();
         prof.withdrawal('Настройки');
         prof.set_country_number_phone('Andorra');
         prof.settings_form_numbPhone_Andorra();
@@ -74,7 +74,7 @@ describe('Profile Settings', () => {
         navReg.click_register();
         navReg.accept_agreement();
         navReg.sign_up();
-        cy.wait(2000);
+        cy.wait(1000);
          navReg.close_new_user_info();
          prof.withdrawal('Настройки');
          prof.assert_mail_visible();

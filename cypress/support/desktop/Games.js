@@ -11,12 +11,12 @@ export const games = {
     },
     //проверить, что окно игры активно
     games_visible() {
-        cy.get('#main-container > div.content-wrapper > div > section')
-            .should('be.visible');
+        cy.get('#main-container > main > article > div > div', {timeout: 10000})
+            .should('not.be.empty');
     },
     //проверить, что произошел релирект на вкладку "казино"
     casino_active() {
-        cy.get('#header > div.container.level.header__line.header__line--bottom > div:nth-child(1) > nav > div.level > div > a.navigation-item.df-aic-jcc.active')
-            .should('have.class', 'navigation-item df-aic-jcc active')
+        cy.get('#header > div.level.header__line.header__line--bottom > div:nth-child(1) > nav > div.level > div > a.navigation-item.df-aic-jcc.active')
+            .should('exist')
     },
 };

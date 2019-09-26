@@ -8,11 +8,11 @@ import {shot} from "@support/desktop/Screenshots";
 describe('Visual regression tests', () => {
              //sizes.forEach((size) => {
             it('C28681 - главная страница хэдер', () => {
-                cy.wait(2000);
+                cy.wait(1000);
                 shot.screen_headers();
             });
             it('C28682 - купоны и ставки - незареганный пользователь', () => {
-                cy.wait(2000);
+                cy.wait(1000);
                 shot.screen_coupons_and_bets();
     });
             it('C28683 - главная страница хэдер-зареганный пользователь', () => {
@@ -23,13 +23,13 @@ describe('Visual regression tests', () => {
             it('C28684 - Кейсы - Classic', () => {
                 shot.case_button();
                 shot.case_classic();
-                cy.wait(3000);
+                cy.wait(2000);
                 shot.screen_cases();
             });
             it('C28685 - Кейсы - Memes', () => {
                 shot.case_button();
                 shot.case_memes();
-                cy.wait(3000);
+                cy.wait(2000);
                 shot.screen_cases();
             });
             it('C28686 - Казино', () => {
@@ -46,12 +46,10 @@ describe('Visual regression tests', () => {
             });
              it('C28688 - Правила', () => {
                 shot.rules();
-                cy.wait(4000);
                 shot.screen_rules();
             });
                 it('C28689 - Бонусы и акции', () => {
                 shot.bonuses();
-                cy.wait(5000);
                 shot.screen_bonuses();
             });
 });
