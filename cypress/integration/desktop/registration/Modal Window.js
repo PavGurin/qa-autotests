@@ -98,7 +98,7 @@ describe('Modal window', () => {
         auth.login();
         prof.withdrawal('Перевод');
         prof.transfer_assert_disabled();
-        prof.transfer_mail_();
+        prof.transfer_mail('where100@mail.ru');
         prof.transfer_deposit();
         prof.transfer_assert_visible();
         prof.transfer_assert_modal_container();

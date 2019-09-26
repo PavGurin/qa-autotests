@@ -19,20 +19,26 @@ describe('Banking Desktop', () => {
         prof.deposit_change_switch('С мобильного Мегафон');
         prof.deposit_number();
         prof.deposit_number_phone();
+        prof.deposit_button();
+        bank.assert_deposit_desktop();
     });
-    it('C636655 - перевод', function() {
-        auth.login_for_mobile_mail();
-        navReg.click_settings_main_page_for_mobile();
-        cy.contains('Перевод')
-            .click();
-        bank.transfer_for_mobile('1wintesting2@mail.ru');
-        bank.check_notification_valid_transfer_for_mobile();
-        auth.logout_for_mobile2();
-        auth.login_for_mobile_mail2();
-        navReg.click_settings_main_page_for_mobile();
-        cy.contains('Перевод')
-            .click();
-        bank.transfer_for_mobile('1wintesting@mail.ru');
-        bank.check_notification_valid_transfer_for_mobile();
+    it.only('C27095 - перевод', function() {
+        auth.login_mail();
+        prof.withdrawal('Перевод');
+        prof.transfer_mail('1wintesting2@mail.ru');
+        prof.transfer_deposit();
+        prof.transfer_button_click();
+        bank.assert_transfer();
+        navReg.close_modal_windows();
+        auth.logout();
+        auth.login_mail2();
+        prof.withdrawal('Перевод');
+        prof.transfer_mail('1wintesting@mail.ru');
+        prof.transfer_deposit();
+        prof.transfer_button_click();
+        bank.assert_transfer();
+        navReg.close_modal_windows();
+
+
     });
 });

@@ -1,8 +1,7 @@
 //Профиль игрока
-import {navReg} from "@support/desktop/NavReg";
 
 const notification = '.notification-content';
-//let password;
+
 export const prof = {
     // Кнопка "войти в профиль"
     profile_for_mobile() {
@@ -62,6 +61,11 @@ export const prof = {
         cy.get('#main-container > div.modal-wrapper > div > div.modal-container__container > div.modal-container__body > form > div.control > div > input')
             .type('+79215432312');
     },
+    //Внести номер телефона(модальное окно "пополнить")
+    deposit_button() {
+        cy.get('.send-row > .button')
+            .click();
+    },
     //проверка, что кнопка "пополнить" активна
     deposit_assert_visible() {
         cy.get('div.modal-container__body > form > div.send-row > button')
@@ -117,9 +121,9 @@ export const prof = {
             .should('have.text', 'Вывод средств');
     },
     //Ввести почту
-    transfer_mail_() {
+    transfer_mail(mail) {
         cy.get('div.modal-container__container > div.modal-container__body > form > div.control > div > input')
-            .type('where100@mail.ru');
+            .type(mail);
     },
     //проверка модального окна "Перевод средств"
     transfer_assert_modal_container() {
@@ -136,10 +140,15 @@ export const prof = {
         cy.get('div.modal-container__container > div.modal-container__body > form > div.transfer__send-container > button')
             .should('be.visible');
     },
+    //проверка, что кнопка "перевести" активна
+    transfer_button_click() {
+        cy.get('div.modal-container__container > div.modal-container__body > form > div.transfer__send-container > button')
+            .click();
+    },
     //ввести сумму
     transfer_deposit() {
         cy.get('.transfer__send-container > .control > .input-wrapper > .input')
-            .type('1000');
+            .type('20');
     },
     //кнопка "скрыть баланас"
     settings_hidebalance() {

@@ -66,6 +66,38 @@ export const auth = {
         cy.get('.modal-button')
             .click();
     },
+    login_mail() {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get(entry_button, {timeout:15000})
+            .click();
+        // вводим логин/пароль
+        // login_input() {
+        cy.get(login_input,{timeout:15000})
+            .type('1wintesting@mail.ru');
+        // вводим пароль
+        // password_input() {
+        cy.get(password_input)
+            .type('qwerty');
+        // нажимаем кнопку "войти"
+        cy.get('.modal-button')
+            .click();
+    },
+    login_mail2() {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get(entry_button, {timeout:15000})
+            .click();
+        // вводим логин/пароль
+        // login_input() {
+        cy.get(login_input,{timeout:15000})
+            .type('1wintesting2@mail.ru');
+        // вводим пароль
+        // password_input() {
+        cy.get(password_input)
+            .type('qwerty');
+        // нажимаем кнопку "войти"
+        cy.get('.modal-button')
+            .click();
+    },
     login_for_mobile() {
         // нажимаем кнопку 'Войти' со стартовой страницы
         cy.get('#header > div > button.login.control-item.button.sm.default',{timeout:7000})
