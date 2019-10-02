@@ -6,8 +6,6 @@ const available_for_broadcast_element = () => cy
 
 const match_with_translation = () => cy
     .get('div.main-content', {timeout:5000})
-    //.find('.match-translation > .icon > path')
-    //.find('td.match-details')
     .find('td.match-details > div.match-translation')
     .prev('td.match-details > div.match-teams')
     .first();
@@ -16,6 +14,7 @@ const match_with_translation = () => cy
 export const broadcast = {
 //нажать на  кнопку "нажать на кейс новичок"
     search() {
+        cy.get('.matches-block-content').scrollIntoView({ duration: 5000 });
         available_for_broadcast_element()
             .click();
     },

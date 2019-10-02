@@ -46,6 +46,11 @@ export const bank = {
             .should('be.visible')
             .and('have.text', 'Перевод совершен успешно');
     },
+    check_notification_invalid_transfer_for_mobile() {
+        cy.get('#notifications-container')
+            .should('be.visible')
+            .and('have.text', 'Получатель не найден');
+    },
     assert_witdrawal() {
         cy.get('#main-container > div.modal-wrapper > div > div > div.modal-container__container > div.modal-container__body > div > div.forms > form > div.description')
             .should('have.text', 'На Ваш email адрес noGm75@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.');
@@ -55,5 +60,11 @@ export const bank = {
         cy.get(notification)
             .should('visible')
             .and('have.text', 'Средства успешно переведены.');
-    }
+    },
+    wrong_transfer() {
+        // проверяем ошибку и ее текст
+        cy.get(notification)
+            .should('visible')
+            .and('have.text', 'Получатель не найден');
+    },
 };

@@ -2,7 +2,7 @@ export const shot = {
 
     screen_headers() {
         cy.get('#header')
-            .matchImageSnapshot();
+            .toMatchImageSnapshot();
     },
     screen_nav_menu() {
         cy.get('#navigation')
@@ -25,8 +25,8 @@ export const shot = {
             .click();
     },
     screen_cases() {
-        //cy.get('.case-list__list')
-            cy.matchImageSnapshot();
+        cy.get('#main-container > main > article > main > div')
+            .toMatchImageSnapshot({clip: { x: 0, y: 0, width: 1149, height: 500 }});
     },
     screen_cases_for_mobile() {
         cy.get('#cases-list > div.cases-list')
@@ -47,7 +47,7 @@ export const shot = {
     },
     screen_casino() {
         cy.get('#main-container > main > article > aside > main > div')
-            .matchImageSnapshot();
+            .toMatchImageSnapshot();
     },
     line_for_mobile() {
         cy.get('#navigation > section > a:nth-child(3)')
@@ -64,8 +64,8 @@ export const shot = {
             .click();
     },
     screen_rules() {
-        cy.get('body', {timeout:10000})
-            .matchImageSnapshot();
+        //cy.get('#container', {timeout:10000})
+            cy.matchImageSnapshot();
     },
     bonuses() {
         cy.get('#footer > div:nth-child(1) > nav > ul > li:nth-child(4) > a')
@@ -73,19 +73,19 @@ export const shot = {
     },
     screen_bonuses() {
         cy.get('body', {timeout:10000})
-            .matchImageSnapshot();
+            .toMatchImageSnapshot();
     },
     screen_history_bets() {
         cy.get('#main-container > main')
-            .matchImageSnapshot();
+            .toMatchImageSnapshot();
     },
     screen_coupons_and_bets() {
         cy.get('#main-container > main > div > div.aside.aside-right > div')
-            .matchImageSnapshot();
+            .toMatchImageSnapshot();
     },
     screen_cases_inTest() {
         cy.get('#main-container > main > article > main > div')
-            .matchImageSnapshot('Кейсы - Classic');
+            .toMatchImageSnapshot('Кейсы - Classic');
     },
     screen_support_for_mobile() {
         cy.get('#jcont')

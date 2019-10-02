@@ -4,7 +4,7 @@ describe('Result for mobile', () => {
         basicCom.switch_to_mobile();
         cy.viewport(375, 812);
     });
-    it('C502624 - Result', function() {
+    it('C636619 - Result', function() {
         basicCom.result_button_for_mobile();
         basicCom.assert_result_for_mobile();
     });

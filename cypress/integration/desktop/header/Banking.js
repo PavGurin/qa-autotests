@@ -22,7 +22,7 @@ describe('Banking Desktop', () => {
         prof.deposit_button();
         bank.assert_deposit_desktop();
     });
-    it('C27095 - перевод', function() {
+    it('C636602 - перевод', function() {
         auth.login_mail();
         prof.withdrawal('Перевод');
         prof.transfer_mail('1wintesting2@mail.ru');
@@ -38,7 +38,13 @@ describe('Banking Desktop', () => {
         prof.transfer_button_click();
         bank.assert_transfer();
         navReg.close_modal_windows();
-
-
+    });
+    it('C636607 - Перевод не незарегистрированный e-mail ', function() {
+        auth.login_mail();
+        prof.withdrawal('Перевод');
+        prof.transfer_mail('wuqidichbfbdmmc');
+        prof.transfer_deposit();
+        prof.transfer_button_click();
+        bank.wrong_transfer();
     });
 });

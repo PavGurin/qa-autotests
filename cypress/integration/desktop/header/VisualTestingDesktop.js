@@ -14,7 +14,7 @@ describe('Visual regression tests', () => {
             it('C28682 - купоны и ставки - незареганный пользователь', () => {
                 cy.wait(1000);
                 shot.screen_coupons_and_bets();
-    });
+            });
             it('C28683 - главная страница хэдер-зареганный пользователь', () => {
                 auth.login2();
                 cy.wait(1000);
@@ -46,6 +46,8 @@ describe('Visual regression tests', () => {
             });
              it('C28688 - Правила', () => {
                 shot.rules();
+                cy.get()
+                 .matchImageSnapshot();
                 shot.screen_rules();
             });
                 it('C28689 - Бонусы и акции', () => {

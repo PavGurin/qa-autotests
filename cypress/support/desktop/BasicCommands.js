@@ -23,6 +23,10 @@ export const basicCom = {
           .first()
           .click();
     },
+    live_button_for_mobile(){
+        cy.get('#navigation > section > a:nth-child(2)')
+            .click();
+    },
     live_games_button_for_mobile(){
     cy.get('#navigation > section > a:nth-child(5)')
         .click();

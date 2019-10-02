@@ -1,5 +1,6 @@
+import 'cypress-plugin-snapshots/commands';
 import './commands';
-
+import '@percy/cypress';
 beforeEach(function () {
   cy.log('I run before every test in every spec file!!!!!!')
   cy.clearCookies();

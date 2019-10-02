@@ -13,7 +13,6 @@ describe('Banking', () => {
         navReg.click_settings_main_page_for_mobile();
         cy.contains('Вывод')
             .click();
-        auth.repeat_login_for_mobile2();
         bank.withdrawal_visa();
         bank.assert_withdrawal_visa();
     });
@@ -39,5 +38,13 @@ describe('Banking', () => {
             .click();
         bank.transfer_for_mobile('1wintesting@mail.ru');
         bank.check_notification_valid_transfer_for_mobile();
+    });
+    it('C636660 - Перевод на незарегистрированный mail', function() {
+        auth.login_for_mobile_mail();
+        navReg.click_settings_main_page_for_mobile();
+        cy.contains('Перевод')
+            .click();
+        bank.transfer_for_mobile('sdbghfhftras');
+        bank.check_notification_invalid_transfer_for_mobile();
     });
 });

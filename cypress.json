@@ -12,5 +12,9 @@
     "password": "12345678#a",
     "projectId": 5,
     "suiteId": 1
-}
+  },
+  "ignoreTestFiles": [
+      "**/__snapshots__/*",
+      "**/__image_snapshots__/*"
+    ]
 }
