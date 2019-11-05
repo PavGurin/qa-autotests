@@ -8,7 +8,6 @@ describe.skip('Авторизация по social', () => {
         auth.modal_container_enter();
         auth.vk_social_button();
         //navReg.check_vk_reg()
-        cy.screenshot();
         auth.logout();
     });
 });

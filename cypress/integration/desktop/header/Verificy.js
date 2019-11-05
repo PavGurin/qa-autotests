@@ -1,6 +1,6 @@
 import {auth} from "@support/desktop/Authorization";
 import {prof} from "@support/desktop/Profile";
-
+// Данный тест пока не готов
 describe('Verificy', () => {
     it('C674173 - Верификация', function() {
         auth.login_mail();
