@@ -50,6 +50,8 @@
     "ajv": "6.10.2",
     "cypress-image-snapshot": "3.1.1",
     "cypress-plugin-snapshots": "1.2.9",
+    "moment": "2.24.0",
+    "mysql2": "1.7.0",
     "npm-run-all": "^4.1.2",
     "serve": "11.1.0",
     "to-iso-string": "0.0.2"
@@ -60,7 +62,8 @@
     "@percy/cypress": "2.1.1",
     "babel-eslint": "7.2.3",
     "colon-names": "1.0.0",
-    "cypress": "3.4.1",
+    "cypress": "3.6.0",
+    "cypress-file-upload": "3.4.0",
     "cypress-image-snapshot": "^3.1.1",
     "cypress-testrail-accumulative-reporter": "1.1.4",
     "cypress-visual-regression": "^1.0.3",

@@ -43,7 +43,7 @@ describe('Profile Settings', () => {
         prof.set_country_number_phone('Andorra');
         prof.settings_form_numbPhone_Andorra();
         prof.set_country_number_phone('Russia');
-        prof.settings_form_numbPhone();
+        prof.settings_form_numbPhone('921996321');
         prof.settings_mail_disabled();
         prof.settings_form_pass('testerQA');
         prof.click_save_settings();
@@ -67,7 +67,6 @@ describe('Profile Settings', () => {
     it('C16317 - История ставок', function () {
         auth.login2();
         prof.withdrawal('История ставок');
-        prof.bets_history();
         prof.bets_history_notBeEmpty();
     });
     it('C502621 - Рега в 1 клик - почту можно изменить 1 раз ', function () {
@@ -93,6 +92,23 @@ describe('Profile Settings', () => {
         navReg.sign_up();
         prof.withdrawal('Настройки');
         prof.assert_mail_disabled();
-
+    });
+    it('C636770 - Изменить номер телефона на уже существующий', function () {
+        auth.login_mail();
+        prof.withdrawal('Настройки');
+        prof.set_country_number_phone('Russia');
+        prof.settings_form_numbPhone('9213555555');
+        prof.settings_mail_disabled();
+        prof.settings_form_pass('qwerty');
+        prof.click_save_settings();
+        prof.check_change_numberphone();
+    });
+    it('C636771 - Изменить почту на уже существующую', function () {
+        auth.login_for_change_email();
+        prof.withdrawal('Настройки');
+        navReg.set_email('where100@mail.ru');
+        prof.settings_form_pass('744433');
+        prof.click_save_settings();
+        prof.check_error_mail();
     });
 });

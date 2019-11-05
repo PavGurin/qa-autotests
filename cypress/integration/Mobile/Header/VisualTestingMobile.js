@@ -71,7 +71,7 @@ describe('Visual regression tests for mobile', () => {
         prof.profile_for_mobile();
         prof.support_for_mobile();
         cy.wait(1000);
-        cy.get('#jcont_content_wrapper > jdiv:nth-child(2) > jdiv')
+        cy.get('#app')
             .toMatchImageSnapshot();
     });
     it('C390479 - История ставок', () => {
@@ -94,21 +94,21 @@ describe('Visual regression tests for mobile', () => {
         shot.rules_for_mobile();
         cy.wait(1000);
         cy.get('#rules > section:nth-child(3)')
-            .toMatchImageSnapshot();
+            .toMatchImageSnapshot({clip: { x: 0, y: 0, width: 375, height: 700 }});
     });
     it('C390482 - Бонус +200% ', () => {
         shot.bonuses_for_mobile();
         shot.bonus200();
         cy.wait(1000);
         cy.get('#main-layout > div.wrapper.has-tabs')
-        .toMatchImageSnapshot({capture:'fullPage'});
+        .toMatchImageSnapshot({clip: { x: 0, y: 0, width: 375, height: 650 }});
     });
     it('C391797 - Бонус на экспресс', () => {
         shot.bonuses_for_mobile();
         shot.bonus_express();
         cy.wait(1000);
         cy.get('#main-layout > div.wrapper.has-tabs > div > div')
-            .toMatchImageSnapshot({capture:'fullPage'});
+            .toMatchImageSnapshot({clip: { x: 0, y: 0, width: 375, height: 650 }});
     });
     it('C390483 - Доступ к сайту', () => {
         shot.site_access_for_mobile();
@@ -127,6 +127,6 @@ describe('Visual regression tests for mobile', () => {
         basicCom.games_button_for_mobile();
         cy.wait(1000);
         cy.get('#main-layout > div.wrapper > div.body.main-layout-item')
-             .toMatchImageSnapshot({capture:'fullPage'});
+             .toMatchImageSnapshot({clip: { x: 0, y: 0, width: 375, height: 580 }});
     });
 });

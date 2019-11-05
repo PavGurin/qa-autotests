@@ -46,12 +46,12 @@ describe('Visual regression tests', () => {
             });
              it('C28688 - Правила', () => {
                 shot.rules();
-                cy.get()
-                 .matchImageSnapshot();
+                cy.wait(8000);
                 shot.screen_rules();
             });
-                it('C28689 - Бонусы и акции', () => {
+             it('C28689 - Бонусы и акции', () => {
                 shot.bonuses();
+                cy.wait(8000);
                 shot.screen_bonuses();
             });
 });

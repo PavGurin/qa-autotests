@@ -64,8 +64,8 @@ export const shot = {
             .click();
     },
     screen_rules() {
-        //cy.get('#container', {timeout:10000})
-            cy.matchImageSnapshot();
+        cy.get('body',{timeout:10000})
+            .toMatchImageSnapshot();
     },
     bonuses() {
         cy.get('#footer > div:nth-child(1) > nav > ul > li:nth-child(4) > a')

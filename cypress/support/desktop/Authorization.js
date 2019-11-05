@@ -2,20 +2,20 @@
  Методы авторизации
  **/
 const button_registration = '.register-adv__link';
-const user_info = 'div.user-info';
+const user_info = '#header > div.level.header__line.header__line--top > section';
 const entry_button = 'button.button.secondary';
 const login_input = 'input[name=login]';
 const password_input = 'input[name=password]';
-const login_confirm = 'button[type=submit]';
+const login_confirm = '.modal-button';
 const auth_window = 'div.modal-container';
 const logout_question = '.logout-question';
 const notification = '.notification-content';
-const forget_button = '#main-container > div.modal-wrapper > div > div.modal-container__container > div > form > form > div:nth-child(2) > div > button > span';
+const forget_button = '.field > .button > span';
 const email_forget_send = 'div.modal-container__container > div > form > form > div > button';
 const code_operation = ':nth-child(2) > .control > .input-wrapper > .input';
 const new_password =  ':nth-child(3) > .control > .input-wrapper > .input';
 const new_password_repeat =':nth-child(4) > .control > .input-wrapper > .input';
-const modal_login_container = '#main-container > div.modal-wrapper > div > div.modal-container__header';
+const modal_login_container = '.modal-container__header__row__cell__title';
 const vk_social_button = 'div:nth-child(2) > div.socials > img:nth-child(1)';
 const password_recovery = '.modal-container__header__row__cell__title';
 const change_password = ' div:nth-child(5) > button';
@@ -61,7 +61,22 @@ export const auth = {
       // вводим пароль
         // password_input() {
              cy.get(password_input)
-                 .type('testerQA');
+                 .type('qatester');
+        // нажимаем кнопку "войти"
+        cy.get('.modal-button')
+            .click();
+    },
+    login_for_change_email() {
+        // нажимаем кнопку 'Войти' со стартовой страницы
+        cy.get(entry_button, {timeout:15000})
+            .click();
+        // вводим логин/пароль
+        cy.get(login_input,{timeout:15000})
+            .type('cuwn94@1win.xyz');
+        // вводим пароль
+        // password_input() {
+        cy.get(password_input)
+            .type('744433');
         // нажимаем кнопку "войти"
         cy.get('.modal-button')
             .click();
@@ -111,7 +126,7 @@ export const auth = {
         cy.get('div:nth-child(2) > div.input-container > input')
             .type('tk7oqj');
         // нажимаем кнопку "войти"
-        cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
+        cy.get('#modal-container > div > main > div > div > form > div.button-wrapper > button > span')
             .click();
     },
     login_for_mobile2() {
@@ -125,9 +140,9 @@ export const auth = {
         // вводим пароль
         // password_input() {
         cy.get('div:nth-child(2) > div.input-container > input')
-            .type('testerQA');
+            .type('qatester');
         // нажимаем кнопку "войти"
-        cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
+        cy.get('#modal-container > div > main > div > div > form > div.button-wrapper > button > span')
             .click();
     },
     login_for_mobile_mail() {
@@ -143,7 +158,7 @@ export const auth = {
         cy.get('div:nth-child(2) > div.input-container > input')
             .type('qwerty');
         // нажимаем кнопку "войти"
-        cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
+        cy.get('#modal-container > div > main > div > div > form > div.button-wrapper > button > span')
             .click();
     },
     login_for_mobile_mail2() {
@@ -232,7 +247,7 @@ export const auth = {
         cy.get('div:nth-child(2) > div.input-container > input')
             .type(pass);
         // нажимаем кнопку "войти"
-        cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
+        cy.get('#modal-container > div > main > div > div > form > div.button-wrapper > button > span')
             .click();
     },
 
@@ -293,7 +308,7 @@ export const auth = {
     },
     // Проверка модального онка "Установите новый пароль"
     new_password_modal() {
-        cy.get('#main-container > div.modal-wrapper > div > div.modal-container__header')
+        cy.get('.modal-container__header__row__cell__title')
             .should('have.text','Установите новый пароль');
     },
     // невалидная попытка авторизации
@@ -314,7 +329,6 @@ export const auth = {
         cy.get(notification)
             .should('visible')
             .and('have.text', 'Неверный email или пароль');
-        cy.screenshot();
         // проверяем, что пользователь все еще не залогинен
         cy.get(user_info)
             .should('not.exist');
@@ -335,7 +349,7 @@ export const auth = {
         cy.get('div:nth-child(2) > div.input-container > input')
             .type('wrong_password');
         // нажимаем кнопку 'Войти' в меню авторизации
-        cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
+        cy.get('#modal-container > div > main > div > div > form > div.button-wrapper > button > span')
             .click();
         // проверяем ошибку и ее текст
         cy.get('#notifications-container')
@@ -366,9 +380,8 @@ export const auth = {
         cy.get('#header > div > button.login.control-item.button.sm.default')
             .click();
         cy.get(':nth-child(1) > .input-container > .input')
-            .type(mail)
-            .should('have.value', 'where100@mail.ru');
-        cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
+            .type(mail);
+        cy.get('#modal-container > div > main > div > div > form > div.button-wrapper > button > span')
             .click();
     },
     login_empty_mail_for_mobile(){
@@ -398,7 +411,6 @@ export const auth = {
      cy.get(notification)
         .should('be.visible')
         .and('have.text', 'Неверный email или пароль');
-     cy.screenshot();
      },
      // проверяем, что пользователь залогинился
        user_info() {
@@ -454,7 +466,7 @@ export const auth = {
     // Проверяем модальное окно "вход"
     modal_container_enter() {
         cy.get(modal_login_container)
-            .should('have.text','ВходДобро пожаловать в 1WIN' );
+            .should('have.text','Вход' );
     },
     // Жмем "войти с помощью VK"
     vk_social_button() {
@@ -567,9 +579,9 @@ export const auth = {
     },
     // проверяем ошибку и ее текст
     check_notification_invalid_login_for_mobile() {
-        cy.get('#notifications-container')
+        cy.get('.msg')
             .should('be.visible')
-            .and('have.text', 'Bad request, login is invalid');
+            .and('have.text', 'Bad request, password is invalid');
     },
     // закрываем окно "доступ к сайту"
     close_window_site() {

@@ -30,7 +30,7 @@ describe('Опции профиля', () => {
         navReg.click_settings_main_page_for_mobile();
         prof.assert_button_transfer_for_mobile();
     });
-    it('C482805 - История выводов', () => {
+    it('C482805 - Детализация', () => {
         auth.login_for_mobile();
         navReg.click_settings_main_page_for_mobile();
         prof.button_withdrawal_history_for_mobile();

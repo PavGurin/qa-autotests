@@ -7,7 +7,7 @@ describe('Broadcast', () => {
         broadcast.open();
     });
     it('C16622 - Open broadcast on page', function() {
-        auth.login2();
+        auth.login();
         broadcast.open_match();
         broadcast.should_exist();
     });

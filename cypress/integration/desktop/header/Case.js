@@ -6,6 +6,7 @@ describe('Play Case', () => {
         auth.login();
         shot.case_button();
         shot.case_classic();
+        cy.wait(1000);
         cases.choose_case();
         cases.chance_improve_10_percent();
         //проверка , что при выборе увеличителя шанса, меняется и сумма на кнопке

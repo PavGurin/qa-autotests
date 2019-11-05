@@ -12,7 +12,7 @@ describe('Ординар', () => {
         basicCom.live_button_for_mobile();
         bets.bet_ordinar_for_mobile();
     });
-    it('C740704 - Добавление двух купонов по одному матчу - сделать ставку', () => {
+    it.only('C740704 - Добавление двух купонов по одному матчу - сделать ставку', () => {
         auth.login_for_mobile2();
         basicCom.live_button_for_mobile();
         bets.bet_two_ordinar_for_mobile();

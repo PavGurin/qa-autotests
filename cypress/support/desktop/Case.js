@@ -1,7 +1,7 @@
 export const cases = {
 //нажать на  кнопку "кейс новичок"
     choose_case() {
-       cy.get(':nth-child(1) > .case > .case-info > .case-info-wrapper > .case-info-contains')
+       cy.get(':nth-child(1) > .case')
            .click();
 },
     //нажать на  кнопку "кейс новичок"
@@ -52,12 +52,12 @@ export const cases = {
     },
     //Проверка модального окна выигрыша в кейс
     modal_container_case() {
-        cy.get('#main-container > div.modal-wrapper > div > div > div > div.case.df-aic-jcc.fdc.color--5 > div.case-top-wrapper.fdc.df-aic-jcc.color--5 > p',{timeout:15000})
+        cy.get('#app-overlay-wrapper > div > div > div > div > div.case.df-aic-jcc.fdc.color--5 > div.case-top-wrapper.fdc.df-aic-jcc.color--5 > p',{timeout:15000})
             .should('have.text','Вы выиграли');
     },
     //Проверка модального окна выигрыша в кейс
     modal_container_case_for_mobile() {
-        cy.get('#app > div > div.modal-layout-default > main > div > div.text-row',{timeout:15000})
+        cy.get('#modal-container > div > main > div > div.text-row',{timeout:15000})
             .should('have.text','Поздравляем!Вы выиграли');
     },
     //нажать на кнопку открыть снова
@@ -67,17 +67,17 @@ export const cases = {
     },
     //нажать на кнопку открыть кейс
     repeat_open_case_for_mobile() {
-        cy.get('#app > div > div.modal-layout-default > main > div > div.btn-row > button > span')
+        cy.get('#modal-container > div > main > div > div.btn-row > button > span')
             .click();
     },
     //закрываем модальное окно выигрыша, кликая в любое место экрана
     close_modal_container_case() {
-        cy.get('#main-container > div.modal-wrapper > div',{timeout:15000})
+        cy.get('.cases-wrapper',{timeout:10000})
             .click('topRight');
     },
     //закрываем модальное окно выигрыша, кликая в любое место экрана
     close_modal_container_case_for_mobile() {
-        cy.get('#app > div > div.modal-layout-default > main > div > div.close-btn-row > svg')
+        cy.get('#modal-container > div > main > div > div.close-btn-row > svg')
             .click();
     },
     //нажимаем на кнопку "другие кейсы"

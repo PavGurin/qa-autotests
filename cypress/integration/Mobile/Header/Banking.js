@@ -11,9 +11,17 @@ describe('Banking', () => {
     it('C636625 - вывод средств на карту', function() {
         auth.login_for_mobile2();
         navReg.click_settings_main_page_for_mobile();
-        cy.contains('Вывод')
+        cy.contains('Вывести')
             .click();
         bank.withdrawal_visa();
+        bank.assert_withdrawal_visa();
+    });
+    it.only('C636625 - вывод средств на Qiwi', function() {
+        auth.login_for_mobile2();
+        navReg.click_settings_main_page_for_mobile();
+        cy.contains('Вывести')
+            .click();
+        bank.withdrawal_Qiwi();
         bank.assert_withdrawal_visa();
     });
     it('C636650 - пополнение cо счета мегафона', function() {
@@ -27,7 +35,7 @@ describe('Banking', () => {
     it('C636655 - перевод', function() {
         auth.login_for_mobile_mail();
         navReg.click_settings_main_page_for_mobile();
-        cy.contains('Перевод')
+        cy.contains('Перевести')
             .click();
         bank.transfer_for_mobile('1wintesting2@mail.ru');
         bank.check_notification_valid_transfer_for_mobile();
@@ -42,9 +50,9 @@ describe('Banking', () => {
     it('C636660 - Перевод на незарегистрированный mail', function() {
         auth.login_for_mobile_mail();
         navReg.click_settings_main_page_for_mobile();
-        cy.contains('Перевод')
+        cy.contains('Перевести')
             .click();
-        bank.transfer_for_mobile('sdbghfhftras');
+        bank.transfer_for_mobile('sdbghfhftras@mail.ru');
         bank.check_notification_invalid_transfer_for_mobile();
     });
 });
