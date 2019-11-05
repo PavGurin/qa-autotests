@@ -16,7 +16,7 @@ describe('Banking', () => {
         bank.withdrawal_visa();
         bank.assert_withdrawal_visa();
     });
-    it.only('C636625 - вывод средств на Qiwi', function() {
+    it('C636625 - вывод средств на Qiwi', function() {
         auth.login_for_mobile2();
         navReg.click_settings_main_page_for_mobile();
         cy.contains('Вывести')
