@@ -4,7 +4,7 @@ import {basicCom} from "@support/desktop/BasicCommands";
 
 describe('Ставки', () => {
 
-    it.only('C439785 - добавление 2ух купонов по одному матчу - сделать ставку ', () => {
+    it('C439785 - добавление 2ух купонов по одному матчу - сделать ставку ', () => {
         auth.login();
         basicCom.live_button();
         bets.two_bets_in_one_match_series();
