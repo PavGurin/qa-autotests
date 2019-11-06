@@ -88,11 +88,11 @@ export const auth = {
         // вводим логин/пароль
         // login_input() {
         cy.get(login_input,{timeout:15000})
-            .type('1wintesting@mail.ru');
+            .type('1wintesttransfer@ahem.email');
         // вводим пароль
         // password_input() {
         cy.get(password_input)
-            .type('qwerty');
+            .type('qwerty12');
         // нажимаем кнопку "войти"
         cy.get('.modal-button')
             .click();
@@ -104,11 +104,11 @@ export const auth = {
         // вводим логин/пароль
         // login_input() {
         cy.get(login_input,{timeout:15000})
-            .type('1wintesting2@mail.ru');
+            .type('1wintest123@ahem.email');
         // вводим пароль
         // password_input() {
         cy.get(password_input)
-            .type('qwerty');
+            .type('qwerty12');
         // нажимаем кнопку "войти"
         cy.get('.modal-button')
             .click();
@@ -152,11 +152,11 @@ export const auth = {
         // вводим логин/пароль
         // login_input() {
         cy.get(':nth-child(1) > .input-container > .input')
-            .type('1wintesting@mail.ru');
+            .type('1wintest@mail.ru');
         // вводим пароль
         // password_input() {
         cy.get('div:nth-child(2) > div.input-container > input')
-            .type('qwerty');
+            .type('qwerty12');
         // нажимаем кнопку "войти"
         cy.get('#modal-container > div > main > div > div > form > div.button-wrapper > button > span')
             .click();
@@ -168,11 +168,11 @@ export const auth = {
         // вводим логин/пароль
         // login_input() {
         cy.get(':nth-child(1) > .input-container > .input')
-            .type('1wintesting2@mail.ru');
+            .type('1wintest2@mail.ru');
         // вводим пароль
         // password_input() {
         cy.get('div:nth-child(2) > div.input-container > input')
-            .type('qwerty');
+            .type('qwerty12');
         // нажимаем кнопку "войти"
         cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
             .click();

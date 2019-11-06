@@ -32,19 +32,19 @@ describe('Banking', () => {
         bank.deposit_megafon();
         bank.assert_deposit_megafon();
     });
-    it('C636655 - перевод', function() {
+    it.skip('C636655 - перевод', function() {
         auth.login_for_mobile_mail();
         navReg.click_settings_main_page_for_mobile();
         cy.contains('Перевести')
             .click();
-        bank.transfer_for_mobile('1wintesting2@mail.ru');
+        bank.transfer_for_mobile('1wintest2@mail.ru');
         bank.check_notification_valid_transfer_for_mobile();
         auth.logout_for_mobile2();
         auth.login_for_mobile_mail2();
         navReg.click_settings_main_page_for_mobile();
         cy.contains('Перевод')
             .click();
-        bank.transfer_for_mobile('1wintesting@mail.ru');
+        bank.transfer_for_mobile('1wintest@mail.ru');
         bank.check_notification_valid_transfer_for_mobile();
     });
     it('C636660 - Перевод на незарегистрированный mail', function() {

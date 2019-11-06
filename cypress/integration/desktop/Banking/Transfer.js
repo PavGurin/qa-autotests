@@ -2,22 +2,27 @@ import {auth} from "@support/desktop/Authorization";
 import {prof} from "@support/desktop/Profile";
 import {bank} from "@support/desktop/Banking";
 import {navReg} from "@support/desktop/NavReg";
+import {req} from "@support/desktop/Request";
 
 describe('Withdrawal', () => {
     it('C1086851 - RUB - Перевод', function() {
         auth.login_mail();
         prof.withdrawal('Перевод');
-        prof.transfer_mail('1wintesting2@mail.ru');
+        prof.transfer_mail('1wintest123@ahem.email');
         prof.transfer_deposit('20');
         prof.transfer_button_click();
+        req.code_transfer();
+        prof.transfer_apply_click();
         bank.assert_transfer();
         navReg.close_modal_windows();
         auth.logout();
         auth.login_mail2();
         prof.withdrawal('Перевод');
-        prof.transfer_mail('1wintesting@mail.ru');
+        prof.transfer_mail('1wintesttransfer@ahem.email');
         prof.transfer_deposit('20');
         prof.transfer_button_click();
+        req.code_transfer2();
+        prof.transfer_apply_click();
         bank.assert_transfer();
         navReg.close_modal_windows();
     });

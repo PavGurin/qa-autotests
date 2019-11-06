@@ -156,6 +156,92 @@ export const req = {
                         })
                     });
             })},
+    // Восстановление пароля - получение кода операции
+    code_transfer() {
+        cy.request({
+            method: 'POST',
+            url: 'https://www.ahem.email/api/auth/token',
+            form: true,
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            .then((resp) => {
+                token = (resp.body.token);
+                console.log(token);
+                cy.wait(4000);
+                cy.request({
+                    method: 'GET',
+                    url: `https://www.ahem.email/api/mailbox/1wintesttransfer/email`,
+                    form: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        Accept: 'application/json',
+                    }
+                })
+                    .then((resp) => {
+                        mailId = (resp.body[0].emailId);
+                        console.log(mailId);
+                        cy.request({
+                            method: 'GET',
+                            url: `https://www.ahem.email/api/mailbox/1wintesttransfer/email/${mailId}`,
+                            form: true,
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                                Accept: 'application/json',
+                            }
+                        })
+                            .then((resp) => {
+                                const code = resp.body.html.match(/\d\d\d\d\d\d\d(?!\.|\$|₽|€|@)/)[0];
+                                cy.get('div:nth-child(2) > div > div > input')
+                                    .type(code);
+                            })
+                    });
+            })},
+    // Восстановление пароля - получение кода операции
+    code_transfer2() {
+        cy.request({
+            method: 'POST',
+            url: 'https://www.ahem.email/api/auth/token',
+            form: true,
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            .then((resp) => {
+                token = (resp.body.token);
+                console.log(token);
+                cy.wait(4000);
+                cy.request({
+                    method: 'GET',
+                    url: `https://www.ahem.email/api/mailbox/1wintest123/email`,
+                    form: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        Accept: 'application/json',
+                    }
+                })
+                    .then((resp) => {
+                        mailId = (resp.body[0].emailId);
+                        console.log(mailId);
+                        cy.request({
+                            method: 'GET',
+                            url: `https://www.ahem.email/api/mailbox/1wintest123/email/${mailId}`,
+                            form: true,
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                                Accept: 'application/json',
+                            }
+                        })
+                            .then((resp) => {
+                                const code = resp.body.html.match(/\d\d\d\d\d\d\d(?!\.|\$|₽|€|@)/)[0];
+                                cy.get('div:nth-child(2) > div > div > input')
+                                    .type(code);
+                            })
+                    });
+            })},
 };
 
 

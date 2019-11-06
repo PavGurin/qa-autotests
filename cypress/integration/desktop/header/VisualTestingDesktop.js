@@ -49,7 +49,7 @@ describe('Visual regression tests', () => {
                 cy.wait(8000);
                 shot.screen_rules();
             });
-             it('C28689 - Бонусы и акции', () => {
+             it.skip('C28689 - Бонусы и акции', () => {
                 shot.bonuses();
                 cy.wait(8000);
                 shot.screen_bonuses();

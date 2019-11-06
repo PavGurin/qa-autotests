@@ -67,6 +67,11 @@ export const prof = {
         cy.get(':nth-child(3) > .input-wrapper > .input')
             .type('+79215432312');
     },
+    //Внести номер телефона(модальное окно "вывести")
+    number_phone(phone) {
+        cy.get(':nth-child(3) > .control > .input-wrapper > .input')
+            .type(phone);
+    },
     //Внести номер телефона(модальное окно "пополнить")
     deposit_button() {
         cy.get('.send-row > .button')
@@ -158,9 +163,12 @@ export const prof = {
         cy.get('div.modal-container__container > div.modal-container__body > form > div.transfer__send-container > button')
             .should('be.visible');
     },
-    //проверка, что кнопка "перевести" активна
     transfer_button_click() {
         cy.get('div.modal-container__container > div.modal-container__body > form > div.transfer__send-container > button')
+            .click();
+    },
+    transfer_apply_click() {
+        cy.get('.transfer__send-container > .button > span')
             .click();
     },
     //ввести сумму

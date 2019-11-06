@@ -2,7 +2,7 @@ import {auth} from "@support/desktop/Authorization";
 import {shot} from "@support/desktop/Screenshots";
 import {cases} from "@support/desktop/Case";
 describe('Play Case', () => {
-    it('C521875 - Case "Новичок"', function() {
+    it('C636473 - Case "Новичок"', function() {
         auth.login();
         shot.case_button();
         shot.case_classic();
@@ -21,7 +21,7 @@ describe('Play Case', () => {
         cases.button_open_case();
         cases.modal_container_case();
     });
-    it('C521876 - Кнопка "сыграть снова" ', function() {
+    it('C636486 - Кнопка "сыграть снова" ', function() {
         auth.login();
         shot.case_button();
         shot.case_classic();

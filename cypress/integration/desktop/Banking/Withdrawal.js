@@ -31,4 +31,28 @@ describe('Withdrawal', () => {
         prof.withdrawal_button();
         bank.assert_witdrawal();
     });
+    it('C1573891- EUR - вывод средств на Qiwi ', function() {
+        auth.login();
+        prof.withdrawal('Вывод средств');
+        cy.contains('EUR')
+            .click();
+        prof.deposit_change();
+        prof.deposit_change_switch('QIWI-кошелек');
+        prof.number_phone('+79993454343');
+        prof.withdrawal_number_EUR();
+        prof.withdrawal_button();
+        bank.assert_witdrawal();
+    });
+    it('C1573890- USD - вывод средств на Qiwi ', function() {
+        auth.login();
+        prof.withdrawal('Вывод средств');
+        cy.contains('USD')
+            .click();
+        prof.deposit_change();
+        prof.deposit_change_switch('QIWI-кошелек');
+        prof.number_phone('+79993454343');
+        prof.withdrawal_number_EUR();
+        prof.withdrawal_button();
+        bank.assert_witdrawal();
+    });
 });
