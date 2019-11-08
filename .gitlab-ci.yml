@@ -48,7 +48,7 @@ install:
     - $(npm bin)/print-env CI
     # run Cypress test in load balancing mode
     - npm run e2e:chrome
-  retry: 2
+    # retry: 2 Laungh test 2 time
 
   artifacts:
     when: on_success
@@ -56,6 +56,7 @@ install:
       #      - cypress/videos/**/*.mp4
       - cypress/screenshots/**/*.png
     expire_in: 1 day
+  allow_failure: true
 #  tags:
 #    - docker
 
