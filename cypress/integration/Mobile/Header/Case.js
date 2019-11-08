@@ -11,8 +11,6 @@ describe('Play Case', () => {
         cases.open_for_mobile();
         cases.choose_case_for_mobile();
         cases.button_open_case_for_mobile();
-        //ждем, пока прокрутится кейс
-        cy.wait(7000);
         cases.modal_container_case_for_mobile();
     });
     it('C471385 - кнопка "сыграть снова" ', function() {
@@ -20,12 +18,8 @@ describe('Play Case', () => {
         cases.open_for_mobile();
         cases.choose_case_for_mobile();
         cases.button_open_case_for_mobile();
-        //ждем, пока прокрутится кейс
-        cy.wait(7000);
         cases.modal_container_case_for_mobile();
         cases.repeat_open_case_for_mobile();
-        //ждем, пока прокрутится кейс, до появления модалки выигрыша
-        cy.wait(7000);
         cases.modal_container_case_for_mobile();
         cases.close_modal_container_case_for_mobile();
         cases.assert_case_for_mobile();

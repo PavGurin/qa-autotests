@@ -20,7 +20,6 @@ describe('Modal window', () => {
         navReg.set_social_network('Одноклассники');
         navReg.set_social_network('Google');
         navReg.add_promocode('test001');
-        navReg.close_promocode();
         text.text_ru_rule_reg();
         navReg.accept_agreement();
         navReg.register_next_assert_visible();
@@ -68,11 +67,11 @@ describe('Modal window', () => {
     it('C27800 - Modal window Deposit', function() {
         auth.login();
         prof.deposit();
-        prof.deposit_assert();
+        //prof.deposit_assert();
         prof.deposit_change();
         prof.deposit_change_switch('Ethereum');
         prof.deposit_number();
-        prof.deposit_assert_visible();
+        prof.deposit_assert_disabled();
         prof.deposit_assert_modal_container();
         navReg.close_modal_windows();
         auth.logout();
@@ -98,15 +97,15 @@ describe('Modal window', () => {
         auth.login();
         prof.withdrawal('Перевод');
         prof.transfer_assert_disabled();
-        prof.transfer_mail_();
-        prof.transfer_deposit();
+        prof.transfer_mail('where100@mail.ru');
+        prof.transfer_deposit('20');
         prof.transfer_assert_visible();
         prof.transfer_assert_modal_container();
         navReg.close_modal_windows();
         auth.logout();
     });
     it('C27803 - Modal window settings', function() {
-        auth.login();
+        auth.login2();
         prof.withdrawal('Настройки');
         prof.settings_hidebalance();
         prof.settings_form();
