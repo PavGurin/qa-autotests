@@ -16,7 +16,7 @@ describe('Banking', () => {
         bank.withdrawal_visa();
         bank.assert_withdrawal_visa();
     });
-    it('C636625 - вывод средств на Qiwi', function() {
+    it('C636629 - вывод средств на Qiwi', function() {
         auth.login_for_mobile2();
         navReg.click_settings_main_page_for_mobile();
         cy.contains('Вывести')
@@ -48,7 +48,7 @@ describe('Banking', () => {
         bank.check_notification_valid_transfer_for_mobile();
     });
     it('C636660 - Перевод на незарегистрированный mail', function() {
-        auth.login_for_mobile_mail();
+        auth.login_for_mobile2();
         navReg.click_settings_main_page_for_mobile();
         cy.contains('Перевести')
             .click();

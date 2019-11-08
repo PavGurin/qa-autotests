@@ -1,8 +1,8 @@
-const notification = '.notification-content';
+const notification = '.notification-item';
 export const bank = {
     // visa
     withdrawal_visa() {
-        cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payments > div.payments-header > button > span')
+        cy.get('.payments-row > :nth-child(1) > .button-content')
             .click();
         cy.get(':nth-child(1) > .input-container > .input')
             .type('4276534242213219');
@@ -13,7 +13,7 @@ export const bank = {
     },
     // visa
     withdrawal_Qiwi() {
-        cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payments > div.payments-row > button:nth-child(1) > span')
+        cy.get('.payments-row > :nth-child(2) > .button-content')
             .click();
         cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div:nth-child(1) > div.input-container > input')
             .type('+79213453232');

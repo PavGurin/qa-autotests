@@ -31,7 +31,7 @@ export const req = {
     .then((resp) => {
         token = (resp.body.token);
         console.log(token);
-        cy.wait(6000);
+        cy.wait(7000);
         cy.request({
             method: 'GET',
             url: `https://www.ahem.email/api/mailbox/${mail}/email`,

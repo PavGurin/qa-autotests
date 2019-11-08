@@ -6,7 +6,7 @@ export const games = {
     },
     //нажать на кнопку "играть"
     play_games() {
-        cy.get('#main-container > main > div > div > div:nth-child(1) > div > div.preview > div > button.button.play-button')
+        cy.get(':nth-child(1) > .game > .preview > .buttons-container')
             .click();
     },
     //проверить, что окно игры активно

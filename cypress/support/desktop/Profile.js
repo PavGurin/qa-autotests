@@ -1,6 +1,6 @@
 //Профиль игрока
 
-const notification = '.notification-content';
+const notification = '.notification-item';
 
 export const prof = {
     // Кнопка "войти в профиль"
@@ -145,7 +145,7 @@ export const prof = {
     },
     //Ввести почту
     transfer_mail(mail) {
-        cy.get('div.modal-container__container > div.modal-container__body > form > div.control > div > input')
+        cy.get(':nth-child(2) > .input-wrapper > .input')
             .type(mail);
     },
     //проверка модального окна "Перевод средств"
@@ -204,7 +204,7 @@ export const prof = {
         cy.get('div.country-select.row > div > div > div > div')
             .click();
         cy.get('div.modal-container__container > div > form > div.field > div > div > input')
-            .type('testerQA');
+            .type('qwerty12');
         cy.get('div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input')
             .clear()
             .type('905999888700');

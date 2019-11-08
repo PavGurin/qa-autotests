@@ -9,7 +9,7 @@ const randomNum = Math.floor(Math.random() * 9999999) + 1;
 //let password;
 describe('Profile Settings', () => {
     it('C16311 - Modal window settings', function () {
-        auth.login2();
+        auth.login_mail();
         cy.wait(1000);
         prof.withdrawal('Настройки');
         prof.settings_form();
@@ -19,33 +19,33 @@ describe('Profile Settings', () => {
     });
 
     it('C16312 - Change name', function () {
-        auth.login2();
+        auth.login_mail();
         prof.withdrawal('Настройки');
         prof.settings_form_name_2or16_symbols();
         prof.settings_form_name('testPass_' + randomStr);
         prof.settings_mail_disabled();
-        prof.settings_form_pass('testerQA');
+        prof.settings_form_pass('qwerty12');
         prof.click_save_settings();
         prof.check_change_settings();
     });
     it('C16313 - Change date of birthday', function () {
-        auth.login2();
+        auth.login_mail();
         prof.withdrawal('Настройки');
         prof.settings_form_birthday();
         prof.settings_mail_disabled();
-        prof.settings_form_pass('testerQA');
+        prof.settings_form_pass('qwerty12');
         prof.click_save_settings();
         prof.check_change_settings();
     });
     it('C16314 - Change number phone', function () {
-        auth.login2();
+        auth.login_mail();
         prof.withdrawal('Настройки');
         prof.set_country_number_phone('Andorra');
         prof.settings_form_numbPhone_Andorra();
         prof.set_country_number_phone('Russia');
         prof.settings_form_numbPhone('921996321');
         prof.settings_mail_disabled();
-        prof.settings_form_pass('testerQA');
+        prof.settings_form_pass('qwerty12');
         prof.click_save_settings();
         prof.check_change_settings();
     });
@@ -53,8 +53,8 @@ describe('Profile Settings', () => {
         auth.login_with_new_pass_settings('qwerty');
         prof.withdrawal('Настройки');
         prof.settings_form_newpass();
-        prof.click_save_settings();
-        prof.new_pass_wrong();
+        //prof.click_save_settings();
+        //prof.new_pass_wrong();
         prof.correct_pass();
         prof.click_save_settings();
         prof.check_change_settings();
@@ -99,7 +99,7 @@ describe('Profile Settings', () => {
         prof.set_country_number_phone('Russia');
         prof.settings_form_numbPhone('9213555555');
         prof.settings_mail_disabled();
-        prof.settings_form_pass('qwerty');
+        prof.settings_form_pass('qwerty12');
         prof.click_save_settings();
         prof.check_change_numberphone();
     });

@@ -327,11 +327,11 @@ export const navReg = {
     check_sign_up_for_mobile(userName) {
         cy.get('#header > div > div > div.control-item > button > span')
             .click();
-        cy.get('#header > div > div > div.balance > div.balance-value')
+        cy.get('.balance-value')
             .should('have.text', userName);
     },
     check_sign_up_for_mobile_without_enter(userName) {
-        cy.get('#header > div > div > div.balance > div.balance-value')
+        cy.get('.balance-value')
             .should('have.text', userName);
     },
     //кнопка - "Войти в профиль с главной страницы"
@@ -443,5 +443,17 @@ export const navReg = {
     assert_logout_for_mobile(){
         cy.get('#header > div > div > div.balance')
             .should('not.exist');
+    },
+    choose_wallet_for_mobile(){
+        cy.get('#reg-one-click > form > div:nth-child(2) > div > div > label')
+            .click();
+    },
+    currency_USD_for_mobile(){
+        cy.get('#modal-container > section > main > section > form > label:nth-child(3)')
+            .click();
+    },
+    assert_currency_USD_for_mobile(){
+        cy.get('#header > div > div > div.balance > div')
+            .should('have.text', 'Баланс0,00 $')
     },
 };
