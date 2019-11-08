@@ -2,7 +2,7 @@ export const shot = {
 
     screen_headers() {
         cy.get('#header')
-            .matchImageSnapshot();
+            .toMatchImageSnapshot();
     },
     screen_nav_menu() {
         cy.get('#navigation')
@@ -25,8 +25,8 @@ export const shot = {
             .click();
     },
     screen_cases() {
-        cy.get('#main-container > div.content-wrapper > div > div > div.main-content')
-            .matchImageSnapshot();
+        cy.get('#main-container > main > article > main > div')
+            .toMatchImageSnapshot({clip: { x: 0, y: 0, width: 1149, height: 500 }});
     },
     screen_cases_for_mobile() {
         cy.get('#cases-list > div.cases-list')
@@ -46,8 +46,8 @@ export const shot = {
             .click();
     },
     screen_casino() {
-        cy.get('#main-container > div.content-wrapper > div > section > div > aside')
-            .matchImageSnapshot();
+        cy.get('#main-container > main > article > aside > main > div')
+            .toMatchImageSnapshot();
     },
     line_for_mobile() {
         cy.get('#navigation > section > a:nth-child(3)')
@@ -64,28 +64,28 @@ export const shot = {
             .click();
     },
     screen_rules() {
-        cy.get('body')
-            .matchImageSnapshot();
+        cy.get('body',{timeout:10000})
+            .toMatchImageSnapshot();
     },
     bonuses() {
         cy.get('#footer > div:nth-child(1) > nav > ul > li:nth-child(4) > a')
             .click();
     },
     screen_bonuses() {
-        cy.get('body')
-            .matchImageSnapshot();
+        cy.get('body', {timeout:10000})
+            .toMatchImageSnapshot();
     },
     screen_history_bets() {
-        cy.get('#main-container > div.content-wrapper > div > div')
-            .matchImageSnapshot();
+        cy.get('#main-container > main')
+            .toMatchImageSnapshot();
     },
     screen_coupons_and_bets() {
-        cy.get('#main-container > div.content-wrapper > div > div > div.aside.aside-right > div')
-            .matchImageSnapshot();
+        cy.get('#main-container > main > div > div.aside.aside-right > div')
+            .toMatchImageSnapshot();
     },
     screen_cases_inTest() {
-        cy.get('#main-container > div.content-wrapper > div > div > div.main-content')
-            .matchImageSnapshot('Кейсы - Classic');
+        cy.get('#main-container > main > article > main > div')
+            .toMatchImageSnapshot('Кейсы - Classic');
     },
     screen_support_for_mobile() {
         cy.get('#jcont')

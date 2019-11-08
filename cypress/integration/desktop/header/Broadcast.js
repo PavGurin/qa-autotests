@@ -1,18 +1,24 @@
 import {auth} from "@support/desktop/Authorization";
 import {broadcast} from "@support/desktop/Broadcast";
-describe('Profile Settings', () => {
-    it('C16317 - Open broadcast', function() {
+import {basicCom} from "@support/desktop/BasicCommands";
+describe('Broadcast', () => {
+    it('C16620 - Open broadcast', function() {
         auth.login();
+        basicCom.live_button();
         broadcast.search();
         broadcast.open();
     });
     it('C16622 - Open broadcast on page', function() {
-        auth.login2();
+        auth.login();
+        basicCom.live_button();
+        cy.wait(3000);
         broadcast.open_match();
         broadcast.should_exist();
     });
     it('C16625 - Close broadcast', function() {
         auth.login();
+        basicCom.live_button();
+        cy.wait(3000);
         broadcast.search();
         broadcast.open();
         broadcast.close_match();
@@ -20,6 +26,8 @@ describe('Profile Settings', () => {
     });
     it('C16626 - Move broadcast', function() {
         auth.login();
+        basicCom.live_button();
+        cy.wait(3000);
         broadcast.search();
         broadcast.open();
         broadcast.moving_container();

@@ -19,9 +19,17 @@ export const basicCom = {
     // switch to mobile version
     switch_to_mobile(){
         // click mobile version button
-        cy.get('div:nth-child(2) > svg')
+        cy.get('div:nth-child(2) > svg',{timeout:6000})
           .first()
           .click();
+    },
+    live_button_for_mobile(){
+        cy.get('#navigation > section > a:nth-child(2)')
+            .click();
+    },
+    live_button(){
+        cy.get('.navigation > .level > .level-left > :nth-child(2)')
+            .click();
     },
     live_games_button_for_mobile(){
     cy.get('#navigation > section > a:nth-child(5)')
@@ -39,4 +47,31 @@ export const basicCom = {
         cy.get('#navigation > section > a.menu-bar-item.router-link-exact-active.router-link-active.active')
             .should('have.text', 'Main');
     },
+    result_button(){
+        cy.get('a:nth-child(8) > div > div.item-text')
+            .click();
+    },
+    assert_result(){
+        cy.get('#main-container > div.content-wrapper > div > div > div.main-content > div')
+            .should('not.to.be.empty');
+    },
+    result_button_for_mobile(){
+        cy.get('#navigation > section > a:nth-child(2)')
+            .click();
+        cy.get('#navigation > section > a:nth-child(3)')
+            .click();
+        cy.get('#results > section > header > a')
+            .click();
+    },
+    assert_result_for_mobile(){
+        cy.get('#results-last > ul')
+            .should('not.to.be.empty');
+    },
+    bonus_main_page(){
+        cy.get('#header > div.level.header__line.header__line--top > section > div.dropdown.bonus-container.align-center > div > p')
+            .click();
+         cy.get('.bonus-info-message')
+            .should('have.text','Делайте ординарные ставки с коэффициентом больше 3 и получайте деньги с бонусного счета в размере 5% от суммы выигранной ставки!');
+    },
+
 };

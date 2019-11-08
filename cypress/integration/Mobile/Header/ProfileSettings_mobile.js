@@ -72,7 +72,7 @@ describe('Profile Settings', () => {
         navReg.set_email_register_for_mobile(`${randomStr}test@xyz.com`);
         navReg.set_pwd_for_mobile('111111');
         navReg.repeat_pwd_for_mobile('111111');
-        navReg.set_phone_numb_for_mobile(`921${randomNum}`);
+        navReg.set_phone_numb_for_mobile(`911${randomNum}`);
         navReg.accept_agreement_by_email_for_mobile();
         navReg.sign_up_for_mobile();
         navReg.click_settings_main_page_for_mobile();

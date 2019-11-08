@@ -4,26 +4,37 @@
 import {auth} from "@support/desktop/Authorization";
 
 const password_input = '.input[name=password]';
-const new_password = ':nth-child(2) > .control > .input-wrapper > .input';
+const new_password = ':nth-child(3) > .input-wrapper > .input';
 const close_modal_windows = '.modal-container__header__row > :nth-child(2) > .icon';
 
 export const navReg = {
 
     // registration button
     click_register() {
-        cy.get('.level-item > .green')
+        cy.get('#header > div.level.header__line.header__line--top > div.level-right.gap-md.expanded > div:nth-child(2) > button',{timeout:10000})
             .click();
     },
-
+    change_currency_EUR() {
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div.dropdown.currency-select.row.align-left > div > div > div.currency-selected > span.currency-selected-name')
+        .click();
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div.dropdown.currency-select.row.align-left > div.dropdown-menu > div > div:nth-child(2) > span.currency-name')
+        .click();
+    },
+    change_currency_USD() {
+        cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div.dropdown.currency-select.row.align-left > div > div > div.currency-selected > span.currency-selected-name')
+            .click();
+        cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div.dropdown.currency-select.row.align-left > div.dropdown-menu > div > div:nth-child(3) > span.currency-name')
+            .click();
+    },
     // registration button на мобильной версии
     click_register_for_mobile() {
-        cy.get('#header > div > button.registration.control-item.button.sm.success')
+        cy.get('#header > div > button.registration.control-item.button.sm.success',{timeout:10000})
             .click();
     },
 
     // radio button 'User Agreement of usage'
     accept_agreement() {
-        cy.get('span.checkmark')
+        cy.get('.rules-accept-checkmark')
             .click();
     },
     // radio button 'User Agreement of usage'
@@ -39,7 +50,7 @@ export const navReg = {
 
     // sign up button
     sign_up() {
-        cy.get('.button-container > .button')
+        cy.get('.register-footer > .button')
             .click();
     },
     sign_up_for_mobile() {
@@ -48,18 +59,18 @@ export const navReg = {
     },
 
     sign_up_check(){
-        cy.get('.button-container > .button')
+        cy.get('.register-footer > .button')
             .should('be.visible');
     },
 
     // close window with new user's login/pass
     close_new_user_info() {
-        cy.get('.modal-container__header__row__cell__overlay')
+        cy.get('#app-overlay-wrapper > div > div > div.modal-container__header > div:nth-child(1) > div:nth-child(2)')
             .click();
     },
     // close window with new user's login/pass
     close_new_user_info_for_mobile() {
-        cy.get('#app > div > div.modal-layout-default > header > div.controls > button')
+        cy.get('.close > .icon')
             .click();
     },
 
@@ -71,22 +82,22 @@ export const navReg = {
 
     // enter promocode
     add_promocode(promocode) {
-        cy.get('.add_promocode')
+        cy.get('.promocode-add-button > span')
             .click()
             .get('.field > .control > .input-wrapper > .input')
             .type(promocode);
     },
     // enter promocode
     add_promocode_for_mobile(promocode) {
-        cy.get('#reg-one-click > form > div:nth-child(2) > div > button > span')
+        cy.get('#reg-one-click > form > div:nth-child(3) > div > button > span > span')
             .click()
             .get('.promo-code > .control > .input-container > .input')
             .type(promocode);
     },
     add_promocode_by_email_for_mobile(promocode) {
-        cy.get('#reg-full > form > div:nth-child(8) > div > button > span')
+        cy.get('.button-content > span')
             .click()
-            .get('#reg-full > form > div:nth-child(8) > div > div > div.input-container > input')
+            .get('.promo-code > .control > .input-container > .input')
             .type(promocode);
     },
     // закрыть (нажать крестик) поле промокода
@@ -100,6 +111,10 @@ export const navReg = {
             .click()
             .get('div.dropdown-item span')
             .contains(country)
+            .click();
+            cy.get('.trigger')
+            .click();
+        cy.get('.trigger')
             .click();
     },
     // select country from registration page
@@ -157,6 +172,12 @@ export const navReg = {
 
     // email form - email
     set_email(email) {
+        cy.get(':nth-child(5)>.input-wrapper > .input')
+            .clear()
+            .type(email);
+    },
+    // email form - email
+    set_email2(email) {
         cy.get('.input-wrapper > .input')
             .type(email);
     },
@@ -287,7 +308,6 @@ export const navReg = {
                 expect(password).not.to.be.empty;
 
                 cy.log(`Логин - ${login}, Пароль - ${password}`);
-                cy.screenshot();
             });
     },
     check_reg_result_for_mobile() {
@@ -301,18 +321,17 @@ export const navReg = {
     check_sign_up(userName) {
         cy.get('div.modal-container')
             .should('not.exist');
-        cy.get('.user-name > span')
+        cy.get('#header > div.level.header__line.header__line--top > section > div:nth-child(1) > div > p')
             .should('have.text', userName);
-        cy.screenshot();
     },
     check_sign_up_for_mobile(userName) {
         cy.get('#header > div > div > div.control-item > button > span')
             .click();
-        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div.block.top > div.top__username')
+        cy.get('.balance-value')
             .should('have.text', userName);
     },
     check_sign_up_for_mobile_without_enter(userName) {
-        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div.block.top > div.top__username')
+        cy.get('.balance-value')
             .should('have.text', userName);
     },
     //кнопка - "Войти в профиль с главной страницы"
@@ -332,27 +351,27 @@ export const navReg = {
     },
     //проверка модального окна "Регистрация"
     register_assert_modal_container() {
-        cy.get('#main-container > div.modal-wrapper > div > div.modal-container__header')
+        cy.get('#app-overlay-wrapper > div > div > div.modal-container__header > div > div:nth-child(1) > div')
             .should('have.text', 'Регистрация');
     },
     // Проверка, что кнопка "Зарегистрироваться"(внутри модального окна) неактивна
     register_assert_disabled() {
-        cy.get('div.button-container > button')
+        cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > footer > button')
             .should('be.disabled');
     },
     //проверка, что кнопка "Зарегистрироваться" активна
     register_assert_visible() {
-        cy.get('div.button-container > button')
+        cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > footer > button')
             .should('be.visible');
     },
     // Проверка, что кнопка "далее"(внутри модального окна регистрция-соц.сети) неактивна
     register_next_assert_disabled() {
-        cy.get('div.button-container > button')
+        cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > footer > button')
             .should('be.disabled');
     },
     //проверка, что кнопка "Зарегистрироваться" активна
     register_next_assert_visible() {
-        cy.get('div.button-container > button')
+        cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > footer > button')
             .should('be.visible');
     },
     //проверка модального окна "Приложение iOS"
@@ -415,5 +434,26 @@ export const navReg = {
     clear_mail_for_mobile(){
         cy.get('#reg-full > form > div:nth-child(5) > div > div.input-container > input')
             .clear();
+    },
+
+    assert_login_for_mobile(){
+        cy.get('#header > div > div > div.balance')
+            .should('exist');
+    },
+    assert_logout_for_mobile(){
+        cy.get('#header > div > div > div.balance')
+            .should('not.exist');
+    },
+    choose_wallet_for_mobile(){
+        cy.get('#reg-one-click > form > div:nth-child(2) > div > div > label')
+            .click();
+    },
+    currency_USD_for_mobile(){
+        cy.get('#modal-container > section > main > section > form > label:nth-child(3)')
+            .click();
+    },
+    assert_currency_USD_for_mobile(){
+        cy.get('#header > div > div > div.balance > div')
+            .should('have.text', 'Баланс0,00 $')
     },
 };

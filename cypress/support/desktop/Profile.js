@@ -1,5 +1,7 @@
 //Профиль игрока
-const notification = '.notification-content';
+
+const notification = '.notification-item';
+
 export const prof = {
     // Кнопка "войти в профиль"
     profile_for_mobile() {
@@ -8,7 +10,7 @@ export const prof = {
     },
     // служба поддержки
     support_for_mobile() {
-        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(1) > div > div')
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > div > div')
             .click();
     },
     // история ставок
@@ -18,12 +20,12 @@ export const prof = {
     },
     // настройки в моб.версии
     settings_for_mobile() {
-        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(1) > a')
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(5)')
             .click();
     },
     // Кнопка "пополнить"
     deposit() {
-        cy.get('.level-center > :nth-child(2) > .button > span')
+        cy.get('.header-user-menu > .button > span')
             .click();
     },
     // Проверка, что кнопка "пополнить"(внутри модального окна) неактивна
@@ -46,19 +48,46 @@ export const prof = {
     },
     // Ввести номер карты
     credit_card_number() {
-        cy.get(':nth-child(2) > .control > .input-wrapper > .input')
-            .type('55504321554321');
+        cy.get(':nth-child(3) > .control > .input-wrapper > .input')
+            .type('4276554443216987');
     },
-    //Внести сумму(модальное окно "пополнить"
+    // Ввести номер карты
+    credit_card_deposit_number() {
+        cy.get(':nth-child(3) > .input-wrapper > .input')
+            .type('4276554443216987');
+    },
+    //Внести сумму(модальное окно "пополнить")
     deposit_number() {
         cy.get('.send-row > .control > .input-wrapper > .input')
+            .clear()
             .type('750');
+    },
+    //Внести номер телефона(модальное окно "пополнить")
+    deposit_number_phone() {
+        cy.get(':nth-child(3) > .input-wrapper > .input')
+            .type('+79215432312');
+    },
+    //Внести номер телефона(модальное окно "вывести")
+    number_phone(phone) {
+        cy.get(':nth-child(3) > .control > .input-wrapper > .input')
+            .type(phone);
+    },
+    //Внести номер телефона(модальное окно "пополнить")
+    deposit_button() {
+        cy.get('.send-row > .button')
+            .click();
+    },
+    //проверка, что кнопка "пополнить" активна
+    deposit_assert_disabled() {
+        cy.get('#app-overlay-wrapper > div > div > div > div.modal-container__container > div.modal-container__body > form > div.send-row > button')
+            .should('be.disabled');
     },
     //проверка, что кнопка "пополнить" активна
     deposit_assert_visible() {
-        cy.get('div.modal-container__body > form > div.send-row > button')
+        cy.get('#app-overlay-wrapper > div > div > div > div.modal-container__container > div.modal-container__body > form > div.send-row > button')
             .should('be.visible');
     },
+
     //проверка модального окна "Пополнение"
     deposit_assert_modal_container() {
         cy.get('.modal-container__header__row__cell__title')
@@ -66,7 +95,7 @@ export const prof = {
     },
     //вывод средств
     withdrawal(text) {
-        cy.get('.user-name > span')
+        cy.get('#header > div.level.header__line.header__line--top > section > div:nth-child(1) > div > p > span')
             .trigger("mouseover");
         cy.get('.dropdown-content')
             .contains(text)
@@ -80,17 +109,29 @@ export const prof = {
     //проверка модального окна "Вывод средств"
     withdrawal_history_modal_container() {
         cy.get('div:nth-child(2) > div.modal-container__header')
-            .should('have.text', 'История выводов');
+            .should('have.text', 'Детализация');
     },
     //Внести сумму(модальное окно "Вывод")
     withdrawal_number_() {
-        cy.get(':nth-child(3) > .control > .input-wrapper > .input')
+        cy.get(':nth-child(4) > .control > .input-wrapper > .input')
             .type('750');
+    },
+    //Внести сумму(модальное окно "Вывод")
+    withdrawal_number_EUR() {
+        cy.get(':nth-child(4) > .control > .input-wrapper > .input')
+            .clear()
+            .type('10');
     },
     // Проверка, что кнопка "вывести"(внутри модального окна) неактивна
     withdrawal_assert_disabled() {
         cy.get('div:nth-child(3) > button')
             .should('be.disabled');
+    },
+    //проверка, что кнопка "пополнить" активна
+    withdrawal_button() {
+        cy.get(':nth-child(4) > .button > span')
+            .first()
+            .click();
     },
     //проверка, что кнопка "пополнить" активна
     withdrawal_assert_visible() {
@@ -103,9 +144,9 @@ export const prof = {
             .should('have.text', 'Вывод средств');
     },
     //Ввести почту
-    transfer_mail_() {
-        cy.get('div.modal-container__container > div.modal-container__body > form > div.control > div > input')
-            .type('where100@mail.ru');
+    transfer_mail(mail) {
+        cy.get(':nth-child(2) > .input-wrapper > .input')
+            .type(mail);
     },
     //проверка модального окна "Перевод средств"
     transfer_assert_modal_container() {
@@ -122,21 +163,29 @@ export const prof = {
         cy.get('div.modal-container__container > div.modal-container__body > form > div.transfer__send-container > button')
             .should('be.visible');
     },
+    transfer_button_click() {
+        cy.get('div.modal-container__container > div.modal-container__body > form > div.transfer__send-container > button')
+            .click();
+    },
+    transfer_apply_click() {
+        cy.get('.transfer__send-container > .button > span')
+            .click();
+    },
     //ввести сумму
-    transfer_deposit() {
+    transfer_deposit(sum) {
         cy.get('.transfer__send-container > .control > .input-wrapper > .input')
-            .type('1000');
+            .type(sum);
     },
     //кнопка "скрыть баланас"
     settings_hidebalance() {
         cy.get('.swiper')
             .click();
-        cy.get('#header > div.container.level.header__line.header__line--top > div.level-center.gap-md.header-block-center > div:nth-child(1) > div > div:nth-child(2)')
+        cy.get('#header > div.level.header__line.header__line--top > section > div.dropdown.balance-container.align-center')
             .should('not.exist');
         cy.wait(1000);
         cy.get('.swiper')
             .click();
-        cy.get('#header > div.container.level.header__line.header__line--top > div.level-center.gap-md.header-block-center > div:nth-child(1) > div > div:nth-child(2)')
+        cy.get('#header > div.level.header__line.header__line--top > section > div.dropdown.balance-container.align-center')
             .should('exist');
     },
     //проверка модального окна "Настройки"
@@ -155,7 +204,7 @@ export const prof = {
         cy.get('div.country-select.row > div > div > div > div')
             .click();
         cy.get('div.modal-container__container > div > form > div.field > div > div > input')
-            .type('testerQA');
+            .type('qwerty12');
         cy.get('div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input')
             .clear()
             .type('905999888700');
@@ -182,6 +231,18 @@ export const prof = {
             .should('be.visible')
             .and('have.text', 'Настройки сохранены');
     },
+    // проверяем, что вылезла ошибка о том, что телефон уже есть в базе
+    check_change_numberphone() {
+        cy.get(notification)
+            .should('be.visible')
+            .and('have.text', 'Пользователь с таким номером телефона уже существует');
+    },
+    // проверяем, что вылезла ошибка о том, что телефон уже есть в базе
+    check_error_mail() {
+        cy.get(notification)
+            .should('be.visible')
+            .and('have.text', 'Пользователь с таким email уже существует');
+    },
     // проверяем, что изменение пароля успешно на моб.версии
     check_change_settings_for_mobile() {
         cy.get('#notifications-container')
@@ -206,10 +267,10 @@ export const prof = {
             .clear()
             .type(pass);
     },
-    //Заполнение поля "имя" в настройках
-    settings_form_pass() {
+    //Заполнение поля "пароль" в настройках
+    settings_form_pass(pass) {
         cy.get('div.modal-container__container > div > form > div.field > div > div > input')
-            .type('testerQA');
+            .type(pass);
     },
     //Заполнение поля "имя" в настройках
     settings_form_name_2or16_symbols() {
@@ -285,10 +346,10 @@ export const prof = {
             .click();
     },
     //Заполнение поля "номер телефона" в настройках
-    settings_form_numbPhone() {
+    settings_form_numbPhone(phone) {
         cy.get('div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input')
             .clear()
-            .type('9219963214');
+            .type(phone);
     },
     //Заполнение поля "номер телефона" в настройках
     settings_form_numbPhone_for_mobile(phone) {
@@ -328,7 +389,7 @@ export const prof = {
     },
     // проверка, что внутри ставки отображаются данные
     bets_history_notBeEmpty() {
-        cy.get('#main-container > div.content-wrapper > div > div > div > div.panel-body > div > div:nth-child(1)')
+        cy.get('#main-container > main > div > div > div.panel-body > div')
             .should('not.to.be.empty');
     },
 
@@ -368,6 +429,149 @@ export const prof = {
     assert_mail_disabled_for_mobile() {
         cy.get('#profile-edit > form > div:nth-child(5) > div > div.input-container > input')
             .should('be.disabled');
+    },
+    // проверка, поле mail доступно
+    assert_mail_visible() {
+        cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > div:nth-child(5) > div > input')
+            .should('be.visible');
+    },
+    // проверка, поле mail доступно
+    assert_mail_disabled() {
+        cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > div:nth-child(5) > div > input')
+            .should('be.disabled');
+    },
+    // заполнить поле mail
+    settings_mail(mail) {
+        cy.get('#main-container > div.modal-wrapper > div > div.modal-container__container > div > form > div:nth-child(5) > div > input')
+            .clear()
+            .type(mail);
+    },
+    // проверка, что баланс,id, имя отображаются
+    assert_name_id_balance_bonus() {
+        cy.get('.balance__amount')
+            .should('exist');
+        cy.get('.balance-text')
+            .should('exist');
+        cy.get('.balance-value')
+            .should('exist');
+    },
+    // нажать на  кнопка "пополнить"
+    button_deposit_for_mobile() {
+        cy.get('.box-links__item_deposit > .box-links__name')
+            .click();
+    },
+    // проверка, что кнопка "вывод" существует
+    assert_button_withdrawal_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div > section.box-links > div > a:nth-child(3) > div.box-links__name')
+            .should('exist');
+    },
+    // проверка, в "пополнение" мы имеем 10 способов полнения
+    assert_button_deposit_for_mobile() {
+        cy.get('div.payments-row > button')
+            //.find('#main-layout > div.wrapper.has-tabs > div > div > div.deposit-payments > div.payments-row > button:nth-child(1)' )
+                .should('have.length', 10);
+    },
+    // проверка, что кнопка "вывод" существует
+    assert_button_transfer_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(1) > div > section.box-links > div > a:nth-child(2) > div.box-links__name')
+            .should('exist');
+    },
+    // нажать на  кнопка "детализация"
+    button_withdrawal_history_for_mobile() {
+    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(4) > div > div.big-links__description')
+        .click();
+    },
+    // проверка, что история выводов существует
+    assert_withdrawal_history_for_mobile() {
+        cy.get('#detailing > ul')
+            .should('exist');
+    },
+    // нажать на  кнопка "пополнить"
+    button_bets_history_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(3) > div')
+            .click();
+    },
+    // проверка, что история ставок существует
+    assert_bets_history_for_mobile() {
+        cy.get('#bets-history > div.bets-history-content')
+            .should('exist');
+    },
+
+    // нажать на  кнопка "скрыть баланс"
+    button_hide_balance_for_mobile() {
+        cy.get('#profile-edit > form > div.level.level--between > label')
+            .click();
+    },
+    // проверка, что баланс исчез
+    assert_hide_balance_for_mobile() {
+        cy.get('#header > div > div > div.balance')
+            .should('not.exist');
+    },
+    // проверка, что баланс исчез
+    assert2_hide_balance_for_mobile() {
+        cy.get('#header > div > div > div.balance')
+            .should('not.to.be.empty');
+    },
+    // избранное
+    favorites_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(2) > div')
+            .click();
+    },
+    // проверка,избранное
+    assert_favorites_for_mobile() {
+        cy.get('#favourites > section')
+           .should('not.to.be.empty');
+    },
+    // кнопка "выйти"
+    button_exit_for_mobile() {
+        cy.get('#main-layout > div.wrapper > div > div > div:nth-child(3) > div > div')
+            .click();
+    },
+    // проверка служба поддержки
+    assert_support_for_mobile() {
+        cy.get('#jcont')
+            .should('exist');
+    },
+    // проверка перевода в детализации
+    assert_transfer_detail() {
+        cy.get('.detailing-content > :nth-child(1)')
+            .should('exist').and('have.text', 'Перевод1*****23@ahem.email23 сентября 2019 г. | 15:27+ 20 ₽');
+    },
+    // проверка перевода в детализации
+    assert_transfer_detail2() {
+        cy.get(':nth-child(1) > .detailing-item__left > .detailing-item__name')
+            .should('exist').and('have.text', 'Перевод');
+    },
+    // кнопка "Выводы" в детализации
+    button_withdrawal_detail() {
+        cy.get('.detailing-tabs > :nth-child(2)')
+            .click();
+    },
+    // кнопка "Ставки" в детализации
+    button_bets_detail() {
+        cy.get('.detailing-tabs > :nth-child(3)')
+            .click();
+    },
+    // кнопка "Казино" в детализации
+    button_casino_detail() {
+        cy.get('.detailing-tabs > :nth-child(4)')
+            .click();
+    },
+    // кнопка "Казино" в детализации
+    button_case_detail() {
+        cy.get('.detailing-tabs > :nth-child(5)')
+            .click();
+    },
+
+    // проверка выводов в детализации
+    assert_withdrawal_detail() {
+        cy.get('.detailing-content > :nth-child(1)')
+            .should('exist').and('have.text', 'Банковская карта17 июня 2019 г. | 13:52- 100 ₽');
+    },
+    // проверка ставок в детализации
+    assert_bets_detail() {
+        cy.get('.detailing-content > :nth-child(1)')
+            .should('exist').and('have.text', 'Ординар10 ₽ (1.14)27 сентября 2019 г. | 18:26+ 11 ₽');
     },
 };
 

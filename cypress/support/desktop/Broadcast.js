@@ -1,26 +1,33 @@
 const available_for_broadcast_element = () => cy
     .get('.matches-block-content')
-    .find('tbody > tr > td.match-details > div.match-translation > svg')
+    .find('tbody > tr > a > div.match-translation > svg > path')
     .not('.disabled')
     .first();
 
 const match_with_translation = () => cy
     .get('div.main-content', {timeout:5000})
-    //.find('.match-translation > .icon > path')
-    //.find('td.match-details')
     .find('td.match-details > div.match-translation')
     .prev('td.match-details > div.match-teams')
     .first();
+const match_with_translation2 = () => cy
+    .get('.matches-block-content').scrollIntoView({ duration: 5000 })
+    .find('tbody > tr > a > div.match-translation > svg > path')
+    .not('.disabled')
+    .first()
+    .parents()
+    .eq(2)
+
 
 
 export const broadcast = {
 //нажать на  кнопку "нажать на кейс новичок"
     search() {
+        cy.get('.matches-block-content').scrollIntoView({ duration: 5000 },{timeout:10000});
         available_for_broadcast_element()
-            .click();
+            .click({force: true});
     },
     open() {
-        cy.get('.translation-iframe', {timeout:6000})
+        cy.get('.translation-iframe', {timeout:10000})
             .should('exist');
     },
     play() {
@@ -30,7 +37,7 @@ export const broadcast = {
 
     },
     open_match() {
-        match_with_translation()
+        match_with_translation2()
             .click();
     },
     close_match() {
