@@ -2,7 +2,7 @@ import { navReg } from '@support/desktop/NavReg'
 import { basicCom } from '@support/desktop/BasicCommands'
 import { text } from '@support/desktop/Descriptions'
 
-describe('Rules agreement', () => {
+describe.skip('Rules agreement', () => {
   it('C16787 - Rules agreement rus', () => {
 
     cy.contains('Регистрация')

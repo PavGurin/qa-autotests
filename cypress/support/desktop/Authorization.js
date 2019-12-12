@@ -1,8 +1,10 @@
+import { prof } from '@support/desktop/Profile'
+
 /**
  Методы авторизации
  **/
 const button_registration = '.register-adv__link'
-const user_info = '#header > div.level.header__line.header__line--top > section'
+const user_info = '#header > div.header__line--top > section > div'
 const entry_button = 'button.button.secondary'
 const login_input = 'input[name=login]'
 const password_input = 'input[name=password]'
@@ -23,27 +25,26 @@ const change_password = ' div:nth-child(5) > button'
 export const auth = {
   // Logout
   logout () {
-    cy.get('.level-right > .level-item > .button > span')
-            .first()
-            .click()
+    prof.withdrawal('Выйти')
     // должен появиться вопрос-подтверждение выхода
     //logout_question() {
     cy.get(logout_question)
              .should('exist')
     // 'подтверждаем' выход
-    cy.get('div.logout-buttons > button.cancel-button')
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__footer > div > div.logout-buttons > button.button.block-item.cancel-button.fullwidth')
             .click()
   },
+  //когда выходим с главной страницы
   logout_for_mobile () {
     cy.get('#header > div > div > div.control-item > button > span')
-            .click()
-    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(2) > div')
+         .click()
+    cy.get('.exit')
             .click()
   },
   logout_for_mobile2 () {
     //cy.get('#header > div > div > div.control-item > button')
     // .click();
-    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(2) > div > div')
+    cy.get('.exit')
              .click()
   },
   logout_ByEmail_for_mobile () {
@@ -57,11 +58,11 @@ export const auth = {
     // вводим логин/пароль
     // login_input() {
     cy.get(login_input, { timeout: 15000 })
-            .type('nogm75@1win.xyz')
+            .type('ginl39@1win.xyz')
     // вводим пароль
     // password_input() {
     cy.get(password_input)
-                 .type('qatester')
+                 .type('dreamteam')
     // нажимаем кнопку "войти"
     cy.get('.modal-button')
             .click()
@@ -136,11 +137,11 @@ export const auth = {
     // вводим логин/пароль
     // login_input() {
     cy.get(':nth-child(1) > .input-container > .input')
-            .type('nogm75@1win.xyz')
+            .type('ginl39@1win.xyz')
     // вводим пароль
     // password_input() {
     cy.get('div:nth-child(2) > div.input-container > input')
-            .type('qatester')
+            .type('dreamteam')
     // нажимаем кнопку "войти"
     cy.get('#modal-container > div > main > div > div > form > div.button-wrapper > button > span')
             .click()
@@ -152,7 +153,7 @@ export const auth = {
     // вводим логин/пароль
     // login_input() {
     cy.get(':nth-child(1) > .input-container > .input')
-            .type('1wintest@mail.ru')
+            .type('1wintesttransfer@ahem.email')
     // вводим пароль
     // password_input() {
     cy.get('div:nth-child(2) > div.input-container > input')
@@ -168,13 +169,13 @@ export const auth = {
     // вводим логин/пароль
     // login_input() {
     cy.get(':nth-child(1) > .input-container > .input')
-            .type('1wintest2@mail.ru')
+            .type('1wintest123@ahem.email')
     // вводим пароль
     // password_input() {
     cy.get('div:nth-child(2) > div.input-container > input')
             .type('qwerty12')
     // нажимаем кнопку "войти"
-    cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
+    cy.get('#modal-container > div > main > div > div > form > div.button-wrapper > button > span')
             .click()
   },
   repeat_login_for_mobile2 () {

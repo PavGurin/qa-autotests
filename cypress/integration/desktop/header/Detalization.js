@@ -40,12 +40,12 @@ describe('Детализация', () => {
     cy.get(':nth-child(1) > .detailing-item__right > .detailing-item__date')
             .should('contain', todaysDate)
   })
-  it('C1506266 - Казино', function () {
+  it.skip('C1506266 - Казино', function () {
     auth.login2()
     prof.withdrawal('Детализация')
     prof.button_casino_detail()
   })
-  it('C1506267 - Кейсы', function () {
+  it.skip('C1506267 - Кейсы', function () {
     auth.login2()
     prof.withdrawal('Детализация')
     prof.button_case_detail()

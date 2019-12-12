@@ -1,9 +1,8 @@
 const available_for_broadcast_element = () => cy
     .get('.matches-block-content')
-    .find('tbody > tr > a > div.match-translation > svg > path')
+    .find('tbody > tr > a > div.match-features > div')
     .not('.disabled')
     .first()
-
 const match_with_translation = () => cy
     .get('div.main-content', { timeout: 5000 })
     .find('td.match-details > div.match-translation')
@@ -11,11 +10,12 @@ const match_with_translation = () => cy
     .first()
 const match_with_translation2 = () => cy
     .get('.matches-block-content').scrollIntoView({ duration: 5000 })
-    .find('tbody > tr > a > div.match-translation > svg > path')
+    .find('tbody > tr > a > div.match-features > div')
     .not('.disabled')
     .first()
     .parents()
-    .eq(2)
+    .first()
+    //.eq(2)
 
 
 export const broadcast = {

@@ -41,18 +41,25 @@ describe('Visual regression tests for mobile', () => {
     cy.get('#cases-list > div.cases-list > div.case-wrapper.theme-container.case.theme-container-rang-0.theme-container-theme-memes')//.scrollIntoView({ duration: 2000 })
             .toMatchImageSnapshot()
   })
-  it('C385881 - Казино', () => {
+  it('C385881 - Казино ', () => {
     shot.casino_for_mobile()
     cy.wait(2000)
-    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.categories')
+    cy.get('.primary-list')
             .toMatchImageSnapshot()
   })
-  it('C385882 - Казино зареганый пользователь', () => {
-    auth.login_for_mobile()
+  it('C385882 - Казино - зареганый пользователь', () => {
+    auth.login_for_mobile2()
     shot.casino_for_mobile()
     cy.wait(2000)
-    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.categories')
-            .toMatchImageSnapshot()
+    cy.get('.primary-list')
+      .toMatchImageSnapshot()
+  })
+  it('C1679682 - Казино - основные разделы', () => {
+    auth.login_for_mobile2()
+    shot.casino_for_mobile()
+    cy.wait(2000)
+    cy.matchImageSnapshot()
+    //.toMatchImageSnapshot({ clip: { x: 0, y: 0, width: 375, height: 800 } })
   })
   it('C389820 - нижняя навигация', () => {
     cy.wait(1000)

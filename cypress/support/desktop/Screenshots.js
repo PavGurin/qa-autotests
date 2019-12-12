@@ -46,8 +46,14 @@ export const shot = {
             .click()
   },
   screen_casino () {
-    cy.get('#main-container > main > article > aside > main > div')
+    cy.get('#casino > aside > section')
             .toMatchImageSnapshot()
+  },
+  screen_casino_provider () {
+    cy.get('.provider-list')
+      .scrollIntoView({ duration: 10000 })
+    cy.get('.provider-list > :nth-child(4) > .item-link')
+      .toMatchImageSnapshot()
   },
   line_for_mobile () {
     cy.get('#navigation > section > a:nth-child(3)')

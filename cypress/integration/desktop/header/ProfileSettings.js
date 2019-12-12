@@ -72,7 +72,6 @@ describe('Profile Settings', () => {
   })
   it('C502621 - Рега в 1 клик - почту можно изменить 1 раз ', function () {
     navReg.click_register()
-    navReg.accept_agreement()
     navReg.sign_up()
     cy.wait(1000)
     navReg.close_new_user_info()
@@ -89,7 +88,6 @@ describe('Profile Settings', () => {
     navReg.set_pwd('111111')
     navReg.repeat_pwd('111111')
     navReg.set_phone_numb(`921${randomNum}`)
-    navReg.accept_agreement()
     navReg.sign_up()
     prof.withdrawal('Настройки')
     prof.assert_mail_disabled()

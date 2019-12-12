@@ -5,13 +5,13 @@ import { auth } from '@support/desktop/Authorization'
 
 const password_input = '.input[name=password]'
 const new_password = ':nth-child(3) > .input-wrapper > .input'
-const close_modal_windows = '.modal-container__header__row > :nth-child(2) > .icon'
+const close_modal_windows = '.modal-container__header__row__cell__overlay'
 
 export const navReg = {
 
   // registration button
   click_register () {
-    cy.get('#header > div.level.header__line.header__line--top > div.level-right.gap-md.expanded > div:nth-child(2) > button', { timeout: 10000 })
+    cy.get('.level-right > :nth-child(2) > .button', { timeout: 10000 })
             .click()
   },
   change_currency_EUR () {
@@ -21,9 +21,7 @@ export const navReg = {
         .click()
   },
   change_currency_USD () {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div.dropdown.currency-select.row.align-left > div > div > div.currency-selected > span.currency-selected-name')
-            .click()
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div.dropdown.currency-select.row.align-left > div.dropdown-menu > div > div:nth-child(3) > span.currency-name')
+    cy.get(':nth-child(3) > .currency-chip')
             .click()
   },
   // registration button на мобильной версии
@@ -34,8 +32,8 @@ export const navReg = {
 
   // radio button 'User Agreement of usage'
   accept_agreement () {
-    cy.get('.rules-accept-checkmark')
-            .click()
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div.rules-accept-checkbox-container > p > span')
+            .should('have.text', 'Нажимая «Зарегистрироваться», Вы соглашаетесь с тем, что ознакомлены и полностью согласны с ')
   },
   // radio button 'User Agreement of usage'
   accept_agreement_for_mobile () {
@@ -65,7 +63,7 @@ export const navReg = {
 
   // close window with new user's login/pass
   close_new_user_info () {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__header > div:nth-child(1) > div:nth-child(2)')
+    cy.get('.modal-container__header__row__cell__overlay > path')
             .click()
   },
   // close window with new user's login/pass
@@ -76,13 +74,14 @@ export const navReg = {
 
   // button click_next only for social
   click_next () {
-    cy.get('button.button.dark')
+    cy.get('.register-footer > .button')
             .click()
   },
 
   // enter promocode
   add_promocode (promocode) {
     cy.get('.promocode-add-button > span')
+            .first()
             .click()
             .get('.field > .control > .input-wrapper > .input')
             .type(promocode)
@@ -320,7 +319,7 @@ export const navReg = {
   check_sign_up (userName) {
     cy.get('div.modal-container')
             .should('not.exist')
-    cy.get('#header > div.level.header__line.header__line--top > section > div:nth-child(1) > div > p')
+    cy.get('.user-name-value')
             .should('have.text', userName)
   },
   check_sign_up_for_mobile (userName) {
@@ -337,6 +336,11 @@ export const navReg = {
   click_settings_main_page_for_mobile () {
     cy.get('#header > div > div > div.control-item > button > span')
             .click()
+  },
+  //кнопка - "Войти в профиль с главной страницы"
+  click_green_plus_for_mobile () {
+    cy.get('#header > div > div > div.balance > a')
+      .click()
   },
   // check redirection to vk oauth page
   check_vk_reg () {
@@ -454,5 +458,13 @@ export const navReg = {
   assert_currency_USD_for_mobile () {
     cy.get('#header > div > div > div.balance > div')
             .should('have.text', 'Баланс0,00 $')
+  },
+  assert_currency_EUR_for_mobile () {
+    cy.get('#header > div > div > div.balance > div')
+      .should('have.text', 'Баланс0,00 €')
+  },
+  currency_EUR_for_mobile () {
+    cy.get('#modal-container > section > main > section > form > label:nth-child(2)')
+      .click()
   },
 }

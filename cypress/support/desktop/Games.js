@@ -16,7 +16,7 @@ export const games = {
   },
   //проверить, что произошел релирект на вкладку "казино"
   casino_active () {
-    cy.get('#header > div.level.header__line.header__line--bottom > div:nth-child(1) > nav > div.level > div > a.navigation-item.df-aic-jcc.active')
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(1) > nav > div.level > div > a.navigation-item.df-aic-jcc.router-link-exact-active.active')
             .should('exist')
   },
 }
