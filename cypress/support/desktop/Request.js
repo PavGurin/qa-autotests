@@ -31,7 +31,7 @@ export const req = {
     })
     .then((resp) => {
       token = (resp.body.token)
-      // console.log(token)
+      console.log(token)
       cy.wait(7000)
       cy.request({
         method: 'GET',
@@ -44,7 +44,7 @@ export const req = {
       })
             .then((resp) => {
               mailId = (resp.body[0].emailId)
-              // console.log(mailId)
+              console.log(mailId)
               cy.request({
                 method: 'GET',
                 url: `https://www.ahem.email/api/mailbox/${mail}/email/${mailId}`,
@@ -57,7 +57,7 @@ export const req = {
             .then((resp) => {
               const text = resp.body.html
 
-              // console.log(text)
+              console.log(text)
               expect(text).equal(`Login: ${login}<br>Password: ${password}\n`)
             })
             })
@@ -84,7 +84,7 @@ export const req = {
     })
             .then((resp) => {
               token = (resp.body.token)
-              // console.log(token)
+              console.log(token)
               cy.wait(5000)
               cy.request({
                 method: 'GET',
@@ -97,7 +97,7 @@ export const req = {
               })
                     .then((resp) => {
                       mailId = (resp.body[0].emailId)
-                      // console.log(mailId)
+                      console.log(mailId)
                       cy.request({
                         method: 'GET',
                         url: `https://www.ahem.email/api/mailbox/${mail}/email/${mailId}`,
@@ -110,7 +110,7 @@ export const req = {
                             .then((resp) => {
                               const text = resp.body.html
 
-                              // console.log(text)
+                              console.log(text)
                               const login = text.match(/Login: (.*@1win.xyz).*/)[1]
                               const password = text.match(/Password: (.*).*/)[1]
 
@@ -132,7 +132,7 @@ export const req = {
     })
             .then((resp) => {
               token = (resp.body.token)
-              // console.log(token)
+              console.log(token)
               cy.wait(4000)
               cy.request({
                 method: 'GET',
@@ -145,7 +145,7 @@ export const req = {
               })
                     .then((resp) => {
                       mailId = (resp.body[0].emailId)
-                      // console.log(mailId)
+                      console.log(mailId)
                       cy.request({
                         method: 'GET',
                         url: `https://www.ahem.email/api/mailbox/1wintest/email/${mailId}`,
@@ -177,7 +177,7 @@ export const req = {
     })
             .then((resp) => {
               token = (resp.body.token)
-              // console.log(token)
+              console.log(token)
               cy.wait(4000)
               cy.request({
                 method: 'GET',
@@ -190,7 +190,7 @@ export const req = {
               })
                     .then((resp) => {
                       mailId = (resp.body[0].emailId)
-                      // console.log(mailId)
+                      console.log(mailId)
                       cy.request({
                         method: 'GET',
                         url: `https://www.ahem.email/api/mailbox/1wintesttransfer/email/${mailId}`,
@@ -222,7 +222,7 @@ export const req = {
     })
             .then((resp) => {
               token = (resp.body.token)
-              // console.log(token)
+              console.log(token)
               cy.wait(4000)
               cy.request({
                 method: 'GET',
@@ -235,7 +235,7 @@ export const req = {
               })
                     .then((resp) => {
                       mailId = (resp.body[0].emailId)
-                      // console.log(mailId)
+                      console.log(mailId)
                       cy.request({
                         method: 'GET',
                         url: `https://www.ahem.email/api/mailbox/1wintest123/email/${mailId}`,
@@ -253,6 +253,96 @@ export const req = {
                             })
                     })
             })
+  },
+  // Восстановление пароля - получение кода операции
+  code_transfer_for_mobile () {
+    cy.request({
+      method: 'POST',
+      url: 'https://www.ahem.email/api/auth/token',
+      form: true,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((resp) => {
+        token = (resp.body.token)
+        console.log(token)
+        cy.wait(4000)
+        cy.request({
+          method: 'GET',
+          url: 'https://www.ahem.email/api/mailbox/1wintesttransfer/email',
+          form: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+          },
+        })
+          .then((resp) => {
+            mailId = (resp.body[0].emailId)
+            console.log(mailId)
+            cy.request({
+              method: 'GET',
+              url: `https://www.ahem.email/api/mailbox/1wintesttransfer/email/${mailId}`,
+              form: true,
+              headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: 'application/json',
+              },
+            })
+              .then((resp) => {
+                const code = resp.body.html.match(/\d\d\d\d\d\d\d(?!\.|\$|₽|€|@)/)[0]
+
+                cy.get('.input')
+                  .type(code)
+              })
+          })
+      })
+  },
+  // Восстановление пароля - получение кода операции
+  code_transfer_for_mobile2 () {
+    cy.request({
+      method: 'POST',
+      url: 'https://www.ahem.email/api/auth/token',
+      form: true,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((resp) => {
+        token = (resp.body.token)
+        console.log(token)
+        cy.wait(4000)
+        cy.request({
+          method: 'GET',
+          url: 'https://www.ahem.email/api/mailbox/1wintest123/email',
+          form: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+          },
+        })
+          .then((resp) => {
+            mailId = (resp.body[0].emailId)
+            console.log(mailId)
+            cy.request({
+              method: 'GET',
+              url: `https://www.ahem.email/api/mailbox/1wintest123/email/${mailId}`,
+              form: true,
+              headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: 'application/json',
+              },
+            })
+              .then((resp) => {
+                const code = resp.body.html.match(/\d\d\d\d\d\d\d(?!\.|\$|₽|€|@)/)[0]
+
+                cy.get('.input')
+                  .type(code)
+              })
+          })
+      })
   },
 }
 

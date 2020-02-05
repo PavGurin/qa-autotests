@@ -1,5 +1,6 @@
 import { basicCom } from '@support/desktop/BasicCommands'
 
+
 describe('Result for mobile', () => {
   beforeEach(function () {
     basicCom.switch_to_mobile()

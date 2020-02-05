@@ -6,7 +6,7 @@ export const bank = {
     cy.get('.payments-row > :nth-child(1) > .button-content')
             .click()
     cy.get(':nth-child(1) > .input-container > .input')
-            .type('4276534242213219')
+            .type('4276550033908289')
     cy.get(':nth-child(2) > .input-container > .input')
             .type('100')
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div.button-wrapper > button')
@@ -25,11 +25,11 @@ export const bank = {
   },
   assert_withdrawal_visa () {
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-confirmation > div.withdrawal-confirmation-info')
-            .should('have.text', 'На Ваш email адрес noGm75@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
+            .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
   },
   assert_withdrawal_Qiwi () {
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-confirmation > div.withdrawal-confirmation-info')
-            .should('have.text', 'На Ваш email адрес noGm75@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
+            .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
   },
   deposit_megafon () {
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > div.payments-row > button:nth-child(5)')
@@ -46,7 +46,7 @@ export const bank = {
             .should('have.text', 'Уважаемый клиент! Ваш запрос успешно принят. Вам отправлено СМС с подробной инструкцией для завершения оплаты. Просим Вас следовать указанным действиям. Вы можете закрыть эту страницу, после подтверждения оплаты платеж будет обработан автоматически. Абонентам Мегафон: После списания суммы покупки на вашем счете должно остаться не менее 10 руб. Минимальная сумма единовременного платежа 10 руб. Максимальный разовый платеж - 5000 руб. Максимальная сумма платежей за сутки - 15000 руб. Максимальная сумма платежей за месяц – 40000 руб. Недоступна мобильная коммерция абонентам: с корпоративным клиентам и абонентам с кредитным тарифом. ')
   },
   assert_deposit_desktop () {
-    cy.get('.modal-container__body > div', { timeout: 10000 })
+    cy.get('.modal-container__body > :nth-child(2)', { timeout: 10000 })
             .should('have.text', 'Уважаемый клиент! Ваш запрос успешно принят. Вам отправлено СМС с подробной инструкцией для завершения оплаты. Просим Вас следовать указанным действиям. Вы можете закрыть эту страницу, после подтверждения оплаты платеж будет обработан автоматически. Абонентам Мегафон: После списания суммы покупки на вашем счете должно остаться не менее 10 руб. Минимальная сумма единовременного платежа 10 руб. Максимальный разовый платеж - 5000 руб. Максимальная сумма платежей за сутки - 15000 руб. Максимальная сумма платежей за месяц – 40000 руб. Недоступна мобильная коммерция абонентам: с корпоративным клиентам и абонентам с кредитным тарифом. ')
   },
   transfer_for_mobile (mail) {
@@ -69,11 +69,11 @@ export const bank = {
   },
   assert_witdrawal () {
     cy.get('.description')
-            .should('have.text', 'На Ваш email адрес noGm75@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
+            .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
   },
   assert_transfer2 () {
     cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.transfer__description')
-            .should('have.text', 'На Ваш email адрес noGm75@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
+            .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
   },
   assert_transfer () {
     // проверяем ошибку и ее текст
@@ -86,5 +86,65 @@ export const bank = {
     cy.get(notification)
             .should('visible')
             .and('have.text', 'Получатель не найден')
+  },
+  button_transfer_for_mobile () {
+    cy.get('.transfer-confirmation-button > .button-content')
+      .should('be.visible').click()
+  },
+  visa_method_for_mobile () {
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > div.payments-row > button:nth-child(1) > span')
+      .click()
+  },
+  YandexCash_method_for_mobile () {
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > div.payments-row > button:nth-child(3) > span')
+      .click()
+  },
+  Qiwi_method_for_mobile () {
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > div.payments-row > button:nth-child(2) > span')
+      .click()
+  },
+  Beeline_method_for_mobile () {
+    cy.get(':nth-child(3) > .button-content')
+      .click()
+  },
+  Mts_method_for_mobile () {
+    cy.get(':nth-child(4) > .button-content')
+      .click()
+  },
+  Tele2_method_for_mobile () {
+    cy.get(':nth-child(6) > .button-content')
+      .click()
+  },
+  deposit_visa_for_mobile () {
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div.button-wrapper > button')
+      .should('be.disabled')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div:nth-child(1) > div.input-container > input')
+      .click()
+      .type('4276550033908289')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div:nth-child(2) > div.input-container')
+      .type('100')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div.button-wrapper > button > span')
+      .should('be.visible')
+  },
+  YandexCash_for_mobile () {
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div.button-wrapper > button')
+      .should('be.disabled')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div.control.payment-form-input.default > div.input-container > input')
+      .click()
+      .type('10')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div.button-wrapper > button > span')
+      .should('be.visible')
+  },
+  Qiwi_for_mobile () {
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div.button-wrapper > button')
+      .should('be.disabled')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div:nth-child(1) > div.input-container')
+      .click()
+      .type('+79213990990')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div:nth-child(2) > div.input-container')
+      .click()
+      .type('10')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div.button-wrapper > button')
+      .should('be.visible')
   },
 }

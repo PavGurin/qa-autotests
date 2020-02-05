@@ -13,14 +13,14 @@ const available_for_bet_element = () => cy
     .find('.odd-cell', { timeout: 10000 })
     .not('.disabled')
     .find('.odd-coefficient')
-    .eq(3)
+    .first()
+    //.eq(3)
 const available_for_bet_element2 = () => cy
-    .get('#main-container > main > div > div.main-content > div > div.matches-block > div.matches-block-content.matches-block', { timeout: 20000 })
+    .get('#main-container > main > div > div.main-content > div > div.matches-block-content.block', { timeout: 20000 })
     .find('.odd-cell', { timeout: 10000 })
     .not('.disabled')
     .find('.odd-coefficient')
-    .eq(3)
-
+    .last()
 const second_bets_in_one_match = () => cy
     .get('.matches-block-content')
     .find('.odd-cell', { timeout: 10000 })
@@ -167,11 +167,8 @@ export const bets = {
             .type('{selectall}{del}')
             .type('0')
     // жмет кнопку 'Сделать ставку'
-    cy.get(make_bet_button)
-            .click()
-    // проверяет, что ставка невозможна, выходит ошибка
-    cy.get(bet_not_done, { timeout: 10000 })
-            .should('exist')
+    cy.get('#main-container > main > div > div.aside.aside-right > div > article.coupon-tab > div.panel-block > div > button')
+            .should('be.disabled')
   },
   // закрывает все отмеченные купоны (жмет 'крестик')
   close_coupons () {
@@ -184,9 +181,8 @@ export const bets = {
             .first()
             .click()
   },
-  // делает ставку с главной страницы
   bet_main_page_without_click_ok () {
-    available_for_bet_element()
+    available_for_bet_element2()
             .click()
     cy.get(bet_amount_input)
             .type('{selectall}{del}')
@@ -525,5 +521,67 @@ export const bets = {
     // сверяет, что ставка сделана успешно
     cy.get('div > div > div > div.coupon-odd-wrapper > div.coupon-status > div.coupon-status-message', { timeout: 10000 })
             .should('exist').and('have.text', 'Ваша ставка принятаВаша ставка принята')
+  },
+  // сразу три ставки
+  three_bets_series_for_mobile () {
+    bet_element_for_mobile()
+      .click()
+    cy.wait(1000)
+    second_bet_in_one_match_for_mobile()
+      .click()
+    cy.wait(1000)
+    bet_different_element_for_mobile()
+      .click()
+    cy.wait(1000)
+    cy.get('#tabbar > ul > li.tab.coupon-tab > a > div > svg')
+      .click()
+    cy.get('#coupons > div.coupons-navigation > label:nth-child(3)')
+      .click()
+    cy.get(':nth-child(2) > .router-link')
+      .click()
+    second_bet_in_one_match_for_mobile()
+      .click()
+    cy.get('#tabbar > ul > li.tab.coupon-tab > a > div > svg')
+      .click()
+    //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
+    cy.get(bet_amount_input)
+      .type('{selectall}{del}')
+      .type('{selectall}10')
+    //жмет кнопку 'Сделать ставку'
+    cy.get('.coupon-bet-make > .button-content')
+      .click()
+    // сверяет, что ставка сделана успешно
+    cy.get('div > div > div > div.coupon-odd-wrapper > div.coupon-status > div.coupon-status-message', { timeout: 10000 })
+      .should('exist').and('have.text', 'Ваша ставка принятаВаша ставка принятаВаша ставка принята')
+  },
+  // делаем 2 ставки и удаляем одну из них
+  two_bets_in_different_match_and_remove_for_mobile () {
+    bet_element_for_mobile()
+      .click()
+    bet_different_element_for_mobile()
+      .click()
+    cy.get('#tabbar > ul > li.tab.coupon-tab > a > div > svg')
+      .click()
+    cy.get('#coupons > div.coupons-navigation > label:nth-child(3)')
+      .click()
+    cy.get(':nth-child(1) > .coupon-odd-wrapper > .coupon-delete')
+      .click()
+    cy.get('#coupons > div.coupons-body > div > div.coupon-list')
+      .should('have.length', '1')
+  },
+  // делаем 2 ставки и удаляем все купоны
+  two_bets_in_different_match_and_remove_all_for_mobile () {
+    bet_element_for_mobile()
+      .click()
+    bet_different_element_for_mobile()
+      .click()
+    cy.get('#tabbar > ul > li.tab.coupon-tab > a > div > svg')
+      .click()
+    cy.get('#coupons > div.coupons-navigation > label:nth-child(3)')
+      .click()
+    cy.get('.coupons-navigation-remove > .button-content')
+      .click()
+    cy.get('#coupons > div.coupons-body > div > div.coupon-list')
+      .should('have.length', '0')
   },
 }

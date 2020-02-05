@@ -17,7 +17,7 @@ export const shot = {
             .click()
   },
   case_classic () {
-    cy.get('.navigation-item-menu > :nth-child(1)')
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(1) > nav > div.level > div > a:nth-child(5) > div.navigation-item-menu > a:nth-child(1)')
             .click()
   },
   case_memes () {
@@ -46,8 +46,14 @@ export const shot = {
             .click()
   },
   screen_casino () {
-    cy.get('#main-container > main > article > aside > main > div')
+    cy.get('#casino > aside > section')
             .toMatchImageSnapshot()
+  },
+  screen_casino_provider () {
+    cy.get('.provider-list')
+      .scrollIntoView({ duration: 10000 })
+    cy.get('.provider-list > :nth-child(4) > .item-link')
+      .toMatchImageSnapshot()
   },
   line_for_mobile () {
     cy.get('#navigation > section > a:nth-child(3)')

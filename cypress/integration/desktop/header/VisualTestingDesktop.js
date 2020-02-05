@@ -5,6 +5,7 @@
 import { auth } from '@support/desktop/Authorization'
 import { shot } from '@support/desktop/Screenshots'
 import { prof } from '@support/desktop/Profile'
+import { basicCom } from '@support/desktop/BasicCommands'
 
 describe('Visual regression tests', () => {
   //sizes.forEach((size) => {
@@ -24,28 +25,28 @@ describe('Visual regression tests', () => {
   it('C28684 - Кейсы - Classic', () => {
     shot.case_button()
     shot.case_classic()
-    cy.wait(2000)
+    cy.wait(3000)
     shot.screen_cases()
   })
   it('C28685 - Кейсы - Memes', () => {
     shot.case_button()
     shot.case_memes()
-    cy.wait(2000)
+    cy.wait(3000)
     shot.screen_cases()
   })
   it('C28686 - Казино', () => {
-    shot.casino()
+    basicCom.casino_button()
     cy.wait(1000)
     shot.screen_casino()
   })
   it('C28687 - История ставок', () => {
     auth.login2()
     prof.withdrawal('История ставок')
-    cy.wait(1000)
+    cy.wait(3000)
     shot.screen_history_bets()
     auth.logout()
   })
-  it('C28688 - Правила', () => {
+  it.skip('C28688 - Правила', () => {
     shot.rules()
     cy.wait(8000)
     shot.screen_rules()

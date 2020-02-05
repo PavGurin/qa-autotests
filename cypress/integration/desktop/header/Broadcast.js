@@ -6,6 +6,7 @@ describe('Broadcast', () => {
   it('C16620 - Open broadcast', function () {
     auth.login()
     basicCom.live_button()
+    cy.wait(2000)
     broadcast.search()
     broadcast.open()
   })

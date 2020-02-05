@@ -15,7 +15,7 @@ export const prof = {
   },
   // история ставок
   bets_history_for_mobile () {
-    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(1) > div > a:nth-child(2) > div')
+    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(3) > div > div.big-links__name')
             .click()
   },
   // настройки в моб.версии
@@ -48,13 +48,21 @@ export const prof = {
   },
   // Ввести номер карты
   credit_card_number () {
-    cy.get(':nth-child(3) > .control > .input-wrapper > .input')
-            .type('4276554443216987')
+    cy.get(':nth-child(4) > .control > .input-wrapper > .input')
+            .type('4276550033908289')
   },
   // Ввести номер карты
   credit_card_deposit_number () {
-    cy.get(':nth-child(3) > .input-wrapper > .input')
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.send-row > div > div > input')
+      .clear()
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.send-row > button')
+      .should('be.disabled')
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.control > div > input')
             .type('4276554443216987')
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.send-row > div > div > input')
+      .type(100)
+    cy.get('.send-row > .button')
+      .should('be.visible')
   },
   //Внести сумму(модальное окно "пополнить")
   deposit_number () {
@@ -64,12 +72,12 @@ export const prof = {
   },
   //Внести номер телефона(модальное окно "пополнить")
   deposit_number_phone () {
-    cy.get(':nth-child(3) > .input-wrapper > .input')
+    cy.get(':nth-child(4) > .input-wrapper > .input')
             .type('+79215432312')
   },
   //Внести номер телефона(модальное окно "вывести")
   number_phone (phone) {
-    cy.get(':nth-child(3) > .control > .input-wrapper > .input')
+    cy.get(':nth-child(4) > .control > .input-wrapper > .input')
             .type(phone)
   },
   //Внести номер телефона(модальное окно "пополнить")
@@ -79,7 +87,7 @@ export const prof = {
   },
   //проверка, что кнопка "пополнить" активна
   deposit_assert_disabled () {
-    cy.get('#app-overlay-wrapper > div > div > div > div.modal-container__container > div.modal-container__body > form > div.send-row > button')
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.send-row > button')
             .should('be.disabled')
   },
   //проверка, что кнопка "пополнить" активна
@@ -95,7 +103,7 @@ export const prof = {
   },
   //вывод средств
   withdrawal (text) {
-    cy.get('#header > div.level.header__line.header__line--top > section > div:nth-child(1) > div > p > span')
+    cy.get('.user-name-icon')
             .trigger('mouseover')
     cy.get('.dropdown-content')
             .contains(text)
@@ -112,30 +120,30 @@ export const prof = {
             .should('have.text', 'Детализация')
   },
   //Внести сумму(модальное окно "Вывод")
-  withdrawal_number_ () {
-    cy.get(':nth-child(4) > .control > .input-wrapper > .input')
-            .type('750')
+  withdrawal_number_ (sum) {
+    cy.get(':nth-child(5) > .control > .input-wrapper > .input')
+            .type(sum)
   },
   //Внести сумму(модальное окно "Вывод")
   withdrawal_number_EUR () {
-    cy.get(':nth-child(4) > .control > .input-wrapper > .input')
+    cy.get(':nth-child(5) > .control > .input-wrapper > .input')
             .clear()
             .type('10')
   },
   // Проверка, что кнопка "вывести"(внутри модального окна) неактивна
   withdrawal_assert_disabled () {
-    cy.get('div:nth-child(3) > button')
+    cy.get('#app-overlay-wrapper > div > div > div > div.modal-container__container > div.modal-container__body > div.withdrawal__content > div > form > div:nth-child(5) > button')
             .should('be.disabled')
   },
   //проверка, что кнопка "пополнить" активна
   withdrawal_button () {
-    cy.get(':nth-child(4) > .button > span')
+    cy.get(':nth-child(5) > .button > span')
             .first()
             .click()
   },
   //проверка, что кнопка "пополнить" активна
   withdrawal_assert_visible () {
-    cy.get('div:nth-child(3) > button')
+    cy.get(':nth-child(5) > .button')
             .should('be.visible')
   },
   //проверка модального окна "Вывод средств"
@@ -145,13 +153,13 @@ export const prof = {
   },
   //Ввести почту
   transfer_mail (mail) {
-    cy.get(':nth-child(2) > .input-wrapper > .input')
+    cy.get(':nth-child(3) > .input-wrapper > .input')
             .type(mail)
   },
   //проверка модального окна "Перевод средств"
   transfer_assert_modal_container () {
     cy.get('.modal-container__header__row__cell__title')
-            .should('have.text', 'Перевод средств')
+            .should('have.text', 'Перевод')
   },
   // Проверка, что кнопка "Перевести"(внутри модального окна) неактивна
   transfer_assert_disabled () {
@@ -178,14 +186,14 @@ export const prof = {
   },
   //кнопка "скрыть баланас"
   settings_hidebalance () {
-    cy.get('.swiper')
+    cy.get('.v-checkbox-checkmark')
             .click()
     cy.get('#header > div.level.header__line.header__line--top > section > div.dropdown.balance-container.align-center')
             .should('not.exist')
     cy.wait(1000)
-    cy.get('.swiper')
+    cy.get('.v-checkbox-checkmark')
             .click()
-    cy.get('#header > div.level.header__line.header__line--top > section > div.dropdown.balance-container.align-center')
+    cy.get('#header > div.header__line--top > section > div > div.user-values')
             .should('exist')
   },
   //проверка модального окна "Настройки"
@@ -341,7 +349,7 @@ export const prof = {
   set_country_number_phone (country) {
     cy.get('.intl-tel-input > .control > .input-wrapper > .dropdown-container > .country-dropdown > .dropdown > .dropdown-trigger > .trigger')
             .click()
-            .get('.recycle-list')
+            .get('.vue-recycle-scroller')
             .contains(country)
             .click()
   },
@@ -535,7 +543,7 @@ export const prof = {
   // проверка перевода в детализации
   assert_transfer_detail () {
     cy.get('.detailing-content > :nth-child(1)')
-            .should('exist').and('have.text', 'Перевод1*****23@ahem.email23 сентября 2019 г. | 15:27+ 20 ₽')
+            .should('exist').and('have.text', 'ПереводK•••••3@gmail.com25 ноября 2019 г. | 18:31+ 100 ₽')
   },
   // проверка перевода в детализации
   assert_transfer_detail2 () {
@@ -565,8 +573,8 @@ export const prof = {
 
   // проверка выводов в детализации
   assert_withdrawal_detail () {
-    cy.get('.detailing-content > :nth-child(1)')
-            .should('exist').and('have.text', 'Банковская карта17 июня 2019 г. | 13:52- 100 ₽')
+    cy.get(':nth-child(1) > .detailing-item__left > .detailing-item__name')
+            .should('exist').and('have.text', 'Банковская карта')
   },
   // проверка ставок в детализации
   assert_bets_detail () {
