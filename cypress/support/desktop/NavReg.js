@@ -15,9 +15,7 @@ export const navReg = {
             .click()
   },
   change_currency_EUR () {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div.dropdown.currency-select.row.align-left > div > div > div.currency-selected > span.currency-selected-name')
-        .click()
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div.dropdown.currency-select.row.align-left > div.dropdown-menu > div > div:nth-child(2) > span.currency-name')
+    cy.get(':nth-child(2) > .currency-chip')
         .click()
   },
   change_currency_USD () {
@@ -171,7 +169,7 @@ export const navReg = {
 
   // email form - email
   set_email (email) {
-    cy.get(':nth-child(5)>.input-wrapper > .input')
+    cy.get(':nth-child(3)>.input-wrapper > .input')
             .clear()
             .type(email)
   },
@@ -193,7 +191,7 @@ export const navReg = {
 
   // email form - password
   set_pwd (password) {
-    cy.get(':nth-child(6) > .input-wrapper > .input')
+    cy.get(':nth-child(4) > .input-wrapper > .input')
             .type(password)
   },
   set_pwd_for_mobile (password) {
@@ -202,13 +200,13 @@ export const navReg = {
   },
   // email form - repeat password field
   repeat_pwd (password2) {
-    cy.get(':nth-child(7) > .input-wrapper > .input')
+    cy.get(':nth-child(5) > .input-wrapper > .input')
             .type(password2)
   },
 
   // email form - repeat password field
   repeat_pwd_for_mobile (password2) {
-    cy.get(':nth-child(7) > .control > .input-container > .input')
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div:nth-child(5) > div > input')
             .type(password2)
   },
 

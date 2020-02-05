@@ -82,8 +82,6 @@ describe('Profile Settings', () => {
   it('C502622 - Рега по mail - почту изменить невозможно ', function () {
     navReg.click_register()
     navReg.registration_form('По e-mail')
-    navReg.set_name(`test_${randomStr}`)
-    navReg.set_date_of_birth('07011919')
     navReg.set_email(`${randomStr}test@xyz.com`)
     navReg.set_pwd('111111')
     navReg.repeat_pwd('111111')

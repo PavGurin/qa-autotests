@@ -19,8 +19,8 @@ export const basicCom = {
   // switch to mobile version
   switch_to_mobile () {
     // click mobile version button
-    cy.get('div:nth-child(2) > svg', { timeout: 6000 })
-      .first()
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(2) > svg', { timeout: 6000 })
+      //.first()
       .click()
   },
   live_button_for_mobile () {
@@ -48,7 +48,9 @@ export const basicCom = {
       .should('have.text', 'Main')
   },
   result_button () {
-    cy.get('#header > div.level.header__line--bottom > div:nth-child(1) > nav > div.level > div > a:nth-child(8) > div')
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(1) > nav > div.level > div > div > div.item-text-block.navigation-menu-trigger')
+      .trigger('mouseover')
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(1) > nav > div.level > div > div > div.navigation-item-menu > a:nth-child(2)')
       .click()
   },
   assert_result () {

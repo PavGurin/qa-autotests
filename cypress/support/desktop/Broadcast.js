@@ -1,6 +1,6 @@
 const available_for_broadcast_element = () => cy
     .get('.matches-block-content')
-    .find('tbody > tr > a > div.match-features > div')
+    .find('.match-row > .match-details > .match-teams-container > .match-features > .match-translation > .icon > path')
     .not('.disabled')
     .first()
 const match_with_translation = () => cy
@@ -10,7 +10,7 @@ const match_with_translation = () => cy
     .first()
 const match_with_translation2 = () => cy
     .get('.matches-block-content').scrollIntoView({ duration: 5000 })
-    .find('tbody > tr > a > div.match-features > div')
+    .find('.match-row > .match-details > .match-teams-container > .match-features > .match-translation > .icon > path')
     .not('.disabled')
     .first()
     .parents()

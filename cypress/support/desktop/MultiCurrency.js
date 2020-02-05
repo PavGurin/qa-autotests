@@ -1,9 +1,9 @@
 export const multicurrency = {
 //нажать на  кнопку "нажать на кейс новичок"
   button_multicurrency () {
-    cy.get('#header > div.level.header__line.header__line--top > section > div.dropdown.balance-container.align-center > div > p')
+    cy.get('.user-balance-dots-icon')
             .trigger('mouseover')
-    cy.get('.button.button.open-account-management-button.black')
+    cy.get('.button.button.open-account-management-button.blue')
             .click()
   },
   assert_currency_EUR () {

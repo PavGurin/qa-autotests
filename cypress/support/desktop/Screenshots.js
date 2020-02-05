@@ -17,7 +17,7 @@ export const shot = {
             .click()
   },
   case_classic () {
-    cy.get('.navigation-item-menu > :nth-child(1)')
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(1) > nav > div.level > div > a:nth-child(5) > div.navigation-item-menu > a:nth-child(1)')
             .click()
   },
   case_memes () {

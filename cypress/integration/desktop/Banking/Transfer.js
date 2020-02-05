@@ -4,7 +4,7 @@ import { bank } from '@support/desktop/Banking'
 import { navReg } from '@support/desktop/NavReg'
 import { req } from '@support/desktop/Request'
 
-describe('Withdrawal', () => {
+describe('transfer', () => {
   it('C1086851 - RUB - Перевод', function () {
     auth.login_mail()
     prof.withdrawal('Перевод')
