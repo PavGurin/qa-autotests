@@ -1,58 +1,39 @@
 import { auth } from '@support/desktop/Authorization'
-
 import { basicCom } from '@support/desktop/BasicCommands'
 import { navReg } from '@support/desktop/NavReg'
 import { bank } from '@support/desktop/Banking'
+import { req } from '@support/desktop/Request'
 
 describe('Banking', () => {
   beforeEach(function () {
     basicCom.switch_to_mobile()
     cy.viewport(375, 812)
   })
-  it('C636625 - вывод средств на карту', function () {
-    auth.login_for_mobile2()
-    navReg.click_settings_main_page_for_mobile()
-    cy.contains('Вывести')
-            .click()
-    bank.withdrawal_visa()
-    bank.assert_withdrawal_visa()
-  })
-  it('C636629 - вывод средств на Qiwi', function () {
-    auth.login_for_mobile2()
-    navReg.click_settings_main_page_for_mobile()
-    cy.contains('Вывести')
-            .click()
-    bank.withdrawal_Qiwi()
-    bank.assert_withdrawal_visa()
-  })
-  it('C636650 - пополнение cо счета мегафона', function () {
-    auth.login_for_mobile2()
-    navReg.click_settings_main_page_for_mobile()
-    cy.contains('Пополнить')
-            .click()
-    bank.deposit_megafon()
-    bank.assert_deposit_megafon()
-  })
   it.skip('C636655 - перевод', function () {
     auth.login_for_mobile_mail()
     navReg.click_settings_main_page_for_mobile()
     cy.contains('Перевести')
-            .click()
-    bank.transfer_for_mobile('1wintest2@mail.ru')
+      .click()
+    bank.transfer_for_mobile('1wintestformobile123@ahem.email')
+    req.code_transfer_for_mobile()
+    bank.button_transfer_for_mobile()
     bank.check_notification_valid_transfer_for_mobile()
+    cy.wait(1000)
     auth.logout_for_mobile2()
     auth.login_for_mobile_mail2()
     navReg.click_settings_main_page_for_mobile()
-    cy.contains('Перевод')
-            .click()
-    bank.transfer_for_mobile('1wintest@mail.ru')
+    cy.contains('Перевести')
+      .click()
+    bank.transfer_for_mobile('1wintesttransferformobile@ahem.email')
+    req.code_transfer_for_mobile2()
+    bank.button_transfer_for_mobile()
     bank.check_notification_valid_transfer_for_mobile()
   })
   it('C636660 - Перевод на незарегистрированный mail', function () {
     auth.login_for_mobile2()
     navReg.click_settings_main_page_for_mobile()
     cy.contains('Перевести')
-            .click()
+      .click()
     bank.transfer_for_mobile('sdbghfhftras@mail.ru')
     bank.check_notification_invalid_transfer_for_mobile()
   })

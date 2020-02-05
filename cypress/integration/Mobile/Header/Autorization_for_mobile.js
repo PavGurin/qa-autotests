@@ -16,7 +16,7 @@ describe('Autorization', () => {
   it('C471382 - Авторизация  несуществующим пользователем', function () {
     auth.login_nonexistent_user_for_mobile()
   })
-  it('C471381 - Авторизация', function () {
+  it('C471381 - Авторизация  с пустым полем email/телефон или пароль', function () {
     auth.login_empty_pass_for_mobile('blabla123')
     auth.check_notification_invalid_login_for_mobile()
   })

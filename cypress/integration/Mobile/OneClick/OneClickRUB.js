@@ -14,7 +14,7 @@ describe('Sign up in One click', () => {
     navReg.accept_agreement_for_mobile()
     navReg.sign_up_for_mobile()
     navReg.check_reg_result_for_mobile()
-    cy.wait(1000)
+    cy.wait(2000)
     navReg.close_new_user_info_for_mobile()
   })
 

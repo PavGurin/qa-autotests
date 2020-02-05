@@ -4,7 +4,7 @@ import { bank } from '@support/desktop/Banking'
 import { navReg } from '@support/desktop/NavReg'
 import { req } from '@support/desktop/Request'
 
-describe('Withdrawal', () => {
+describe('transfer', () => {
   it('C1086851 - RUB - Перевод', function () {
     auth.login_mail()
     prof.withdrawal('Перевод')
@@ -41,7 +41,7 @@ describe('Withdrawal', () => {
     prof.transfer_button_click()
     bank.wrong_transfer()
   })
-  it('C1086853 - RUB - Оставить поле ввода e-mail пустым  ', function () {
+  it.skip('C1086853 - RUB - Оставить поле ввода e-mail пустым  ', function () {
     auth.login_mail()
     prof.withdrawal('Перевод')
     prof.transfer_deposit('20')
@@ -89,7 +89,7 @@ describe('Withdrawal', () => {
     prof.transfer_button_click()
     bank.wrong_transfer()
   })
-  it('C1086861 - USD - Оставить поле ввода e-mail пустым  ', function () {
+  it.skip('C1086861 - USD - Оставить поле ввода e-mail пустым  ', function () {
     auth.login()
     prof.withdrawal('Перевод')
     cy.contains('USD')
@@ -142,7 +142,7 @@ describe('Withdrawal', () => {
     prof.transfer_button_click()
     bank.wrong_transfer()
   })
-  it('C1086867 - EUR - Оставить поле ввода e-mail пустым  ', function () {
+  it.skip('C1086867 - EUR - Оставить поле ввода e-mail пустым  ', function () {
     auth.login()
     prof.withdrawal('Перевод')
     cy.contains('EUR')

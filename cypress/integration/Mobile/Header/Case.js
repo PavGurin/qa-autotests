@@ -7,14 +7,14 @@ describe('Play Case', () => {
     basicCom.switch_to_mobile()
     cy.viewport(375, 812)
   })
-  it('C471384 - Case "Новичок"', function () {
+  it('C636489 - Case "Новичок"', function () {
     auth.login_for_mobile2()
     cases.open_for_mobile()
     cases.choose_case_for_mobile()
     cases.button_open_case_for_mobile()
     cases.modal_container_case_for_mobile()
   })
-  it('C471385 - кнопка "сыграть снова" ', function () {
+  it('C636484 - кнопка "сыграть снова" ', function () {
     auth.login_for_mobile2()
     cases.open_for_mobile()
     cases.choose_case_for_mobile()
