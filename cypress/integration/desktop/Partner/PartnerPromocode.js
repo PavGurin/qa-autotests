@@ -11,5 +11,6 @@ describe('PartnerPromocode', () => {
     navReg.sign_up()
     cy.wait(5000)
     req.CheckStats(dateNow)
+
   })
 })
