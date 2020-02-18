@@ -8,6 +8,8 @@ let mailId
 let token
 let login
 let password
+let regNum
+let regNum2
 
 export const req = {
   // отправка на почту логина/пароля
@@ -46,7 +48,7 @@ export const req = {
               mailId = (resp.body[0].emailId)
               console.log(mailId)
               cy.request({
-                method: 'GET',
+                method: 'POST',
                 url: `https://www.ahem.email/api/mailbox/${mail}/email/${mailId}`,
                 form: true,
                 headers: {
@@ -62,6 +64,53 @@ export const req = {
             })
             })
     })
+  },
+  LoginPartner (email, password, day) {
+    cy.request({
+      method: 'POST',
+      url: 'https://1win-partner.com/api/v2/user/login',
+      form: true,
+      body: {
+        login: email,
+        password: password, // eslint-disable-line object-shorthand
+        disableCaptcha: true,
+      },
+    })
+      .then((resp) => {
+        //token = (resp.day)
+        //cy.log(JSON.stringify(resp.body))
+        cy.request({
+          method: 'GET',
+          url: 'https://1win-partner.com/api/v2/stats_v2/days',
+          form: true,
+          body: {
+            day: `${day / 1}, ${day / 1}`,
+            sources: 51211,
+            hashId: 61305,
+          },
+        })
+      })
+      .then((resp) => {
+        regNum = (resp.body.days[0].day_regs)
+        //cy.log(JSON.stringify(resp.body))
+      })
+  },
+  CheckStats (day) {
+    cy.request({
+      method: 'GET',
+      url: 'https://1win-partner.com/api/v2/stats_v2/days',
+      form: true,
+      body: {
+        day: `${day / 1}, ${day / 1}`,
+        sources: 51211,
+        hashId: 61305,
+      },
+    })
+      .then((resp) => {
+        regNum2 = (resp.body.days[0].day_regs)
+        //cy.log(JSON.stringify(resp.body.days[0].day_regs))
+        expect(regNum2 - regNum).to.equal(1)
+      })
   },
   // отправка на почту логина/пароля моб.версия
   login_pass_for_mail_for_mobile () {
