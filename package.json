@@ -64,7 +64,7 @@
     "@percy/cypress": "2.1.1",
     "babel-eslint": "7.2.3",
     "colon-names": "1.0.0",
-    "cypress": "3.8.2",
+    "cypress": "4.0.2",
     "cypress-file-upload": "3.4.0",
     "cypress-image-snapshot": "^3.1.1",
     "cypress-testrail-accumulative-reporter": "1.1.4",

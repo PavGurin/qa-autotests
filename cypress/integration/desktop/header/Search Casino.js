@@ -24,7 +24,7 @@ describe('Search Casino', () => {
         .invoke('text').then((price2) => {
           money2 = price2
         }).then(() => {
-          expect(money).to.be.lessThan(money2)
+          expect(Number(money)).to.be.lessThan(Number(money2))
         })
       })
   })
