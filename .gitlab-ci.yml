@@ -24,7 +24,9 @@ cache:
 install:
   image: cypress/browsers:chrome69
   stage: build
-
+  tags:
+    - docker
+    - tests
   script:
     - npm ci
     - $(npm bin)/print-env CI
@@ -42,6 +44,8 @@ lint:
   script:
     - npm i
     - npm run lint
+  tags:
+    - node12
 
 # all jobs that actually run tests can use the same definition
 .job_template: &job
