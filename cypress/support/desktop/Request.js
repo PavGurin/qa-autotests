@@ -112,6 +112,35 @@ export const req = {
         expect(regNum2 - regNum).to.equal(1)
       })
   },
+
+  LoginPartnerWithURL (email, password, day) {
+    cy.request({
+      method: 'POST',
+      url: 'https://1win-partner.com/api/v2/user/login',
+      form: true,
+      body: {
+        login: email,
+        password: password, // eslint-disable-line object-shorthand
+        disableCaptcha: true,
+      },
+    })
+      .then((resp) => {
+        //token = (resp.day)
+        //cy.log(JSON.stringify(resp.body))
+        cy.request({
+          method: 'GET',
+          url: 'https://1win-partner.com/api/v2/stats_v2/days',
+          form: true,
+          body: {
+            day: `${day / 1}, ${day / 1}`,
+          },
+        })
+      })
+      .then((resp) => {
+        regNum = (resp.body.days[0].day_regs)
+        //cy.log(JSON.stringify(resp.body))
+      })
+  },
   // отправка на почту логина/пароля моб.версия
   login_pass_for_mail_for_mobile () {
     navReg.set_email_for_mobile(`${mail}@ahem.email`)
