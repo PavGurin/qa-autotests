@@ -10,6 +10,8 @@ let login
 let password
 let regNum
 let regNum2
+let visits
+let visits2
 
 export const req = {
   // отправка на почту логина/пароля
@@ -33,8 +35,8 @@ export const req = {
     })
     .then((resp) => {
       token = (resp.body.token)
-      console.log(token)
-      cy.wait(7000)
+      cy.log(token)
+      cy.wait(10000)
       cy.request({
         method: 'GET',
         url: `https://www.ahem.email/api/mailbox/${mail}/email`,
@@ -46,9 +48,9 @@ export const req = {
       })
             .then((resp) => {
               mailId = (resp.body[0].emailId)
-              console.log(mailId)
+              cy.log(mailId)
               cy.request({
-                method: 'POST',
+                method: 'GET',
                 url: `https://www.ahem.email/api/mailbox/${mail}/email/${mailId}`,
                 form: true,
                 headers: {
@@ -92,28 +94,30 @@ export const req = {
       })
       .then((resp) => {
         regNum = (resp.body.days[0].day_regs)
-        //cy.log(JSON.stringify(resp.body))
+        cy.log(resp.body.days[0].day_regs)
       })
-  },
-  CheckStats (day) {
-    cy.request({
-      method: 'GET',
-      url: 'https://1win-partner.com/api/v2/stats_v2/days',
-      form: true,
-      body: {
-        day: `${day / 1}, ${day / 1}`,
-        sources: 51211,
-        hashId: 61305,
-      },
-    })
       .then((resp) => {
-        regNum2 = (resp.body.days[0].day_regs)
-        //cy.log(JSON.stringify(resp.body.days[0].day_regs))
-        expect(regNum2 - regNum).to.equal(1)
+        //token = (resp.day)
+        //cy.log(JSON.stringify(resp.body))
+        cy.request({
+          method: 'GET',
+          url: 'https://1win-partner.com/api/v2/stats_v2/days',
+          form: true,
+          body: {
+            day: `${day / 1}, ${day / 1}`,
+            sources: 51211,
+            hashId: 61305,
+          },
+        })
+      })
+      .then((resp) => {
+        cy.log(resp.body.days[0].day_visits)
+        visits = (resp.body.days[0].day_visits)
+        // cy.log(resp.body.days[0].day_visits)
+        // console.log(resp.body.days[0].day_visits)
       })
   },
-
-  LoginPartnerWithURL (email, password, day) {
+  VisitsPartner (email, password, day) {
     cy.request({
       method: 'POST',
       url: 'https://1win-partner.com/api/v2/user/login',
@@ -133,12 +137,51 @@ export const req = {
           form: true,
           body: {
             day: `${day / 1}, ${day / 1}`,
+            sources: 51211,
+            hashId: 61305,
           },
         })
       })
       .then((resp) => {
-        regNum = (resp.body.days[0].day_regs)
-        //cy.log(JSON.stringify(resp.body))
+        visits = (resp.body.days[0].day_visits)
+        cy.log(resp.body.days[0].day_visits)
+      })
+  },
+  CheckStats (day) {
+    cy.request({
+      method: 'GET',
+      url: 'https://1win-partner.com/api/v2/stats_v2/days',
+      form: true,
+      body: {
+        day: `${day / 1}, ${day / 1}`,
+        sources: 51211,
+        hashId: 61305,
+      },
+    })
+      .then((resp) => {
+        regNum2 = (resp.body.days[0].day_regs)
+        console.log(resp.body.days[0].day_regs)
+        cy.log(JSON.stringify(resp.body.days[0].day_regs))
+        expect(regNum2 - regNum).to.equal(1)
+      })
+  },
+
+  CheckVisits (day) {
+    cy.request({
+      method: 'GET',
+      url: 'https://1win-partner.com/api/v2/stats_v2/days',
+      form: true,
+      body: {
+        day: `${day / 1}, ${day / 1}`,
+        sources: 51211,
+        hashId: 61305,
+      },
+    })
+      .then((resp) => {
+        visits2 = (resp.body.days[0].day_visits)
+        console.log(resp.body.days[0].day_visits)
+        cy.log(JSON.stringify(resp.body.days[0].day_visits))
+        expect(visits2 - visits).to.equal(1)
       })
   },
   // отправка на почту логина/пароля моб.версия

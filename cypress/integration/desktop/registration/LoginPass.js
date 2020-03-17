@@ -3,7 +3,7 @@ import { auth } from '@support/desktop/Authorization'
 import { req } from '@support/desktop/Request'
 
 describe('Sign up in One click', () => {
-  it('C1460944 - Copy login/password', () => {
+  it.skip('C1460944 - Copy login/password', () => {
     navReg.click_register()
     navReg.accept_agreement()
     navReg.sign_up()
@@ -15,7 +15,7 @@ describe('Sign up in One click', () => {
   })
   it('C1460946- send by mail login/password ', () => {
     navReg.click_register()
-    navReg.accept_agreement()
+    // navReg.accept_agreement()
     navReg.sign_up()
     navReg.check_reg_result()
     navReg.button_set_email()
