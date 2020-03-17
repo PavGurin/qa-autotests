@@ -15,7 +15,6 @@ describe('Partner', () => {
     navReg.sign_up()
     cy.wait(10000)
     req.CheckStats(dateNow)
-
   })
   it('C1961997 - PartnerPromocode + rega Email', function () {
     req.LoginPartner('test1winpartner@ahem.email', 'qwerty12', dateNow)
