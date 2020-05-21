@@ -14,13 +14,13 @@ const logout_question = '.logout-question'
 const notification = '.notification-item'
 const forget_button = '.field > .button > span'
 const email_forget_send = 'div.modal-container__container > div > form > form > div > button'
-const code_operation = ':nth-child(2) > .control > .input-wrapper > .input'
-const new_password = ':nth-child(3) > .control > .input-wrapper > .input'
-const new_password_repeat = ':nth-child(4) > .control > .input-wrapper > .input'
+const code_operation = ':nth-child(2) > .input-wrapper > .input'
+const new_password = ':nth-child(3) >.input-wrapper > .input'
+const new_password_repeat = ':nth-child(4) >.input-wrapper > .input'
 const modal_login_container = '.modal-container__header__row__cell__title'
 const vk_social_button = 'div:nth-child(2) > div.socials > img:nth-child(1)'
 const password_recovery = '.modal-container__header__row__cell__title'
-const change_password = ' div:nth-child(5) > button'
+const change_password = ' .form > .button'
 
 export const auth = {
   // Logout
@@ -66,6 +66,22 @@ export const auth = {
     // нажимаем кнопку "войти"
     cy.get('.modal-button')
             .click()
+  },
+  login_stage () {
+    // нажимаем кнопку 'Войти' со стартовой страницы
+    cy.get(entry_button, { timeout: 15000 })
+      .click()
+    // вводим логин/пароль
+    // login_input() {
+    cy.get(login_input, { timeout: 15000 })
+      .type('kikh66@1win.xyz')
+    // вводим пароль
+    // password_input() {
+    cy.get(password_input)
+      .type('v1333i')
+    // нажимаем кнопку "войти"
+    cy.get('.modal-button')
+      .click()
   },
   login_for_change_email () {
     // нажимаем кнопку 'Войти' со стартовой страницы
@@ -189,7 +205,7 @@ export const auth = {
   },
   login2 () {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get(entry_button)
+    cy.get(entry_button, { timeout: 6000 })
         .click()
     // вводим логин/пароль
     // login_input() {

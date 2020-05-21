@@ -324,7 +324,7 @@ export const req = {
                             .then((resp) => {
                               const code = resp.body.html.match(/\d\d\d\d\d\d\d(?!\.|\$|₽|€|@)/)[0]
 
-                              cy.get('div:nth-child(2) > div > div > input')
+                              cy.get('.input')
                                     .type(code)
                             })
                     })
@@ -369,7 +369,7 @@ export const req = {
                             .then((resp) => {
                               const code = resp.body.html.match(/\d\d\d\d\d\d\d(?!\.|\$|₽|€|@)/)[0]
 
-                              cy.get('div:nth-child(2) > div > div > input')
+                              cy.get('.input')
                                     .type(code)
                             })
                     })

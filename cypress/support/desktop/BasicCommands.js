@@ -1,12 +1,34 @@
 export const basicCom = {
 
   // switch language
-  switch_language () {
-    cy.get('img.country-icon')
+  switch_language (language) {
+    cy.get(':nth-child(2) > :nth-child(3) > .dropdown > .dropdown-trigger > .button')
       .first()
       .trigger('mouseover')
-    cy.get('.dropdown-item > .country-icon')
+    cy.wait(1000)
+    cy.contains(language)
       .click()
+    cy.wait(1000)
+  },
+  // switch language for de
+  switch_language_De () {
+    cy.get(':nth-child(2) > :nth-child(3) > .dropdown > .dropdown-trigger > .button')
+      .first()
+      .trigger('mouseover')
+    cy.wait(1000)
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(2) > div:nth-child(3) > div > div.dropdown-menu > div > div:nth-child(1)')
+      .click()
+    cy.wait(1000)
+  },
+  // switch language for es
+  switch_language_Es () {
+    cy.get(':nth-child(2) > :nth-child(3) > .dropdown > .dropdown-trigger > .button')
+      .first()
+      .trigger('mouseover')
+    cy.wait(1000)
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(2) > div:nth-child(3) > div > div.dropdown-menu > div > div:nth-child(3)')
+      .click()
+    cy.wait(1000)
   },
   // switch language
   switch_language_for_mobile () {
@@ -48,9 +70,9 @@ export const basicCom = {
       .should('have.text', 'Main')
   },
   result_button () {
-    cy.get('#header > div.level.header__line--bottom > div:nth-child(1) > nav > div.level > div > div > div.item-text-block.navigation-menu-trigger')
+    cy.get('div.navigation-item > .dropdown > .dropdown-trigger > .item-text')
       .trigger('mouseover')
-    cy.get('#header > div.level.header__line--bottom > div:nth-child(1) > nav > div.level > div > div > div.navigation-item-menu > a:nth-child(2)')
+    cy.get('[href="/results"]')
       .click()
   },
   assert_result () {
@@ -76,7 +98,7 @@ export const basicCom = {
       .should('have.text', 'Делайте ординарные ставки с коэффициентом больше 3 и получайте деньги с бонусного счета в размере 5% от суммы выигранной ставки!')
   },
   casino_button () {
-    cy.get(':nth-child(6) > .item-text-block > .item-text')
+    cy.get('[href="/casino/"] > .item-text-block > .item-text')
       .click()
   },
   casino_button_for_mobile () {

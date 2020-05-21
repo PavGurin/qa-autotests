@@ -9,7 +9,6 @@ describe('Modal window', () => {
     navReg.add_promocode('test123')
     navReg.close_promocode()
     navReg.register_assert_modal_container()
-    navReg.register_assert_visible()
     navReg.registration_form('Соц. сети')
     navReg.register_assert_modal_container()
     navReg.register_next_assert_disabled()

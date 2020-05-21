@@ -12,7 +12,7 @@ export const bank = {
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div.button-wrapper > button')
             .should('be.visible').click()
   },
-  // visa
+  // QIWI
   withdrawal_Qiwi () {
     cy.get('.payments-row > :nth-child(2) > .button-content')
             .click()
@@ -23,13 +23,24 @@ export const bank = {
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div.button-wrapper > button > span')
             .should('be.visible').click()
   },
+  // WebMoney
+  withdrawal_WebMoney () {
+    cy.get('.payments-row > :nth-child(3) > .button-content')
+      .click()
+    cy.get(':nth-child(1) > .input-container > .input')
+      .type('Z123456789012')
+    cy.get(':nth-child(2) > .input-container > .input')
+      .type('100')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div.button-wrapper > button')
+      .should('be.visible').click()
+  },
   assert_withdrawal_visa () {
-    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-confirmation > div.withdrawal-confirmation-info')
-            .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
+    cy.get('.description')
+            .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже')
   },
   assert_withdrawal_Qiwi () {
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-confirmation > div.withdrawal-confirmation-info')
-            .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
+            .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения')
   },
   deposit_megafon () {
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > div.payments-row > button:nth-child(5)')
@@ -91,6 +102,14 @@ export const bank = {
     cy.get('.transfer-confirmation-button > .button-content')
       .should('be.visible').click()
   },
+  button_continue_visible_for_mobile () {
+    cy.get('.button-wrapper > .button > .button-content')
+      .should('be.visible')
+  },
+  button_continue_disabled_for_mobile () {
+    cy.get('.button-wrapper > .button')
+      .should('be.disabled')
+  },
   visa_method_for_mobile () {
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > div.payments-row > button:nth-child(1) > span')
       .click()
@@ -104,15 +123,35 @@ export const bank = {
       .click()
   },
   Beeline_method_for_mobile () {
-    cy.get(':nth-child(3) > .button-content')
+    cy.get(':nth-child(6) > .button-content')
       .click()
   },
   Mts_method_for_mobile () {
     cy.get(':nth-child(4) > .button-content')
       .click()
   },
+  Piastrix_method_for_mobile () {
+    cy.get(':nth-child(8) > .button-content')
+      .click()
+  },
+  Bitcoin_method_for_mobile () {
+    cy.get(':nth-child(9) > .button-content')
+      .click()
+  },
+  BitcoinUSD_method_for_mobile () {
+    cy.get(':nth-child(3) > .button-content > .payment-icon')
+      .click()
+  },
+  InvoiceUSD_method_for_mobile () {
+    cy.get(':nth-child(4) > .button-content > .payment-icon')
+      .click()
+  },
+  Invoice_method_for_mobile () {
+    cy.get(':nth-child(10) > .button-content')
+      .click()
+  },
   Tele2_method_for_mobile () {
-    cy.get(':nth-child(6) > .button-content')
+    cy.get(':nth-child(7) > .button-content')
       .click()
   },
   deposit_visa_for_mobile () {
@@ -146,5 +185,28 @@ export const bank = {
       .type('10')
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > form > div.button-wrapper > button')
       .should('be.visible')
+  },
+  Piastrix_for_mobile (sum) {
+    cy.get('.input')
+      .click()
+      .type(sum)
+  },
+  changeRUB_for_mobile () {
+    cy.get('.wallet-input__change')
+      .click()
+    cy.get('.wallet-select-list > :nth-child(1)')
+      .click()
+  },
+  changeEUR_for_mobile () {
+    cy.get('.wallet-input__change')
+      .click()
+    cy.get('.wallet-select-list > :nth-child(3)')
+      .click()
+  },
+  changeUAH_for_mobile () {
+    cy.get('.wallet-input__change')
+      .click()
+    cy.get('.wallet-select-list > :nth-child(4)')
+      .click()
   },
 }

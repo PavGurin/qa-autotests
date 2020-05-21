@@ -1,7 +1,7 @@
 export const cases = {
 //нажать на  кнопку "кейс новичок"
   choose_case () {
-    cy.get(':nth-child(1) > .case')
+    cy.get(':nth-child(1) > .cases-item-wrapper > .tilt > .cases-card > .cases-card-container > .cases-card-bottom-container > .card-open-button')
            .click()
   },
   //нажать на  кнопку "кейс новичок"
@@ -11,17 +11,17 @@ export const cases = {
   },
   //Увеличитель шанса +10% за 2 р
   chance_improve_10_percent () {
-    cy.get('div:nth-child(2) > div.roulette-form__input > div')
+    cy.get(':nth-child(1) > .case-modal-chance-item-percent')
             .click()
   },
   //Увеличитель шанса +20% за 3 р
   chance_improve_20_percent () {
-    cy.get('div:nth-child(3) > div.roulette-form__input > div')
+    cy.get(':nth-child(2) > .case-modal-chance-item-percent')
           .click()
   },
   //Увеличитель шанса +30% за 5 р
   chance_improve_30_percent () {
-    cy.get('div:nth-child(4) > div.roulette-form__input > div')
+    cy.get(':nth-child(3) > .case-modal-chance-item-percent')
             .click()
 
   },
@@ -42,7 +42,7 @@ export const cases = {
   },
   //нажать на кнопку открыть кейс
   button_open_case () {
-    cy.get('#roulette-start')
+    cy.get('#app-overlay-wrapper > div > div > div.case-modal-control > div.case-modal-options-button-wrapper > button')
             .click()
   },
   //нажать на кнопку открыть кейс
@@ -52,8 +52,8 @@ export const cases = {
   },
   //Проверка модального окна выигрыша в кейс
   modal_container_case () {
-    cy.get('#app-overlay-wrapper > div > div > div > div > div.case.df-aic-jcc.fdc.color--5 > div.case-top-wrapper.fdc.df-aic-jcc.color--5 > p', { timeout: 15000 })
-            .should('have.text', 'Вы выиграли')
+    cy.get('#app-overlay-wrapper > div > div > div.case-modal-header-wrapper', { timeout: 15000 })
+            .should('have.text', 'Поздравляем!Вы выиграли')
   },
   //Проверка модального окна выигрыша в кейс
   modal_container_case_for_mobile () {

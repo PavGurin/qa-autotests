@@ -1,27 +1,26 @@
 import { bets } from '@support/desktop/Bets'
 import { auth } from '@support/desktop/Authorization'
 import { basicCom } from '@support/desktop/BasicCommands'
+import { prof } from '@support/desktop/Profile'
 
 describe('Ставки', () => {
-
-  it('C18766 - Успешная ставка (Main page)', () => {
+  beforeEach(() => {
     auth.login()
+    // auth.login_stage()
+  })
+  it('C18766 - Успешная ставка (Main page)', () => {
     basicCom.live_button()
     // делает ставку на главной странице
     bets.bet_main_page(10)
   })
 
   it('C18767 - Ставка с "Сумма ставки" = 0', () => {
-    auth.login()
     basicCom.live_button()
     // делает нулевую ставку
     bets.bet_live_zero()
-    // закрывает все отмеченные купоны
-    bets.close_coupons()
   })
 
   it('C18783 - Успешная ставка (live)', () => {
-    auth.login()
     basicCom.live_button()
     // переключается на вкладку 'live'
     cy.get('a.navigation-item:nth-child(2)')

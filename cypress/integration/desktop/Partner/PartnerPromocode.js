@@ -1,10 +1,6 @@
 import { req } from '@support/desktop/Request'
 import { navReg } from '@support/desktop/NavReg'
 let dateNow = new Date()
-const randomStr = Math.random()
-  .toString(36)
-  .slice(-5)
-const randomNum = Math.floor(Math.random() * 9999999) + 1
 
 describe('Partner', () => {
   const randomStr = Math.random()

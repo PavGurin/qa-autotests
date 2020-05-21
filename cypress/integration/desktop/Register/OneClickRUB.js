@@ -4,7 +4,7 @@ import { auth } from '@support/desktop/Authorization'
 describe('Sign up in One click', () => {
   it('C1460940 - One click sign up with default country without promo code', () => {
     navReg.click_register()
-    navReg.check_country_default('Russia (Россия)')
+    // navReg.check_country_default('Russia (Россия)')
     navReg.sign_up()
     /* проверяет, что логин/пароль после регистрации не пустые и логирует их*/
     navReg.check_reg_result()

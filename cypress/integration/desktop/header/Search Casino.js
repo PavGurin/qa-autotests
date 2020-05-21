@@ -11,7 +11,7 @@ describe('Search Casino', () => {
     cy.wait(1000)
     basicCom.assert_casino_for_mobile()
   })
-  it('C1678732 - Result', function () {
+  it('C1678732 - Jackpot', function () {
     basicCom.casino_button()
     cy.wait(2000)
     cy.get('.jackpot-panel-value-container > :nth-child(3)')

@@ -7,7 +7,7 @@ import { shot } from '@support/desktop/Screenshots'
 import { prof } from '@support/desktop/Profile'
 import { basicCom } from '@support/desktop/BasicCommands'
 
-describe('Visual regression tests', () => {
+describe.skip('Visual regression tests', () => {
   //sizes.forEach((size) => {
   it('C28681 - главная страница хэдер', () => {
     cy.wait(1000)
