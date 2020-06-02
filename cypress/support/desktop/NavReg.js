@@ -15,11 +15,11 @@ export const navReg = {
             .click()
   },
   change_currency_EUR () {
-    cy.get(':nth-child(2) > .currency-chip')
+    cy.get(':nth-child(3) > .currency-chip')
         .click()
   },
   change_currency_USD () {
-    cy.get(':nth-child(3) > .currency-chip')
+    cy.get(':nth-child(2) > .currency-chip')
             .click()
   },
   // registration button на мобильной версии
@@ -30,8 +30,8 @@ export const navReg = {
 
   // radio button 'User Agreement of usage'
   accept_agreement () {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div.rules-accept-checkbox-container > p > span')
-            .should('have.text', 'Нажимая «Зарегистрироваться», Вы соглашаетесь с тем, что ознакомлены и полностью согласны с ')
+    cy.get('.rules-accept-checkbox-text')
+            .should('have.text', 'Нажимая «Зарегистрироваться», Вы соглашаетесь с тем, что ознакомлены и полностью согласны с Условиями Соглашения об использовании сайта 1WIN')
   },
   // radio button 'User Agreement of usage'
   accept_agreement_for_mobile () {
@@ -169,7 +169,7 @@ export const navReg = {
 
   // email form - email
   set_email (email) {
-    cy.get(':nth-child(3)>.input-wrapper > .input')
+    cy.get(':nth-child(3) > .input-wrapper > .input')
             .clear()
             .type(email)
   },
@@ -182,7 +182,7 @@ export const navReg = {
     cy.get('.input')
             .type(email)
     cy.get('button.success-reg-modal-send.button.md.primary > span')
-            .click()
+            .click({ timeout: 10000 })
   },
   set_email_register_for_mobile (email) {
     cy.get(':nth-child(5) > .control > .input-container > .input')
@@ -192,6 +192,7 @@ export const navReg = {
   // email form - password
   set_pwd (password) {
     cy.get(':nth-child(4) > .input-wrapper > .input')
+      .clear()
             .type(password)
   },
   set_pwd_for_mobile (password) {
@@ -201,6 +202,7 @@ export const navReg = {
   // email form - repeat password field
   repeat_pwd (password2) {
     cy.get(':nth-child(5) > .input-wrapper > .input')
+      .clear()
             .type(password2)
   },
 
@@ -272,9 +274,13 @@ export const navReg = {
             .type(password)
   },
 
-  click_ios_download () {
-    cy.get('div:nth-child(2) > a.application-card.left-block-item-ios.application-card-ios > div > svg')
-            .click()
+  check_ios () {
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(2) > div.application-promo.right-item > div:nth-child(2)', { timeout: 10000 })
+      .first()
+      .trigger('mouseover')
+    cy.wait(1000)
+    cy.get('.tooltip-container')
+      .should('be.visible')
   },
   ios_modal_close () {
     cy.get('#main-container > div.modal-wrapper > div > svg')
@@ -293,7 +299,30 @@ export const navReg = {
     cy.get('.level-item > .application-card-android')
             .should('have.attr', 'href').and('include', '/apk-folder/1win-1wenx.xyz.apk')
   },
-
+  check_telegram () {
+    cy.get('.header-line-left > :nth-child(2) > .button', { timeout: 10000 })
+      .click()
+    cy.get('.social-links > .telegram')
+      .should('be.visible')
+    cy.get('#footer > div:nth-child(2) > nav > ul > li:nth-child(1) > a')
+      .should('have.attr', 'href').and('include', 'https://tme.run/joinchat/AAAAAEOBOGmId4M_50OlSA?open=true')
+  },
+  check_vk () {
+    cy.get('.header-line-left > :nth-child(2) > .button', { timeout: 10000 })
+      .click()
+    cy.get('.social-links > .vk')
+      .should('be.visible')
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > div > div.access-modal-right > div > div.social-links > a.social-link.vk')
+      .should('have.attr', 'href').and('include', 'https://vk.com/1winn')
+  },
+  check_android () {
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(2) > div.application-promo.right-item > div:nth-child(1)', { timeout: 10000 })
+      .first()
+      .trigger('mouseover')
+    cy.wait(1000)
+    cy.get('.tooltip-container')
+      .should('be.visible')
+  },
 
   check_reg_result () {
     cy.get('.modal-container .user-info .user-info__content__item')
@@ -352,27 +381,27 @@ export const navReg = {
   },
   //проверка модального окна "Регистрация"
   register_assert_modal_container () {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__header > div > div:nth-child(1) > div')
+    cy.get('.modal-container__header__row__cell__title')
             .should('have.text', 'Регистрация')
   },
   // Проверка, что кнопка "Зарегистрироваться"(внутри модального окна) неактивна
   register_assert_disabled () {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > footer > button')
+    cy.get('.register-footer > .button')
             .should('be.disabled')
   },
   //проверка, что кнопка "Зарегистрироваться" активна
   register_assert_visible () {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > footer > button')
+    cy.get('.register-footer > .button')
             .should('be.visible')
   },
   // Проверка, что кнопка "далее"(внутри модального окна регистрция-соц.сети) неактивна
   register_next_assert_disabled () {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > footer > button')
+    cy.get('#app-overlay-wrapper > div > div > div > div.modal-container__container > div > form > form > footer > button')
             .should('be.disabled')
   },
   //проверка, что кнопка "Зарегистрироваться" активна
   register_next_assert_visible () {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > footer > button')
+    cy.get('.register-footer > .button')
             .should('be.visible')
   },
   //проверка модального окна "Приложение iOS"

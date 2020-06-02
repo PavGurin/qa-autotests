@@ -9,12 +9,12 @@ describe('Banking', () => {
     basicCom.switch_to_mobile()
     cy.viewport(375, 812)
   })
-  it.skip('C636655 - перевод', function () {
+  it('C636655 - перевод', function () {
     auth.login_for_mobile_mail()
     navReg.click_settings_main_page_for_mobile()
     cy.contains('Перевести')
       .click()
-    bank.transfer_for_mobile('1wintestformobile123@ahem.email')
+    bank.transfer_for_mobile('transferMobile2@ahem.email')
     req.code_transfer_for_mobile()
     bank.button_transfer_for_mobile()
     bank.check_notification_valid_transfer_for_mobile()
@@ -24,7 +24,7 @@ describe('Banking', () => {
     navReg.click_settings_main_page_for_mobile()
     cy.contains('Перевести')
       .click()
-    bank.transfer_for_mobile('1wintesttransferformobile@ahem.email')
+    bank.transfer_for_mobile('transferMobile@ahem.email')
     req.code_transfer_for_mobile2()
     bank.button_transfer_for_mobile()
     bank.check_notification_valid_transfer_for_mobile()

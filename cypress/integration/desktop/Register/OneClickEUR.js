@@ -4,7 +4,7 @@ import { multicurrency } from '@support/desktop/MultiCurrency'
 describe('Sign up in One click', () => {
   it('C1460947 - One click with EUR', () => {
     navReg.click_register()
-    navReg.check_country_default('Russia (Россия)')
+    // navReg.check_country_default('Russia (Россия)')
     navReg.change_currency_EUR()
     navReg.sign_up()
     /* проверяет, что логин/пароль после регистрации не пустые и логирует их*/

@@ -10,14 +10,11 @@ module.exports = (on, config) => {
     watchOptions: {},
   }
 
-  on('before:browser:launch', (browser = {}, args) => {
-    if (browser.name === 'chrome') {
-      args.push('--disable-dev-shm-usage')
-
-      return args
+  on('before:browser:launch', (browser = {}, launchOptions) => {
+    if (browser.family === 'chromium' && browser.name !== 'electron') {
+      // pass launchOptions to Chromium-based browsers in 4.0
+      return launchOptions
     }
-
-    return args
   })
   addMatchImageSnapshotPlugin(on, config)
 

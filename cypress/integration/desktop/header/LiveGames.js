@@ -1,8 +1,8 @@
 import { navReg } from '@support/desktop/NavReg'
 
-describe('Download apps', () => {
+describe('Live games', () => {
 
-  it('C16308 - Link Telegram', () => {
+  it('C636689 - choose games', () => {
     navReg.check_telegram()
   })
   it('C16307 - Link VK', () => {
