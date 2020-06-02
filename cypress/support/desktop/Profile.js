@@ -10,7 +10,7 @@ export const prof = {
   },
   // служба поддержки
   support_for_mobile () {
-    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > div > div')
+    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > div.big-links__item')
       .click()
   },
   // история ставок
@@ -20,7 +20,7 @@ export const prof = {
   },
   // настройки в моб.версии
   settings_for_mobile () {
-    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(5)')
+    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(6) > div.big-links__left')
       .click()
   },
   // Кнопка "пополнить"
@@ -485,7 +485,7 @@ export const prof = {
   assert_button_deposit_for_mobile () {
     cy.get('div.payments-row > button')
       //.find('#main-layout > div.wrapper.has-tabs > div > div > div.deposit-payments > div.payments-row > button:nth-child(1)' )
-      .should('have.length', 10)
+      .should('have.length', 4)
   },
   // проверка, что кнопка "вывод" существует
   assert_button_transfer_for_mobile () {
@@ -499,7 +499,7 @@ export const prof = {
   },
   // проверка, что история выводов существует
   assert_withdrawal_history_for_mobile () {
-    cy.get('#detailing > ul')
+    cy.get('.list')
       .should('exist')
   },
   // нажать на  кнопка "пополнить"
@@ -530,7 +530,7 @@ export const prof = {
   },
   // избранное
   favorites_for_mobile () {
-    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(2) > div')
+    cy.get('#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(3)')
       .click()
   },
   // проверка,избранное
@@ -614,6 +614,10 @@ export const prof = {
     cy.get('.description')
       .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
   },
-
+  // проверка, что появилось описание последующих действий
+  assert_transfer_description () {
+    cy.get('.transfer__description')
+      .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
+  },
 }
 

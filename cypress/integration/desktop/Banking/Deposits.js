@@ -46,6 +46,22 @@ describe('Deposit', () => {
     prof.type_numberPhone('+79053457834')
     prof.assert_button_is_active()
   })
+  it('C1086819 - RUB - Пополнение MTC', function () {
+    prof.change_currency_RUB()
+    prof.assert_button_is_disabled()
+    prof.deposit_change()
+    prof.deposit_change_switch('С мобильного МТС')
+    prof.type_numberPhone('+79053457834')
+    prof.assert_button_is_active()
+  })
+  it('C1086821 - RUB - Пополнение Теле2', function () {
+    prof.change_currency_RUB()
+    prof.assert_button_is_disabled()
+    prof.deposit_change()
+    prof.deposit_change_switch('С мобильного Теле2')
+    prof.type_numberPhone('+79053457834')
+    prof.assert_button_is_active()
+  })
   it('C1086822 - RUB - кошелек Piastrix', function () {
     prof.change_currency_RUB()
     prof.assert_button_is_disabled()

@@ -54,8 +54,6 @@ describe('Profile Settings', () => {
     auth.login_with_new_pass_settings('qwerty')
     prof.withdrawal('Настройки')
     prof.settings_form_newpass()
-    //prof.click_save_settings();
-    //prof.new_pass_wrong();
     prof.correct_pass()
     prof.click_save_settings()
     prof.check_change_settings()

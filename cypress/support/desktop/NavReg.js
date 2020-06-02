@@ -274,9 +274,13 @@ export const navReg = {
             .type(password)
   },
 
-  click_ios_download () {
-    cy.get('div:nth-child(2) > a.application-card.left-block-item-ios.application-card-ios > div > svg')
-            .click()
+  check_ios () {
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(2) > div.application-promo.right-item > div:nth-child(2)', { timeout: 10000 })
+      .first()
+      .trigger('mouseover')
+    cy.wait(1000)
+    cy.get('.tooltip-container')
+      .should('be.visible')
   },
   ios_modal_close () {
     cy.get('#main-container > div.modal-wrapper > div > svg')
@@ -295,7 +299,30 @@ export const navReg = {
     cy.get('.level-item > .application-card-android')
             .should('have.attr', 'href').and('include', '/apk-folder/1win-1wenx.xyz.apk')
   },
-
+  check_telegram () {
+    cy.get('.header-line-left > :nth-child(2) > .button', { timeout: 10000 })
+      .click()
+    cy.get('.social-links > .telegram')
+      .should('be.visible')
+    cy.get('#footer > div:nth-child(2) > nav > ul > li:nth-child(1) > a')
+      .should('have.attr', 'href').and('include', 'https://tme.run/joinchat/AAAAAEOBOGmId4M_50OlSA?open=true')
+  },
+  check_vk () {
+    cy.get('.header-line-left > :nth-child(2) > .button', { timeout: 10000 })
+      .click()
+    cy.get('.social-links > .vk')
+      .should('be.visible')
+    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > div > div.access-modal-right > div > div.social-links > a.social-link.vk')
+      .should('have.attr', 'href').and('include', 'https://vk.com/1winn')
+  },
+  check_android () {
+    cy.get('#header > div.level.header__line--bottom > div:nth-child(2) > div.application-promo.right-item > div:nth-child(1)', { timeout: 10000 })
+      .first()
+      .trigger('mouseover')
+    cy.wait(1000)
+    cy.get('.tooltip-container')
+      .should('be.visible')
+  },
 
   check_reg_result () {
     cy.get('.modal-container .user-info .user-info__content__item')

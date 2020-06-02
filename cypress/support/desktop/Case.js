@@ -6,7 +6,7 @@ export const cases = {
   },
   //нажать на  кнопку "кейс новичок"
   choose_case_for_mobile () {
-    cy.get('.theme-container-rang-0 > .case')
+    cy.get('.position-4 > .case-card-right > .case-card-button')
             .click()
   },
   //Увеличитель шанса +10% за 2 р
@@ -47,7 +47,7 @@ export const cases = {
   },
   //нажать на кнопку открыть кейс
   button_open_case_for_mobile () {
-    cy.get('#main-layout > div.wrapper.has-tabs > div.body.main-layout-item > div > div.game-row > div.btn-container > button > span')
+    cy.get('.case-game-button')
             .click()
   },
   //Проверка модального окна выигрыша в кейс
@@ -65,9 +65,14 @@ export const cases = {
     cy.get('.case-info-contains > span')
             .click()
   },
+  //нажать на кнопку закрыть модалку выигрыша
+  close_case () {
+    cy.get('#modal-container > div > main > div > div.close-btn-row > svg')
+      .click()
+  },
   //нажать на кнопку открыть кейс
   repeat_open_case_for_mobile () {
-    cy.get('#modal-container > div > main > div > div.btn-row > button > span')
+    cy.get('#modal-container > div > main > div > div.btn-row > button')
             .click()
   },
   //закрываем модальное окно выигрыша, кликая в любое место экрана
@@ -92,7 +97,7 @@ export const cases = {
   },
   //Кнопка кейсы на главной странице
   open_for_mobile () {
-    cy.get('#navigation > section > a:nth-child(6)')
+    cy.get('#navigation > section > a:nth-child(7)')
             .click()
   },
   //закрываем модальное окно выигрыша, кликая в любое место экрана

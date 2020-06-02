@@ -13,54 +13,47 @@ describe('Banking', () => {
     cy.contains('Вывести')
       .click()
   })
+  afterEach(function () {
+    bank.assert_withdrawalMobile()
+  })
   it('C636625 - вывод средств на карту', function () {
     bank.changeRUB_for_mobile()
     bank.withdrawal_visa()
-    bank.assert_withdrawal_visa()
   })
   it('C636629 - вывод средств на Qiwi', function () {
     bank.changeRUB_for_mobile()
     bank.withdrawal_Qiwi()
-    bank.assert_withdrawal_visa()
   })
-  it('C636625 - вывод средств на WebMoney', function () {
+  it('C636632 - вывод средств на WebMoney', function () {
     bank.changeRUB_for_mobile()
     bank.withdrawal_WebMoney()
-    bank.assert_withdrawal_visa()
   })
-  it('C636625 - вывод средств на карту', function () {
+  it('C636625 - вывод средств на Яндекс деньги', function () {
+    bank.changeRUB_for_mobile()
+    bank.withdrawal_YandexMoney()
+  })
+  it('C636628 - вывод средств на Билайн', function () {
+    bank.changeRUB_for_mobile()
+    bank.withdrawal_Beeline()
+  })
+  it('C636630 - вывод средств на Мегафон', function () {
+    bank.changeRUB_for_mobile()
+    bank.withdrawal_Megafon()
+  })
+  it('C636626 - вывод средств на Tele2', function () {
     bank.changeRUB_for_mobile()
     bank.withdrawal_visa()
-    bank.assert_withdrawal_visa()
   })
-  it('C636625 - вывод средств на карту', function () {
+  it('C636631 - вывод средств на MTC', function () {
+    bank.changeRUB_for_mobile()
+    bank.withdrawal_MTC()
+  })
+  it('C636634 - вывод средств на AdvaCash', function () {
+    bank.changeRUB_for_mobile()
+    bank.withdrawal_AdvCash()
+  })
+  it('C636633 - вывод средств на карту', function () {
     bank.changeRUB_for_mobile()
     bank.withdrawal_visa()
-    bank.assert_withdrawal_visa()
-  })
-  it('C636625 - вывод средств на карту', function () {
-    bank.changeRUB_for_mobile()
-    bank.withdrawal_visa()
-    bank.assert_withdrawal_visa()
-  })
-  it('C636625 - вывод средств на карту', function () {
-    bank.changeRUB_for_mobile()
-    bank.withdrawal_visa()
-    bank.assert_withdrawal_visa()
-  })
-  it('C636625 - вывод средств на карту', function () {
-    bank.changeRUB_for_mobile()
-    bank.withdrawal_visa()
-    bank.assert_withdrawal_visa()
-  })
-  it('C636625 - вывод средств на карту', function () {
-    bank.changeRUB_for_mobile()
-    bank.withdrawal_visa()
-    bank.assert_withdrawal_visa()
-  })
-  it('C636625 - вывод средств на карту', function () {
-    bank.changeRUB_for_mobile()
-    bank.withdrawal_visa()
-    bank.assert_withdrawal_visa()
   })
 })

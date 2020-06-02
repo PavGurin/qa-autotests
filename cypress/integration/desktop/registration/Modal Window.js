@@ -74,7 +74,7 @@ describe('Modal window', () => {
     auth.login()
     prof.withdrawal('Вывод средств')
     prof.deposit_change()
-    prof.deposit_change_switch('Яндекс.Деньги')
+    prof.deposit_change_switch('QIWI-кошелек')
     //prof.open_close_withdrawal_history()
     cy.wait(1000)
     //prof.withdrawal_history_modal_container()

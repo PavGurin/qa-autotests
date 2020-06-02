@@ -41,4 +41,5 @@ describe('Sign up in One click', () => {
     navReg.close_new_user_info()
     auth.logout()
   })
+
 })

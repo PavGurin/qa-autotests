@@ -34,13 +34,83 @@ export const bank = {
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div.button-wrapper > button')
       .should('be.visible').click()
   },
+  // Яндекс деньги
+  withdrawal_YandexMoney () {
+    cy.get(':nth-child(4) > .button-content')
+      .click()
+    cy.get(':nth-child(1) > .input-container > .input')
+      .type('410010101021023')
+    cy.get(':nth-child(2) > .input-container > .input')
+      .type('100')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div.button-wrapper > button')
+      .should('be.visible').click()
+  },
+  // Билайн
+  withdrawal_Beeline () {
+    cy.get(':nth-child(7) > .button-content')
+      .click()
+    cy.get(':nth-child(1) > .input-container > .input')
+      .type('+79054567843')
+    cy.get(':nth-child(2) > .input-container > .input')
+      .type('100')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div.button-wrapper > button')
+      .should('be.visible').click()
+  },
+  // Мегафон
+  withdrawal_Megafon () {
+    cy.get(':nth-child(9) > .button-content')
+      .click()
+    cy.get(':nth-child(1) > .input-container > .input')
+      .type('+79214567843')
+    cy.get(':nth-child(2) > .input-container > .input')
+      .type('100')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div.button-wrapper > button')
+      .should('be.visible').click()
+  },
+  // Теле 2
+  withdrawal_Tele2 () {
+    cy.get(':nth-child(10) > .button-content')
+      .click()
+    cy.get(':nth-child(1) > .input-container > .input')
+      .type('+79114567843')
+    cy.get(':nth-child(2) > .input-container > .input')
+      .type('100')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div.button-wrapper > button')
+      .should('be.visible').click()
+  },
+  // MTC
+  withdrawal_MTC () {
+    cy.get(':nth-child(8) > .button-content')
+      .click()
+    cy.get(':nth-child(1) > .input-container > .input')
+      .type('+79114567843')
+    cy.get(':nth-child(2) > .input-container > .input')
+      .type('100')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div.button-wrapper > button')
+      .should('be.visible').click()
+  },
+  // AdvaCash
+  withdrawal_AdvCash () {
+    cy.get(':nth-child(6) > .button-content')
+      .click()
+    cy.get(':nth-child(1) > .input-container > .input')
+      .type('lina.solodova@gmail.com')
+    cy.get(':nth-child(2) > .input-container > .input')
+      .type('100')
+    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-payment > form > div.button-wrapper > button')
+      .should('be.visible').click()
+  },
   assert_withdrawal_visa () {
     cy.get('.description')
-            .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже')
+            .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
   },
-  assert_withdrawal_Qiwi () {
-    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.withdrawal-confirmation > div.withdrawal-confirmation-info')
+  assert_withdrawal () {
+    cy.get('.description')
             .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения')
+  },
+  assert_withdrawalMobile () {
+    cy.get('.withdrawal-confirmation-info')
+      .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz был отправлен код подтверждения')
   },
   deposit_megafon () {
     cy.get('#main-layout > div.wrapper.has-tabs > div > div > div > div.payments-row > button:nth-child(5)')

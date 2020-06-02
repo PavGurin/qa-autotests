@@ -54,8 +54,6 @@ describe('Profile Settings', () => {
   })
   it('C476382 - Рега в 1 клик - активно поле e-mail ', function () {
     navReg.click_register_for_mobile()
-    navReg.check_country_default_for_mobile('Russia (Россия)')
-    navReg.accept_agreement_for_mobile()
     navReg.sign_up_for_mobile()
     navReg.check_reg_result_for_mobile()
     cy.wait(1000)
@@ -67,8 +65,6 @@ describe('Profile Settings', () => {
   it('C476383 - Рега по e-mail - невозможно изменить почту ', function () {
     navReg.click_register_for_mobile()
     navReg.registration_form('По email')
-    navReg.set_name_for_mobile(`test_${randomStr}`)
-    navReg.set_date_of_birth_for_mobile('2000-12-31')
     navReg.set_email_register_for_mobile(`${randomStr}test@xyz.com`)
     navReg.set_pwd_for_mobile('111111')
     navReg.repeat_pwd_for_mobile('111111')

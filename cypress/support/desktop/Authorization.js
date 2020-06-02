@@ -148,11 +148,11 @@ export const auth = {
   },
   login_for_mobile2 () {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get('#header > div > button.login.control-item.button.sm.default', { timeout: 7000 })
+    cy.get('#header > div > button.login.control-item.button.sm.default', { timeout: 10000 })
             .click()
     // вводим логин/пароль
     // login_input() {
-    cy.get(':nth-child(1) > .input-container > .input')
+    cy.get(':nth-child(1) > .input-container > .input', { timeout: 10000 })
             .type('ginl39@1win.xyz')
     // вводим пароль
     // password_input() {
@@ -169,7 +169,7 @@ export const auth = {
     // вводим логин/пароль
     // login_input() {
     cy.get(':nth-child(1) > .input-container > .input')
-            .type('1wintesttransfer@ahem.email')
+            .type('transferMobile@ahem.email')
     // вводим пароль
     // password_input() {
     cy.get('div:nth-child(2) > div.input-container > input')
@@ -185,7 +185,7 @@ export const auth = {
     // вводим логин/пароль
     // login_input() {
     cy.get(':nth-child(1) > .input-container > .input')
-            .type('1wintest123@ahem.email')
+            .type('transferMobile2@ahem.email')
     // вводим пароль
     // password_input() {
     cy.get('div:nth-child(2) > div.input-container > input')
@@ -205,7 +205,7 @@ export const auth = {
   },
   login2 () {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get(entry_button, { timeout: 6000 })
+    cy.get(entry_button, { timeout: 10000 })
         .click()
     // вводим логин/пароль
     // login_input() {
@@ -221,7 +221,7 @@ export const auth = {
   },
   login3 () {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get(entry_button)
+    cy.get(entry_button, { timeout: 10000 })
             .click()
     // вводим логин/пароль
     // login_input() {
@@ -237,7 +237,7 @@ export const auth = {
   },
   login_with_new_pass_settings (pass) {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get(entry_button)
+    cy.get(entry_button, { timeout: 10000 })
            .click()
     // вводим логин/пароль
     // login_input() {
@@ -253,11 +253,11 @@ export const auth = {
   },
   login_for_mobile3 (pass) {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get('#header > div > button.login.control-item.button.sm.default', { timeout: 7000 })
+    cy.get('#header > div > button.login.control-item.button.sm.default', { timeout: 10000 })
             .click()
     // вводим логин/пароль
     // login_input() {
-    cy.get(':nth-child(1) > .input-container > .input')
+    cy.get(':nth-child(1) > .input-container > .input', { timeout: 10000 })
             .type('testpass@ahem.email')
     // вводим пароль
     // password_input() {
@@ -274,11 +274,11 @@ export const auth = {
     //    .click();
     // вводим логин/пароль
     // login_input() {
-    cy.get(login_input)
+    cy.get(login_input, { timeout: 10000 })
             .type('1wintest@ahem.email')
     // вводим пароль
     // password_input() {
-    cy.get(password_input)
+    cy.get(password_input, { timeout: 10000 })
             .type(pass)
     // нажимаем кнопку "войти"
     cy.get('div.modal-container__container > div > form > form > div:nth-child(2) > button')
@@ -376,7 +376,7 @@ export const auth = {
   // авторизация с пустыми обязательными полями
   login_empty_mandatory_fields () {
     // жмем на кнопку "Войти" на странице авторизации
-    cy.get(entry_button)
+    cy.get(entry_button, { timeout: 10000 })
             .click()
     cy.get(login_input)
             .type('test')
@@ -394,7 +394,7 @@ export const auth = {
   // авторизация с пустыми обязательными полями
   login_empty_pass_for_mobile (mail) {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get('#header > div > button.login.control-item.button.sm.default')
+    cy.get('#header > div > button.login.control-item.button.sm.default', { timeout: 10000 })
             .click()
     cy.get(':nth-child(1) > .input-container > .input')
             .type(mail)
@@ -404,9 +404,9 @@ export const auth = {
   login_empty_mail_for_mobile () {
     // нажимаем кнопку 'Войти' со стартовой страницы
 
-    cy.get(':nth-child(1) > .input-container > .input')
+    cy.get(':nth-child(1) > .input-container > .input', { timeout: 10000 })
             .clear()
-    cy.get(':nth-child(2) > .input-container > .input')
+    cy.get(':nth-child(2) > .input-container > .input', { timeout: 10000 })
             .type('123test')
     cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
             .click()
@@ -414,7 +414,7 @@ export const auth = {
   },
   login_invalid_password () {
     // жмем на кнопку "Войти" на странице авторизации
-    cy.get(entry_button)
+    cy.get(entry_button, { timeout: 10000 })
              .click()
     // вводим логин с неправильным паролем
     cy.get(login_input)
@@ -422,7 +422,7 @@ export const auth = {
         .should('have.value', 'nogm75@1win.xyz')
     cy.get(password_input)
         .type('123456555')
-    cy.get('.modal-button')
+    cy.get('.modal-button', { timeout: 10000 })
          .click()
     // проверяем ошибку и ее текст
     cy.get(notification)
@@ -436,7 +436,7 @@ export const auth = {
   },
   login_invalid_password_for_mobile () {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get('#header > div > button.login.control-item.button.sm.default')
+    cy.get('#header > div > button.login.control-item.button.sm.default', { timeout: 10000 })
             .click()
     // вводим mail
     cy.get(':nth-child(1) > .input-container > .input')
@@ -444,7 +444,7 @@ export const auth = {
     cy.get('div:nth-child(2) > div.input-container > input')
             .type('qwerty321')
     // нажимаем кнопку 'Войти' в меню авторизации
-    cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span')
+    cy.get('#app > div > div.modal-layout-default.not-transparent > main > div > div > form > div.button-wrapper > button > span', { timeout: 10000 })
             .click()
     // проверяем ошибку и ее текст
     cy.get('#notifications-container')
@@ -461,7 +461,7 @@ export const auth = {
   login_without_enter () {
     // нажимаем кнопку 'Войти' со стартовой страницы
     //click_auth() {
-    cy.get(entry_button)
+    cy.get(entry_button, { timeout: 10000 })
             .click()
   },
   // вводим логин
@@ -478,7 +478,7 @@ export const auth = {
   // нажимаем кнопку 'Войти' со стартовой страницы
   click_auth () {
     cy.get(entry_button)
-            .click()
+            .click({ timeout: 10000 })
   },
   // Проверяем модальное окно "вход"
   modal_container_enter () {
@@ -522,7 +522,7 @@ export const auth = {
   },
   // Проверка модального онка "Установите новый пароль,текст снизу"
   new_password_text_mail () {
-    cy.get('.fullwidth > .email')
+    cy.get('.description > .email')
             .should('have.text', ' 1wintest@ahem.email')
   },
   //нажать на  кнопку "сменить пароль"
