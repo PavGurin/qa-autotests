@@ -7,7 +7,7 @@ describe('Переключение языка', () => {
   })
   it('C471386 - Переключение языка', () => {
     basicCom.first_button_main_page_for_mobile()
-    basicCom.switch_language_for_mobile()
+    basicCom.switch_language_for_mobile('English / ENG')
     basicCom.first_button_main_page_English_version_for_mobile()
   })
 })

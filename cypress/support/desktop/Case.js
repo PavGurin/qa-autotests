@@ -1,27 +1,27 @@
 export const cases = {
 //нажать на  кнопку "кейс новичок"
   choose_case () {
-    cy.get(':nth-child(1) > .case')
+    cy.get(':nth-child(1) > .cases-item-wrapper > .tilt > .cases-card > .cases-card-container > .cases-card-bottom-container > .card-open-button')
            .click()
   },
   //нажать на  кнопку "кейс новичок"
   choose_case_for_mobile () {
-    cy.get('.theme-container-rang-0 > .case')
+    cy.get('.position-4 > .case-card-right > .case-card-button')
             .click()
   },
   //Увеличитель шанса +10% за 2 р
   chance_improve_10_percent () {
-    cy.get('div:nth-child(2) > div.roulette-form__input > div')
+    cy.get(':nth-child(1) > .case-modal-chance-item-percent')
             .click()
   },
   //Увеличитель шанса +20% за 3 р
   chance_improve_20_percent () {
-    cy.get('div:nth-child(3) > div.roulette-form__input > div')
+    cy.get(':nth-child(2) > .case-modal-chance-item-percent')
           .click()
   },
   //Увеличитель шанса +30% за 5 р
   chance_improve_30_percent () {
-    cy.get('div:nth-child(4) > div.roulette-form__input > div')
+    cy.get(':nth-child(3) > .case-modal-chance-item-percent')
             .click()
 
   },
@@ -42,18 +42,18 @@ export const cases = {
   },
   //нажать на кнопку открыть кейс
   button_open_case () {
-    cy.get('#roulette-start')
+    cy.get('#app-overlay-wrapper > div > div > div.case-modal-control > div.case-modal-options-button-wrapper > button')
             .click()
   },
   //нажать на кнопку открыть кейс
   button_open_case_for_mobile () {
-    cy.get('#main-layout > div.wrapper.has-tabs > div.body.main-layout-item > div > div.game-row > div.btn-container > button > span')
+    cy.get('.case-game-button')
             .click()
   },
   //Проверка модального окна выигрыша в кейс
   modal_container_case () {
-    cy.get('#app-overlay-wrapper > div > div > div > div > div.case.df-aic-jcc.fdc.color--5 > div.case-top-wrapper.fdc.df-aic-jcc.color--5 > p', { timeout: 15000 })
-            .should('have.text', 'Вы выиграли')
+    cy.get('#app-overlay-wrapper > div > div > div.case-modal-header-wrapper', { timeout: 15000 })
+            .should('have.text', 'Поздравляем!Вы выиграли')
   },
   //Проверка модального окна выигрыша в кейс
   modal_container_case_for_mobile () {
@@ -65,9 +65,14 @@ export const cases = {
     cy.get('.case-info-contains > span')
             .click()
   },
+  //нажать на кнопку закрыть модалку выигрыша
+  close_case () {
+    cy.get('#modal-container > div > main > div > div.close-btn-row > svg')
+      .click()
+  },
   //нажать на кнопку открыть кейс
   repeat_open_case_for_mobile () {
-    cy.get('#modal-container > div > main > div > div.btn-row > button > span')
+    cy.get('#modal-container > div > main > div > div.btn-row > button')
             .click()
   },
   //закрываем модальное окно выигрыша, кликая в любое место экрана
@@ -92,7 +97,7 @@ export const cases = {
   },
   //Кнопка кейсы на главной странице
   open_for_mobile () {
-    cy.get('#navigation > section > a:nth-child(6)')
+    cy.get('#navigation > section > a:nth-child(7)')
             .click()
   },
   //закрываем модальное окно выигрыша, кликая в любое место экрана

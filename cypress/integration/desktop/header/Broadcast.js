@@ -3,22 +3,23 @@ import { broadcast } from '@support/desktop/Broadcast'
 import { basicCom } from '@support/desktop/BasicCommands'
 
 describe('Broadcast', () => {
-  it('C16620 - Open broadcast', function () {
+  beforeEach(() => {
     auth.login()
+    // auth.login_stage()
+  })
+  it('C16620 - Open broadcast', function () {
     basicCom.live_button()
     cy.wait(2000)
     broadcast.search()
     broadcast.open()
   })
   it('C16622 - Open broadcast on page', function () {
-    auth.login()
     basicCom.live_button()
     cy.wait(3000)
     broadcast.open_match()
     broadcast.should_exist()
   })
   it('C16625 - Close broadcast', function () {
-    auth.login()
     basicCom.live_button()
     cy.wait(3000)
     broadcast.search()
@@ -27,7 +28,6 @@ describe('Broadcast', () => {
     broadcast.should_close()
   })
   it('C16626 - Move broadcast', function () {
-    auth.login()
     basicCom.live_button()
     cy.wait(3000)
     broadcast.search()

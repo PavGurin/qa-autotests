@@ -29,8 +29,8 @@ describe('Детализация', () => {
   it('C1506265 - Новая ставка - Ординар', function () {
     auth.login()
     basicCom.live_button()
-    basicCom.switch_language()
-    bets.bet_main_page(10)
+    basicCom.switch_language('en')
+    bets.bet_main_page_en()
     prof.withdrawal('Detailing')
     prof.button_bets_detail()
     cy.wait(1000)

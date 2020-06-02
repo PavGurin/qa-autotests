@@ -18,6 +18,7 @@ export const req = {
   login_pass_for_mail () {
     navReg.set_email2(`${mail}@ahem.email`)
     navReg.click_send_login_pass()
+    cy.wait(10000)
     cy.get(':nth-child(1) > .user-info__content__item__value').should(($div) => {
       login = $div.text()
     })
@@ -254,7 +255,7 @@ export const req = {
             .then((resp) => {
               token = (resp.body.token)
               console.log(token)
-              cy.wait(4000)
+              cy.wait(7000)
               cy.request({
                 method: 'GET',
                 url: 'https://www.ahem.email/api/mailbox/1wintest/email',
@@ -279,7 +280,7 @@ export const req = {
                             .then((resp) => {
                               const code = resp.body.html.match(/\d\d\d\d\d\d\d(?!\.|\$|₽|€|@)/)[0]
 
-                              cy.get('div:nth-child(2) > div > div > input')
+                              cy.get(':nth-child(2) > .input-wrapper > .input')
                                     .type(code)
                             })
                     })
@@ -324,7 +325,7 @@ export const req = {
                             .then((resp) => {
                               const code = resp.body.html.match(/\d\d\d\d\d\d\d(?!\.|\$|₽|€|@)/)[0]
 
-                              cy.get('div:nth-child(2) > div > div > input')
+                              cy.get('.input')
                                     .type(code)
                             })
                     })
@@ -369,7 +370,7 @@ export const req = {
                             .then((resp) => {
                               const code = resp.body.html.match(/\d\d\d\d\d\d\d(?!\.|\$|₽|€|@)/)[0]
 
-                              cy.get('div:nth-child(2) > div > div > input')
+                              cy.get('.input')
                                     .type(code)
                             })
                     })
@@ -389,10 +390,10 @@ export const req = {
       .then((resp) => {
         token = (resp.body.token)
         console.log(token)
-        cy.wait(4000)
+        cy.wait(10000)
         cy.request({
           method: 'GET',
-          url: 'https://www.ahem.email/api/mailbox/1wintesttransfer/email',
+          url: 'https://www.ahem.email/api/mailbox/transfermobile/email',
           form: true,
           headers: {
             Authorization: `Bearer ${token}`,
@@ -404,7 +405,7 @@ export const req = {
             console.log(mailId)
             cy.request({
               method: 'GET',
-              url: `https://www.ahem.email/api/mailbox/1wintesttransfer/email/${mailId}`,
+              url: `https://www.ahem.email/api/mailbox/transfermobile/email/${mailId}`,
               form: true,
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -434,10 +435,10 @@ export const req = {
       .then((resp) => {
         token = (resp.body.token)
         console.log(token)
-        cy.wait(4000)
+        cy.wait(10000)
         cy.request({
           method: 'GET',
-          url: 'https://www.ahem.email/api/mailbox/1wintest123/email',
+          url: 'https://www.ahem.email/api/mailbox/transfermobile2/email',
           form: true,
           headers: {
             Authorization: `Bearer ${token}`,
@@ -449,7 +450,7 @@ export const req = {
             console.log(mailId)
             cy.request({
               method: 'GET',
-              url: `https://www.ahem.email/api/mailbox/1wintest123/email/${mailId}`,
+              url: `https://www.ahem.email/api/mailbox/transfermobile2/email/${mailId}`,
               form: true,
               headers: {
                 Authorization: `Bearer ${token}`,
