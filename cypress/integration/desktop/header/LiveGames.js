@@ -1,6 +1,5 @@
 import { navReg } from '@support/desktop/NavReg'
 import { auth } from '@support/desktop/Authorization'
-import { basicCom } from '@support/desktop/BasicCommands'
 
 describe('LiveGames', () => {
 
