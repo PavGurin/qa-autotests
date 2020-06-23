@@ -132,7 +132,7 @@ export const auth = {
   },
   login_for_mobile () {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get('#header > div > button.login.control-item.button.sm.default', { timeout: 7000 })
+    cy.get('.login > .button-content', { timeout: 10000 })
             .click()
     // вводим логин/пароль
     // login_input() {
@@ -253,8 +253,8 @@ export const auth = {
   },
   login_for_mobile3 (pass) {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get('#header > div > button.login.control-item.button.sm.default', { timeout: 10000 })
-            .click()
+    cy.get('.login > .button-content', { timeout: 10000 })
+            .click({ force: true })
     // вводим логин/пароль
     // login_input() {
     cy.get(':nth-child(1) > .input-container > .input', { timeout: 10000 })
