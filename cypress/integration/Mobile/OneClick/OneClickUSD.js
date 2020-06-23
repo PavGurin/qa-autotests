@@ -8,10 +8,8 @@ describe('OneClick - USD', () => {
     navReg.click_register_for_mobile()
   })
   it('C1598942 - One click sign up with default country without promo code', () => {
-    navReg.check_country_default_for_mobile('Russia (Россия)')
     navReg.choose_wallet_for_mobile()
     navReg.currency_USD_for_mobile()
-    navReg.accept_agreement_for_mobile()
     navReg.sign_up_for_mobile()
     navReg.check_reg_result_for_mobile()
     cy.wait(1000)
@@ -20,7 +18,6 @@ describe('OneClick - USD', () => {
   })
 
   it('C1598944 - One click sign up with Russia country with promo code', () => {
-    navReg.accept_agreement_for_mobile()
     navReg.choose_wallet_for_mobile()
     navReg.currency_USD_for_mobile()
     navReg.add_promocode_for_mobile('test001')
@@ -35,7 +32,6 @@ describe('OneClick - USD', () => {
     navReg.set_country('Andorra')
     navReg.choose_wallet_for_mobile()
     navReg.currency_USD_for_mobile()
-    navReg.accept_agreement_for_mobile()
     navReg.sign_up_for_mobile()
     navReg.check_reg_result_for_mobile()
     cy.wait(1000)

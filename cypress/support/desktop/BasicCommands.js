@@ -117,15 +117,15 @@ export const basicCom = {
   },
 
   casino_search_mobile (name) {
-    cy.get('#main-layout > div.wrapper.has-tabs > div > div > div.all-games > div > div.all-games__header > svg')
+    cy.get('.all-games__search')
       .click()
     cy.get('.input')
       .click()
       .type(name)
   },
   assert_casino_for_mobile () {
-    cy.get('.game-card-image')
-      .should('exist')
+    cy.get('.name')
+      .should('have.text', 'Ice Wolf')
   },
 
   assert2_casino_for_mobile () {
@@ -134,25 +134,26 @@ export const basicCom = {
   },
   assert_casino_category () {
     cy.get('.category-list>li').should(($lis) => {
-      expect($lis).to.have.length(13)
-      expect($lis.eq(0)).to.contain('Все игры')
-      expect($lis.eq(1)).to.contain('Лайв Казино')
-      expect($lis.eq(2)).to.contain('Рулетка')
-      expect($lis.eq(3)).to.contain('Новые')
-      expect($lis.eq(4)).to.contain('Слоты')
-      expect($lis.eq(5)).to.contain('Блекджек')
-      expect($lis.eq(6)).to.contain('Настольные')
-      expect($lis.eq(7)).to.contain('Джекпоты')
-      expect($lis.eq(8)).to.contain('Виртуальные игры')
-      expect($lis.eq(9)).to.contain('Видео покер')
-      expect($lis.eq(10)).to.contain('Скретч-карты')
-      expect($lis.eq(11)).to.contain('Лотереи')
-      expect($lis.eq(12)).to.contain('Другие')
+      expect($lis).to.have.length(14)
+      expect($lis.eq(0)).to.contain('Demi Gods')
+      expect($lis.eq(1)).to.contain('Все игры')
+      expect($lis.eq(2)).to.contain('Лайв Казино')
+      expect($lis.eq(3)).to.contain('Рулетка')
+      expect($lis.eq(4)).to.contain('Новые')
+      expect($lis.eq(5)).to.contain('Слоты')
+      expect($lis.eq(6)).to.contain('Блекджек')
+      expect($lis.eq(7)).to.contain('Настольные')
+      expect($lis.eq(8)).to.contain('Джекпоты')
+      expect($lis.eq(9)).to.contain('Виртуальные игры')
+      expect($lis.eq(10)).to.contain('Видео покер')
+      expect($lis.eq(11)).to.contain('Скретч-карты')
+      expect($lis.eq(12)).to.contain('Лотереи')
+      expect($lis.eq(13)).to.contain('Другие')
     })
   },
   assert_casino_providers () {
     cy.get('.provider-list>li').should(($lis) => {
-      expect($lis).to.have.length(36)
+      expect($lis).to.have.length(38)
       expect($lis.eq(0)).to.contain('1x2')
       expect($lis.eq(1)).to.contain('Apollo')
       expect($lis.eq(2)).to.contain('BetSoft')
@@ -182,13 +183,15 @@ export const basicCom = {
       expect($lis.eq(26)).to.contain('Pgsoft')
       expect($lis.eq(27)).to.contain('Platipus')
       expect($lis.eq(28)).to.contain('PlaysonDirect')
-      expect($lis.eq(29)).to.contain('Quickspin')
-      expect($lis.eq(30)).to.contain('Spadegaming')
-      expect($lis.eq(31)).to.contain('Spinomenal')
-      expect($lis.eq(32)).to.contain('TomHorn')
-      expect($lis.eq(33)).to.contain('TrueLab')
-      expect($lis.eq(34)).to.contain('VivoGaming')
-      expect($lis.eq(35)).to.contain('Wazdan')
+      expect($lis.eq(29)).to.contain('Pragmatic')
+      expect($lis.eq(30)).to.contain('Quickspin')
+      expect($lis.eq(31)).to.contain('Spadegaming')
+      expect($lis.eq(32)).to.contain('Spinmatic')
+      expect($lis.eq(33)).to.contain('Spinomenal')
+      expect($lis.eq(34)).to.contain('TomHorn')
+      expect($lis.eq(35)).to.contain('TrueLab')
+      expect($lis.eq(36)).to.contain('VivoGaming')
+      expect($lis.eq(37)).to.contain('Wazdan')
     })
   },
 }

@@ -1,17 +1,18 @@
 import { navReg } from '@support/desktop/NavReg'
+import { auth } from '@support/desktop/Authorization'
+import { basicCom } from '@support/desktop/BasicCommands'
 
-describe('Live games', () => {
+describe('LiveGames', () => {
 
   it('C636689 - choose games', () => {
-    navReg.check_telegram()
-  })
-  it('C16307 - Link VK', () => {
-    navReg.check_vk()
-  })
-  it('C16310 - check android', () => {
-    navReg.check_android()
-  })
-  it('C18120- check ios', () => {
-    navReg.check_ios()
+    auth.login()
+    navReg.button_LiveGames()
+    cy.wait(1000)
+    cy.get('#casino > main > div > div > div > div > div.vue-recycle-scroller__item-wrapper > div:nth-child(1) > div > div:nth-child(1) > section > div.game-card-overview > button')
+      .click({ force: true })
+    cy.get('.game > iframe', { timeout: 15000 })
+     .should('be.visible')
+    cy.get('.game > iframe')
+      .its('0.contentDocument').should('exist')
   })
 })

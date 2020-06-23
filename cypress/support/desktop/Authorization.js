@@ -54,7 +54,7 @@ export const auth = {
   login () {
     // нажимаем кнопку 'Войти' со стартовой страницы
     cy.get(entry_button, { timeout: 15000 })
-            .click()
+            .click({ force: true })
     // вводим логин/пароль
     // login_input() {
     cy.get(login_input, { timeout: 15000 })
@@ -148,7 +148,7 @@ export const auth = {
   },
   login_for_mobile2 () {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get('#header > div > button.login.control-item.button.sm.default', { timeout: 10000 })
+    cy.get('.login > .button-content', { timeout: 10000 })
             .click()
     // вводим логин/пароль
     // login_input() {
@@ -357,7 +357,7 @@ export const auth = {
   // невалидная попытка авторизации
   login_nonexistent_user_for_mobile () {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get('#header > div > button.login.control-item.button.sm.default')
+    cy.get('.login > .button-content', { timeout: 10000 })
             .click()
     // вводим невалидные логин/пароль
     cy.get(':nth-child(1) > .input-container > .input')
@@ -394,7 +394,7 @@ export const auth = {
   // авторизация с пустыми обязательными полями
   login_empty_pass_for_mobile (mail) {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get('#header > div > button.login.control-item.button.sm.default', { timeout: 10000 })
+    cy.get('.login > .button-content', { timeout: 10000 })
             .click()
     cy.get(':nth-child(1) > .input-container > .input')
             .type(mail)

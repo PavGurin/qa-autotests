@@ -116,10 +116,9 @@ export const navReg = {
   },
   // select country from registration page
   set_country_for_mobile (country) {
-    cy.get('#reg-full > form > div:nth-child(3) > div > div > div.control-left > div > div > div > div > div')
+    cy.get('.trigger > .control > .control-left')
             .click()
-            .get('#reg-full > form > div:nth-child(3) > div > div > div.control-left > div > div > div > div.dropdown-menu')
-            .contains(country)
+    cy.contains(country)
             .click()
   },
 
@@ -154,7 +153,7 @@ export const navReg = {
   },
   // email form - name
   set_name_for_mobile (name) {
-    cy.get('.form > :nth-child(1) > .control > .input-container > .input')
+    cy.get(':nth-child(3) > .control > .input-container > .input')
             .type(name)
   },
 
@@ -185,7 +184,7 @@ export const navReg = {
             .click({ timeout: 10000 })
   },
   set_email_register_for_mobile (email) {
-    cy.get(':nth-child(5) > .control > .input-container > .input')
+    cy.get(':nth-child(3) > .control > .input-container > .input')
             .type(email)
   },
 
@@ -196,7 +195,7 @@ export const navReg = {
             .type(password)
   },
   set_pwd_for_mobile (password) {
-    cy.get(':nth-child(6) > .control > .input-container > .input')
+    cy.get(':nth-child(4) > .control > .input-container > .input')
             .type(password)
   },
   // email form - repeat password field
@@ -208,7 +207,7 @@ export const navReg = {
 
   // email form - repeat password field
   repeat_pwd_for_mobile (password2) {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > form > form > div:nth-child(5) > div > input')
+    cy.get(':nth-child(5) > .control > .input-container > .input')
             .type(password2)
   },
 
@@ -247,7 +246,7 @@ export const navReg = {
   },
   // email form -  phone
   set_phone_numb_for_mobile (phone) {
-    cy.get('#reg-full > form > div:nth-child(4) > div > div > div.input-container > input')
+    cy.get('.intl-tel-input > .control > .input-container > .input')
             .type(phone)
   },
 
@@ -302,7 +301,7 @@ export const navReg = {
   check_telegram () {
     cy.get('.header-line-left > :nth-child(2) > .button', { timeout: 10000 })
       .click()
-    cy.get('.social-links > .telegram')
+    cy.get('.social-links > .telegram', { timeout: 10000 })
       .should('be.visible')
     cy.get('#footer > div:nth-child(2) > nav > ul > li:nth-child(1) > a')
       .should('have.attr', 'href').and('include', 'https://tme.run/joinchat/AAAAAEOBOGmId4M_50OlSA?open=true')
@@ -310,7 +309,7 @@ export const navReg = {
   check_vk () {
     cy.get('.header-line-left > :nth-child(2) > .button', { timeout: 10000 })
       .click()
-    cy.get('.social-links > .vk')
+    cy.get('.social-links > .vk', { timeout: 10000 })
       .should('be.visible')
     cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div > div > div.access-modal-right > div > div.social-links > a.social-link.vk')
       .should('have.attr', 'href').and('include', 'https://vk.com/1winn')
@@ -492,6 +491,10 @@ export const navReg = {
   },
   currency_EUR_for_mobile () {
     cy.get('#modal-container > section > main > section > form > label:nth-child(2)')
+      .click()
+  },
+  button_LiveGames () {
+    cy.get('[href="/casino/live"] > .item-text-block > .item-text', { timeout: 4000 })
       .click()
   },
 }
