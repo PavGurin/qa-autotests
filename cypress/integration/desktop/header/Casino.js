@@ -22,6 +22,8 @@ describe('Casino', () => {
     basicCom.assert_casino_providers()
   })
   it('C636544 - open casino games', function () {
+    cy.get('.level-right > :nth-child(1) > .button')
+      .click()
     auth.login()
     basicCom.casino_button()
     cy.wait(2000)

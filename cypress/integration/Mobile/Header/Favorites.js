@@ -20,7 +20,7 @@ describe('Избранное', () => {
         cy.get('#navigation > section > a:nth-child(2)')
         .click()
       }).then(() => {
-        cy.get('#bets > div > div > div.filter-list.filters.horizontal-scroll > div.filter-item.favourite.scroll-item')
+        cy.get('.favourite > .sport-icon-container')
         .click()
       }).then(() => {
         cy.get('#bets > div > div > ul > li > div > div.collapse-content > div > div > div > div')
@@ -35,6 +35,10 @@ describe('Избранное', () => {
         }).then(() => {
           expect(NameTeams).to.be.equal(NameTeams2)
         })
+          .then(() => {
+            cy.get('.icon-star')
+              .click()
+          })
       })
   })
 })

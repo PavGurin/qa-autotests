@@ -485,7 +485,7 @@ export const prof = {
   assert_button_deposit_for_mobile () {
     cy.get('div.payments-row > button')
       //.find('#main-layout > div.wrapper.has-tabs > div > div > div.deposit-payments > div.payments-row > button:nth-child(1)' )
-      .should('have.length', 4)
+      .should('have.length', 10)
   },
   // проверка, что кнопка "вывод" существует
   assert_button_transfer_for_mobile () {

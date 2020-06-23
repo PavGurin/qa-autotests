@@ -10,18 +10,17 @@ describe('Sign up in One click', () => {
     navReg.click_register_for_mobile()
   })
   it('C396391 - One click sign up with default country without promo code', () => {
-    navReg.check_country_default_for_mobile('Russia (Россия)')
-    navReg.accept_agreement_for_mobile()
     navReg.sign_up_for_mobile()
+    cy.wait(2000)
     navReg.check_reg_result_for_mobile()
     cy.wait(2000)
     navReg.close_new_user_info_for_mobile()
   })
 
   it('C396393 - One click sign up with Russia country with promo code', () => {
-    navReg.accept_agreement_for_mobile()
     navReg.add_promocode_for_mobile('test001')
     navReg.sign_up_for_mobile()
+    cy.wait(2000)
     navReg.check_reg_result_for_mobile()
     cy.wait(1000)
     navReg.close_new_user_info_for_mobile()
@@ -29,8 +28,8 @@ describe('Sign up in One click', () => {
 
   it('C396392 - One click sign up with @country without promo code', () => {
     navReg.set_country('Andorra')
-    navReg.accept_agreement_for_mobile()
     navReg.sign_up_for_mobile()
+    cy.wait(2000)
     navReg.check_reg_result_for_mobile()
     cy.wait(1000)
     navReg.close_new_user_info_for_mobile()
@@ -38,27 +37,27 @@ describe('Sign up in One click', () => {
 
   it('C396394 - One click sign up with @country with promo code', () => {
     navReg.set_country('Angola')
-    navReg.accept_agreement_for_mobile()
     navReg.add_promocode_for_mobile('test001')
     navReg.sign_up_for_mobile()
+    cy.wait(2000)
     navReg.check_reg_result_for_mobile()
     cy.wait(1000)
     navReg.close_new_user_info_for_mobile()
   })
   it('C396395 - copy login/password', () => {
-    navReg.check_country_default_for_mobile('Russia (Россия)')
-    navReg.accept_agreement_for_mobile()
     navReg.sign_up_for_mobile()
+    cy.wait(2000)
     navReg.check_reg_result_for_mobile()
+    cy.wait(2000)
     navReg.copy_login_pass_for_mobile()
     auth.check_notification_for_mobile()
     navReg.close_new_user_info_for_mobile()
   })
   it('C396396 - send e-mail login/password', () => {
-    navReg.check_country_default_for_mobile('Russia (Россия)')
-    navReg.accept_agreement_for_mobile()
     navReg.sign_up_for_mobile()
+    cy.wait(2000)
     navReg.check_reg_result_for_mobile()
+    cy.wait(2000)
     navReg.send_login_pass_for_mobile()
     req.login_pass_for_mail_for_mobile()
     navReg.close_new_user_info_for_mobile()

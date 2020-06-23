@@ -32,7 +32,7 @@ describe('Partner', () => {
   })
   it('C1961998 - PartnerURL + rega OneCLick', function () {
     req.LoginPartner('test1winpartner@ahem.email', 'qwerty12', dateNow)
-    cy.visit('https://1wox.top/#x0k4')
+    cy.visit('https://1wsnr.xyz/#x0k4')
     cy.wait(6000)
     navReg.click_register()
     cy.wait(2000)
@@ -42,7 +42,7 @@ describe('Partner', () => {
   })
   it('C1961999 - PartnerURL + rega Email', function () {
     req.LoginPartner('test1winpartner@ahem.email', 'qwerty12', dateNow)
-    cy.visit('https://1wox.top/#x0k4')
+    cy.visit('https://1wsnr.xyz/#x0k4')
     cy.wait(2000)
     navReg.click_register()
     navReg.registration_form('По e-mail')
@@ -57,7 +57,7 @@ describe('Partner', () => {
   })
   it('C2050648 - PartnerURL + rega Email into TV', function () {
     req.LoginPartner('test1winpartner@ahem.email', 'qwerty12', dateNow)
-    cy.visit('https://1wcko.xyz/tv/172#x0k4')
+    cy.visit('https://1wsnr.xyz/tv/172#x0k4')
     cy.wait(2000)
     navReg.registration_form('По e-mail')
     navReg.set_email(`${randomStr}test457@zyx.com`)
@@ -71,7 +71,7 @@ describe('Partner', () => {
   })
   it('C2050649 - PartnerURL + rega OneCLick into TV', function () {
     req.LoginPartner('test1winpartner@ahem.email', 'qwerty12', dateNow)
-    cy.visit('https://1wox.top/tv/172')
+    cy.visit('https://1wsnr.xyz/tv/172')
     cy.wait(2000)
     navReg.add_promocode('1wintester')
     navReg.sign_up()
