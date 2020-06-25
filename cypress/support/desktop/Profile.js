@@ -40,7 +40,7 @@ export const prof = {
   },
   // Заполнить поле мобильный номер
   type_numberPhone (number) {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.control > div > input')
+    cy.get(':nth-child(4) > .input-wrapper > .input')
       .click()
       .type(number)
   },
@@ -60,13 +60,13 @@ export const prof = {
   },
   // Ввести номер карты
   credit_card_deposit_number () {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.send-row > div > div > input')
+    cy.get(':nth-child(4) > .input-wrapper > .input')
       .clear()
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.send-row > button')
+    cy.get('.send-row > .button')
       .should('be.disabled')
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.control > div > input')
+    cy.get(':nth-child(4) > .input-wrapper > .input')
       .type('4276554443216987')
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.send-row > div > div > input')
+    cy.get('.send-row > .control > .input-wrapper > .input')
       .clear()
       .type(100)
     cy.get('.send-row > .button')

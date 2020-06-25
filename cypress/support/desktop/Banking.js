@@ -153,7 +153,7 @@ export const bank = {
             .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
   },
   assert_transfer2 () {
-    cy.get('#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__body > form > div.transfer__description')
+    cy.get('.transfer__description')
             .should('have.text', 'На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.')
   },
   assert_transfer () {
