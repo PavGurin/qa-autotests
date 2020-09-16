@@ -26,7 +26,6 @@ install:
   stage: build
   tags:
     - docker
-    - tests
   script:
     - npm ci
     - $(npm bin)/print-env CI
