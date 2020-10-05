@@ -1,9 +1,9 @@
-import { auth } from '@support/desktop/Authorization'
+import { auth } from "@support/desktop/Authorization";
 
-describe('Выход', () => {
+describe("Выход", () => {
 
-  it('C18768 - Выход', () => {
-    auth.login()
-    auth.logout()
-  })
-})
+  it("C18768 - Выход", () => {
+    auth.login();
+    auth.logout();
+  });
+});

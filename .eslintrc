@@ -1,7 +1,8 @@
 {
   "extends": [
     "plugin:cypress-dev/general",
-    "plugin:cypress-dev/tests"
+    "plugin:cypress-dev/tests",
+    "eslint:recommended"
   ],
   "plugins": [
     "cypress"
@@ -16,6 +17,8 @@
     "import/prefer-default-export": "off",
     "no-unused-vars": "warn",
     "no-unused-expressions": "warn",
-    "no-console": "warn"
+    "no-console": "warn",
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"]
     }
 }

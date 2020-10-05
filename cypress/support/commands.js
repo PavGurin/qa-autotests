@@ -1,21 +1,21 @@
-import 'cypress-file-upload'
-import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command'
+import "cypress-file-upload";
+import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
 
 addMatchImageSnapshotCommand({
   failureThreshold: 10.0,
-  failureThresholdType: 'percent',
+  failureThresholdType: "percent",
   customDiffConfig: { threshold: 10.0 },
-  capture: 'viewport',
-})
+  capture: "viewport",
+});
 
-Cypress.Commands.add('setResolution', (size) => {
+Cypress.Commands.add("setResolution", (size) => {
   if (Cypress._.isArray(size)) {
-    cy.viewport(size[0], size[1])
+    cy.viewport(size[0], size[1]);
   } else {
-    cy.viewport(size)
+    cy.viewport(size);
   }
 
-})
+});
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -42,14 +42,14 @@ Cypress.Commands.add('setResolution', (size) => {
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('presudoHover', { prevSubject: true }, (subject) => {
+Cypress.Commands.add("presudoHover", { prevSubject: true }, (subject) => {
   subject[0].childNodes.forEach((child) => {
     if (child.tagName) {
-      const { display } = window.getComputedStyle(child)
+      const { display } = window.getComputedStyle(child);
 
-      if (display === 'none') child.style.display = 'flex'
+      if (display === "none") child.style.display = "flex";
     }
-  })
+  });
 
-  return subject
-})
+  return subject;
+});
