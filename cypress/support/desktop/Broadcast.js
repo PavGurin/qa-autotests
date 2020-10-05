@@ -1,67 +1,67 @@
 const available_for_broadcast_element = () => cy
-    .get('.matches-block-content')
-    .find('.match-row > .match-details > .match-teams-container > .match-features > .match-translation > .icon > path')
-    .not('.disabled')
-    .first()
+    .get(".matches-block-content")
+    .find(".match-row > .match-details > .match-teams-container > .match-features > .match-translation > .icon > path")
+    .not(".disabled")
+    .first();
 const match_with_translation = () => cy
-    .get('div.main-content', { timeout: 5000 })
-    .find('td.match-details > div.match-translation')
-    .prev('td.match-details > div.match-teams')
-    .first()
+    .get("div.main-content", { timeout: 5000 })
+    .find("td.match-details > div.match-translation")
+    .prev("td.match-details > div.match-teams")
+    .first();
 const match_with_translation2 = () => cy
-    .get('.matches-block-content').scrollIntoView({ duration: 5000 })
-    .find('.match-row > .match-details > .match-teams-container > .match-features > .match-translation > .icon > path')
-    .not('.disabled')
+    .get(".matches-block-content").scrollIntoView({ duration: 5000 })
+    .find(".match-row > .match-details > .match-teams-container > .match-features > .match-translation > .icon > path")
+    .not(".disabled")
     .first()
     .parents()
-    .first()
-    //.eq(2)
+    .first();
+//.eq(2)
 
 
 export const broadcast = {
 //нажать на  кнопку "нажать на кейс новичок"
   search () {
-    cy.get('.matches-block-content').scrollIntoView({ duration: 5000 }, { timeout: 10000 })
+    cy.get(".matches-block-content").scrollIntoView({ duration: 5000 }, { timeout: 10000 });
     available_for_broadcast_element()
-            .click({ force: true })
+            .click({ force: true });
   },
   open () {
-    cy.get('.translation-iframe', { timeout: 10000 })
-            .should('exist')
+    cy.get(".translation-iframe", { timeout: 10000 })
+            .should("exist");
   },
   play () {
-    cy.get('#videoplayer > div > div.container > div.player-poster.clickable > div > svg > path')
-            .click()
+    cy.get("#videoplayer > div > div.container > div.player-poster.clickable > div > svg > path")
+            .click();
 
 
   },
   open_match () {
     match_with_translation2()
-            .click()
+            .click();
   },
   close_match () {
-    cy.get('#main-container > div.translation-container > div.translation-container-close')
-            .click()
+    cy.get("#main-container > div.translation-container > div.translation-container-close")
+            .click();
   },
   should_close () {
-    cy.get('.translation-iframe')
-            .should('not.exist')
+    cy.get(".translation-iframe")
+            .should("not.exist");
   },
   should_exist () {
-    cy.get('.translation-iframe')
-            .should('exist')
+    cy.get(".translation-iframe")
+            .should("exist");
   },
   moving_container () {
-    cy.get('#main-container > div.translation-container > div.translation-container-drag')
-            .trigger('mousedown')
+    cy.get("#main-container > div.translation-container > div.translation-container-drag")
+            .trigger("mousedown");
   },
   moving_container2 () {
-    cy.get('#main-container > div.translation-container > div.translation-container-drag',
+    cy.get("#main-container > div.translation-container > div.translation-container-drag",
       { timeout: 5000 })
-            .trigger('mouseleave')
+            .trigger("mouseleave");
   },
   button_moving_exist () {
-    cy.get('#main-container > div.translation-container > div.translation-container-drag')
-            .should('exist')
+    cy.get("#main-container > div.translation-container > div.translation-container-drag")
+            .should("exist");
   },
-}
+};
