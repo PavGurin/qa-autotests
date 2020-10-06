@@ -47,6 +47,10 @@ export const auth = {
     cy.get(".exit")
              .click();
   },
+  modalBonus () {
+    cy.get(".bonus-modal-button-close", { timeout: 50000 })
+        .click();
+  },
   logout_ByEmail_for_mobile () {
     cy.get("#main-layout > div.wrapper > div > div > div:nth-child(2) > div:nth-child(2) > div")
             .click();
@@ -61,11 +65,12 @@ export const auth = {
             .type("ginl39@1win.xyz");
     // вводим пароль
     // password_input() {
-    cy.get(password_input)
+    cy.get(password_input, { timeout: 15000 })
                  .type("dreamteam");
     // нажимаем кнопку "войти"
     cy.get(".modal-button")
             .click();
+    cy.wait(15000);
   },
   login_stage () {
     // нажимаем кнопку 'Войти' со стартовой страницы
