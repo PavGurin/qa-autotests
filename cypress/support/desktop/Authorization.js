@@ -70,7 +70,7 @@ export const auth = {
     // нажимаем кнопку "войти"
     cy.get(".modal-button")
             .click();
-    cy.wait(15000);
+    cy.wait(3000);
   },
   login_stage () {
     // нажимаем кнопку 'Войти' со стартовой страницы

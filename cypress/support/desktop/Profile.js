@@ -1,6 +1,15 @@
 //Профиль игрока
 
 const notification = ".notification-item";
+const getRandomInteger = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
+const NumCh = getRandomInteger(5, 10);
+const NumPay = getRandomInteger(1, 10);
+/**
+ * Возвращает случайное целое число
+ * @param min {number} - значение от
+ * @param max {number} - значение до
+ * @returns {number}
+ */
 
 export const prof = {
   // Кнопка "войти в профиль"
@@ -618,6 +627,52 @@ export const prof = {
   assert_transfer_description () {
     cy.get(".transfer__description")
       .should("have.text", "На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.");
+  },
+  // открыть управление счетами
+  account_management_desktop () {
+    cy.get(".header-balance__angle-icon", { timeout: 3000 }).trigger("mouseover", { timeout: 3000 }, { force: true });
+    cy.get("#header > div.header__line--top > div.header__profile-block > div > div.header-balance > div.header-balance__bottom-line > div > div.dropdown-menu > div > article > section:nth-child(3) > button")
+        .last()
+        .click({ timeout: 3000 });
+  },
+  // выбор случайной валюты
+  random_currency () {
+    cy.log(NumCh);
+    cy.get(".account-management-group").scrollTo("bottom", { timeout: 3000 });
+    cy.get(`:nth-child(${NumCh}) > .currency-item-additional > .currency-dropdown > .dropdown > .dropdown-trigger > .currency-dropdown-icon`)
+        .last()
+        .trigger("mouseover", { timeout: 3000 });
+    cy.get(".dropdown-content > :nth-child(1)")
+        .last()
+        .click({ timeout: 3000 });
+    cy.get(":nth-child(1) > .currency-item > .currency-item-additional > .button").click({ timeout: 3000 });
+    cy.wait(2000);
+  },
+  // выбор случайного метода оплаты
+  random_payment_method () {
+    cy.get(":nth-child(1) > .currency-item > .currency-item-additional > .button").click();
+    cy.log(NumPay);
+    cy.get(`.payments > :nth-child(${NumPay})`).click();
+  },
+  // проверка количества способов оплаты
+  check_length_payment () {
+    //cy.get(".payment").should("have.length", 24);
+    cy.get(".form > .button").should("be.visible"); // кнопка "пополнить" активна
+    cy.get(".input").clear();
+    cy.get(".form > .button").should("be.disabled");// кнопка "пополнить" не активна
+  },
+  // проверка, что валюта - доллар США в конце тестов
+  check_dollar () {
+    cy.get(".header-balance__angle-icon", { timeout: 3000 }).trigger("mouseover", { timeout: 3000 });
+    cy.get("#header > div.header__line--top > div.header__profile-block > div > div.header-balance > div.header-balance__bottom-line > div > div.dropdown-menu > div > article > section:nth-child(3) > button")
+        .click({ timeout: 3000 });
+    cy.get(":nth-child(2) > .currency-item-additional > .currency-dropdown > .dropdown > .dropdown-trigger > .currency-dropdown-icon")
+        .last()
+        .trigger("mouseover", { timeout: 3000 });
+    cy.get(".dropdown-content > :nth-child(1)")
+        .last()
+        .click({ timeout: 3000 });
+    cy.get(".modal-container__header__row__cell__overlay").click();
   },
 };
 

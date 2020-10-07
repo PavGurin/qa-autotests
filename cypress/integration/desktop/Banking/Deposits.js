@@ -3,13 +3,12 @@ import { prof } from "@support/desktop/Profile";
 import { bank } from "@support/desktop/Banking";
 import { navReg } from "@support/desktop/NavReg";
 
+
 describe("Deposit", () => {
   beforeEach(() => {
-    cy.wait(10000);
-    auth.modalBonus();
     auth.login();
+    //cy.wait(3000);
     //prof.deposit();
-    cy.wait(1000);
   });
   it.skip("C1086820 - RUB - пополнение cо счета мегафона", function () {
     cy.get(".payment").should("have.length", 13);
@@ -143,11 +142,17 @@ describe("Deposit", () => {
       .click();
     prof.credit_card_deposit_number();
   });
-  it("случайный выбор новой валюты", function () {
-    cy.get(".header-balance__angle-icon").trigger("mouseover");
-    cy.get("#header > div.header__line--top > div.header__profile-block > div > div.header-balance > div.header-balance__bottom-line > div > div.dropdown-menu > div > article > section:nth-child(3) > button")
-        .click();
-    //prof.credit_card_deposit_number(); ввести номер карты
-  //:nth-child(5) > .currency-item-additional > .currency-dropdown > .dropdown > .dropdown-trigger > .currency-dropdown-icon > .icon > path
+  it("C2271429 - проверка каждого метода оплаты", function () {
+    prof.account_management_desktop();
+    prof.random_currency();
+    let i = 1;
+
+    for (i = 1; i < 25; i++) {
+      cy.log(i);
+      cy.get(`.payments > :nth-child(${i})`).click();
+      prof.check_length_payment();
+    }
+    cy.get(".modal-content__header__row__cell__overlay").click();
+    prof.check_dollar();
   });
 });
