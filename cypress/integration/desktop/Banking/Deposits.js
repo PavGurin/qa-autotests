@@ -3,14 +3,12 @@ import { prof } from "@support/desktop/Profile";
 import { bank } from "@support/desktop/Banking";
 import { navReg } from "@support/desktop/NavReg";
 
+
 describe("Deposit", () => {
   beforeEach(() => {
-    cy.wait(10000);
-    cy.get(".bonus-modal-button-close", { timeout: 50000 })
-        .click();
     auth.login();
-    prof.deposit();
-    cy.wait(1000);
+    //cy.wait(3000);
+    //prof.deposit();
   });
   it("C1086820 - RUB - пополнение cо счета мегафона", function () {
     cy.get(".payment").should("have.length", 24);
@@ -25,7 +23,7 @@ describe("Deposit", () => {
   it("C1086815 - RUB - Пополнение с банковской карты", function () {
     prof.credit_card_deposit_number();
   });
-  it("C1086816 - RUB - пополнение Яндекс.деньги", function () {
+  it.skip("C1086816 - RUB - пополнение Яндекс.деньги", function () {
     prof.change_currency_RUB();
     prof.deposit_change();
     prof.assert_button_is_disabled();
@@ -33,7 +31,7 @@ describe("Deposit", () => {
     prof.type_numberPhone("410015618886792");
     prof.assert_button_is_active();
   });
-  it("C1086817 - RUB - Пополнение Qiwi", function () {
+  it.skip("C1086817 - RUB - Пополнение Qiwi", function () {
     prof.change_currency_RUB();
     prof.assert_button_is_disabled();
     prof.deposit_change();
@@ -41,7 +39,7 @@ describe("Deposit", () => {
     prof.type_numberPhone("+79113457834");
     prof.assert_button_is_active();
   });
-  it("C1086818 - RUB - Пополнение Билайн", function () {
+  it.skip("C1086818 - RUB - Пополнение Билайн", function () {
     prof.change_currency_RUB();
     prof.assert_button_is_disabled();
     prof.deposit_change();
@@ -49,7 +47,7 @@ describe("Deposit", () => {
     prof.type_numberPhone("+79053457834");
     prof.assert_button_is_active();
   });
-  it("C1086819 - RUB - Пополнение MTC", function () {
+  it.skip("C1086819 - RUB - Пополнение MTC", function () {
     prof.change_currency_RUB();
     prof.assert_button_is_disabled();
     prof.deposit_change();
@@ -57,7 +55,7 @@ describe("Deposit", () => {
     prof.type_numberPhone("+79053457834");
     prof.assert_button_is_active();
   });
-  it("C1086821 - RUB - Пополнение Теле2", function () {
+  it.skip("C1086821 - RUB - Пополнение Теле2", function () {
     prof.change_currency_RUB();
     prof.assert_button_is_disabled();
     prof.deposit_change();
@@ -65,7 +63,7 @@ describe("Deposit", () => {
     prof.type_numberPhone("+79053457834");
     prof.assert_button_is_active();
   });
-  it("C1086822 - RUB - кошелек Piastrix", function () {
+  it.skip("C1086822 - RUB - кошелек Piastrix", function () {
     prof.change_currency_RUB();
     prof.assert_button_is_disabled();
     prof.deposit_change();
@@ -73,50 +71,50 @@ describe("Deposit", () => {
     prof.type_numberPhone("+79053457834");
     prof.assert_button_is_active();
   });
-  it("C1086823 - RUB - кошелек Bitcoin", function () {
+  it.skip("C1086823 - RUB - кошелек Bitcoin", function () {
     prof.change_currency_RUB();
     prof.assert_button_is_disabled();
     prof.deposit_change();
     prof.deposit_change_switch("BitCoin");
     prof.assert_button_is_active();
   });
-  it("C1086824 - RUB - кошелек Ethereum", function () {
+  it.skip("C1086824 - RUB - кошелек Ethereum", function () {
     prof.change_currency_RUB();
     prof.assert_button_is_disabled();
     prof.deposit_change();
     prof.deposit_change_switch("Ethereum");
     prof.assert_button_is_active();
   });
-  it("C1086825 - USD - пополнение c банковской карты", function () {
+  it.skip("C1086825 - USD - пополнение c банковской карты", function () {
     prof.credit_card_deposit_number();
   });
-  it("C1573890 - USD - пополнение c QIWI", function () {
+  it.skip("C1573890 - USD - пополнение c QIWI", function () {
     prof.assert_button_is_disabled();
     prof.deposit_change();
     prof.deposit_change_switch("QIWI-кошелек");
     prof.type_numberPhone("+79113457834");
     prof.assert_button_is_active();
   });
-  it("C2144675 - USD - пополнение c BitCoin", function () {
+  it.skip("C2144675 - USD - пополнение c BitCoin", function () {
     prof.assert_button_is_disabled();
     prof.deposit_change();
     prof.deposit_change_switch("BitCoin");
     prof.assert_button_is_active();
   });
-  it("C2144676 - USD - пополнение c Ethereum", function () {
+  it.skip("C2144676 - USD - пополнение c Ethereum", function () {
     prof.assert_button_is_disabled();
     prof.deposit_change();
     prof.deposit_change_switch("Ethereum");
     prof.assert_button_is_active();
   });
-  it("C1086835 - EUR - пополнение c банковской карты", function () {
+  it.skip("C1086835 - EUR - пополнение c банковской карты", function () {
     prof.change_currency_RUB();
     navReg.change_currency_EUR();
     prof.credit_card_deposit_number();
     //prof.withdrawal_number_EUR()
     //prof.deposit_assert_visible()
   });
-  it("C1573891 - EUR - пополнение c QIWI", function () {
+  it.skip("C1573891 - EUR - пополнение c QIWI", function () {
     navReg.change_currency_EUR();
     prof.assert_button_is_disabled();
     prof.deposit_change();
@@ -124,23 +122,36 @@ describe("Deposit", () => {
     prof.type_numberPhone("+79113457834");
     prof.assert_button_is_active();
   });
-  it("C2144677 - EUR -  пополнение c BitCoin", function () {
+  it.skip("C2144677 - EUR -  пополнение c BitCoin", function () {
     navReg.change_currency_EUR();
     prof.assert_button_is_disabled();
     prof.deposit_change();
     prof.deposit_change_switch("BitCoin");
     prof.assert_button_is_active();
   });
-  it("C2144678 - EUR -  пополнение c Ethereum", function () {
+  it.skip("C2144678 - EUR -  пополнение c Ethereum", function () {
     navReg.change_currency_EUR();
     prof.assert_button_is_disabled();
     prof.deposit_change();
     prof.deposit_change_switch("Ethereum");
     prof.assert_button_is_active();
   });
-  it("C2144679 - UAH - пополнение c банковской карты", function () {
+  it.skip("C2144679 - UAH - пополнение c банковской карты", function () {
     cy.contains("UAH")
       .click();
     prof.credit_card_deposit_number();
+  });
+  it("C2271429 - проверка каждого метода оплаты", function () {
+    prof.account_management_desktop();
+    prof.random_currency();
+    let i = 1;
+
+    for (i = 1; i < 25; i++) {
+      cy.log(i);
+      cy.get(`.payments > :nth-child(${i})`).click();
+      prof.check_length_payment();
+    }
+    cy.get(".modal-content__header__row__cell__overlay").click();
+    prof.check_dollar();
   });
 });
