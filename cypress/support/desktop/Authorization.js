@@ -72,18 +72,18 @@ export const auth = {
             .click();
     cy.wait(3000);
   },
-  login_stage () {
+  loginNew () {
     // нажимаем кнопку 'Войти' со стартовой страницы
     cy.get(entry_button, { timeout: 15000 })
       .click();
     // вводим логин/пароль
     // login_input() {
     cy.get(login_input, { timeout: 15000 })
-      .type("kikh66@1win.xyz");
+      .type("sanya2651@mail.ru");
     // вводим пароль
     // password_input() {
     cy.get(password_input)
-      .type("v1333i");
+      .type("tqhbnc");
     // нажимаем кнопку "войти"
     cy.get(".modal-button")
       .click();

@@ -10,8 +10,8 @@ describe("Deposit", () => {
     //cy.wait(3000);
     //prof.deposit();
   });
-  it.skip("C1086820 - RUB - пополнение cо счета мегафона", function () {
-    cy.get(".payment").should("have.length", 13);
+  it("C1086820 - RUB - пополнение cо счета мегафона", function () {
+    cy.get(".payment").should("have.length", 24);
     //prof.change_currency_RUB()
     //  prof.deposit_change()
     // prof.deposit_change_switch('С мобильного Мегафон')
@@ -20,8 +20,7 @@ describe("Deposit", () => {
     prof.deposit_button();
     bank.assert_deposit_desktop();
   });
-  it.skip("C1086815 - RUB - Пополнение с банковской карты", function () {
-    prof.change_currency_RUB();
+  it("C1086815 - RUB - Пополнение с банковской карты", function () {
     prof.credit_card_deposit_number();
   });
   it.skip("C1086816 - RUB - пополнение Яндекс.деньги", function () {
