@@ -111,15 +111,34 @@ export const prof = {
   },
   //вывод средств
   withdrawal (text) {
-    cy.get(".user-name-icon")
+    cy.get(".header-avatar__overlay")
+      .click();
+    cy.contains(text)
+      .click();
+  },
+  //управление счетами
+  wallet (text) {
+    cy.get("#header > div.header__line--top > div.header__profile-block > div > div.header-balance > div.header-balance__bottom-line > div")
       .trigger("mouseover");
-    cy.get(".dropdown-content")
-      .contains(text)
+    cy.contains(text)
       .click();
   },
   // Кнопка "открыть/закрыть историю выводов"
   open_close_withdrawal_history () {
     cy.get(".swiper")
+      .click();
+  },
+  //
+  make_primary () {
+    cy.get(":nth-child(1) > .currency-item-additional > .currency-dropdown > .dropdown > .dropdown-trigger > .currency-dropdown-icon")
+      .trigger("mouseover");
+    cy.wait(1000);
+    cy.contains("Сделать основным")
+      .click();
+  },
+
+  close_modal_container () {
+    cy.get(".modal-container__header__row__cell__overlay")
       .click();
   },
   //проверка модального окна "Вывод средств"
@@ -161,7 +180,7 @@ export const prof = {
   },
   //Ввести почту
   transfer_mail (mail) {
-    cy.get(":nth-child(3) > .input-wrapper > .input")
+    cy.get(":nth-child(2) > .input-wrapper > .input-message-container > .input")
       .type(mail);
   },
   //проверка модального окна "Перевод средств"
@@ -171,8 +190,13 @@ export const prof = {
   },
   // Проверка, что кнопка "Перевести"(внутри модального окна) неактивна
   transfer_assert_disabled () {
-    cy.get("div.modal-container__container > div.modal-container__body > form > div.transfer__send-container > button")
+    cy.get(".form > .button")
       .should("be.disabled");
+  },
+  // Проверка, что кнопка "Перевести"(внутри модального окна) неактивна
+  transfer_assert_disabled2 () {
+    cy.get("#app-overlay-wrapper > div > div.modal-container > div > div > div.modal-content__container > div.modal-content__body > form > button")
+      .should("exist");
   },
   //проверка, что кнопка "перевести" активна
   transfer_assert_visible () {
@@ -180,7 +204,7 @@ export const prof = {
       .should("be.visible");
   },
   transfer_button_click () {
-    cy.get("div.modal-container__container > div.modal-container__body > form > div.transfer__send-container > button")
+    cy.get(".form > .button")
       .click();
   },
   transfer_apply_click () {
@@ -189,7 +213,8 @@ export const prof = {
   },
   //ввести сумму
   transfer_deposit (sum) {
-    cy.get(".transfer__send-container > .control > .input-wrapper > .input")
+    cy.get(".input-message-container input.input")
+      .last()
       .type(sum);
   },
   //кнопка "скрыть баланас"
@@ -617,7 +642,7 @@ export const prof = {
   // проверка, что появилось описание последующих действий
   assert_transfer_description () {
     cy.get(".transfer__description")
-      .should("have.text", "На Ваш email адрес Ginl39@1win.xyz было отправлено письмо с кодом подтверждения. Для завершения данной операции, Вам необходимо вставить код из письма в поле ниже.");
+      .should("have.text", "На Ваш email адрес s...651@mail.ru был отправлен код подтверждения");
   },
 };
 
