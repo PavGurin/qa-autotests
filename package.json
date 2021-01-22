@@ -7,6 +7,9 @@
     "app",
     "cypress"
   ],
+  "browser": {
+    "fs": false
+  },
   "scripts": {
     "build": "npm run lint && npm run types && npm run stop-only",
     "dev": "npm start",
@@ -30,10 +33,13 @@
     "cy:version": "cypress version",
     "cy:run": "cypress run",
     "cy:run:record": "cypress run --record",
+    "cy:run:allure": "cypress run --reporter mocha-allure-reporter",
     "stop-only": "stop-only -f cypress/integration",
     "warn-only": "stop-only -f cypress/integration --warn",
     "ci:set-port": "node ./scripts/set-port",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "report:allure": "allure generate allure-results --clean -o -allure-report && allure serve",
+    "test:allure": "npm run cy:run:allure && sleep 1 && npm run report:allure"
   },
   "repository": {
     "type": "git",
@@ -49,26 +55,27 @@
     "@segment/to-iso-string": "1.0.1",
     "ajv": "6.10.2",
     "cypress-image-snapshot": "3.1.1",
-    "cypress-plugin-snapshots": "1.2.9",
+    "cypress-plugin-snapshots": "1.4.4",
     "eslint-config-airbnb-base": "14.0.0",
     "eslint-plugin-import": "2.18.2",
     "moment": "2.24.0",
     "mysql2": "1.7.0",
     "npm-run-all": "^4.1.2",
-    "serve": "11.1.0",
+    "serve": "11.3.2",
     "to-iso-string": "0.0.2"
   },
   "devDependencies": {
     "@bahmutov/print-env": "1.2.0",
     "@cypress/webpack-preprocessor": "^4.0.3",
-    "@percy/cypress": "2.1.1",
+    "@percy/cypress": "2.3.4",
+    "@shelex/cypress-allure-plugin": "2.0.3",
+    "allure-commandline": "2.13.8",
     "babel-eslint": "7.2.3",
     "colon-names": "1.0.0",
     "cypress": "5.3.0",
     "cypress-file-upload": "3.4.0",
     "cypress-image-snapshot": "^3.1.1",
-    "cypress-testrail-accumulative-reporter": "1.1.4",
-    "cypress-visual-regression": "^1.0.3",
+    "cypress-visual-regression": "1.5.6",
     "eslint": "4.19.1",
     "eslint-plugin-cypress": "2.6.0",
     "eslint-plugin-cypress-dev": "2.1.0",
@@ -78,6 +85,7 @@
     "growl": "1.10.5",
     "husky": "1.3.1",
     "minimatch": "3.0.4",
+    "mocha-allure-reporter": "1.4.0",
     "pug": "2.0.4",
     "salty-cypress-testrail-reporter": "1.3.8",
     "semantic-release": "^15.13.21",

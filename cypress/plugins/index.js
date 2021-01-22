@@ -3,6 +3,8 @@ const webpack = require("@cypress/webpack-preprocessor");
 const {
   addMatchImageSnapshotPlugin,
 } = require("cypress-image-snapshot/plugin");
+const allureWriter = require("@shelex/cypress-allure-plugin/writer");
+
 
 module.exports = (on, config) => {
   const options = {
@@ -19,6 +21,9 @@ module.exports = (on, config) => {
   addMatchImageSnapshotPlugin(on, config);
 
   on("file:preprocessor", webpack(options));
+
+  allureWriter(on, config);
+
   initPlugin(on, config);
 
   return config;
