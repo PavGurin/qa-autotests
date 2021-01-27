@@ -2,6 +2,7 @@ import { auth } from "@support/desktop/Authorization";
 import { prof } from "@support/desktop/Profile";
 import { navReg } from "@support/desktop/NavReg";
 
+
 describe("Deposit", () => {
   let number = 1;
   let NamePlaceholder;
@@ -268,5 +269,18 @@ describe("Deposit", () => {
         });
       }
     });
+  });
+  it("C2271429 - проверка каждого метода оплаты", function () {
+    prof.account_management_desktop();
+    prof.random_currency();
+    let i = 1;
+
+    for (i = 1; i < 25; i++) {
+      cy.log(i);
+      cy.get(`.payments > :nth-child(${i})`).click();
+      prof.check_length_payment();
+    }
+    cy.get(".modal-content__header__row__cell__overlay").click();
+    prof.check_dollar();
   });
 });
