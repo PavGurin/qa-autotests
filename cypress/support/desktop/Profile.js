@@ -25,7 +25,7 @@ export const prof = {
   },
   // Кнопка "пополнить"
   deposit () {
-    cy.get(".header-profile > .button")
+    cy.get(".header-profile > .button", { timeout: 7000 })
       .click();
   },
   // Проверка, что кнопка "пополнить"(внутри модального окна) неактивна
@@ -40,7 +40,7 @@ export const prof = {
   },
   // Заполнить поле мобильный номер
   type_numberPhone (number) {
-    cy.get(":nth-child(4) > .input-wrapper > .input")
+    cy.get(":nth-child(2) > .input-wrapper > .input-message-container > .input")
       .click()
       .type(number);
   },
@@ -60,23 +60,23 @@ export const prof = {
   },
   // Ввести номер карты
   credit_card_deposit_number () {
-    cy.get(":nth-child(4) > .input-wrapper > .input")
+    cy.get(":nth-child(2) > .input-wrapper > .input-message-container > .input", { timeout: 5000 })
       .clear();
-    cy.get(".send-row > .button")
+    cy.get(".form > .button", { timeout: 5000 })
       .should("be.disabled");
-    cy.get(":nth-child(4) > .input-wrapper > .input")
+    cy.get(":nth-child(2) > .input-wrapper > .input-message-container > .input", { timeout: 5000 })
       .type("4276554443216987");
-    cy.get(".send-row > .control > .input-wrapper > .input")
+    cy.get(".input-message-container input.input.icon-left", { timeout: 5000 })
       .clear()
       .type(100);
-    cy.get(".send-row > .button")
+    cy.get(".form > .button", { timeout: 5000 })
       .should("be.visible");
   },
   //Внести сумму(модальное окно "пополнить")
-  deposit_number () {
-    cy.get(".send-row > .control > .input-wrapper > .input")
+  deposit_number (card) {
+    cy.get(":nth-child(2) > .input-wrapper > .input-message-container > .input")
       .clear()
-      .type("750");
+      .type(card);
   },
   //Внести номер телефона(модальное окно "пополнить")
   deposit_number_phone () {
@@ -109,9 +109,9 @@ export const prof = {
     cy.get(".modal-container__header__row__cell__title")
       .should("have.text", "Пополнение");
   },
-  //вывод средств
+  //перевод средств
   withdrawal (text) {
-    cy.get(".header-avatar__overlay")
+    cy.get(".user-menu__toggle")
       .click();
     cy.contains(text)
       .click();
@@ -146,6 +146,7 @@ export const prof = {
     cy.get("div:nth-child(2) > div.modal-container__header")
       .should("have.text", "Детализация");
   },
+
   //Внести сумму(модальное окно "Вывод")
   withdrawal_number_ (sum) {
     cy.get(":nth-child(5) > .control > .input-wrapper > .input")
@@ -616,12 +617,12 @@ export const prof = {
   },
   // проверка, что кнопка  после заполнения всех необходимых полей становится активной
   assert_button_is_active () {
-    cy.get(".send-row > .button")
+    cy.get(".button.send-button")
     .should("be.visible");
   },
   // проверка, что кнопка в начале теста неактивна
   assert_button_is_disabled () {
-    cy.get(".send-row > .button")
+    cy.get(".form > .button", { timeout: 7000 })
       .should("be.disabled");
   },
   // проверка, что кнопка withdrawal после заполнения всех необходимых полей становится активной

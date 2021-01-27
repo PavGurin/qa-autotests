@@ -80,7 +80,7 @@ export const auth = {
     cy.get(password_input)
       .type("tqhbnc");
     // нажимаем кнопку "войти"
-    cy.get(".modal-button")
+    cy.get(".modal-button", { timeout: 5000 })
       .click();
   },
   login_for_change_email () {

@@ -1,7 +1,6 @@
 /**
  Registration commands
  **/
-import { auth } from "@support/desktop/Authorization";
 
 const password_input = ".input[name=password]";
 const new_password = ":nth-child(3) > .input-wrapper > .input";
@@ -15,12 +14,26 @@ export const navReg = {
             .click();
   },
   change_currency_EUR () {
-    cy.get(":nth-child(3) > .currency-chip")
-        .click();
+    cy.get(".header-balance__value")
+      .trigger("mouseover");
+    cy.get(".currency-dropdown")
+      .eq(1)
+      .trigger("mouseover");
+    cy.wait(1000);
+    cy.get(".dropdown-item.nowrap")
+      .last()
+      .click();
   },
   change_currency_USD () {
-    cy.get(":nth-child(2) > .currency-chip")
-            .click();
+    cy.get(".header-balance__value")
+      .trigger("mouseover");
+    cy.get(".currency-dropdown")
+      .first()
+      .trigger("mouseover");
+    cy.wait(1000);
+    cy.get(".dropdown-item.nowrap")
+      .last()
+      .click();
   },
   // registration button на мобильной версии
   click_register_for_mobile () {

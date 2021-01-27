@@ -1,9 +1,9 @@
 {
-      "baseUrl": "https://1wnvi.top/bets/home",
+      "baseUrl": "https://1wlbs.top/bets/home",
        "chromeWebSecurity": true,
        "numTestsKeptInMemory": 1,
       "video": false ,
-      "execTimeout": 180000,
+      "execTimeout": 5000,
       "viewportWidth": 1280,
       "viewportHeight": 800,
       "projectId": "kb155o",
