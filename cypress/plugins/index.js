@@ -1,3 +1,13 @@
+
+module.exports = (on, config) => {
+  // eslint-disable-next-line no-undef
+  on("file:preprocessor", webpackPreprocessor);
+  // eslint-disable-next-line no-undef
+  allureWriter(on, config);
+
+  return config;
+};
+
 const { initPlugin } = require("cypress-plugin-snapshots/plugin");
 const webpack = require("@cypress/webpack-preprocessor");
 const {

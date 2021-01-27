@@ -1,3 +1,4 @@
+
 Cypress.on("uncaught:exception", (err, runnable) => {
   // returning false here prevents Cypress from
   // failing the test
@@ -5,6 +6,7 @@ Cypress.on("uncaught:exception", (err, runnable) => {
 });
 import "cypress-plugin-snapshots/commands";
 import "./commands";
+
 
 beforeEach(function () {
   cy.log("I run before every test in every spec file!!!!!!");
