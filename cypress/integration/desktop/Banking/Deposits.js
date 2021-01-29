@@ -3,7 +3,6 @@ import { prof } from "@support/desktop/Profile";
 import { navReg } from "@support/desktop/NavReg";
 
 
-
 describe("Deposit", () => {
   let number = 1;
   let NamePlaceholder;
