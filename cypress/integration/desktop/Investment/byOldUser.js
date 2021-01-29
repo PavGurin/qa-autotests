@@ -3,7 +3,6 @@ import { topNav } from "@support/desktop/topNav";
 import { invest } from "@support/desktop/Investment";
 
 
-
 let validSum; //минимальная сумма инвестиции
 let count1; // старый счётчик
 let count2; // старый счётчик
