@@ -42,17 +42,28 @@ export const cases = {
   },
   //нажать на кнопку открыть кейс
   button_open_case () {
-    cy.get("#app-overlay-wrapper > div > div > div.case-modal-control > div.case-modal-options-button-wrapper > button")
-            .click();
+    cy.get(".card-open-button")
+      .first()
+      .click();
   },
   //нажать на кнопку открыть кейс
   button_open_case_for_mobile () {
     cy.get(".case-game-button")
             .click();
   },
+  momentOpenCase () {
+    cy.get(".case-modal-option-toggle-circle")
+      .first()
+      .click();
+  },
+  autoOpenCase () {
+    cy.get(".case-modal-option-toggle-circle")
+      .last()
+      .click();
+  },
   //Проверка модального окна выигрыша в кейс
   modal_container_case () {
-    cy.get("#app-overlay-wrapper > div > div > div.case-modal-header-wrapper", { timeout: 15000 })
+    cy.get(".case-modal-header", { timeout: 15000 })
             .should("have.text", "Поздравляем!Вы выиграли");
   },
   //Проверка модального окна выигрыша в кейс
