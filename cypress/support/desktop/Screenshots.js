@@ -9,15 +9,19 @@ export const shot = {
             .matchImageSnapshot();
   },
   case_button () {
-    cy.get(":nth-child(5) > .item-text-block > .item-text")
+    cy.contains("Ещё")
             .trigger("mouseover");
+    cy.wait(1000);
+    cy.get(".sub-item-text")
+      .last()
+      .click();
   },
   case_button_for_mobile () {
     cy.get("#navigation > section > a:nth-child(6)")
             .click();
   },
   case_classic () {
-    cy.get("#header > div.level.header__line--bottom > div:nth-child(1) > nav > div.level > div > a:nth-child(6) > div > div > div.item-text")
+    cy.get(".case-modal-button-inner")
             .click();
   },
   case_memes () {
