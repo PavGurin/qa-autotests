@@ -24,6 +24,18 @@ export const navReg = {
       .last()
       .click();
   },
+  // случайная валюта с индексом от 3 до 12
+  change_currency_random () {
+    cy.get(".header-balance__value")
+        .trigger("mouseover");
+    cy.get(".currency-dropdown")
+        .eq(Math.floor(Math.random() * 9) + 3)
+        .trigger("mouseover");
+    cy.wait(1000);
+    cy.get(".dropdown-item.nowrap")
+        .last()
+        .click();
+  },
   change_currency_USD () {
     cy.get(".header-balance__value")
       .trigger("mouseover");
