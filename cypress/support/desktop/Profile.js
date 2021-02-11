@@ -657,7 +657,7 @@ export const prof = {
   // открыть управление счетами
   account_management_desktop () {
     cy.get(".header-balance__angle-icon", { timeout: 3000 }).trigger("mouseover", { timeout: 3000 }, { force: true });
-    cy.get("#header > div.header__line--top > div.header__profile-block > div > div.header-balance > div.header-balance__bottom-line > div > div.dropdown-menu > div > article > section:nth-child(3) > button")
+    cy.get(".open-account-management-button")
         .last()
         .click({ timeout: 3000 });
   },
