@@ -4,15 +4,20 @@ let money;
 let money2;
 
 describe("Casino", () => {
-  it("C636575 - Result", function () {
-    auth.login2();
+  beforeEach(() => {
+    cy.get(".bonus-modal-button-close", { timeout: 50000 })
+      .click();
+    auth.loginNew();
+    cy.wait(2000);
+
+  });
+  it("Result", function () {
     basicCom.casino_button();
     basicCom.casino_search("Ice Wolf");
     cy.wait(1000);
-    basicCom.assert_casino_for_mobile();
+    basicCom.assert_casino();
   });
-  it("C636543- assert category", function () {
-    auth.login2();
+  it("assert category", function () {
     basicCom.casino_button();
     basicCom.assert_casino_category();
   });

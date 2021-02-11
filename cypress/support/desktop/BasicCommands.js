@@ -98,7 +98,7 @@ export const basicCom = {
       .should("have.text", "Делайте ординарные ставки с коэффициентом больше 3 и получайте деньги с бонусного счета в размере 5% от суммы выигранной ставки!");
   },
   casino_button () {
-    cy.get("[href=\"/casino/\"] > .item-text-block > .item-text")
+    cy.get("[href=\"/casino/\"] > .navigation-item-wrapper > .item-text-block > .item-text")
       .click();
   },
   casino_button_for_mobile () {
@@ -127,6 +127,10 @@ export const basicCom = {
     cy.get(".name")
       .should("have.text", "Ice Wolf");
   },
+  assert_casino () {
+    cy.get(".game-card-image")
+      .should("exist");
+  },
 
   assert2_casino_for_mobile () {
     cy.get("#search-result > div.result-wrapper > div > div > div > div > div.vue-recycle-scroller__item-wrapper > div > div > div > div > div.preview > img")
@@ -134,7 +138,7 @@ export const basicCom = {
   },
   assert_casino_category () {
     cy.get(".category-list>li").should(($lis) => {
-      expect($lis).to.have.length(14);
+      expect($lis).to.have.length(16);
       expect($lis.eq(0)).to.contain("Demi Gods");
       expect($lis.eq(1)).to.contain("Все игры");
       expect($lis.eq(2)).to.contain("Лайв Казино");
