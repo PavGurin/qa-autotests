@@ -41,7 +41,7 @@ export const basicCom = {
   // switch to mobile version
   switch_to_mobile () {
     // click mobile version button
-    cy.get("#header > div.level.header__line--bottom > div:nth-child(2) > svg", { timeout: 15000 })
+    cy.get(".header__line--top .icon-mobile", { timeout: 15000 })
       //.first()
       .click();
   },

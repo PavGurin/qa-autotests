@@ -49,7 +49,7 @@ describe("investment", () => {
     });
   });
   it("Валидная сумма", function () {
-    auth.loginNew();
+    auth.login_for_invest();
     cy.wait(3000);
     topNav.click_invest();
     invest.click_invest();
