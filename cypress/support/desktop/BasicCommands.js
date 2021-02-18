@@ -50,7 +50,7 @@ export const basicCom = {
       .click();
   },
   live_button () {
-    cy.get(".navigation > .level > .level-left > :nth-child(2)")
+    cy.contains("Live")
       .click();
   },
   live_games_button_for_mobile () {

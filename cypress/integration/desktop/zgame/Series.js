@@ -19,18 +19,4 @@ describe("Ставки", () => {
     basicCom.live_button();
     bets.three_bets_in_different_match_series();
   });
-  it("C439788 - удалить 1 из купонов", () => {
-    auth.login();
-    basicCom.live_button();
-    bets.three_bets_in_different_match_without_ok_series();
-    bets.close_one_coupons();
-    bets.assert_close_one_coupons();
-  });
-  it("C439789 - удалить все купоны", () => {
-    auth.login();
-    basicCom.live_button();
-    bets.three_bets_in_different_match_without_ok_series();
-    bets.close_coupons();
-    bets.assert_all_close_coupons();
-  });
 });
