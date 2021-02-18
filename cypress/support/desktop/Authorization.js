@@ -215,11 +215,11 @@ export const auth = {
     // вводим логин/пароль
     // login_input() {
     cy.get(":nth-child(1) > .input-container > .input")
-        .type("13gr8e@mailinator.com");
+        .type("sunq22@1win.com");
     // вводим пароль
     // password_input() {
     cy.get("div:nth-child(2) > div.input-container > input")
-        .type("123123");
+        .type("k398v2");
     // нажимаем кнопку "войти"
     cy.get(".login-form .button-wrapper button")
         .click();
@@ -231,11 +231,11 @@ export const auth = {
     // вводим логин/пароль
     // login_input() {
     cy.get(login_input, { timeout: 15000 })
-        .type("13gr8e@mailinator.com");
+        .type("sunq22@1win.com");
     // вводим пароль
     // password_input() {
     cy.get(password_input)
-        .type("123123");
+        .type("k398v2");
     // нажимаем кнопку "войти"
     cy.get(".modal-button", { timeout: 5000 })
         .click();
