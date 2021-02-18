@@ -10,11 +10,6 @@ describe("Ставки", () => {
     // делает ставку на главной странице
     bets.two_bets_in_different_match_express();
   });
-  // данный кейс пока не реализовать
-  it.skip("C459480 - Экспресс без бонуса, но с добавленными более 5 купонов", () => {
-    auth.login();
-    bets.three_bets_in_different_match_series();
-  });
   it("C459481 - Невозможность выбора экспресс при наличии купонов по одному матчу", () => {
     auth.login();
     basicCom.live_button();
