@@ -31,7 +31,7 @@ export const auth = {
     cy.get(logout_question)
              .should("exist");
     // 'подтверждаем' выход
-    cy.get("#app-overlay-wrapper > div > div > div.modal-container__container > div.modal-container__footer > div > div.logout-buttons > button.button.block-item.fullwidth.dark-2")
+    cy.get(".dark-2")
             .click();
   },
   //когда выходим с главной страницы

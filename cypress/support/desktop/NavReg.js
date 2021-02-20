@@ -36,15 +36,12 @@ export const navReg = {
         .last()
         .click();
   },
-  change_currency_USD () {
-    cy.get(".header-balance__value")
-      .trigger("mouseover");
-    cy.get(".currency-dropdown")
-      .first()
-      .trigger("mouseover");
-    cy.wait(1000);
-    cy.get(".dropdown-item.nowrap")
+  change_currency (num) {
+    cy.get(".input")
       .last()
+    .click();
+    cy.get(".currency-name")
+      .eq(num)
       .click();
   },
   // registration button на мобильной версии
@@ -94,8 +91,9 @@ export const navReg = {
 
   // close window with new user's login/pass
   close_new_user_info () {
-    cy.get(".modal-container__header__row__cell__overlay > path")
-            .click();
+    cy.get(".icon-wrap")
+      .last()
+      .click();
   },
   // close window with new user's login/pass
   close_new_user_info_for_mobile () {
@@ -357,7 +355,7 @@ export const navReg = {
   },
 
   check_reg_result () {
-    cy.get(".modal-container .user-info .user-info__content__item")
+    cy.get(".modal-container .user-info .user-info__content__item", { timeout: 10000 })
             .then(($new_user_info) => {
               const login = $new_user_info[0].lastChild.outerText;
               const password = $new_user_info[1].lastChild.outerText;
