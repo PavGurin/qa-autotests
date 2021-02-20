@@ -114,7 +114,7 @@ export const navReg = {
     cy.get(".promocode-add-button > span")
             .first()
             .click()
-            .get(".field > .control > .input-wrapper > .input")
+            .get(".field > .control > .input-wrapper > .input-message-container > .input")
             .type(promocode);
   },
   // enter promocode

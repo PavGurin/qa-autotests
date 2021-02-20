@@ -164,7 +164,7 @@ export const auth = {
     cy.get("div:nth-child(2) > div.input-container > input")
             .type("dreamteam");
     // нажимаем кнопку "войти"
-    cy.get("#modal-container > div > main > div > div > form > div.button-wrapper > button > span")
+    cy.get(".login-form .button-wrapper button")
             .click();
   },
   login_for_mobile_mail () {
@@ -207,6 +207,38 @@ export const auth = {
     // нажимаем кнопку "продолжить"
     cy.contains("Продолжить")
             .click();
+  },
+  login_for_mobile_invest () {
+    // нажимаем кнопку 'Войти' со стартовой страницы
+    cy.get(".login > .button-content", { timeout: 10000 })
+        .click();
+    // вводим логин/пароль
+    // login_input() {
+    cy.get(":nth-child(1) > .input-container > .input")
+        .type("sunq22@1win.com");
+    // вводим пароль
+    // password_input() {
+    cy.get("div:nth-child(2) > div.input-container > input")
+        .type("k398v2");
+    // нажимаем кнопку "войти"
+    cy.get(".login-form .button-wrapper button")
+        .click();
+  },
+  login_for_invest () {
+    // нажимаем кнопку 'Войти' со стартовой страницы
+    cy.get(entry_button, { timeout: 15000 })
+        .click();
+    // вводим логин/пароль
+    // login_input() {
+    cy.get(login_input, { timeout: 15000 })
+        .type("sunq22@1win.com");
+    // вводим пароль
+    // password_input() {
+    cy.get(password_input)
+        .type("k398v2");
+    // нажимаем кнопку "войти"
+    cy.get(".modal-button", { timeout: 5000 })
+        .click();
   },
   login2 () {
     // нажимаем кнопку 'Войти' со стартовой страницы

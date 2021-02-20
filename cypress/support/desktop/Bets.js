@@ -10,33 +10,33 @@ const status_coupon = ".coupon-status-message";
 
 const available_for_bet_element = () => cy
     .wait(1000)
-    .get("#bets > div", { timeout: 20000 })
+    .get(".tournament-list", { timeout: 20000 })
     .find(".odd-cell", { timeout: 10000 })
     .not(".disabled")
     .find(".odd-coefficient")
     .first();
 //.eq(3)
 const available_for_bet_element2 = () => cy
-    .get(".matches-block-content", { timeout: 20000 })
+    .get(".tournament-list", { timeout: 20000 })
     .find(".odd-cell", { timeout: 10000 })
     .not(".disabled")
     .find(".odd-coefficient")
     .first();
 const second_bets_in_one_match = () => cy
-    .get(".matches-block-content")
+    .get(".tournament-list")
     .find(".odd-cell", { timeout: 10000 })
     .not(".disabled")
     .find(".odd-coefficient")
     .eq(1);
 
 const two_bets_in_different_match = () => cy
-    .get(".matches-block-content")
+    .get(".tournament-list")
     .find(".odd-cell")
     .not(".disabled", { timeout: 10000 })
     .find(".odd-coefficient")
     .eq(10);
 const available_for_live_element = () => cy
-    .get(".matches-block-content", { timeout: 20000 })
+    .get(".tournament-list", { timeout: 20000 })
     .find(".odd-cell", { timeout: 10000 })
     .not(".disabled")
     .find(".odd-coefficient")
@@ -82,7 +82,7 @@ export const bets = {
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
             .type("{selectall}{del}")
-             .type("{selectall}1");
+             .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
     cy.get(make_bet_button)
              .click();
@@ -117,11 +117,11 @@ export const bets = {
     cy.get(bet_amount_input)
              .first()
            .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     cy.get(bet_amount_input)
             .last()
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
     cy.get(make_bet_button)
             .click();
@@ -141,11 +141,11 @@ export const bets = {
     cy.get(bet_amount_input)
             .first()
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     cy.get(bet_amount_input)
             .last()
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
     cy.get(make_bet_button)
             .click();
@@ -189,16 +189,16 @@ export const bets = {
             .click();
     // сверяет, что ставка неверна
     cy.get(status_coupon, { timeout: 10000 })
-      .should("have.text", "Минимальная сумма ставки: 0.5 USD");
+      .should("have.text", "Минимальная сумма ставки: 10 RUB");
   },
   // закрывает все отмеченные купоны (жмет 'крестик')
   close_coupons () {
-    cy.get(".buttons > .remove-button")
+    cy.get(".remove-button button-clear")
             .click();
   },
   // закрывает один купон (жмет 'крестик')
   close_one_coupons () {
-    cy.get(":nth-child(3) > .coupon-card > .base-coupon-odd > .remove-button")
+    cy.get(".remove-button")
             .first()
             .click();
   },
@@ -240,7 +240,7 @@ export const bets = {
   },
   // проверка, что серия купонов закрыта
   assert_all_close_coupons () {
-    cy.get(".buttons > .remove-button")
+    cy.get(".remove-button")
             .should("not.exist");
   },
   // делает ставку с главной страницы
@@ -256,7 +256,7 @@ export const bets = {
     cy.get(bet_amount_input)
             .first()
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
     cy.get(make_bet_button)
             .click();
@@ -275,7 +275,7 @@ export const bets = {
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
     cy.get(make_bet_button)
             .click();
@@ -297,7 +297,7 @@ export const bets = {
     cy.get(bet_amount_input)
             .first()
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
     cy.get(make_bet_button)
             .click();
@@ -333,7 +333,7 @@ export const bets = {
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
     cy.get(make_bet_button)
             .click();
