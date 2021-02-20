@@ -13,6 +13,7 @@ describe("Banking", () => {
       .click();
   });
   it("C636650 RUB - пополнение cо счета мегафона", function () {
+    // .PaymentButton PaymentsRow__item button lg wallet PaymentButton--active
     cy.wait(1000);
     bank.changeRUB_for_mobile();
     bank.deposit_megafon();
