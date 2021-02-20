@@ -1,6 +1,8 @@
 import "cypress-file-upload";
 import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
+import { addStreamCommands } from "@lensesio/cypress-websocket-testing";
 
+addStreamCommands();
 addMatchImageSnapshotCommand({
   failureThreshold: 10.0,
   failureThresholdType: "percent",

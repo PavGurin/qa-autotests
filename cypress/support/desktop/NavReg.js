@@ -114,7 +114,7 @@ export const navReg = {
     cy.get(".promocode-add-button > span")
             .first()
             .click()
-            .get(".field > .control > .input-wrapper > .input")
+            .get(".field > .control > .input-wrapper > .input-message-container > .input")
             .type(promocode);
   },
   // enter promocode
@@ -201,7 +201,7 @@ export const navReg = {
 
   // email form - email
   set_email (email) {
-    cy.get(":nth-child(3) > .input-wrapper > .input")
+    cy.get(":nth-child(4) > .input-wrapper > .input-message-container > .input")
             .clear()
             .type(email);
   },
@@ -223,7 +223,7 @@ export const navReg = {
 
   // email form - password
   set_pwd (password) {
-    cy.get(":nth-child(4) > .input-wrapper > .input")
+    cy.get(":nth-child(5) > .input-wrapper > .input-message-container > .input")
       .clear()
             .type(password);
   },
@@ -233,7 +233,7 @@ export const navReg = {
   },
   // email form - repeat password field
   repeat_pwd (password2) {
-    cy.get(":nth-child(5) > .input-wrapper > .input")
+    cy.get(":nth-child(6) > .input-wrapper > .input-message-container > .input")
       .clear()
             .type(password2);
   },
@@ -274,7 +274,7 @@ export const navReg = {
 
   // email form -  phone
   set_phone_numb (phone) {
-    cy.get(".intl-tel-input > .control > .input-wrapper > .input")
+    cy.get(".intl-tel-input > .control > .input-wrapper > .input-message-container > .input")
             .type(phone);
   },
   // email form -  phone

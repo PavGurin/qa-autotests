@@ -41,7 +41,7 @@ export const basicCom = {
   // switch to mobile version
   switch_to_mobile () {
     // click mobile version button
-    cy.get("#header > div.level.header__line--bottom > div:nth-child(2) > svg", { timeout: 15000 })
+    cy.get(".header__line--top .icon-mobile", { timeout: 15000 })
       //.first()
       .click();
   },
@@ -50,7 +50,7 @@ export const basicCom = {
       .click();
   },
   live_button () {
-    cy.get(".navigation > .level > .level-left > :nth-child(2)")
+    cy.contains("Live")
       .click();
   },
   live_games_button_for_mobile () {
@@ -97,10 +97,6 @@ export const basicCom = {
     cy.get(".bonus-info-message")
       .should("have.text", "Делайте ординарные ставки с коэффициентом больше 3 и получайте деньги с бонусного счета в размере 5% от суммы выигранной ставки!");
   },
-  casino_button () {
-    cy.get("[href=\"/casino/\"] > .navigation-item-wrapper > .item-text-block > .item-text")
-      .click();
-  },
   casino_button_for_mobile () {
     cy.get("#navigation > section > a:nth-child(4)")
       .click();
@@ -136,6 +132,14 @@ export const basicCom = {
     cy.get("#search-result > div.result-wrapper > div > div > div > div > div.vue-recycle-scroller__item-wrapper > div > div > div > div > div.preview > img")
       .should("have.class", "image");
   },
+  more_button () {
+    cy.contains("Ещё")
+      .trigger("mouseover");
+    cy.wait(1000);
+    cy.get(".dropdown-content.theme-default")
+      .contains("Казино")
+      .click();
+  },
   assert_casino_category () {
     cy.get(".category-list>li").should(($lis) => {
       expect($lis).to.have.length(16);
@@ -155,47 +159,5 @@ export const basicCom = {
       expect($lis.eq(13)).to.contain("Другие");
     });
   },
-  assert_casino_providers () {
-    cy.get(".provider-list>li").should(($lis) => {
-      expect($lis).to.have.length(38);
-      expect($lis.eq(0)).to.contain("1x2");
-      expect($lis.eq(1)).to.contain("Apollo");
-      expect($lis.eq(2)).to.contain("BetSoft");
-      expect($lis.eq(3)).to.contain("Betsolutions");
-      expect($lis.eq(4)).to.contain("Booongo");
-      expect($lis.eq(5)).to.contain("EAGaming");
-      expect($lis.eq(6)).to.contain("Elk");
-      expect($lis.eq(7)).to.contain("Evoplay");
-      expect($lis.eq(8)).to.contain("Evolution");
-      expect($lis.eq(9)).to.contain("Fazi");
-      expect($lis.eq(10)).to.contain("Gamomat");
-      expect($lis.eq(11)).to.contain("Gamshy");
-      expect($lis.eq(12)).to.contain("Givme");
-      expect($lis.eq(13)).to.contain("Goldenhero");
-      expect($lis.eq(14)).to.contain("Habanero");
-      expect($lis.eq(15)).to.contain("Hub88 Green Jade");
-      expect($lis.eq(16)).to.contain("Hub88 OneTouch");
-      expect($lis.eq(17)).to.contain("Iron dog");
-      expect($lis.eq(18)).to.contain("Kalamba");
-      expect($lis.eq(19)).to.contain("Kiron");
-      expect($lis.eq(20)).to.contain("Leap");
-      expect($lis.eq(21)).to.contain("Mascot");
-      expect($lis.eq(22)).to.contain("MG");
-      expect($lis.eq(23)).to.contain("MrSlotty");
-      expect($lis.eq(24)).to.contain("NetEnt");
-      expect($lis.eq(25)).to.contain("Oryx");
-      expect($lis.eq(26)).to.contain("Pgsoft");
-      expect($lis.eq(27)).to.contain("Platipus");
-      expect($lis.eq(28)).to.contain("PlaysonDirect");
-      expect($lis.eq(29)).to.contain("Pragmatic");
-      expect($lis.eq(30)).to.contain("Quickspin");
-      expect($lis.eq(31)).to.contain("Spadegaming");
-      expect($lis.eq(32)).to.contain("Spinmatic");
-      expect($lis.eq(33)).to.contain("Spinomenal");
-      expect($lis.eq(34)).to.contain("TomHorn");
-      expect($lis.eq(35)).to.contain("TrueLab");
-      expect($lis.eq(36)).to.contain("VivoGaming");
-      expect($lis.eq(37)).to.contain("Wazdan");
-    });
-  },
+
 };

@@ -80,8 +80,8 @@ export const req = {
       },
     })
       .then((resp) => {
-        //token = (resp.day)
-        //cy.log(JSON.stringify(resp.body))
+        token = (resp.day);
+        cy.log(JSON.stringify(resp.body));
         cy.request({
           method: "GET",
           url: "https://1win-partner.com/api/v2/stats_v2/days",
