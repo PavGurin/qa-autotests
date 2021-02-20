@@ -1,19 +1,23 @@
 import { basicCom } from "@support/desktop/BasicCommands";
 
-describe.skip("Переключение на мобильную версию", () => {
-
+describe("Переключение на мобильную версию", () => {
+  beforeEach(() => {
+    cy.get(".bonus-modal-button-close", { timeout: 50000 })
+        .click();
+    cy.wait(2000);
+  });
   it("C16321 - Мобильная версия", function () {
-    // проверяем видимость навигации ставок
-    cy.get("div.bets-navigation")
-          .should("be.visible");
+    // проверяем наличие гамбургера
+    cy.get(".burger-button")
+          .should("not.exist");
     // переключаемся на мобильную версию
     cy.wait(2000);
     basicCom.switch_to_mobile();
-    // проверяем количество секций на сайте (4 - Live/Линия/Live Games/Casino)
-    cy.get("section.section")
-          .should("have.length", 4);
+    // проверяем наличие гамбургера
+    cy.get(".burger-button")
+        .should("exist");
     // проверяем видимость кнопки переключения на десктопную версию
-    cy.get("svg.icon-app-desktop")
+    cy.get("footer .icon-app-desktop-circle")
           .should("be.visible");
   });
 });

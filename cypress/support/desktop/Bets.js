@@ -93,12 +93,13 @@ export const bets = {
   bet_main_page_en () {
     // выбирает первый доступный для ставки элемент
     // cy.xpath(available_for_bet_element)
+    cy.wait(1000);
     available_for_bet_element()
       .click();
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
       .type("{selectall}{del}")
-      .type("{selectall}1");
+      .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
     cy.get(make_bet_button)
       .click();

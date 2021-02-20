@@ -9,6 +9,10 @@ const randomNum = Math.floor(Math.random() * 9999999) + 1;
 
 //let password;
 describe("Profile Settings", () => {
+  beforeEach(() => {
+    cy.get(".bonus-modal-button-close", { timeout: 50000 })
+        .click();
+  });
   it("C16311 - Modal window settings", function () {
     auth.login_mail();
     cy.wait(1000);
@@ -21,50 +25,49 @@ describe("Profile Settings", () => {
 
   it("C16312 - Change name", function () {
     auth.login_mail();
+    cy.wait(1000);
     prof.withdrawal("Настройки");
-    prof.settings_form_name_2or16_symbols();
+    prof.settings_form_name_2or51_symbols();
     prof.settings_form_name(`testPass_${randomStr}`);
-    prof.settings_mail_disabled();
-    prof.settings_form_pass("qwerty12");
     prof.click_save_settings();
     prof.check_change_settings();
   });
   it("C16313 - Change date of birthday", function () {
     auth.login_mail();
+    cy.wait(1000);
     prof.withdrawal("Настройки");
     prof.settings_form_birthday();
-    prof.settings_mail_disabled();
-    prof.settings_form_pass("qwerty12");
     prof.click_save_settings();
     prof.check_change_settings();
   });
   it("C16314 - Change number phone", function () {
     auth.login_mail();
+    cy.wait(1000);
     prof.withdrawal("Настройки");
     prof.set_country_number_phone("Andorra");
     prof.settings_form_numbPhone_Andorra();
     prof.set_country_number_phone("Russia");
     prof.settings_form_numbPhone("921996321");
-    prof.settings_mail_disabled();
-    prof.settings_form_pass("qwerty12");
     prof.click_save_settings();
     prof.check_change_settings();
   });
   it("C16315 - Change password", function () {
-    auth.login_with_new_pass_settings("qwerty");
+    auth.login_mail();
+    cy.wait(1000);
     prof.withdrawal("Настройки");
-    prof.settings_form_newpass();
-    prof.correct_pass();
+    prof.settings_form_newpass("qwerty12");
     prof.click_save_settings();
     prof.check_change_settings();
   });
   it("C16316 - Скрыть баланс", function () {
     auth.login();
+    cy.wait(1000);
     prof.withdrawal("Настройки");
     prof.settings_hidebalance();
   });
   it("C16317 - История ставок", function () {
     auth.login2();
+    cy.wait(1000);
     prof.withdrawal("История ставок");
     prof.bets_history_notBeEmpty();
   });
@@ -85,24 +88,26 @@ describe("Profile Settings", () => {
     navReg.repeat_pwd("111111");
     navReg.set_phone_numb(`921${randomNum}`);
     navReg.sign_up();
+    cy.wait(1000);
     prof.withdrawal("Настройки");
-    prof.assert_mail_disabled();
+    prof.settings_mail_disabled();
   });
   it("C636770 - Изменить номер телефона на уже существующий", function () {
     auth.login_mail();
+    cy.wait(1000);
     prof.withdrawal("Настройки");
     prof.set_country_number_phone("Russia");
     prof.settings_form_numbPhone("9213555555");
     prof.settings_mail_disabled();
-    prof.settings_form_pass("qwerty12");
     prof.click_save_settings();
     prof.check_change_numberphone();
   });
-  it("C636771 - Изменить почту на уже существующую", function () {
+  it.skip("C636771 - Изменить почту на уже существующую", function () {
     auth.login_for_change_email();
+    cy.wait(1000);
     prof.withdrawal("Настройки");
-    navReg.set_email("where100@mail.ru");
-    prof.settings_form_pass("744433");
+    prof.assert_mail_visible();
+    prof.set_email("where100@mail.ru");
     prof.click_save_settings();
     prof.check_error_mail();
   });

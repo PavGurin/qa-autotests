@@ -122,6 +122,7 @@ export const prof = {
   withdrawal (text) {
     cy.get(".user-menu__toggle")
       .click();
+    cy.wait(1000);
     cy.contains(text)
       .click();
   },
@@ -229,14 +230,18 @@ export const prof = {
   },
   //кнопка "скрыть баланас"
   settings_hidebalance () {
-    cy.get(".v-checkbox-checkmark")
+    cy.get(".show-balance-setting .v-checkbox-checkmark")
       .click();
-    cy.get("#header > div.level.header__line.header__line--top > section > div.dropdown.balance-container.align-center")
-      .should("not.exist");
+    cy.get(".modal-container__header button").click();
     cy.wait(1000);
-    cy.get(".v-checkbox-checkmark")
+    cy.get(".header-balance__value")
+      .should("not.exist");
+    this.withdrawal("Настройки");
+    cy.get(".show-balance-setting .v-checkbox-checkmark")
       .click();
-    cy.get("#header > div.header__line--top > section > div > div.user-values")
+    cy.get(".modal-container__header button").click();
+    cy.wait(1000);
+    cy.get(".header-balance__value")
       .should("exist");
   },
   //проверка модального окна "Настройки"
@@ -246,29 +251,25 @@ export const prof = {
   },
   //Заполнение и проверка полей и кнопок в настройках
   settings_form () {
-    cy.get(".form > :nth-child(1) > .input-wrapper > .input")
+    cy.get("form .control.row:nth-child(1) .input")
       .clear()
       .type("test1234");
-    cy.get(":nth-child(2) > .input-wrapper > .input")
+    cy.get("form .control.row:nth-child(2) .input")
       .clear()
       .type("01061999");
-    cy.get(".intl-tel-input > .control > .input-wrapper > .input")
-      .click();
-    cy.get("div.modal-container__container > div > form > div.field > div > div > input")
-      .type("qwerty12");
-    cy.get("div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input")
+    cy.get("form .tel-input input")
       .clear()
       .type("905999888700");
 
   },
   //проверка модального окна "Настройки"
   settings_mail_disabled () {
-    cy.get("div:nth-child(5) > div > input")
+    cy.get("form .control .input-wrapper input").last()
       .should("be.disabled");
   },
   //Cохранить настройки
   click_save_settings () {
-    cy.get(".button-wrapper > .button")
+    cy.get("form button.save-button")
       .click();
   },
   //Cохранить настройки y на моб.версии
@@ -302,7 +303,7 @@ export const prof = {
   },
   //Заполнение поля "имя" в настройках
   settings_form_name (name) {
-    cy.get(".form > :nth-child(1) > .input-wrapper > .input")
+    cy.get("form .control.row:nth-child(1) .input")
       .clear()
       .type(name);
   },
@@ -320,20 +321,22 @@ export const prof = {
   },
   //Заполнение поля "пароль" в настройках
   settings_form_pass (pass) {
+    cy.get("form button").first()
+        .should("have.text", "Изменить пароль").click();
     cy.get("div.modal-container__container > div > form > div.field > div > div > input")
       .type(pass);
   },
   //Заполнение поля "имя" в настройках
-  settings_form_name_2or16_symbols () {
-    cy.get(".form > :nth-child(1) > .input-wrapper > .input")
+  settings_form_name_2or51_symbols () {
+    cy.get("form .control.row:nth-child(1) .input")
       .clear()
       .type("Q2");
-    cy.get("div.modal-container__container > div > form > div.button-wrapper > button")
+    cy.get("form button.save-button")
       .should("be.disabled");
-    cy.get(".form > :nth-child(1) > .input-wrapper > .input")
+    cy.get("form .control.row:nth-child(1) .input")
       .clear()
-      .type("Q2Bvfrbkdblgblfgnflnfnlflglndsvsdv");
-    cy.get("div.modal-container__container > div > form > div.button-wrapper > button")
+      .type("Q2Bvfrbkdblgblfgnflnfnlflglndsvsdvfdsfdfdjghereterq");
+    cy.get("form button.save-button")
       .should("be.disabled");
   },
   //Заполнение поля "имя" в настройках для мобильной версии
@@ -351,22 +354,22 @@ export const prof = {
   },
   //Заполнение поля "дата рождения" в настройках
   settings_form_birthday () {
-    cy.get(":nth-child(2) > .input-wrapper > .input")
+    cy.get("form .control.row:nth-child(2) .input")
       .clear()
       .type("00000000");
-    cy.get("div.modal-container__container > div > form > div.button-wrapper > button")
+    cy.get("form button.save-button")
       .should("be.disabled");
-    cy.get(":nth-child(2) > .input-wrapper > .input")
+    cy.get("form .control.row:nth-child(2) .input")
       .clear()
       .type("02082015");
-    cy.get("div.modal-container__container > div > form > div.button-wrapper > button")
+    cy.get("form button.save-button")
       .should("be.disabled");
-    cy.get(":nth-child(2) > .input-wrapper > .input")
+    cy.get("form .control.row:nth-child(2) .input")
       .clear()
       .type("30022000");
-    cy.get("div.modal-container__container > div > form > div.button-wrapper > button")
+    cy.get("form button.save-button")
       .should("be.disabled");
-    cy.get(":nth-child(2) > .input-wrapper > .input")
+    cy.get("form .control.row:nth-child(2) .input")
       .clear()
       .type("15011990");
 
@@ -384,13 +387,13 @@ export const prof = {
   },
   //Заполнение поля "номер телефона" в настройках
   settings_form_numbPhone_Andorra () {
-    cy.get("div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input")
+    cy.get("form .tel-input input")
       .clear()
       .type("666321");
   },
   // Выбор страны, где номер телефона
   set_country_number_phone (country) {
-    cy.get(".intl-tel-input > .control > .input-wrapper > .dropdown-container > .country-dropdown > .dropdown > .dropdown-trigger > .trigger")
+    cy.get("form .tel-input .dropdown-trigger")
       .click()
       .get(".vue-recycle-scroller")
       .contains(country)
@@ -398,7 +401,7 @@ export const prof = {
   },
   //Заполнение поля "номер телефона" в настройках
   settings_form_numbPhone (phone) {
-    cy.get("div.modal-container__container > div > form > div.intl-tel-input.row > div > div > input")
+    cy.get("form .tel-input input")
       .clear()
       .type(phone);
   },
@@ -409,15 +412,12 @@ export const prof = {
       .type(phone);
   },
   //Заполнение поля "Текущий пароль" в настройках
-  settings_form_newpass () {
-    cy.get("div.modal-container__container > div > form > div.field > button > span")
-      .click();
-    cy.get("div.modal-container__container > div > form > div.field > div > div > input")
-      .type("qwerty1");
-    cy.get("div.modal-container__container > div > form > div:nth-child(7) > div > input")
-      .type("qwerty");
-    cy.get("div.modal-container__container > div > form > div:nth-child(8) > div > input")
-      .type("qwerty");
+  settings_form_newpass (pass) {
+    cy.get("form button").first()
+        .should("have.text", "Изменить пароль").click();
+    cy.get("input[type='password']").then((els) => {
+      [...els].forEach((el) => cy.wrap(el).type(pass));
+    });
 
 
   },
@@ -440,8 +440,8 @@ export const prof = {
   },
   // проверка, что внутри ставки отображаются данные
   bets_history_notBeEmpty () {
-    cy.get("#main-container > main > div > div > div.panel-body > div")
-      .should("not.to.be.empty");
+    cy.get(".bets-history .bet")
+      .should("exist").and("not.to.be.empty");
   },
 
   error_date_birthday_for_mobile () {
@@ -483,8 +483,8 @@ export const prof = {
   },
   // проверка, поле mail доступно
   assert_mail_visible () {
-    cy.get("#app-overlay-wrapper > div > div > div.modal-container__container > div > form > div:nth-child(5) > div > input")
-      .should("be.visible");
+    cy.get("form .control .input-wrapper button").last().click();
+    cy.get("form .control .input-wrapper input").last().should("be.enabled");
   },
   // проверка, поле mail доступно
   assert_mail_disabled () {
@@ -585,23 +585,27 @@ export const prof = {
   },
   // проверка перевода в детализации
   assert_transfer_detail () {
-    cy.get(".detailing-content > :nth-child(1)")
-      .should("exist").and("have.text", "ПереводK•••••3@gmail.com25 ноября 2019 г. | 18:31+ 100 ₽");
-  },
-  // проверка перевода в детализации
-  assert_transfer_detail2 () {
-    cy.get(":nth-child(1) > .detailing-item__left > .detailing-item__name")
-      .should("exist").and("have.text", "Перевод");
+    cy.get(".DetailingItem__left")
+        .eq(3)
+       .should("have.text", "Перевод1•••••e@mailinator.com");
+    cy.get(".DetailingItem__date")
+        .eq(3)
+        .should("have.text", "30 ноября 2020 г. | 21:28");
+    cy.get(".DetailingItem__amount .Money")
+        .eq(3)
+        .should("have.text", "20 ₽");
+    //разбито на 3 проверки, посколько cypress не хочет обрабатывать +&nbsp; в сумме перевода.
+
   },
   // кнопка "Выводы" в детализации
   button_withdrawal_detail () {
-    cy.get(".detailing-tabs > :nth-child(2)")
-      .click();
+    cy.contains("Выводы", { timeout: 10000 })
+        .click();
   },
   // кнопка "Ставки" в детализации
   button_bets_detail () {
-    cy.get(".detailing-tabs > :nth-child(3)")
-      .click();
+    cy.contains("Ставки", { timeout: 10000 })
+        .click();
   },
   // кнопка "Казино" в детализации
   button_casino_detail () {
@@ -616,13 +620,16 @@ export const prof = {
 
   // проверка выводов в детализации
   assert_withdrawal_detail () {
-    cy.get(":nth-child(1) > .detailing-item__left > .detailing-item__name")
+    cy.get(".DetailingItem:nth-child(2) .DetailingItem__primary-description")
       .should("exist").and("have.text", "Банковская карта");
   },
   // проверка ставок в детализации
   assert_bets_detail () {
-    cy.get(".detailing-content > :nth-child(1)")
-      .should("exist").and("have.text", "Ординар10 ₽ (6.25)14 февраля 2020 г. | 16:48- 10 ₽");
+    /*cy.get(".detailing-content > :nth-child(1)")
+      .should("exist").and("have.text", "Ординар10 ₽ (6.25)14 февраля 2020 г. | 16:48- 10 ₽");*/
+    cy.get(".Detailing__content .DetailingItem").contains("Ординар")
+        .scrollIntoView({ offset: { top: -30, left: 0 } }).parent().parent()
+        .should("have.text", "Ординар10 ₽ (6.25)14 февраля 2020 г. | 16:48- 10 ₽");
   },
   // проверка, что кнопка  после заполнения всех необходимых полей становится активной
   assert_button_is_active () {
@@ -699,6 +706,12 @@ export const prof = {
         .last()
         .click({ timeout: 3000 });
     cy.get(".modal-container__header__row__cell__overlay").click();
+  },
+  // settings form - email
+  set_email (email) {
+    cy.get("form > div:nth-child(5) .input")
+        .clear()
+        .type(email);
   },
 };
 

@@ -2,7 +2,7 @@ export const basicCom = {
 
   // switch language
   switch_language (language) {
-    cy.get(":nth-child(2) > :nth-child(3) > .dropdown > .dropdown-trigger > .button")
+    cy.get("button.country-button")
       .first()
       .trigger("mouseover");
     cy.wait(1000);
@@ -12,22 +12,22 @@ export const basicCom = {
   },
   // switch language for de
   switch_language_De () {
-    cy.get(":nth-child(2) > :nth-child(3) > .dropdown > .dropdown-trigger > .button")
-      .first()
-      .trigger("mouseover");
+    cy.get("button.country-button")
+        .first()
+        .trigger("mouseover");
     cy.wait(1000);
-    cy.get("#header > div.level.header__line--bottom > div:nth-child(2) > div:nth-child(3) > div > div.dropdown-menu > div > div:nth-child(1)")
+    cy.get(".dropdown-content .dropdown-item:nth-child(2)")
       .click();
     cy.wait(1000);
   },
   // switch language for es
   switch_language_Es () {
-    cy.get(":nth-child(2) > :nth-child(3) > .dropdown > .dropdown-trigger > .button")
-      .first()
-      .trigger("mouseover");
+    cy.get("button.country-button")
+        .first()
+        .trigger("mouseover");
     cy.wait(1000);
-    cy.get("#header > div.level.header__line--bottom > div:nth-child(2) > div:nth-child(3) > div > div.dropdown-menu > div > div:nth-child(3)")
-      .click();
+    cy.get(".dropdown-content .dropdown-item:nth-child(4)")
+        .click();
     cy.wait(1000);
   },
   // switch language
@@ -41,7 +41,7 @@ export const basicCom = {
   // switch to mobile version
   switch_to_mobile () {
     // click mobile version button
-    cy.get("#header > div.level.header__line--bottom > div:nth-child(2) > svg", { timeout: 15000 })
+    cy.get(".header-line-left .icon-mobile", { timeout: 15000 })
       //.first()
       .click();
   },
@@ -50,8 +50,8 @@ export const basicCom = {
       .click();
   },
   live_button () {
-    cy.get(".navigation > .level > .level-left > :nth-child(2)")
-      .click();
+    cy.contains("Live", { timeout: 10000 })
+        .click();
   },
   live_games_button_for_mobile () {
     cy.get("#navigation > section > a:nth-child(5)")
