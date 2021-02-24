@@ -126,8 +126,8 @@ describe("Deposit", () => {
       checkPayments(elementList);
     });
   });
-  it("Случайная валюта - проверка каждого метода оплаты", function () {
-    navReg.change_currency_random();
+  it.only("Случайная валюта - проверка каждого метода оплаты", function () {
+    navReg.deposit_random_currency();
 
     cy.wait(3000);
     cy.document().then((doc) => {

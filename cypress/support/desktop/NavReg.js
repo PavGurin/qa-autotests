@@ -25,7 +25,7 @@ export const navReg = {
       .click();
   },
   // случайная валюта с индексом от 3 до 12
-  change_currency_random () {
+  deposit_random_currency () {
     cy.get(".header-balance__value")
         .trigger("mouseover");
     cy.get(".currency-dropdown")
@@ -43,6 +43,18 @@ export const navReg = {
     cy.get(".currency-name")
       .eq(num)
       .click();
+  },
+  // установить основным кошельком случайную валюту с индексом от 3 до 12
+  change_currency_random () {
+    cy.get(".header-balance__value")
+        .trigger("mouseover");
+    cy.get(".currency-dropdown")
+        .eq(Math.floor(Math.random() * 9) + 3)
+        .trigger("mouseover");
+    cy.wait(1000);
+    cy.get(".dropdown-item.nowrap")
+        .first()
+        .click();
   },
   // registration button на мобильной версии
   click_register_for_mobile () {
