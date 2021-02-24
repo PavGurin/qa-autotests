@@ -11,6 +11,16 @@ export const basicCom = {
     cy.wait(1000);
   },
   // switch language
+  switch_language_rand () {
+    cy.get("button.country-button")
+        .first()
+        .trigger("mouseover");
+    cy.wait(1000);
+    cy.get(".dropdown-content .dropdown-item ")
+        .eq(Math.floor(Math.random() * 11) + 4)
+        .click();
+  },
+  // switch language
   switch_language_for_mobile (lang) {
     cy.get(".lang-input")
     //.trigger('mouseover')
@@ -50,7 +60,7 @@ export const basicCom = {
       .should("have.text", "Main");
   },
   result_button () {
-    cy.get("div.navigation-item > .dropdown > .dropdown-trigger > .item-text")
+    cy.contains("Ещё", { timeout: 10000 })
       .trigger("mouseover");
     cy.get("[href=\"/results\"]")
       .click();

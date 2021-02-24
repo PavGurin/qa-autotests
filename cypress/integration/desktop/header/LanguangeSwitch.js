@@ -8,7 +8,7 @@ describe("Переключение языка", () => {
         .click();
     cy.wait(2000);
   });
-  it("Переключение языка на английский", () => {
+  it("Russian/English", () => {
     // сверяет текст активного элемента меню
     cy.get(header_first_elem, { timeout: 10000 })
           .should("have.text", "Главная");
@@ -18,74 +18,12 @@ describe("Переключение языка", () => {
     cy.get(header_first_elem, { timeout: 10000 })
           .should("have.text", "Home");
   });
-  it("Переключение языка на итальянский", () => {
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Главная");
+  it("Random language", () => {
     // меняет язык
-    basicCom.switch_language("it");
+    basicCom.switch_language_rand();
     // сверяет текст активного элемента меню
     cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Principale ");
-  });
-  it("Переключение языка на немецкий", () => {
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Главная");
-    // меняет язык
-    basicCom.switch_language("de");
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Startseite");
-  });
-  it("Переключение языка на испанский", () => {
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Главная");
-    // меняет язык
-    basicCom.switch_language("es");
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Inicio");
-  });
-  it("Переключение языка на украинский", () => {
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Главная");
-    // меняет язык
-    basicCom.switch_language("ua");
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Головна");
-  });
-  it("Переключение языка на португальский", () => {
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Главная");
-    // меняет язык
-    basicCom.switch_language("pt");
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Principal");
-  });
-  it("Переключение языка на польский", () => {
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Главная");
-    // меняет язык
-    basicCom.switch_language("pl");
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Główna");
-  });
-  it("Переключение языка на индонезийский", () => {
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Главная");
-    // меняет язык
-    basicCom.switch_language("id");
-    // сверяет текст активного элемента меню
-    cy.get(header_first_elem, { timeout: 10000 })
-      .should("have.text", "Laman");
+      .should("not.have.text", "Home").and("not.have.text", "Главная");
+
   });
 });
