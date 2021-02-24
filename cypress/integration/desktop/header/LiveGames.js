@@ -3,7 +3,7 @@ import { auth } from "@support/desktop/Authorization";
 
 describe("LiveGames", () => {
 
-  it("C636689 - choose games", () => {
+  it("Open live game", () => {
     auth.login();
     navReg.button_LiveGames();
     cy.wait(1000);

@@ -6,7 +6,7 @@ describe("Переключение на мобильную версию", () => 
         .click();
     cy.wait(2000);
   });
-  it("C16321 - Мобильная версия", function () {
+  it("Мобильная версия", function () {
     // проверяем наличие гамбургера
     cy.get(".burger-button")
           .should("not.exist");

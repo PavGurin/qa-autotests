@@ -607,6 +607,11 @@ export const prof = {
     cy.contains("Ставки", { timeout: 10000 })
         .click();
   },
+  // кнопка "Bets" в детализации
+  button_bets_detail_en () {
+    cy.contains("Bets", { timeout: 10000 })
+        .click();
+  },
   // кнопка "Казино" в детализации
   button_casino_detail () {
     cy.get(".detailing-tabs > :nth-child(4)")
@@ -625,11 +630,9 @@ export const prof = {
   },
   // проверка ставок в детализации
   assert_bets_detail () {
-    /*cy.get(".detailing-content > :nth-child(1)")
-      .should("exist").and("have.text", "Ординар10 ₽ (6.25)14 февраля 2020 г. | 16:48- 10 ₽");*/
     cy.get(".Detailing__content .DetailingItem").contains("Ординар")
         .scrollIntoView({ offset: { top: -30, left: 0 } }).parent().parent()
-        .should("have.text", "Ординар10 ₽ (6.25)14 февраля 2020 г. | 16:48- 10 ₽");
+        .contains("Ординар10 ₽ (6.25)14 февраля 2020 г. | 16:48- 10 ₽");
   },
   // проверка, что кнопка  после заполнения всех необходимых полей становится активной
   assert_button_is_active () {

@@ -6,28 +6,8 @@ export const basicCom = {
       .first()
       .trigger("mouseover");
     cy.wait(1000);
-    cy.contains(language)
+    cy.get(".dropdown-content div").contains(language)
       .click();
-    cy.wait(1000);
-  },
-  // switch language for de
-  switch_language_De () {
-    cy.get("button.country-button")
-        .first()
-        .trigger("mouseover");
-    cy.wait(1000);
-    cy.get(".dropdown-content .dropdown-item:nth-child(2)")
-      .click();
-    cy.wait(1000);
-  },
-  // switch language for es
-  switch_language_Es () {
-    cy.get("button.country-button")
-        .first()
-        .trigger("mouseover");
-    cy.wait(1000);
-    cy.get(".dropdown-content .dropdown-item:nth-child(4)")
-        .click();
     cy.wait(1000);
   },
   // switch language

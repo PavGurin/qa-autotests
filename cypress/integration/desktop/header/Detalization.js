@@ -9,27 +9,27 @@ describe("Детализация", () => {
         .click();
     cy.wait(2000);
   });
-  it("C1506261 - Депозиты - Перевод", function () {
+  it("Deposits - Transfer", function () {
     auth.login2();
     cy.wait(2000);
     prof.withdrawal("Детализация");
     prof.assert_transfer_detail();
   });
-  it("C1506263 - Выводы - Банковская карта", function () {
+  it("Withdrawals - Bank card", function () {
     auth.login2();
     cy.wait(2000);
     prof.withdrawal("Детализация");
     prof.button_withdrawal_detail();
     prof.assert_withdrawal_detail();
   });
-  it("C1506264 - Ставки - Ординар", function () {
+  it("Bets - Single", function () {
     auth.login2();
     cy.wait(2000);
     prof.withdrawal("Детализация");
     prof.button_bets_detail();
     prof.assert_bets_detail();
   });
-  it("C1506265 - Новая ставка - Ординар", function () {
+  it("New bet - Single", function () {
     auth.login();
     cy.wait(2000);
     basicCom.live_button();
@@ -37,7 +37,7 @@ describe("Детализация", () => {
     bets.bet_main_page_en();
     prof.withdrawal("Detailing");
     cy.wait(1000);
-    prof.button_bets_detail();
+    prof.button_bets_detail_en();
     const todaysDate = Cypress.moment().format("MMMM D, YYYY | hh:mm A");
 
     cy.wait(1000);
@@ -45,18 +45,6 @@ describe("Детализация", () => {
     cy.log(todaysDate);
     cy.get(":nth-child(1) > .DetailingItem__right > .DetailingItem__date")
             .should("contain", todaysDate);
-  });
-  it.skip("C1506266 - Казино", function () {
-    auth.login2();
-    cy.wait(2000);
-    prof.withdrawal("Детализация");
-    prof.button_casino_detail();
-  });
-  it.skip("C1506267 - Кейсы", function () {
-    auth.login2();
-    cy.wait(2000);
-    prof.withdrawal("Детализация");
-    prof.button_case_detail();
   });
 });
 

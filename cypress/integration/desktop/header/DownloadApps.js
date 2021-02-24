@@ -7,16 +7,16 @@ describe("Download apps", () => {
     cy.wait(2000);
   });
 
-  it("C16308 - Link Telegram", () => {
+  it("Link Telegram", () => {
     navReg.check_telegram();
   });
-  it("C16307 - Link VK", () => {
+  it("Link VK", () => {
     navReg.check_vk();
   });
-  it("C16310 - check android", () => {
+  it("check android", () => {
     navReg.check_android();
   });
-  it("C18120- check ios", () => {
+  it("check ios", () => {
     navReg.check_ios();
   });
 });
