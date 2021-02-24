@@ -101,7 +101,7 @@ describe("Deposit", () => {
   });
   it("C2359888 - USD - проверка каждого метода оплаты", function () {
 
-    navReg.change_currency_USD();
+    navReg.change_currency(1);
 
     cy.wait(3000);
     cy.document().then((doc) => {
@@ -126,7 +126,7 @@ describe("Deposit", () => {
       checkPayments(elementList);
     });
   });
-  it.only("Случайная валюта - проверка каждого метода оплаты", function () {
+  it("Случайная валюта - проверка каждого метода оплаты", function () {
     navReg.deposit_random_currency();
 
     cy.wait(3000);

@@ -1,7 +1,86 @@
 import { auth } from "@support/desktop/Authorization";
 import { basicCom } from "@support/desktop/BasicCommands";
 import { navReg } from "@support/desktop/NavReg";
-import { bank } from "@support/desktop/Banking";
+let i;
+let NamePlaceholder;
+let NamePlaceholder2;
+let number = 1;
+
+function checkPaymentsMobile (elementList) {
+  for (i = 1; i <= elementList; i++) {
+    cy.get(`.PaymentsRow__body > :nth-child(${i})`).click();
+    cy.wait(1000);
+    cy.get(".input-wrapper").invoke("attr", "placeholder")
+      .then((price) => {
+        NamePlaceholder = price;
+        cy.log(NamePlaceholder);
+        cy.get(":nth-child(1) > .input-wrapper > .input-message-container > .input").invoke("attr", "placeholder")
+          .then((price) => {
+            NamePlaceholder2 = price;
+            cy.log(NamePlaceholder2);
+            cy.get(".payment-limit-value")
+              .invoke("text").then((limit2) => {
+                let limit = limit2.split(" до ").map((str) => parseFloat(str.replace(/\D/g, "")))[0];
+
+                cy.log(limit);
+
+                if (NamePlaceholder === "Номер банковской карты") {
+                  cy.get(".input").clear()
+                  .type(limit - number);
+                  cy.get(".deposit-page-form-button")
+                  .should("be.disabled");
+
+                  cy.get(".input").first().clear()
+                  .type(limit);
+                  cy.get(".input")
+                  .eq(1)
+                  .type(1234123412341234);
+                  cy.get(".deposit-page-form-button")
+                  .should("be.enabled");
+
+                } else if (NamePlaceholder === "Email аккаунта UMOB") {
+                  cy.get(".input").clear()
+                  .type(limit - number);
+                  cy.get(".deposit-page-form-button")
+                  .should("be.disabled");
+
+                  cy.get(".input").first().clear()
+                  .type(limit);
+                  cy.get(".input").eq(1).clear()
+                  .type("sanya2651@mail.ru");
+                  cy.get(".deposit-page-form-button")
+                  .should("be.enabled");
+                } else if (NamePlaceholder2 === "Имя Фамилия") {
+                  cy.get(".input.icon-left")
+                  .clear()
+                  .type(limit - number);
+                  cy.get(".deposit-page-form-button")
+                  .should("be.disabled");
+
+                  cy.get(".input").first().clear()
+                  .type(limit);
+                  cy.get(".input").first().clear()
+                  .type("Саня Василькович");
+                  cy.get(".deposit-page-form-button")
+                  .should("be.enabled");
+                } else {
+                  cy.get(".input")
+                    .last()
+                    .clear()
+                  .type(limit - number);
+                  cy.get(".deposit-page-form-button")
+                  .should("be.disabled");
+
+                  cy.get(".input").last().clear()
+                  .type(limit);
+                  cy.get(".deposit-page-form-button")
+                  .should("be.enabled");
+                }
+              });
+          });
+      });
+  }
+}
 
 describe("Banking", () => {
   beforeEach(function () {
@@ -12,112 +91,14 @@ describe("Banking", () => {
     cy.contains("Пополнить")
       .click();
   });
-  it("C636650 RUB - пополнение cо счета мегафона", function () {
+  it("RUB - проверка каждого метода оплаты", function () {
     cy.wait(1000);
-    bank.changeRUB_for_mobile();
-    bank.deposit_megafon();
-    bank.assert_deposit_megafon();
-  });
-  it("C636645 RUB - пополнение с карты", function () {
-    bank.changeRUB_for_mobile();
-    bank.visa_method_for_mobile();
-    bank.deposit_visa_for_mobile();
-  });
-  it("C636646 RUB - пополнение Яндекс деньги", function () {
-    bank.changeRUB_for_mobile();
-    bank.YandexCash_method_for_mobile();
-    bank.YandexCash_for_mobile();
-  });
-  it("C636647 RUB - пополнение Qiwi", function () {
-    bank.changeRUB_for_mobile();
-    bank.Qiwi_method_for_mobile();
-    bank.Qiwi_for_mobile();
-  });
-  it("C636648 RUB - пополнение Билайн", function () {
-    bank.changeRUB_for_mobile();
-    bank.Beeline_method_for_mobile();
-    bank.Qiwi_for_mobile();
-  });
-  it("C636651 RUB - пополнение Tele2", function () {
-    bank.changeRUB_for_mobile();
-    bank.Tele2_method_for_mobile();
-    cy.wait(1000);
-    bank.Qiwi_for_mobile();
-  });
-  it("C636651 RUB - пополнение МТС", function () {
-    bank.changeRUB_for_mobile();
-    bank.Mts_method_for_mobile();
-    bank.Qiwi_for_mobile();
-  });
-  it("C636651 RUB - пополнение Piastrix", function () {
-    bank.changeRUB_for_mobile();
-    bank.Piastrix_method_for_mobile();
-    cy.wait(1000);
-    bank.button_continue_disabled_for_mobile();
-    bank.Piastrix_for_mobile(100);
-    bank.button_continue_visible_for_mobile();
-  });
-  it("C636651 RUB - пополнение Bitcoin", function () {
-    bank.changeRUB_for_mobile();
-    bank.Bitcoin_method_for_mobile();
-    bank.button_continue_disabled_for_mobile();
-    bank.Piastrix_for_mobile(2250);
-    bank.button_continue_visible_for_mobile();
-  });
-  it("C636651 RUB - пополнение Инсвойс", function () {
-    bank.changeRUB_for_mobile();
-    bank.Invoice_method_for_mobile();
-    bank.button_continue_disabled_for_mobile();
-    bank.Piastrix_for_mobile(1750);
-    bank.button_continue_visible_for_mobile();
-  });
-  it("C636645 USD - пополнение с карты", function () {
-    bank.visa_method_for_mobile();
-    bank.deposit_visa_for_mobile();
-  });
-  it("C636647 USD - пополнение Qiwi", function () {
-    bank.Qiwi_method_for_mobile();
-    bank.Qiwi_for_mobile();
-  });
-  it("C636651 USD - пополнение Bitcoin", function () {
-    bank.BitcoinUSD_method_for_mobile();
-    bank.button_continue_disabled_for_mobile();
-    bank.Piastrix_for_mobile(2250);
-    bank.button_continue_visible_for_mobile();
-  });
-  it("C636651 USD - пополнение Инвойс", function () {
-    bank.InvoiceUSD_method_for_mobile();
-    bank.button_continue_disabled_for_mobile();
-    bank.Piastrix_for_mobile(1750);
-    bank.button_continue_visible_for_mobile();
-  });
-  it("C636645 EUR - пополнение с карты", function () {
-    bank.changeEUR_for_mobile();
-    bank.visa_method_for_mobile();
-    bank.deposit_visa_for_mobile();
-  });
-  it("C636647 EUR - пополнение Qiwi", function () {
-    bank.changeEUR_for_mobile();
-    bank.Qiwi_method_for_mobile();
-    bank.Qiwi_for_mobile();
-  });
-  it("C636651 EUR - пополнение Bitcoin", function () {
-    bank.changeEUR_for_mobile();
-    bank.BitcoinUSD_method_for_mobile();
-    bank.button_continue_disabled_for_mobile();
-    bank.Piastrix_for_mobile(2250);
-    bank.button_continue_visible_for_mobile();
-  });
-  it("C636651 EUR - пополнение Инсвойс", function () {
-    bank.changeEUR_for_mobile();
-    bank.InvoiceUSD_method_for_mobile();
-    bank.button_continue_disabled_for_mobile();
-    bank.Piastrix_for_mobile(1750);
-    bank.button_continue_visible_for_mobile();
-  });
-  it("C636645 UAH - пополнение с карты", function () {
-    bank.changeUAH_for_mobile();
-    bank.visa_method_for_mobile();
-    bank.deposit_visa_for_mobile();
+    cy.document().then((doc1) => {
+
+      const elementList = doc1.querySelectorAll(".PaymentButton.PaymentsRow__item.button.lg.wallet").length;
+
+      cy.log(elementList);
+      checkPaymentsMobile(elementList);
+    });
   });
 });
