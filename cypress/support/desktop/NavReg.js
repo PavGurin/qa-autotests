@@ -25,7 +25,7 @@ export const navReg = {
       .click();
   },
   // случайная валюта с индексом от 3 до 12
-  change_currency_random () {
+  deposit_random_currency () {
     cy.get(".header-balance__value")
         .trigger("mouseover");
     cy.get(".currency-dropdown")
@@ -36,16 +36,25 @@ export const navReg = {
         .last()
         .click();
   },
-  change_currency_USD () {
+  change_currency (num) {
+    cy.get(".input")
+      .last()
+    .click();
+    cy.get(".currency-name")
+      .eq(num)
+      .click();
+  },
+  // установить основным кошельком случайную валюту с индексом от 3 до 12
+  change_currency_random () {
     cy.get(".header-balance__value")
-      .trigger("mouseover");
+        .trigger("mouseover");
     cy.get(".currency-dropdown")
-      .first()
-      .trigger("mouseover");
+        .eq(Math.floor(Math.random() * 9) + 3)
+        .trigger("mouseover");
     cy.wait(1000);
     cy.get(".dropdown-item.nowrap")
-      .last()
-      .click();
+        .first()
+        .click();
   },
   // registration button на мобильной версии
   click_register_for_mobile () {
@@ -94,8 +103,9 @@ export const navReg = {
 
   // close window with new user's login/pass
   close_new_user_info () {
-    cy.get(".modal-container__header button")
-            .click();
+    cy.get(".icon-wrap")
+      .last()
+      .click();
   },
   // close window with new user's login/pass
   close_new_user_info_for_mobile () {
@@ -350,7 +360,7 @@ export const navReg = {
   },
 
   check_reg_result () {
-    cy.get(".modal-container .user-info .user-info__content__item")
+    cy.get(".modal-container .user-info .user-info__content__item", { timeout: 10000 })
             .then(($new_user_info) => {
               const login = $new_user_info[0].lastChild.outerText;
               const password = $new_user_info[1].lastChild.outerText;
