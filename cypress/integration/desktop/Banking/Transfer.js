@@ -12,6 +12,7 @@ describe("transfer", () => {
 
   });
   it("C1086851 - RUB - Перевод", function () {
+
     prof.withdrawal("Перевод");
     prof.transfer_mail("1wintest123@ahem.email");
     prof.transfer_deposit("20");
