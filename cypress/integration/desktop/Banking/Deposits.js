@@ -100,7 +100,6 @@ describe("Deposit", () => {
     });
   });
   it("C2359888 - USD - проверка каждого метода оплаты", function () {
-
     navReg.change_currency(1);
 
     cy.wait(3000);
