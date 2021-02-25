@@ -7,6 +7,7 @@ describe("Autorization", () => {
   beforeEach(function () {
     basicCom.switch_to_mobile();
     cy.viewport(375, 812);
+
   });
   it("C471380 - Авторизация", function () {
     auth.login_for_mobile2();
