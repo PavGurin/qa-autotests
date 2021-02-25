@@ -11,7 +11,6 @@ function checkPayments (elementList) {
   for (i = 1; i <= elementList; i++) {
     cy.log(i);
     cy.get(`.payments > :nth-child(${i})`).click();
-    cy.wait(1000);
     cy.get(":nth-child(2) > .input-wrapper > .input-message-container > .input").invoke("attr", "placeholder")
       .then((price) => {
         NamePlaceholder = price;
@@ -100,7 +99,7 @@ describe("Deposit", () => {
     });
   });
   it("C2359888 - USD - проверка каждого метода оплаты", function () {
-    navReg.change_currency(1);
+    navReg.change_currency(0);
 
     cy.wait(3000);
     cy.document().then((doc) => {

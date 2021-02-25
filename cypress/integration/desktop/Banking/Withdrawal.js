@@ -24,7 +24,7 @@ describe("Withdrawal", () => {
       cy.get(".payment").should("have.length", elementList);
       let i;
 
-      for (i = 1; i <= elementList; i++) {
+      for (i = 1; i <= elementList - 1; i++) {
         cy.log(i);
         cy.get(`.payments > :nth-child(${i})`).click();
         cy.wait(1000);
