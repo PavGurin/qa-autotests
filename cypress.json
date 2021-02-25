@@ -6,38 +6,8 @@
       "execTimeout": 5000,
       "viewportWidth": 1280,
       "viewportHeight": 960,
-      "projectId": "kb155o",
-      "reporter": "cypress-testrail-accumulative-reporter",
-      "reporterOptions": {
-        "domain": "1win.testrail.io",
-        "username": "tst22tst33@yandex.ru",
-        "password": "12345678#a",
-        "projectId": 5,
-        "suiteId": 1
-      },
-  "baseUrl": "https://1wzho.top/bets/home",
-  "chromeWebSecurity": true,
-  "numTestsKeptInMemory": 1,
-  "video": false ,
-  "execTimeout": 180000,
-  "viewportWidth": 1280,
-  "viewportHeight": 800,
-  "projectId": "kb155o",
-  "env": {
-    "cypress-plugin-snapshots": {
-      "diffLines": 3,
-      "excludeFields": [],
-      "ignoreExtraFields": false,
-      "normalizeJson": true,
-      "prettier": true,
-      "imageConfig": {
-        "createDiffImage": true,
-        "resizeDevicePixelRatio": true,
-        "threshold": 0.5,
-        "thresholdType": "percent"
-      }
-    }
-  },
+      "projectId": "337mkz",
+
   "reporter": "mochawesome",
   "reporterOptions": {
     "reportDir": "cypress/allure-reports",
