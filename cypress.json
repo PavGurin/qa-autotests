@@ -1,35 +1,22 @@
 {
-      "baseUrl": "https://1wnvi.top/bets/home",
+      "baseUrl": "https://1wlbs.top/bets/home",
        "chromeWebSecurity": true,
        "numTestsKeptInMemory": 1,
       "video": false ,
-      "execTimeout": 180000,
+      "execTimeout": 5000,
       "viewportWidth": 1280,
-      "viewportHeight": 800,
-      "projectId": "kb155o",
-      "reporter": "cypress-testrail-accumulative-reporter",
-      "reporterOptions": {
-        "domain": "1win.testrail.io",
-        "username": "tst22tst33@yandex.ru",
-        "password": "12345678#a",
-        "projectId": 5,
-        "suiteId": 1
-      },
-  "env": {
-    "cypress-plugin-snapshots": {
-      "diffLines": 3,
-      "excludeFields": [],
-      "ignoreExtraFields": false,
-      "normalizeJson": true,
-      "prettier": true,
-      "imageConfig": {
-        "createDiffImage": true,
-        "resizeDevicePixelRatio": true,
-        "threshold": 0.5,
-        "thresholdType": "percent"
-      }}},
-      "ignoreTestFiles": [
-        "**/__snapshots__/*",
-        "**/__image_snapshots__/*"
-      ]
+      "viewportHeight": 960,
+      "projectId": "337mkz",
+
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "cypress/allure-reports",
+    "overwrite": false,
+    "html": false,
+    "json": true
+  },
+  "ignoreTestFiles": [
+    "**/__snapshots__/*",
+    "**/__image_snapshots__/*"
+  ]
 }
