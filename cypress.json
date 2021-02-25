@@ -1,11 +1,11 @@
 {
-      "baseUrl": "https://1wlbs.top/bets/home",
+      "baseUrl": "https://1wnvi.top/bets/home",
        "chromeWebSecurity": true,
        "numTestsKeptInMemory": 1,
       "video": false ,
-      "execTimeout": 5000,
+      "execTimeout": 180000,
       "viewportWidth": 1280,
-      "viewportHeight": 960,
+      "viewportHeight": 800,
       "projectId": "kb155o",
       "reporter": "cypress-testrail-accumulative-reporter",
       "reporterOptions": {
@@ -15,14 +15,6 @@
         "projectId": 5,
         "suiteId": 1
       },
-  "baseUrl": "https://1wzho.top/bets/home",
-  "chromeWebSecurity": true,
-  "numTestsKeptInMemory": 1,
-  "video": false ,
-  "execTimeout": 180000,
-  "viewportWidth": 1280,
-  "viewportHeight": 800,
-  "projectId": "kb155o",
   "env": {
     "cypress-plugin-snapshots": {
       "diffLines": 3,
@@ -35,18 +27,9 @@
         "resizeDevicePixelRatio": true,
         "threshold": 0.5,
         "thresholdType": "percent"
-      }
-    }
-  },
-  "reporter": "mochawesome",
-  "reporterOptions": {
-    "reportDir": "cypress/allure-reports",
-    "overwrite": false,
-    "html": false,
-    "json": true
-  },
-  "ignoreTestFiles": [
-    "**/__snapshots__/*",
-    "**/__image_snapshots__/*"
-  ]
+      }}},
+      "ignoreTestFiles": [
+        "**/__snapshots__/*",
+        "**/__image_snapshots__/*"
+      ]
 }
