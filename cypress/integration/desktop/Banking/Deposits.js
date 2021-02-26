@@ -136,16 +136,4 @@ describe("Deposit", () => {
       checkPayments(elementList);
     });
   });
-  it("C2271429 - проверка каждого метода оплаты", function () {
-    prof.account_management_desktop();
-    prof.random_currency();
-
-    for (i = 1; i < 25; i++) {
-      cy.log(i);
-      cy.get(`.payments > :nth-child(${i})`).click();
-      prof.check_length_payment();
-    }
-    cy.get(".modal-content__header__row__cell__overlay").click();
-    prof.check_dollar();
-  });
 });

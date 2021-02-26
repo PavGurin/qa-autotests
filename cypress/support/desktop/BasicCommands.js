@@ -92,9 +92,9 @@ export const basicCom = {
       .should("not.to.be.empty");
   },
   bonus_main_page () {
-    cy.get(".user-bonus > .dropdown > .dropdown-trigger")
+    cy.get(".currency-amount--bonus")
       .trigger("mouseover");
-    cy.get(".bonus-info-message")
+    cy.get(":nth-child(1) > .bonus-info__item-message")
       .should("have.text", "Делайте ординарные ставки с коэффициентом больше 3 и получайте деньги с бонусного счета в размере 5% от суммы выигранной ставки!");
   },
   casino_button_for_mobile () {

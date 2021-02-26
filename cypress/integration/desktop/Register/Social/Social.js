@@ -8,7 +8,7 @@ describe("Registration by social network", () => {
       .click();
     cy.wait(2000);
   });
-  it("C16291 - Ok without promocode", () => {
+  it("length social reg", () => {
     navReg.click_register();
     navReg.registration_form("Соц. сети");
     cy.get(".social-button-item")
