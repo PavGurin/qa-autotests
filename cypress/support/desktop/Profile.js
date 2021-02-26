@@ -34,7 +34,7 @@ export const prof = {
   },
   // Кнопка "пополнить"
   deposit () {
-    cy.get(".header-profile > .button", { timeout: 7000 })
+    cy.get(".button.green.theme-default", { timeout: 7000 })
       .click();
   },
   // Проверка, что кнопка "пополнить"(внутри модального окна) неактивна

@@ -1,6 +1,6 @@
 const available_for_broadcast_element = () => cy
-    .get(".matches-block-content")
-    .find(".match-row > .match-details > .match-teams-container > .match-features > .match-translation > .icon > path")
+    .get(".tournament-list")
+    .find(".match-translation")
     .not(".disabled")
     .first();
 const match_with_translation = () => cy
@@ -9,8 +9,8 @@ const match_with_translation = () => cy
     .prev("td.match-details > div.match-teams")
     .first();
 const match_with_translation2 = () => cy
-    .get(".matches-block-content").scrollIntoView({ duration: 5000 })
-    .find(".match-row > .match-details > .match-teams-container > .match-features > .match-translation > .icon > path")
+    .get(".tournament-list").scrollIntoView({ duration: 5000 })
+    .find(".match-translation")
     .not(".disabled")
     .first()
     .parents()
@@ -21,7 +21,7 @@ const match_with_translation2 = () => cy
 export const broadcast = {
 //нажать на  кнопку "нажать на кейс новичок"
   search () {
-    cy.get(".matches-block-content").scrollIntoView({ duration: 5000 }, { timeout: 10000 });
+    cy.get(".tournament-list").scrollIntoView({ duration: 3000 }, { timeout: 10000 });
     available_for_broadcast_element()
             .click({ force: true });
   },

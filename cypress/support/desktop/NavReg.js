@@ -37,11 +37,14 @@ export const navReg = {
         .click();
   },
   change_currency (num) {
-    cy.get(".input")
-      .last()
-    .click();
-    cy.get(".currency-name")
+    cy.get(".header-balance__value")
+      .trigger("mouseover");
+    cy.get(".currency-dropdown")
       .eq(num)
+      .trigger("mouseover");
+    cy.wait(1000);
+    cy.get(".dropdown-item.nowrap")
+      .last()
       .click();
   },
   // установить основным кошельком случайную валюту с индексом от 3 до 12
