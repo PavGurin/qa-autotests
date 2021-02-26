@@ -24,6 +24,7 @@ describe("Partner", () => {
     req.CheckStats(dateNow);
   });
   it("C1961997 - PartnerPromocode + rega Email", function () {
+    navReg.click_register();
     navReg.registration_form("По e-mail");
     navReg.set_email(`${randomStr}test@zyx.com`);
     navReg.set_pwd("111111");

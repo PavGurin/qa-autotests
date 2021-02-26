@@ -11,6 +11,7 @@ export const navReg = {
   // registration button
   click_register () {
     cy.get(":nth-child(2) > .button", { timeout: 10000 })
+      .first()
             .click();
   },
   change_currency_EUR () {
@@ -37,15 +38,13 @@ export const navReg = {
         .click();
   },
   change_currency (num) {
-    cy.get(".header-balance__value")
-      .trigger("mouseover");
-    cy.get(".currency-dropdown")
-      .eq(num)
-      .trigger("mouseover");
-    cy.wait(1000);
-    cy.get(".dropdown-item.nowrap")
+    cy.get(".input")
       .last()
       .click();
+    cy.get(".currency-name")
+      .eq(num)
+      .click();
+    cy.wait(1000);
   },
   // установить основным кошельком случайную валюту с индексом от 3 до 12
   change_currency_random () {
@@ -151,13 +150,17 @@ export const navReg = {
   // select country from registration page
   set_country (country) {
     cy.get(".trigger")
+            .first()
             .click()
             .get("div.dropdown-item span")
             .contains(country)
+            .first()
             .click();
     cy.get(".trigger")
+            .first()
             .click();
     cy.get(".trigger")
+             .first()
             .click();
   },
   // select country from registration page

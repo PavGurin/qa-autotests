@@ -137,20 +137,22 @@ export const basicCom = {
   assert_casino_category () {
     cy.get(".category-list>li").should(($lis) => {
       expect($lis).to.have.length(16);
-      expect($lis.eq(0)).to.contain("Demi Gods");
-      expect($lis.eq(1)).to.contain("Все игры");
-      expect($lis.eq(2)).to.contain("Лайв Казино");
-      expect($lis.eq(3)).to.contain("Рулетка");
-      expect($lis.eq(4)).to.contain("Новые");
-      expect($lis.eq(5)).to.contain("Слоты");
-      expect($lis.eq(6)).to.contain("Блекджек");
-      expect($lis.eq(7)).to.contain("Настольные");
-      expect($lis.eq(8)).to.contain("Джекпоты");
-      expect($lis.eq(9)).to.contain("Виртуальные игры");
-      expect($lis.eq(10)).to.contain("Видео покер");
-      expect($lis.eq(11)).to.contain("Скретч-карты");
-      expect($lis.eq(12)).to.contain("Лотереи");
-      expect($lis.eq(13)).to.contain("Другие");
+      expect($lis.eq(0)).to.contain("Лайв Казино");
+      expect($lis.eq(1)).to.contain("Drops & Wins");
+      expect($lis.eq(2)).to.contain("Турнир Spin for Win");
+      expect($lis.eq(3)).to.contain("Все игры");
+      expect($lis.eq(4)).to.contain("Рулетка");
+      expect($lis.eq(5)).to.contain("Новые");
+      expect($lis.eq(6)).to.contain("Слоты");
+      expect($lis.eq(7)).to.contain("Блекджек");
+      expect($lis.eq(8)).to.contain("Настольные");
+      expect($lis.eq(9)).to.contain("Джекпоты");
+      expect($lis.eq(10)).to.contain("Виртуальные игры");
+      expect($lis.eq(11)).to.contain("Видео покер");
+      expect($lis.eq(12)).to.contain("Топ игр");
+      expect($lis.eq(13)).to.contain("Скретч-карты");
+      expect($lis.eq(14)).to.contain("Лотереи");
+      expect($lis.eq(15)).to.contain("Другие");
     });
   },
 

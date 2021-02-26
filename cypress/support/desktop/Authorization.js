@@ -11,7 +11,7 @@ const password_input = "input[name=password]";
 const login_confirm = ".modal-button";
 const auth_window = "div.modal-container";
 const logout_question = ".logout-question";
-const notification = ".notification-item";
+const notification = ".notification-item-message";
 const forget_button = ".field > .button > span";
 const email_forget_send = "div.modal-container__container > div > form > form > div > button";
 const code_operation = ":nth-child(2) > .input-wrapper > .input";
@@ -380,8 +380,9 @@ export const auth = {
     cy.get(login_confirm)
             .click();
     // проверяем ошибку и ее текст
+    cy.wait(1000)
     cy.get(notification)
-            .should("visible")
+            .should("be.visible")
             .and("have.text", "Неверный email или пароль");
     // проверяем, что пользователь все еще не залогинен
     cy.get(user_info)
