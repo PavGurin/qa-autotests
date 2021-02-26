@@ -3,12 +3,15 @@ import { auth } from "@support/desktop/Authorization";
 
 describe("LiveGames", () => {
 
-  it("C636689 - choose games", () => {
+  it("Open live game", () => {
     auth.login();
     navReg.button_LiveGames();
     cy.wait(1000);
-    cy.get("#casino > main > div > div > div > div > div.vue-recycle-scroller__item-wrapper > div:nth-child(1) > div > div:nth-child(1) > section > div.game-card-overview > button")
-      .click({ force: true });
+    //открываем первую игру в live games
+    cy.get(".casino-game-item").first()
+      .click();
+    cy.wait(2000);
+    //iframe на месте и имеет какое-то содержимое
     cy.get(".game > iframe", { timeout: 15000 })
      .should("be.visible");
     cy.get(".game > iframe")
