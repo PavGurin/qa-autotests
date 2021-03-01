@@ -20,7 +20,8 @@ describe("Casino", () => {
   });
   it("assert category", function () {
     basicCom.more_button("Казино");
-    basicCom.assert_casino_category();
+    cy.get(".category-list")
+      .should("exist");
   });
 
   it("C636545 - assert favorites casino games", function () {

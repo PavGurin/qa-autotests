@@ -1,7 +1,5 @@
 import { auth } from "@support/desktop/Authorization";
 import { prof } from "@support/desktop/Profile";
-import { bank } from "@support/desktop/Banking";
-import { navReg } from "@support/desktop/NavReg";
 
 describe("Withdrawal", () => {
   let number = 1;

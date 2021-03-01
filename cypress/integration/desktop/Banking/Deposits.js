@@ -101,7 +101,8 @@ describe("Deposit", () => {
   it("C2359888 - USD - проверка каждого метода оплаты", function () {
     navReg.change_currency(0);
 
-    cy.wait(3000);
+    prof.deposit();
+    cy.wait(1000);
     cy.document().then((doc) => {
 
       const elementList = doc.querySelectorAll(".payment").length;

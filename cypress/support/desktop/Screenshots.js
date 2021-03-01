@@ -1,3 +1,5 @@
+import { timeout } from "rxjs/operators";
+
 export const shot = {
 
   screen_headers () {
@@ -21,7 +23,7 @@ export const shot = {
             .click();
   },
   case_classic () {
-    cy.get(".case-modal-button-inner")
+    cy.get(".case-modal-button-inner", { timeout: 5000 })
             .click();
   },
   case_memes () {

@@ -153,8 +153,8 @@ export const auth = {
   },
   login_for_mobile2 () {
     // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get(".login > .button-content", { timeout: 10000 })
-            .click();
+    cy.get("#header > div > button.login.control-item.button.sm.default", { timeout: 7000 })
+      .click();
     // вводим логин/пароль
     // login_input() {
     cy.get(":nth-child(1) > .input-container > .input", { timeout: 10000 })
@@ -180,7 +180,7 @@ export const auth = {
     cy.get("div:nth-child(2) > div.input-container > input")
             .type("qwerty12");
     // нажимаем кнопку "войти"
-    cy.get("#modal-container > div > main > div > div > form > div.button-wrapper > button > span")
+    cy.get(".button-wrapper > .button")
             .click();
   },
   login_for_mobile_mail2 () {
@@ -380,7 +380,7 @@ export const auth = {
     cy.get(login_confirm)
             .click();
     // проверяем ошибку и ее текст
-    cy.wait(1000)
+    cy.wait(1000);
     cy.get(notification)
             .should("be.visible")
             .and("have.text", "Неверный email или пароль");
