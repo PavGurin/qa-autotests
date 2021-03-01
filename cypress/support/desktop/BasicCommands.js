@@ -124,7 +124,7 @@ export const basicCom = {
       .should("have.text", "Ice Wolf");
   },
   assert_casino () {
-    cy.get(".game-card-image")
+    cy.get(".casino-game-line .game-card-image")
       .should("exist");
   },
 

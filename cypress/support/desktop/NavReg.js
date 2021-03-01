@@ -92,7 +92,7 @@ export const navReg = {
       .type(phone);
   },
   sign_up_for_mobile () {
-    cy.get(".submit-btn > .button-content")
+    cy.get(".card-main-content:nth-child(2) .submit-btn")
             .click();
   },
 
@@ -135,10 +135,11 @@ export const navReg = {
             .type(promocode);
   },
   add_promocode_by_email_for_mobile (promocode) {
-    cy.get(".button-content > span")
+    cy.get(".card-main-content:nth-child(2) .promo-code-button button")
             .click()
             .get(".promo-code > .control > .input-container > .input")
             .type(promocode);
+    cy.get(".promo-code-btn").click();
   },
   // закрыть (нажать крестик) поле промокода
   close_promocode () {
@@ -159,7 +160,7 @@ export const navReg = {
   },
   // select country from registration page
   set_country_for_mobile (country) {
-    cy.get(".trigger > .control > .control-left")
+    cy.get(".card-main-content:nth-child(2) .dropdown-trigger")
             .click();
     cy.contains(country)
             .click();
@@ -227,7 +228,7 @@ export const navReg = {
             .click({ timeout: 10000 });
   },
   set_email_register_for_mobile (email) {
-    cy.get(":nth-child(3) > .control > .input-container > .input")
+    cy.get(".card-main-content:nth-child(2) div.level:nth-child(2) input")
             .type(email);
   },
 
@@ -238,7 +239,7 @@ export const navReg = {
             .type(password);
   },
   set_pwd_for_mobile (password) {
-    cy.get(":nth-child(4) > .control > .input-container > .input")
+    cy.get(".card-main-content:nth-child(2) div.level:nth-child(3) input")
             .type(password);
   },
   // email form - repeat password field
@@ -250,7 +251,7 @@ export const navReg = {
 
   // email form - repeat password field
   repeat_pwd_for_mobile (password2) {
-    cy.get(":nth-child(5) > .control > .input-container > .input")
+    cy.get(".card-main-content:nth-child(2) div.level:nth-child(4) input")
             .type(password2);
   },
 

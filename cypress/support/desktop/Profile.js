@@ -499,7 +499,7 @@ export const prof = {
   },
   // проверка, что баланс,id, имя отображаются
   assert_name_id_balance_bonus () {
-    cy.get(".balance__amount")
+    cy.get(".balance-presentation__value")
       .should("exist");
     cy.get(".balance-text")
       .should("exist");
