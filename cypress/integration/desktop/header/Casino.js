@@ -14,6 +14,7 @@ describe("Casino", () => {
   });
   it("Result", function () {
     basicCom.more_button("Казино");
+    cy.contains("Все игры").click();
     basicCom.casino_search("Ice Wolf");
     cy.wait(1000);
     basicCom.assert_casino();
