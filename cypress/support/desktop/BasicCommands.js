@@ -98,7 +98,7 @@ export const basicCom = {
       .should("have.text", "Делайте ординарные ставки с коэффициентом больше 3 и получайте деньги с бонусного счета в размере 5% от суммы выигранной ставки!");
   },
   casino_button_for_mobile () {
-    cy.get("#navigation > section > a:nth-child(4)")
+    cy.contains("Казино")
       .click();
   },
   casino_search (name) {
@@ -113,14 +113,12 @@ export const basicCom = {
   },
 
   casino_search_mobile (name) {
-    cy.get(".all-games__search")
-      .click();
-    cy.get(".input")
+    cy.get(".search-input input")
       .click()
       .type(name);
   },
   assert_casino_for_mobile () {
-    cy.get(".name")
+    cy.get(".searched-games-block .casino-games-list .name")
       .should("have.text", "Ice Wolf");
   },
   assert_casino () {
@@ -129,8 +127,8 @@ export const basicCom = {
   },
 
   assert2_casino_for_mobile () {
-    cy.get("#search-result > div.result-wrapper > div > div > div > div > div.vue-recycle-scroller__item-wrapper > div > div > div > div > div.preview > img")
-      .should("have.class", "image");
+    cy.get(".searched-games-block .casino-game-line .game-preview img")
+      .should("be.visible");
   },
   more_button () {
     cy.contains("Ещё")

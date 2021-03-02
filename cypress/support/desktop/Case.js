@@ -68,7 +68,7 @@ export const cases = {
   },
   //Проверка модального окна выигрыша в кейс
   modal_container_case_for_mobile () {
-    cy.get("#modal-container > div > main > div > div.text-row", { timeout: 15000 })
+    cy.get(".case-win-modal .text-row", { timeout: 15000 })
             .should("have.text", "Поздравляем!Вы выиграли");
   },
   //нажать на кнопку открыть снова
@@ -93,7 +93,7 @@ export const cases = {
   },
   //закрываем модальное окно выигрыша, кликая в любое место экрана
   close_modal_container_case_for_mobile () {
-    cy.get("#modal-container > div > main > div > div.close-btn-row > svg")
+    cy.get(".case-win-modal .close-btn-row svg")
             .click();
   },
   //нажимаем на кнопку "другие кейсы"
@@ -108,7 +108,7 @@ export const cases = {
   },
   //Кнопка кейсы на главной странице
   open_for_mobile () {
-    cy.get("#navigation > section > a:nth-child(7)")
+    cy.contains("Кейсы")
             .click();
   },
   //закрываем модальное окно выигрыша, кликая в любое место экрана

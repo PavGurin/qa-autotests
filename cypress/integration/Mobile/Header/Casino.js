@@ -6,7 +6,7 @@ describe("Казино", () => {
     basicCom.switch_to_mobile();
     cy.viewport(375, 812);
   });
-  it("C636617 - Поиск в казино", function () {
+  it("Search game in Casino", function () {
     auth.login_for_mobile2();
     basicCom.casino_button_for_mobile();
     basicCom.casino_search_mobile("ice Wolf");
