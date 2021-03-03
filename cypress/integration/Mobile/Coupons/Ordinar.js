@@ -7,20 +7,20 @@ describe("Ординар", () => {
   beforeEach(function () {
     basicCom.switch_to_mobile();
     cy.viewport(375, 812);
+    auth.login_for_mobile2();
+    cy.wait(2000);
   });
   it("C740703 - Добавление одного купона - сделать ставку", () => {
-    auth.login_for_mobile2();
-    cy.wait(2000);
+    cy.contains("Live")
+      .click();
+    cy.wait(1000);
     bets.bet_ordinar_for_mobile();
+    bets.bets_series_in_one_match_for_mobile();
   });
   it("C740704 - Добавление двух купонов по одному матчу - сделать ставку", () => {
-    auth.login_for_mobile2();
-    cy.wait(2000);
     bets.bet_two_ordinar_for_mobile();
   });
   it("C740705 - Добавление двух купонов по разным матчам - сделать ставку", () => {
-    auth.login_for_mobile2();
-    cy.wait(2000);
     bets.bet_different_ordinar_for_mobile();
   });
   it("C740725 - Минимальная сумма ставки 10 руб", () => {

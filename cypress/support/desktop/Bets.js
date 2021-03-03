@@ -1,7 +1,6 @@
 /**
  * Для ставок
  */
-
 const make_bet_button = ".base-coupon-submit";
 const bet_amount_input = "input[type=number]";
 const bet_is_done = "form > div.coupon-ordinary > div.coupon-card > div.base-coupon-status.success";
@@ -48,15 +47,17 @@ const available_for_bet_element_virtual_sport = () => cy
     .find(".odd-coefficient")
     .eq(1);
 const bet_element_for_mobile = () => cy
-    .get("#home > section:nth-child(2) > div > a:nth-child(2) > div", { timeout: 20000 })
-    .find(".odd-values", { timeout: 10000 })
+    .get(".collapse-trigger > .tournament-header", { timeout: 20000 })
+    .first()
+    .click()
+  .get(".collapse-trigger > .tournament-header", { timeout: 20000 })
+    .eq(1)
+    .click();
+const bet_in_one_match_for_mobile = () => cy
+    .get(".list.separator.tournament-list", { timeout: 20000 })
+    .find(".odd", { timeout: 10000 })
     .not(".disabled")
     .first();
-const second_bet_in_one_match_for_mobile = () => cy
-    .get("#bets > div > div > ul", { timeout: 20000 })
-    .find(".odd-values", { timeout: 10000 })
-    .not(".disabled")
-    .eq(1);
 const bet_two_element_for_mobile = () => cy
     .get("#home > section:nth-child(2) > div > a:nth-child(2) > div", { timeout: 20000 })
     .find(".odd-values", { timeout: 10000 })
@@ -68,8 +69,6 @@ const bet_different_element_for_mobile = () => cy
     .not(".disabled")
     .last();
 
-//.contains(/\d{2,}/g);
-//.contains(/[1-9]\{1,\}\.[0-9]\{2,\}/);
 
 export const bets = {
 
@@ -372,10 +371,9 @@ export const bets = {
   },
   // делает ставку в мобиле
   bet_ordinar_for_mobile () {
-    bet_element_for_mobile()
-            .click();
-    cy.get("#tabbar > ul > li.tab.coupon-tab > a > div > svg")
-            .click();
+    bet_element_for_mobile();
+    bet_in_one_match_for_mobile()
+      .click();
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
             .type("{selectall}{del}")
