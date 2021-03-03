@@ -43,7 +43,7 @@ export const basicCom = {
     // click mobile version button
     cy.get(".header__line--top .icon-mobile", { timeout: 15000 })
       //.first()
-      .click();
+      .click({ force: true });
   },
   live_button_for_mobile () {
     cy.get("#navigation > section > a:nth-child(2)")
@@ -107,8 +107,7 @@ export const basicCom = {
       .type(name);
   },
   favorites_for_mobile () {
-    cy.get("div[class*=\"loading-item__wrapper\"]")
-      .first()
+    cy.get(".match-card .favourite-icon").first()
       .click();
   },
 
