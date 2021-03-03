@@ -4,7 +4,7 @@ import { navReg } from "@support/desktop/NavReg";
 let NameTeams;
 let NameTeams2;
 
-describe("Избранное", () => {
+describe("Favourites", () => {
   beforeEach(function () {
     basicCom.switch_to_mobile();
     cy.viewport(375, 812);
@@ -36,7 +36,7 @@ describe("Избранное", () => {
           });
       });
   });
-  it("Add championship to favourites", () => {
+  it("Add tournament to favourites", () => {
     cy.contains("Линия").click();
     cy.get(".bets-content .item-link-icon").first().
       click({ force: true });
