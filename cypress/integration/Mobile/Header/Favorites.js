@@ -1,6 +1,7 @@
 import { basicCom } from "@support/desktop/BasicCommands";
 import { auth } from "@support/desktop/Authorization";
 import { navReg } from "@support/desktop/NavReg";
+import {prof} from "../../../support/desktop/Profile";
 let NameTeams;
 let NameTeams2;
 
@@ -19,8 +20,7 @@ describe("Favourites", () => {
       }).then(() => {
         navReg.click_settings_main_page_for_mobile();
       }).then(() => {
-        cy.get(".icon-profile-favorite")
-        .click();
+        prof.favorites_for_mobile();
       }).then(() => {
         cy.get("div[class*=\"match-teams\"]")
           .first()
@@ -53,8 +53,7 @@ describe("Favourites", () => {
           cy.wait(1000);
           //cy.get(".tournament-name").should("have.text", NameTeams);
         }).then(() => {
-          cy.get(".icon-profile-favorite")
-          .click();
+          prof.favorites_for_mobile();
         }).then(() => {
           cy.get(".tournament-name")
           .first()

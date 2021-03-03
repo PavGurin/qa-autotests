@@ -514,8 +514,8 @@ export const navReg = {
             .should("exist");
   },
   assert_logout_for_mobile () {
-    cy.get("#header > div > div > div.balance")
-            .should("not.exist");
+    cy.get("header button.login")
+            .should("exist");
   },
   choose_wallet_for_mobile () {
     cy.get("#reg-one-click > form > div:nth-child(2) > div > div > label")

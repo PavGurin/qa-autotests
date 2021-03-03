@@ -508,28 +508,28 @@ export const prof = {
   },
   // нажать на  кнопка "пополнить"
   button_deposit_for_mobile () {
-    cy.get(".box-links__item_deposit > .box-links__name")
+    cy.get(".profile-header-button__item--deposit")
       .click();
   },
-  // проверка, что кнопка "вывод" существует
+  // проверка, что в "выводе" мы имеем > 0 способов вывода
   assert_button_withdrawal_for_mobile () {
-    cy.get("#main-layout > div.wrapper > div > div > div:nth-child(1) > div > section.box-links > div > a:nth-child(3) > div.box-links__name")
-      .should("exist");
+    cy.contains("Вывод").click();
+    cy.get("div.PaymentsRow button")
+        .should("have.length.greaterThan", 0);
   },
-  // проверка, в "пополнение" мы имеем 10 способов полнения
+  // проверка, в "пополнение" мы имеем > 0 способов полнения
   assert_button_deposit_for_mobile () {
-    cy.get("div.payments-row > button")
-      //.find('#main-layout > div.wrapper.has-tabs > div > div > div.deposit-payments > div.payments-row > button:nth-child(1)' )
-      .should("have.length", 10);
+    cy.get("div.PaymentsRow button")
+      .should("have.length.greaterThan", 0);
   },
-  // проверка, что кнопка "вывод" существует
+  // проверка, что кнопка "перевод" существует
   assert_button_transfer_for_mobile () {
-    cy.get("#main-layout > div.wrapper > div > div > div:nth-child(1) > div > section.box-links > div > a:nth-child(2) > div.box-links__name")
-      .should("exist");
+    cy.get(".profile-header__buttons a").first()
+      .should("have.text", "Перевод");
   },
   // нажать на  кнопка "детализация"
   button_withdrawal_history_for_mobile () {
-    cy.get("#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(4) > div > div.big-links__description")
+    cy.get(".icon-profile-detalisation")
       .click();
   },
   // проверка, что история выводов существует
@@ -539,18 +539,18 @@ export const prof = {
   },
   // нажать на  кнопка "пополнить"
   button_bets_history_for_mobile () {
-    cy.get("#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(3) > div")
+    cy.get(".icon-profile-history")
       .click();
   },
   // проверка, что история ставок существует
   assert_bets_history_for_mobile () {
-    cy.get("#bets-history > div.bets-history-content")
+    cy.get("#bets-history .bets-history-content")
       .should("exist");
   },
 
   // нажать на  кнопка "скрыть баланс"
   button_hide_balance_for_mobile () {
-    cy.get("#profile-edit > form > div.level.level--between > label")
+    cy.get(".other-settings-sections label").first()
       .click();
   },
   // проверка, что баланс исчез
@@ -565,8 +565,8 @@ export const prof = {
   },
   // избранное
   favorites_for_mobile () {
-    cy.get("#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(3)")
-      .click();
+    cy.get(".icon-profile-favorite")
+        .click();
   },
   // проверка,избранное
   assert_favorites_for_mobile () {
@@ -580,8 +580,8 @@ export const prof = {
   },
   // проверка служба поддержки
   assert_support_for_mobile () {
-    cy.get("#jcont")
-      .should("exist");
+    cy.get(".chaport-window iframe")
+        .should("be.visible");
   },
   // проверка перевода в детализации
   assert_transfer_detail () {
