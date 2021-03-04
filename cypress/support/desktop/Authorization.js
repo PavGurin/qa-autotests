@@ -301,8 +301,8 @@ export const auth = {
     cy.get("div:nth-child(2) > div.input-container > input")
             .type(pass);
     // нажимаем кнопку "войти"
-    cy.get("#modal-container > div > main > div > div > form > div.button-wrapper > button > span")
-            .click();
+    cy.get(".login-form .button-wrapper button")
+        .click();
   },
 
   login_with_new_pass (pass) {

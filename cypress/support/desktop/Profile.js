@@ -29,8 +29,8 @@ export const prof = {
   },
   // настройки в моб.версии
   settings_for_mobile () {
-    cy.get("#main-layout > div.wrapper > div > div > div:nth-child(2) > div > a:nth-child(6) > div.big-links__left")
-      .click();
+    cy.get(".icon-profile-settings-double")
+      .click({ force: true });
   },
   // Кнопка "пополнить"
   deposit () {
@@ -308,7 +308,7 @@ export const prof = {
   },
   //Заполнение поля "имя" в настройках на моб.версии
   settings_form_name_for_mobile (name) {
-    cy.get(".form > :nth-child(1) > .control > .input-container > .input")
+    cy.get("#profile-edit .input").first()
       .clear()
       .type(name);
   },
@@ -345,9 +345,9 @@ export const prof = {
       .should("have.text", "Минимум 4 символов");
     cy.get("#profile-edit > form > div:nth-child(1) > div > div.input-container > input")
       .clear()
-      .type("Q2Bvfrbkdblgblfgnflnfnlflglndsvsdv");
+      .type("Q2Bvfrbkdblgblfgnflnfnlflglndsvsdvflnfnlflglndsvsdvflnfnlflglndsvsdv");
     cy.get("#profile-edit > form > div:nth-child(1) > div > div.input-container > div")
-      .should("have.text", "Максимум 16 символов");
+      .should("have.text", "Максимум 50 символов");
   },
   //Заполнение поля "дата рождения" в настройках
   settings_form_birthday () {
@@ -455,11 +455,11 @@ export const prof = {
   },
   // проверка, что внутри ставки отображаются данные
   change_pass_for_mobile () {
-    cy.get("#profile-edit > form > div:nth-child(6) > div > div.control-right > button > span")
+    cy.get("#profile-edit button").contains("Изменить пароль")
       .click();
   },
   old_pass_for_mobile () {
-    cy.get("#profile-edit > form > div:nth-child(6) > div > div.input-container > input")
+    cy.get("#profile-edit .level:nth-child(7) input")
       .click()
       .type("qwerty");
   },
@@ -473,13 +473,13 @@ export const prof = {
   },
   // проверка, что внутри ставки отображаются данные
   assert_mail_visible_for_mobile () {
-    cy.get("#profile-edit > form > div:nth-child(5) > div > div.input-container > input")
-      .should("be.visible");
+    cy.get("#profile-edit button").contains("Изменить email")
+      .should("exist");
   },
   // проверка, что внутри ставки отображаются данные
   assert_mail_disabled_for_mobile () {
     cy.get("#profile-edit > form > div:nth-child(5) > div > div.input-container > input")
-      .should("be.disabled");
+      .should("exist");
   },
   // проверка, поле mail доступно
   assert_mail_visible () {
