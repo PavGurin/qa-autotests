@@ -51,7 +51,7 @@ lint:
 .job_template: &job
   stage: test
   tags:
-    - macos
+    - qa-macbook
   script:
     # print CI environment variables for reference
     - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
