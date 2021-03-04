@@ -79,17 +79,19 @@ function checkPayments (elementList) {
 }
 
 describe("Deposit", () => {
-
-  beforeEach(() => {
+  before(() => {
+    cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
-      .click();
+    .click();
     auth.loginNew();
-    cy.wait(2000);
+    cy.wait(3000);
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
   it(" - RUB - проверка каждого метода оплаты", function () {
     prof.deposit();
-    cy.wait(2000);
-
+    cy.wait(3000);
     cy.document().then((doc1) => {
 
       const elementList = doc1.querySelectorAll(".payment").length;
@@ -99,6 +101,8 @@ describe("Deposit", () => {
     });
   });
   it("C2359888 - USD - проверка каждого метода оплаты", function () {
+    cy.get(".modal-content__header__row__account-number > .icon")
+    .click();
     navReg.change_currency(0);
 
     prof.deposit();
