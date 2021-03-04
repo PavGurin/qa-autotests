@@ -51,13 +51,13 @@ lint:
 .job_template: &job
   stage: test
   tags:
-    - macos
+    - qa-macbook
   script:
     # print CI environment variables for reference
     - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
     - $(npm bin)/print-env CI
     # run Cypress test in load balancing mode
-    - npm run e2e:chrome
+    - npm run e2e:record
     # retry: 2 Laungh test 2 time
 
   artifacts:
