@@ -7,6 +7,7 @@ stages:
 # to cache both npm modules and Cypress binary we use environment variables
 # to point at the folders we can list as paths in "cache" job settings
 variables:
+  PUPPETEER_SKIP_DOWNLOAD: "true"
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
   CI_NODE_TOTAL: 4
