@@ -80,16 +80,13 @@ export const basicCom = {
       .should("not.to.be.empty");
   },
   result_button_for_mobile () {
-    cy.get("#navigation > section > a:nth-child(2)")
-      .click();
-    cy.get("#navigation > section > a:nth-child(3)")
-      .click();
-    cy.get("#results > section > header > a")
+    this.live_button();
+    cy.get("#navigation section a:nth-child(3)")
       .click();
   },
   assert_result_for_mobile () {
-    cy.get("#results-last > ul")
-      .should("not.to.be.empty");
+    cy.get(".Results > ul")
+      .should("not.to.be.empty").and("be.visible");
   },
   bonus_main_page () {
     cy.get(".user-bonus > .dropdown > .dropdown-trigger")
