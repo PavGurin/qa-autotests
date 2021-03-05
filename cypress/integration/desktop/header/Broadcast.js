@@ -7,19 +7,19 @@ describe("Broadcast", () => {
     auth.login();
     // auth.login_stage()
   });
-  it("C16620 - Open broadcast", function () {
+  it("Open broadcast", function () {
     basicCom.live_button();
     cy.wait(2000);
     broadcast.search();
     broadcast.open();
   });
-  it("C16622 - Open broadcast on page", function () {
+  it("Open broadcast on page", function () {
     basicCom.live_button();
     cy.wait(3000);
     broadcast.open_match();
     broadcast.should_exist();
   });
-  it("C16625 - Close broadcast", function () {
+  it("Close broadcast", function () {
     basicCom.live_button();
     cy.wait(3000);
     broadcast.search();
@@ -27,7 +27,7 @@ describe("Broadcast", () => {
     broadcast.close_match();
     broadcast.should_close();
   });
-  it("C16626 - Move broadcast", function () {
+  it("Move broadcast", function () {
     basicCom.live_button();
     cy.wait(3000);
     broadcast.search();

@@ -48,7 +48,7 @@ describe("investment", () => {
       invest.click_close_modal();
     });
   });
-  it("Валидная сумма", function () {
+  it.skip("Валидная сумма", function () {
     auth.login_for_invest();
     cy.wait(3000);
     topNav.click_invest();

@@ -11,6 +11,7 @@ export const navReg = {
   // registration button
   click_register () {
     cy.get(":nth-child(2) > .button", { timeout: 10000 })
+      .first()
             .click();
   },
   change_currency_EUR () {
@@ -37,11 +38,14 @@ export const navReg = {
         .click();
   },
   change_currency (num) {
-    cy.get(".input")
-      .last()
-    .click();
-    cy.get(".currency-name")
+    cy.get(".header-balance__value")
+      .trigger("mouseover");
+    cy.get(".currency-dropdown")
       .eq(num)
+      .trigger("mouseover");
+    cy.wait(1000);
+    cy.get(".dropdown-item.nowrap")
+      .first()
       .click();
   },
   // установить основным кошельком случайную валюту с индексом от 3 до 12
@@ -148,13 +152,17 @@ export const navReg = {
   // select country from registration page
   set_country (country) {
     cy.get(".trigger")
+            .first()
             .click()
             .get("div.dropdown-item span")
             .contains(country)
+            .first()
             .click();
     cy.get(".trigger")
+            .first()
             .click();
     cy.get(".trigger")
+             .first()
             .click();
   },
   // select country from registration page
@@ -211,7 +219,7 @@ export const navReg = {
 
   // email form - email
   set_email (email) {
-    cy.get(":nth-child(4) > .input-wrapper > .input-message-container > .input")
+    cy.get("form .control.row:nth-child(4) .input")
             .clear()
             .type(email);
   },
@@ -233,7 +241,7 @@ export const navReg = {
 
   // email form - password
   set_pwd (password) {
-    cy.get(":nth-child(5) > .input-wrapper > .input-message-container > .input")
+    cy.get("form .control.row:nth-child(5) .input")
       .clear()
             .type(password);
   },
@@ -243,7 +251,7 @@ export const navReg = {
   },
   // email form - repeat password field
   repeat_pwd (password2) {
-    cy.get(":nth-child(6) > .input-wrapper > .input-message-container > .input")
+    cy.get("form .control.row:nth-child(6) .input")
       .clear()
             .type(password2);
   },
@@ -284,7 +292,7 @@ export const navReg = {
 
   // email form -  phone
   set_phone_numb (phone) {
-    cy.get(".intl-tel-input > .control > .input-wrapper > .input-message-container > .input")
+    cy.get("form .tel-input input")
             .type(phone);
   },
   // email form -  phone
@@ -317,10 +325,8 @@ export const navReg = {
   },
 
   check_ios () {
-    cy.get("#header > div.level.header__line--bottom > div:nth-child(2) > div.application-promo.right-item > div:nth-child(2)", { timeout: 10000 })
-      .first()
-      .trigger("mouseover");
-    cy.wait(1000);
+    cy.get(".header-mobile-apps > div:nth-child(2) .icon", { timeout: 10000 })
+      .click();
     cy.get(".tooltip-container")
       .should("be.visible");
   },
@@ -342,28 +348,23 @@ export const navReg = {
             .should("have.attr", "href").and("include", "/apk-folder/1win-1wenx.xyz.apk");
   },
   check_telegram () {
-    cy.get(".header-line-left > :nth-child(2) > .button", { timeout: 10000 })
-      .click();
-    cy.get(".social-links > .telegram", { timeout: 10000 })
+    cy.get("footer").scrollIntoView();
+    cy.get(".social-link.telegram img", { timeout: 10000 })
       .should("be.visible");
-    cy.get("#footer > div:nth-child(2) > nav > ul > li:nth-child(1) > a")
-      .should("have.attr", "href").and("include", "https://tme.run/joinchat/AAAAAEOBOGmId4M_50OlSA?open=true");
+    cy.get("footer .social-link.telegram")
+      .should("have.attr", "href").and("include", "https://t.me/joinchat/AAAAAEOBOGmId4M_50OlSA");
   },
   check_vk () {
-    cy.get(".header-line-left > :nth-child(2) > .button", { timeout: 10000 })
-      .click();
-    cy.get(".social-links > .vk", { timeout: 10000 })
+    cy.get(".social-link.vk", { timeout: 10000 })
       .should("be.visible");
-    cy.get("#app-overlay-wrapper > div > div > div.modal-container__container > div > div > div.access-modal-right > div > div.social-links > a.social-link.vk")
+    cy.get("footer .social-link.vk")
       .should("have.attr", "href").and("include", "https://vk.com/1winn");
   },
   check_android () {
-    cy.get("#header > div.level.header__line--bottom > div:nth-child(2) > div.application-promo.right-item > div:nth-child(1)", { timeout: 10000 })
-      .first()
-      .trigger("mouseover");
-    cy.wait(1000);
-    cy.get(".tooltip-container")
-      .should("be.visible");
+    cy.get(".header-mobile-apps > div:nth-child(1) .icon", { timeout: 10000 })
+        .first().click();
+    cy.get(".tooltip-wrapper")
+      .should("exist");
   },
 
   check_reg_result () {
@@ -537,7 +538,7 @@ export const navReg = {
       .click();
   },
   button_LiveGames () {
-    cy.get("[href=\"/casino/live\"] > .item-text-block > .item-text", { timeout: 4000 })
-      .click();
+    cy.get("[href=\"/casino/live\"]").first()
+        .click();
   },
 };
