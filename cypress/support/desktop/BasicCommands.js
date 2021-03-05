@@ -33,7 +33,7 @@ export const basicCom = {
     // click mobile version button
     cy.get(".header__line--top .icon-mobile", { timeout: 15000 })
       //.first()
-      .click();
+      .click({ force: true });
   },
   live_button_for_mobile () {
     cy.get("#navigation > section > a:nth-child(2)")
@@ -70,16 +70,13 @@ export const basicCom = {
       .should("not.to.be.empty");
   },
   result_button_for_mobile () {
-    cy.get("#navigation > section > a:nth-child(2)")
-      .click();
-    cy.get("#navigation > section > a:nth-child(3)")
-      .click();
-    cy.get("#results > section > header > a")
+    this.live_button();
+    cy.get("#navigation section a:nth-child(3)")
       .click();
   },
   assert_result_for_mobile () {
-    cy.get("#results-last > ul")
-      .should("not.to.be.empty");
+    cy.get(".Results > ul")
+      .should("not.to.be.empty").and("be.visible");
   },
   bonus_main_page () {
     cy.get(".currency-amount--bonus")
@@ -92,7 +89,7 @@ export const basicCom = {
       .click();
   },
   casino_button_for_mobile () {
-    cy.get("#navigation > section > a:nth-child(4)")
+    cy.contains("Казино")
       .click();
   },
   casino_search (name) {
@@ -101,30 +98,27 @@ export const basicCom = {
       .type(name);
   },
   favorites_for_mobile () {
-    cy.get("div[class*=\"loading-item__wrapper\"]")
-      .first()
+    cy.get(".match-card .favourite-icon").first()
       .click();
   },
 
   casino_search_mobile (name) {
-    cy.get(".all-games__search")
-      .click();
-    cy.get(".input")
+    cy.get(".search-input input")
       .click()
       .type(name);
   },
   assert_casino_for_mobile () {
-    cy.get(".name")
+    cy.get(".searched-games-block .casino-games-list .name")
       .should("have.text", "Ice Wolf");
   },
   assert_casino () {
-    cy.get(".game-card-image")
+    cy.get(".casino-game-line .game-card-image")
       .should("exist");
   },
 
   assert2_casino_for_mobile () {
-    cy.get("#search-result > div.result-wrapper > div > div > div > div > div.vue-recycle-scroller__item-wrapper > div > div > div > div > div.preview > img")
-      .should("have.class", "image");
+    cy.get(".searched-games-block .casino-game-line .game-preview img")
+      .should("be.visible");
   },
   more_button () {
     cy.contains("Ещё")

@@ -62,7 +62,7 @@ export const navReg = {
   },
   // registration button на мобильной версии
   click_register_for_mobile () {
-    cy.get("#header > div > button.registration.control-item.button.sm.success", { timeout: 10000 })
+    cy.get("header button.registration", { timeout: 10000 })
             .click();
   },
 
@@ -95,11 +95,21 @@ export const navReg = {
     cy.get("#app-overlay-wrapper > div > div.modal-container > div > div > div.modal-container__container > div > form > form > div.intl-tel-input.tel-input.row > div > div > div.input-message-container > input")
       .type(phone);
   },
+  //1клик -> кнопка Продолжить (первая карточка регистрации)
   sign_up_for_mobile () {
-    cy.get(".submit-btn > .button-content")
+    cy.get("#reg-one-click .submit-btn").first()
             .click();
   },
-
+  //Email -> кнопка Продолжить (первая карточка регистрации)
+  sign_up_with_email () {
+    cy.get("#reg-full .submit-btn").first()
+        .click();
+  },
+  //Email -> кнопка Зарегистрироваться (вторая карточка регистрации)
+  sign_up_email_continue () {
+    cy.get(".card-with-back-button .submit-btn")
+        .click();
+  },
   sign_up_check () {
     cy.get(".register-footer > .button")
             .should("be.visible");
@@ -113,7 +123,7 @@ export const navReg = {
   },
   // close window with new user's login/pass
   close_new_user_info_for_mobile () {
-    cy.get(".close > .icon")
+    cy.get(".icon-close")
             .click();
   },
 
@@ -139,10 +149,11 @@ export const navReg = {
             .type(promocode);
   },
   add_promocode_by_email_for_mobile (promocode) {
-    cy.get(".button-content > span")
+    cy.get(".card-main-content:nth-child(2) .promo-code-button button")
             .click()
             .get(".promo-code > .control > .input-container > .input")
             .type(promocode);
+    cy.get(".promo-code-btn").click();
   },
   // закрыть (нажать крестик) поле промокода
   close_promocode () {
@@ -167,7 +178,7 @@ export const navReg = {
   },
   // select country from registration page
   set_country_for_mobile (country) {
-    cy.get(".trigger > .control > .control-left")
+    cy.get(".card-main-content:nth-child(2) .dropdown-trigger")
             .click();
     cy.contains(country)
             .click();
@@ -235,7 +246,7 @@ export const navReg = {
             .click({ timeout: 10000 });
   },
   set_email_register_for_mobile (email) {
-    cy.get(":nth-child(3) > .control > .input-container > .input")
+    cy.get(".card-main-content:nth-child(2) div.level:nth-child(2) input")
             .type(email);
   },
 
@@ -246,7 +257,7 @@ export const navReg = {
             .type(password);
   },
   set_pwd_for_mobile (password) {
-    cy.get(":nth-child(4) > .control > .input-container > .input")
+    cy.get(".card-main-content:nth-child(2) div.level:nth-child(3) input")
             .type(password);
   },
   // email form - repeat password field
@@ -258,7 +269,7 @@ export const navReg = {
 
   // email form - repeat password field
   repeat_pwd_for_mobile (password2) {
-    cy.get(":nth-child(5) > .control > .input-container > .input")
+    cy.get(".card-main-content:nth-child(2) div.level:nth-child(4) input")
             .type(password2);
   },
 
@@ -404,7 +415,7 @@ export const navReg = {
   },
   //кнопка - "Войти в профиль с главной страницы"
   click_settings_main_page_for_mobile () {
-    cy.get("#header > div > div > div.control-item > button > span")
+    cy.get("header .profile-button")
             .click();
   },
   //кнопка - "Войти в профиль с главной страницы"
@@ -514,8 +525,8 @@ export const navReg = {
             .should("exist");
   },
   assert_logout_for_mobile () {
-    cy.get("#header > div > div > div.balance")
-            .should("not.exist");
+    cy.get("header button.login")
+            .should("exist");
   },
   choose_wallet_for_mobile () {
     cy.get("#reg-one-click > form > div:nth-child(2) > div > div > label")

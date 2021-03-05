@@ -148,8 +148,8 @@ export const auth = {
     cy.get("div:nth-child(2) > div.input-container > input")
             .type("tk7oqj");
     // нажимаем кнопку "войти"
-    cy.get("#modal-container > div > main > div > div > form > div.button-wrapper > button > span")
-            .click();
+    cy.get(".login-form .button-wrapper button")
+        .click();
   },
   login_for_mobile2 () {
     // нажимаем кнопку 'Войти' со стартовой страницы
@@ -301,8 +301,8 @@ export const auth = {
     cy.get("div:nth-child(2) > div.input-container > input")
             .type(pass);
     // нажимаем кнопку "войти"
-    cy.get("#modal-container > div > main > div > div > form > div.button-wrapper > button > span")
-            .click();
+    cy.get(".login-form .button-wrapper button")
+        .click();
   },
 
   login_with_new_pass (pass) {
@@ -404,11 +404,12 @@ export const auth = {
     cy.get("div:nth-child(2) > div.input-container > input")
             .type("wrong_password");
     // нажимаем кнопку 'Войти' в меню авторизации
-    cy.get("#modal-container > div > main > div > div > form > div.button-wrapper > button > span")
+    cy.get("form.login-form button").contains("Войти")
             .click();
+    cy.wait(1000);
     // проверяем ошибку и ее текст
-    cy.get("#notifications-container")
-            .should("visible")
+    cy.get(".default-notification")
+            .should("be.visible")
             .and("have.text", "Неверный email или пароль");
   },
   // авторизация с пустыми обязательными полями
@@ -436,7 +437,7 @@ export const auth = {
             .click();
     cy.get(":nth-child(1) > .input-container > .input")
             .type(mail);
-    cy.get("#modal-container > div > main > div > div > form > div.button-wrapper > button > span")
+    cy.get("form.login-form button").contains("Войти")
             .click();
   },
   login_empty_mail_for_mobile () {
