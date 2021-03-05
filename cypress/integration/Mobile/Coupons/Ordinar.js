@@ -1,7 +1,6 @@
 import { basicCom } from "@support/desktop/BasicCommands";
 import { bets } from "@support/desktop/Bets";
 import { auth } from "@support/desktop/Authorization";
-import { navReg } from "@support/desktop/NavReg";
 
 describe("Ординар", () => {
   beforeEach(function () {

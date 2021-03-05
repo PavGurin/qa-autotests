@@ -117,6 +117,8 @@ describe("Deposit", () => {
     });
   });
   it("C2359889 - Eur - проверка каждого метода оплаты", function () {
+    cy.get(".modal-content__header__row__account-number > .icon")
+      .click();
     navReg.change_currency_EUR();
 
     cy.wait(3000);
@@ -130,6 +132,8 @@ describe("Deposit", () => {
     });
   });
   it("Случайная валюта - проверка каждого метода оплаты", function () {
+    cy.get(".modal-content__header__row__account-number > .icon")
+      .click();
     navReg.deposit_random_currency();
 
     cy.wait(3000);
