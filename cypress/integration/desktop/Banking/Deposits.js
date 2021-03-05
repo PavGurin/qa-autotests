@@ -11,7 +11,6 @@ function checkPayments (elementList) {
   for (i = 1; i <= elementList; i++) {
     cy.log(i);
     cy.get(`.payments > :nth-child(${i})`).click();
-    cy.wait(1000);
     cy.get(":nth-child(2) > .input-wrapper > .input-message-container > .input").invoke("attr", "placeholder")
       .then((price) => {
         NamePlaceholder = price;
@@ -80,17 +79,19 @@ function checkPayments (elementList) {
 }
 
 describe("Deposit", () => {
-
-  beforeEach(() => {
+  before(() => {
+    cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
-      .click();
+    .click();
     auth.loginNew();
-    cy.wait(2000);
+    cy.wait(3000);
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
   it(" - RUB - проверка каждого метода оплаты", function () {
     prof.deposit();
-    cy.wait(2000);
-
+    cy.wait(3000);
     cy.document().then((doc1) => {
 
       const elementList = doc1.querySelectorAll(".payment").length;
@@ -100,10 +101,12 @@ describe("Deposit", () => {
     });
   });
   it("C2359888 - USD - проверка каждого метода оплаты", function () {
+    cy.get(".modal-content__header__row__account-number > .icon")
+    .click();
+    navReg.change_currency(0);
 
-    navReg.change_currency_USD();
-
-    cy.wait(3000);
+    prof.deposit();
+    cy.wait(1000);
     cy.document().then((doc) => {
 
       const elementList = doc.querySelectorAll(".payment").length;
@@ -114,6 +117,8 @@ describe("Deposit", () => {
     });
   });
   it("C2359889 - Eur - проверка каждого метода оплаты", function () {
+    cy.get(".modal-content__header__row__account-number > .icon")
+      .click();
     navReg.change_currency_EUR();
 
     cy.wait(3000);
@@ -126,7 +131,9 @@ describe("Deposit", () => {
       checkPayments(elementList);
     });
   });
-  it.only("Случайная валюта - проверка каждого метода оплаты", function () {
+  it("Случайная валюта - проверка каждого метода оплаты", function () {
+    cy.get(".modal-content__header__row__account-number > .icon")
+      .click();
     navReg.deposit_random_currency();
 
     cy.wait(3000);
@@ -137,17 +144,5 @@ describe("Deposit", () => {
       cy.get(".payment").should("have.length", elementList);
       checkPayments(elementList);
     });
-  });
-  it("C2271429 - проверка каждого метода оплаты", function () {
-    prof.account_management_desktop();
-    prof.random_currency();
-
-    for (i = 1; i < 25; i++) {
-      cy.log(i);
-      cy.get(`.payments > :nth-child(${i})`).click();
-      prof.check_length_payment();
-    }
-    cy.get(".modal-content__header__row__cell__overlay").click();
-    prof.check_dollar();
   });
 });

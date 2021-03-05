@@ -14,14 +14,14 @@ describe("Casino", () => {
   });
   it("Result", function () {
     basicCom.more_button("Казино");
-    cy.contains("Все игры").click();
     basicCom.casino_search("Ice Wolf");
     cy.wait(1000);
     basicCom.assert_casino();
   });
   it("assert category", function () {
     basicCom.more_button("Казино");
-    basicCom.assert_casino_category();
+    cy.get(".category-list")
+      .should("exist");
   });
 
   it("C636545 - assert favorites casino games", function () {

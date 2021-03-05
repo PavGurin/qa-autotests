@@ -1,7 +1,12 @@
 import { auth } from "@support/desktop/Authorization";
 
 describe("Авторизация", () => {
+  beforeEach(() => {
+    cy.get(".bonus-modal-button-close", { timeout: 50000 })
+      .click();
+    cy.wait(2000);
 
+  });
   it("C16300 - Авторизация по email", () => {
     auth.login();
     auth.logout();

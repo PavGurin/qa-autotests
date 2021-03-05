@@ -7,6 +7,7 @@ stages:
 # to cache both npm modules and Cypress binary we use environment variables
 # to point at the folders we can list as paths in "cache" job settings
 variables:
+  PUPPETEER_SKIP_DOWNLOAD: "true"
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
   CI_NODE_TOTAL: 4
@@ -27,7 +28,7 @@ install:
   tags:
     - docker
   script:
-    - apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+    - apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
     - npm ci
     - $(npm bin)/print-env CI
     - npm run cy:verify
@@ -51,13 +52,13 @@ lint:
 .job_template: &job
   stage: test
   tags:
-    - macos
+    - qa-macbook
   script:
     # print CI environment variables for reference
     - npm ci # solution for unstable gitlab cache (issue about this is still open) waiting for fix
     - $(npm bin)/print-env CI
     # run Cypress test in load balancing mode
-    - npm run e2e:chrome
+    - npm run e2e:record
     # retry: 2 Laungh test 2 time
 
   artifacts:

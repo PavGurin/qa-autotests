@@ -1,13 +1,15 @@
 /**
  * Для ставок
  */
-
 const make_bet_button = ".base-coupon-submit";
 const bet_amount_input = "input[type=number]";
 const bet_is_done = "form > div.coupon-ordinary > div.coupon-card > div.base-coupon-status.success";
 const bet_not_done = "div.coupon-status.error";
 const status_coupon = ".coupon-status-message";
 
+function Random (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 const available_for_bet_element = () => cy
     .wait(1000)
     .get(".tournament-list", { timeout: 20000 })
@@ -48,28 +50,28 @@ const available_for_bet_element_virtual_sport = () => cy
     .find(".odd-coefficient")
     .eq(1);
 const bet_element_for_mobile = () => cy
-    .get("#home > section:nth-child(2) > div > a:nth-child(2) > div", { timeout: 20000 })
-    .find(".odd-values", { timeout: 10000 })
+    .get(".collapse-trigger > .tournament-header", { timeout: 20000 })
+    .first()
+    .click()
+  .get(".collapse-trigger > .tournament-header", { timeout: 20000 })
+    .eq(1)
+    .click();
+const bet_in_one_match_for_mobile = () => cy
+    .get(".list.separator.tournament-list", { timeout: 20000 })
+    .find(".odd", { timeout: 10000 })
     .not(".disabled")
     .first();
-const second_bet_in_one_match_for_mobile = () => cy
-    .get("#bets > div > div > ul", { timeout: 20000 })
-    .find(".odd-values", { timeout: 10000 })
-    .not(".disabled")
-    .eq(1);
 const bet_two_element_for_mobile = () => cy
-    .get("#home > section:nth-child(2) > div > a:nth-child(2) > div", { timeout: 20000 })
-    .find(".odd-values", { timeout: 10000 })
-    .not(".disabled")
-    .eq(2);
+  .get(".list.separator.tournament-list", { timeout: 20000 })
+  .find(".odd", { timeout: 10000 })
+  .not(".disabled")
+  .eq(1);
 const bet_different_element_for_mobile = () => cy
-    .get("#home > section:nth-child(1) > div > a:nth-child(2) > div", { timeout: 20000 })
-    .find(".odd-values", { timeout: 10000 })
+    .get(".list.separator.tournament-list", { timeout: 20000 })
+    .find(".odd", { timeout: 10000 })
     .not(".disabled")
-    .last();
+    .last(Random(4, 7));
 
-//.contains(/\d{2,}/g);
-//.contains(/[1-9]\{1,\}\.[0-9]\{2,\}/);
 
 export const bets = {
 
@@ -93,12 +95,13 @@ export const bets = {
   bet_main_page_en () {
     // выбирает первый доступный для ставки элемент
     // cy.xpath(available_for_bet_element)
+    cy.wait(1000);
     available_for_bet_element()
       .click();
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
       .type("{selectall}{del}")
-      .type("{selectall}1");
+      .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
     cy.get(make_bet_button)
       .click();
@@ -371,14 +374,15 @@ export const bets = {
   },
   // делает ставку в мобиле
   bet_ordinar_for_mobile () {
-    bet_element_for_mobile()
-            .click();
-    cy.get("#tabbar > ul > li.tab.coupon-tab > a > div > svg")
-            .click();
+    bet_element_for_mobile();
+    bet_in_one_match_for_mobile()
+      .click();
+    cy.get(".Tabs__list-item--coupon > .Tabs__link")
+      .click();
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
     cy.get(".coupon-bet-make > .button-content")
             .click();
@@ -388,21 +392,22 @@ export const bets = {
   },
   // делает 2 ставки в мобиле
   bet_two_ordinar_for_mobile () {
-    bet_element_for_mobile()
-            .click();
+    bet_element_for_mobile();
+    bet_in_one_match_for_mobile()
+      .click();
     bet_two_element_for_mobile()
-            .click();
-    cy.get("#tabbar > ul > li.tab.coupon-tab > a > div > svg")
-            .click();
+      .click();
+    cy.get(".Tabs__list-item--coupon > .Tabs__link")
+      .click();
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
             .first()
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     cy.get(bet_amount_input)
             .last()
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
     cy.get(".coupon-bet-make > .button-content")
             .click({ multiple: true });
@@ -410,47 +415,43 @@ export const bets = {
     //cy.get('div > div > div > div.coupon-odd-wrapper > div.coupon-status > div.coupon-status-message', {timeout:10000})
     // .should('exist').and('have.text', 'Ваша ставка принята');
     cy.get(".base-coupon-status", { timeout: 10000 })
-            .should("exist").and("have.text", "Успешно!Ваша ставка принята");
+            .should("exist").and("have.text", "Успешно!Ваша ставка принятаУспешно!Ваша ставка принята");
   },
   // делает 2 ставки по разных играм в мобиле
   bet_different_ordinar_for_mobile () {
-    bet_element_for_mobile()
-            .click();
+    bet_element_for_mobile();
+    bet_in_one_match_for_mobile()
+    .click();
     bet_different_element_for_mobile()
             .click();
-    cy.get("#tabbar > ul > li.tab.coupon-tab > a > div > svg")
-            .click();
-    cy.get("#coupons > div.coupons-navigation > label:nth-child(1)")
-            .click();
+    cy.get(".Tabs__list-item--coupon > .Tabs__link")
+      .click();
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
             .first()
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     cy.get(bet_amount_input)
             .last()
             .type("{selectall}{del}")
-            .type("{selectall}1");
+            .type("{selectall}10");
     // жмет кнопку 'Сделать ставку'
-    cy.get(":nth-child(1) > .coupon-wrapper > .coupon-bet-wrapper > .coupon-bet > .coupon-bet-make > .button-content")
+    cy.get(".coupons-navigation > :nth-child(1)")
             .click();
-    cy.get(":nth-child(2) > .coupon-wrapper > .coupon-bet-wrapper > .coupon-bet > .coupon-bet-make > .button-content")
+    cy.get(".coupon-bet-make > .button-content")
       .click();
     // сверяет, что ставка сделана успешно
     cy.get(".base-coupon-status", { timeout: 10000 })
-      .should("exist").and("have.text", "Успешно!Ваша ставка принята");
+      .should("exist").and("have.text", "Успешно!Ваша ставка принятаУспешно!Ваша ставка принята");
   },
   bet_different_express_for_mobile () {
-    bet_element_for_mobile()
-            .click();
+    bet_element_for_mobile();
+    bet_in_one_match_for_mobile()
+      .click();
     bet_different_element_for_mobile()
-            .click();
-    cy.get("#tabbar > ul > li.tab.coupon-tab > a > div > svg")
-            .click();
-    cy.get("#coupons > div.coupons-navigation > label:nth-child(1)")
-            .click();
-    cy.get("#coupons > div.coupons-navigation > label:nth-child(2)")
-            .click();
+      .click();
+    cy.get(".Tabs__list-item--coupon > .Tabs__link")
+      .click();
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
             .first()
@@ -469,18 +470,12 @@ export const bets = {
   },
   // делает ставку в мобиле
   bet_coupons_delete_for_mobile () {
-    bet_element_for_mobile()
-            .click();
-    cy.get("#tabbar > ul > li.tab.coupon-tab > a > div > svg")
-            .click();
-    //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
-    cy.get(bet_amount_input)
-            .type("{selectall}{del}")
-            .type("{selectall}10");
-    cy.get(".coupon-odd-wrapper > :nth-child(1) > .coupon-odd")
-            .should("exist");
-    // жмем на крестик
-    cy.get(".coupon-delete")
+    bet_element_for_mobile();
+    bet_in_one_match_for_mobile()
+      .click();
+    cy.get(".Tabs__list-item--coupon > .Tabs__link")
+      .click();
+    cy.get(".coupons-navigation-remove > .button-content")
             .click();
     // сверяет, что ставка сделана успешно
     cy.get(".coupon-odd-wrapper > :nth-child(1) > .coupon-odd")
@@ -503,41 +498,44 @@ export const bets = {
   },
   // делает ставку в мобиле
   bet_minimum10_rub_for_mobile () {
-    bet_element_for_mobile()
-            .click();
-    cy.get("#tabbar > ul > li.tab.coupon-tab > a > div > svg")
-            .click();
+    bet_element_for_mobile();
+    bet_in_one_match_for_mobile()
+      .click();
+    cy.get(".Tabs__list-item--coupon > .Tabs__link")
+      .click();
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
             .type("{selectall}{del}")
-            .type("{selectall}0,05");
+            .type("{selectall}9");
     // жмет кнопку 'Сделать ставку'
     cy.get(".coupon-bet-make > .button-content")
             .click();
     // сверяет, что ставка сделана успешно
-    cy.get(".message-modal-block-content", { timeout: 10000 })
+    cy.get(".base-coupon-status", { timeout: 10000 })
             .should("exist").and("have.text", "Недостаточно средств!Измените сумму ставки или пополните балансПополнить счет");
   },
   // делает ставку в мобиле
   two_bets_series_in_one_match_for_mobile () {
-    bet_element_for_mobile()
-            .click();
+    bet_element_for_mobile();
+    bet_in_one_match_for_mobile()
+      .click();
     bet_two_element_for_mobile()
-            .click();
-    cy.get("#tabbar > ul > li.tab.coupon-tab > a > div > svg")
-            .click();
+      .click();
+    cy.get(".Tabs__list-item--coupon > .Tabs__link")
+      .click();
     cy.get("#coupons > div.coupons-navigation > label:nth-child(2) > input")
             .should("be.disabled");
   },
   // делает ставку в серии
   bets_series_in_one_match_for_mobile () {
-    bet_element_for_mobile()
+    bet_element_for_mobile();
+    bet_in_one_match_for_mobile()
       .click();
     bet_two_element_for_mobile()
       .click();
-    cy.get("#tabbar > ul > li.tab.coupon-tab > a > div > svg")
+    cy.get(".Tabs__list-item--coupon > .Tabs__link")
       .click();
-    cy.get("#coupons > div.coupons-navigation > label:nth-child(3)")
+    cy.get(".coupons-navigation > :nth-child(3)")
       .click();
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
@@ -567,14 +565,15 @@ export const bets = {
       .should("be.disabled");
   },
   two_bets_series_in_different_match_for_mobile () {
-    bet_element_for_mobile()
-            .click();
+    bet_element_for_mobile();
+    bet_in_one_match_for_mobile()
+      .click();
     bet_different_element_for_mobile()
-            .click();
-    cy.get("#tabbar > ul > li.tab.coupon-tab > a > div > svg")
-            .click();
-    cy.get("#coupons > div.coupons-navigation > label:nth-child(3)")
-            .click();
+      .click();
+    cy.get(".Tabs__list-item--coupon > .Tabs__link")
+      .click();
+    cy.get(".coupons-navigation > :nth-child(3)")
+      .click();
     //выделяет окно ввода суммы ставки, очищает данное поле и вводит '10'
     cy.get(bet_amount_input)
             .type("{selectall}{del}")
