@@ -112,16 +112,21 @@ function checkPaymentsMobile (elementList) {
 }
 
 describe("WithdrawalMobile", () => {
-  beforeEach(function () {
+  before(() => {
+    cy.visit("");
+    cy.wait(1000);
     basicCom.switch_to_mobile();
     cy.viewport(375, 812);
     auth.login_for_mobile2();
     navReg.click_settings_main_page_for_mobile();
     cy.contains("Вывод")
-      .click();
+            .click();
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
 
-  it("C636625 - вывод средств на карту", function () {
+  it("Withdrawal", function () {
     cy.wait(1000);
     cy.document().then((doc1) => {
 
