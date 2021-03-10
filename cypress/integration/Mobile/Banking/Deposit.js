@@ -79,7 +79,7 @@ function checkPaymentsMobile (elementList) {
   }
 }
 
-describe("Banking", () => {
+describe("Deposit", () => {
   before(() => {
     cy.visit("");
     cy.wait(1000);

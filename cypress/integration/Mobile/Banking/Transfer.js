@@ -3,7 +3,7 @@ import { basicCom } from "@support/desktop/BasicCommands";
 import { navReg } from "@support/desktop/NavReg";
 import { bank } from "@support/desktop/Banking";
 
-describe("Banking", () => {
+describe("Transfer", () => {
   before(() => {
     cy.visit("");
     cy.wait(1000);

@@ -510,9 +510,9 @@ export const bets = {
     // жмет кнопку 'Сделать ставку'
     cy.get(".coupon-bet-make > .button-content")
             .click();
-    // сверяет, что ставка сделана успешно
+    // сверяет, что текст ошибки соответствует
     cy.get(".base-coupon-status", { timeout: 10000 })
-            .should("exist").and("have.text", "Недостаточно средств!Измените сумму ставки или пополните балансПополнить счет");
+            .should("exist").and("have.text", "Ошибка!Минимальная сумма ставки: 10 RUB");
   },
   // делает ставку в мобиле
   two_bets_series_in_one_match_for_mobile () {
