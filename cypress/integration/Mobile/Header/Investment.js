@@ -6,18 +6,22 @@ import { invest } from "@support/desktop/Investment";
 let validSum; //минимальная сумма инвестиции
 
 describe("Investment", () => {
-  beforeEach(function () {
-    cy.get(".bonus-modal-button-close", { timeout: 50000 })
-        .click();
-    cy.wait(2000);
+  before(() => {
+    cy.visit("");
+    cy.wait(1000);
     basicCom.switch_to_mobile();
     cy.viewport(375, 812);
+    cy.get(".bonus-modal-button-close", { timeout: 50000 }).click();
+    auth.login_for_mobile_invest();
+    cy.wait(1000);
+    topNav.click_invest();
+
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
   it("Сумма меньше минимальной", function () {
-    auth.login_for_mobile_invest();
-    topNav.click_invest();
     invest.click_invest();
-    cy.wait(1000);
     cy.get("div.invest-modal-min-amount").invoke("text").then((MinSum) => {
       validSum = parseInt((MinSum));
       cy.log(validSum);
@@ -30,13 +34,9 @@ describe("Investment", () => {
     });
   });
   it("Недостаточно средств", function () {
-    auth.login_for_mobile_invest();
-    topNav.click_invest();
     invest.click_invest();
-    cy.wait(1000);
     cy.get("header .balance-trunc").invoke("text").then((balanceSum) => {
       let investSum = parseInt((balanceSum));
-
       cy.log(investSum);
       invest.invest_money(investSum + 1000000);
       invest.click_invest_modal();
@@ -46,10 +46,7 @@ describe("Investment", () => {
     });
   });
   it("Валидная сумма", function () {
-    auth.login_for_mobile_invest();
-    topNav.click_invest();
     invest.click_invest();
-    cy.wait(1000);
     cy.get("div.invest-modal-min-amount").invoke("text").then((MinSum) => {
       validSum = parseInt((MinSum));
       cy.log(validSum);
@@ -60,10 +57,10 @@ describe("Investment", () => {
     });
   });
   it("Пользователю запрещены инвестиции", function () {
+    auth.logout_for_mobile();
     auth.login_for_mobile2(); /*используется аккаунт с заблокированными инвестициями*/
     topNav.click_invest();
     invest.click_invest();
-    cy.wait(1000);
     cy.get("div.invest-modal-min-amount").invoke("text").then((MinSum) => {
       validSum = parseInt((MinSum));
       cy.log(validSum);

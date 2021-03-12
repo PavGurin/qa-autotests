@@ -576,7 +576,7 @@ export const prof = {
   // кнопка "выйти"
   button_exit_for_mobile () {
     cy.get("#main-layout > div.wrapper > div > div > div:nth-child(3) > div > div")
-      .click();
+      .click({force:true});
   },
   // проверка служба поддержки
   assert_support_for_mobile () {

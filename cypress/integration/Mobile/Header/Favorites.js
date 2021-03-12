@@ -6,10 +6,17 @@ let NameTeams;
 let NameTeams2;
 
 describe("Favourites", () => {
-  beforeEach(function () {
+  before(() => {
+    cy.visit("");
+    cy.wait(1000);
     basicCom.switch_to_mobile();
     cy.viewport(375, 812);
+    cy.get(".bonus-modal-button-close", { timeout: 50000 }).click();
     auth.login_for_mobile2();
+    cy.wait(1000);
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
   it("Add match to favourites", () => {
     basicCom.favorites_for_mobile();
@@ -37,6 +44,7 @@ describe("Favourites", () => {
       });
   });
   it("Add tournament to favourites", () => {
+    cy.get("button.burger-menu-button").click();
     cy.contains("Линия").click();
     cy.get(".bets-content .item-link-icon").first().
       click({ force: true });

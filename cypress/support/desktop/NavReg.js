@@ -512,11 +512,11 @@ export const navReg = {
             .click();
   },
   clear_number_phone_for_mobile () {
-    cy.get("#reg-full > form > div:nth-child(4) > div > div > div.input-container > input")
+    cy.get(".intl-tel-input input")
             .clear();
   },
   clear_mail_for_mobile () {
-    cy.get("#reg-full > form > div:nth-child(5) > div > div.input-container > input")
+    cy.get(".card-main-content:nth-child(2) div.level:nth-child(2) input")
             .clear();
   },
 

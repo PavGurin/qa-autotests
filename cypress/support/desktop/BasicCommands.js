@@ -98,8 +98,7 @@ export const basicCom = {
       .type(name);
   },
   favorites_for_mobile () {
-    cy.get(".match-card .favourite-icon").first()
-      .click();
+    cy.get(".match-card .favourite-icon").first().scrollIntoView().click();
   },
 
   casino_search_mobile (name) {
