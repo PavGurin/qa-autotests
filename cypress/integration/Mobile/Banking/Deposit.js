@@ -4,16 +4,14 @@ import { navReg } from "@support/desktop/NavReg";
 let i;
 let NamePlaceholder;
 let NamePlaceholder2;
-let number = 1;
 
 function checkPaymentsMobile (elementList) {
   for (i = 1; i <= elementList; i++) {
     cy.get(`.PaymentsRow__body > :nth-child(${i})`).click();
     cy.wait(1000);
-    cy.get(".input-wrapper").invoke("attr", "placeholder")
+    cy.get(".deposit-page-form input").first().invoke("attr", "placeholder") //получаем плейсхолдер первого инпута
       .then((price) => {
         NamePlaceholder = price;
-        cy.log(NamePlaceholder);
         cy.get(":nth-child(1) > .input-wrapper > .input-message-container > .input").invoke("attr", "placeholder")
           .then((price) => {
             NamePlaceholder2 = price;
@@ -25,26 +23,25 @@ function checkPaymentsMobile (elementList) {
                 cy.log(limit);
 
                 if (NamePlaceholder === "Номер банковской карты") {
-                  cy.get(".input").clear()
-                  .type(limit - number);
+                  cy.get(".deposit-page-form input").last().clear()
+                  .type(limit - 1);
                   cy.get(".deposit-page-form-button")
                   .should("be.disabled");
 
-                  cy.get(".input").first().clear()
+                  cy.get(".input").last().clear()
                   .type(limit);
-                  cy.get(".input")
-                  .eq(1)
+                  cy.get(".input").first()
                   .type(1234123412341234);
                   cy.get(".deposit-page-form-button")
                   .should("be.enabled");
 
                 } else if (NamePlaceholder === "Email аккаунта UMOB") {
-                  cy.get(".input").clear()
-                  .type(limit - number);
+                  cy.get(".deposit-page-form input").last().clear()
+                  .type(limit - 1);
                   cy.get(".deposit-page-form-button")
                   .should("be.disabled");
 
-                  cy.get(".input").first().clear()
+                  cy.get(".input").last().clear()
                   .type(limit);
                   cy.get(".input").eq(1).clear()
                   .type("sanya2651@mail.ru");
@@ -53,7 +50,7 @@ function checkPaymentsMobile (elementList) {
                 } else if (NamePlaceholder2 === "Имя Фамилия") {
                   cy.get(".input.icon-left")
                   .clear()
-                  .type(limit - number);
+                  .type(limit - 1);
                   cy.get(".deposit-page-form-button")
                   .should("be.disabled");
 
@@ -67,7 +64,7 @@ function checkPaymentsMobile (elementList) {
                   cy.get(".input")
                     .last()
                     .clear()
-                  .type(limit - number);
+                  .type(limit - 1);
                   cy.get(".deposit-page-form-button")
                   .should("be.disabled");
 
@@ -82,17 +79,22 @@ function checkPaymentsMobile (elementList) {
   }
 }
 
-describe("Banking", () => {
-  beforeEach(function () {
+describe("Deposit", () => {
+  before(() => {
+    cy.visit("");
+    cy.wait(1000);
     basicCom.switch_to_mobile();
     cy.viewport(375, 812);
     auth.login_for_mobile2();
     navReg.click_settings_main_page_for_mobile();
     cy.contains("Пополнить")
-      .click();
+          .click();
+    cy.wait(1000);
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
   it("RUB - проверка каждого метода оплаты", function () {
-    cy.wait(1000);
     cy.document().then((doc1) => {
 
       const elementList = doc1.querySelectorAll(".PaymentButton.PaymentsRow__item.button.lg.wallet").length;

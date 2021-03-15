@@ -42,8 +42,6 @@ export const auth = {
             .click();
   },
   logout_for_mobile2 () {
-    //cy.get('#header > div > div > div.control-item > button')
-    // .click();
     cy.get(".exit")
              .click();
   },
@@ -432,11 +430,10 @@ export const auth = {
   },
   // авторизация с пустыми обязательными полями
   login_empty_pass_for_mobile (mail) {
-    // нажимаем кнопку 'Войти' со стартовой страницы
-    cy.get(".login > .button-content", { timeout: 10000 })
-            .click();
-    cy.get(":nth-child(1) > .input-container > .input")
+    cy.get(":nth-child(1) > .input-container > .input").clear()
             .type(mail);
+    cy.get("div:nth-child(2) > div.input-container > input")
+        .clear();
     cy.get("form.login-form button").contains("Войти")
             .click();
   },

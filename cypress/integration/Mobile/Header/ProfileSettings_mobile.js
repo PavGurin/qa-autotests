@@ -8,9 +8,14 @@ const randomStr = Math.random()
     .slice(-5);
 
 describe("Profile Settings", () => {
-  beforeEach(function () {
+  before(() => {
+    cy.visit("");
+    cy.wait(1000);
     basicCom.switch_to_mobile();
     cy.viewport(375, 812);
+    cy.get(".bonus-modal-button-close", { timeout: 50000 }).click();
+  });
+  beforeEach(function () {
   });
   it("Change name", function () {
     auth.login_for_mobile3("qwerty");
@@ -20,6 +25,7 @@ describe("Profile Settings", () => {
     prof.settings_form_name_for_mobile(`test_${randomStr}`);
     prof.click_save_settings_for_mobile();
     navReg.check_sign_up_for_mobile_without_enter(`test_${randomStr}`);
+    auth.logout_for_mobile2();
   });
   it("Change phone number", function () {
     auth.login_for_mobile3("qwerty");
@@ -27,6 +33,7 @@ describe("Profile Settings", () => {
     prof.settings_for_mobile();
     prof.settings_form_numbPhone_for_mobile(`921${randomNum}`);
     prof.click_save_settings_for_mobile();
+    auth.logout_for_mobile2();
   });
   it("Change Birthday", function () {
     auth.login_for_mobile3("qwerty");
@@ -39,6 +46,7 @@ describe("Profile Settings", () => {
     prof.click_save_settings_for_mobile();
     prof.settings_for_mobile();
     prof.assert_date_birthday_for_mobile();
+    auth.logout_for_mobile();
   });
   it("Change password", function () {
     auth.login_for_mobile3("qwerty");
@@ -48,6 +56,7 @@ describe("Profile Settings", () => {
     prof.old_pass_for_mobile();
     prof.new_pass_for_mobile();
     prof.click_save_settings_for_mobile();
+    auth.logout_for_mobile();
   });
   it("1Click registration - e-mail field is active", function () {
     navReg.click_register_for_mobile();
@@ -58,6 +67,7 @@ describe("Profile Settings", () => {
     navReg.click_settings_main_page_for_mobile();
     prof.settings_for_mobile();
     prof.assert_mail_visible_for_mobile();
+    auth.logout_for_mobile();
   });
   it("Email registration - e-mail field is disabled", function () {
     navReg.click_register_for_mobile();
@@ -71,5 +81,6 @@ describe("Profile Settings", () => {
     navReg.click_settings_main_page_for_mobile();
     prof.settings_for_mobile();
     prof.assert_mail_disabled_for_mobile();
+    auth.logout_for_mobile();
   });
 });

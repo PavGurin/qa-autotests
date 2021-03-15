@@ -2,12 +2,16 @@ import { basicCom } from "@support/desktop/BasicCommands";
 import { bets } from "@support/desktop/Bets";
 import { auth } from "@support/desktop/Authorization";
 
-describe("Серия", () => {
-  beforeEach(function () {
+describe("Series", () => {
+  before(() => {
+    cy.visit("");
+    cy.wait(1000);
     basicCom.switch_to_mobile();
     cy.viewport(375, 812);
     auth.login_for_mobile2();
-    cy.wait(1000);
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
     basicCom.live_button();
     cy.wait(1000);
   });

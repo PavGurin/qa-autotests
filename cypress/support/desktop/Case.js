@@ -49,7 +49,7 @@ export const cases = {
   //нажать на кнопку открыть кейс
   button_open_case_for_mobile () {
     cy.get(".case-game-button")
-            .click();
+            .click({ force: true });
   },
   momentOpenCase () {
     cy.get(".case-modal-option-toggle-circle")
@@ -83,7 +83,7 @@ export const cases = {
   },
   //нажать на кнопку открыть кейс
   repeat_open_case_for_mobile () {
-    cy.get("#modal-container > div > main > div > div.btn-row > button")
+    cy.get(".case-win-modal .btn-row button")
             .click();
   },
   //закрываем модальное окно выигрыша, кликая в любое место экрана
@@ -93,7 +93,7 @@ export const cases = {
   },
   //закрываем модальное окно выигрыша, кликая в любое место экрана
   close_modal_container_case_for_mobile () {
-    cy.get(".case-win-modal .close-btn-row svg")
+    cy.get(".case-win-modal .close-btn-row svg", { timeout: 15000 })
             .click();
   },
   //нажимаем на кнопку "другие кейсы"
