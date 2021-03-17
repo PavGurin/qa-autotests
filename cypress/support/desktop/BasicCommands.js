@@ -93,6 +93,8 @@ export const basicCom = {
       .click();
   },
   casino_search (name) {
+    cy.contains("Все игры")
+      .click();
     cy.get(".search-input")
       .click()
       .type(name);

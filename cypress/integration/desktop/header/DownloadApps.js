@@ -1,25 +1,28 @@
 import { navReg } from "@support/desktop/NavReg";
+import { auth } from "@support/desktop/Authorization";
 
-describe("Pwa", () => {
+describe("Download apps", () => {
   before(() => {
     cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
-        .click();
-    cy.wait(1000);
+      .click();
+    auth.login2();
+    cy.wait(2000);
   });
   beforeEach(function () {
     Cypress.Cookies.preserveOnce("session_id");
   });
-  it("C16308 - telegram", () => {
+
+  it("Link Telegram", () => {
     navReg.check_telegram();
   });
-  it("C16307 - Link VK", () => {
+  it("Link VK", () => {
     navReg.check_vk();
   });
-  it("C16310 - check android", () => {
+  it("check android", () => {
     navReg.check_android();
   });
-  it("C18120- check ios", () => {
+  it("check ios", () => {
     navReg.check_ios();
   });
 });

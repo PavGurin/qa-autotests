@@ -10,15 +10,20 @@ let count3; // новый счётчик
 let count4; // новый счётчик
 
 describe("investment", () => {
-  beforeEach(() => {
+  before(() => {
+    cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
-        .click();
+      .click();
     cy.wait(2000);
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
   it("Сумма меньше минимальной", function () {
     auth.loginNew();
-    cy.wait(3000);
+    cy.wait(2000);
     topNav.click_invest();
+    cy.wait(1000);
     invest.click_invest();
     cy.wait(1000);
     cy.get("div.invest-modal-min-amount").invoke("text").then((MinSum) => {
@@ -32,9 +37,6 @@ describe("investment", () => {
     });
   });
   it("Недостаточно средств", function () {
-    auth.loginNew();
-    cy.wait(3000);
-    topNav.click_invest();
     invest.click_invest();
     cy.wait(1000);
     cy.get("div.header-balance__value").invoke("text").then((balanceSum) => {
@@ -63,10 +65,6 @@ describe("investment", () => {
     });
   });
   it("Проверка счётчика", function () {
-    auth.loginNew();
-    cy.wait(3000);
-    topNav.click_invest();
-    cy.wait(5000);
     cy.get(".numbers-reel-invest").scrollIntoView();
     /** получаем последние 2 цифры счётчика, складываем в oldCount **/
     cy.get(".digit-section:nth-last-child(1)")

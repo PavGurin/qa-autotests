@@ -3,42 +3,25 @@ import { broadcast } from "@support/desktop/Broadcast";
 import { basicCom } from "@support/desktop/BasicCommands";
 
 describe("Broadcast", () => {
-  beforeEach(() => {
+  before(() => {
+    cy.visit("");
+    cy.get(".bonus-modal-button-close", { timeout: 50000 })
+      .click();
     auth.login();
-    // auth.login_stage()
+    cy.wait(2000);
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
   it("Open broadcast", function () {
     basicCom.live_button();
-    cy.wait(2000);
+    cy.wait(1000);
     broadcast.search();
     broadcast.open();
   });
   it("Open broadcast on page", function () {
-    basicCom.live_button();
-    cy.wait(3000);
+    broadcast.close_match();
     broadcast.open_match();
     broadcast.should_exist();
-  });
-  it("Close broadcast", function () {
-    basicCom.live_button();
-    cy.wait(3000);
-    broadcast.search();
-    broadcast.open();
-    broadcast.close_match();
-    broadcast.should_close();
-  });
-  it("Move broadcast", function () {
-    basicCom.live_button();
-    cy.wait(3000);
-    broadcast.search();
-    broadcast.open();
-    broadcast.moving_container();
-    broadcast.moving_container2();
-    broadcast.button_moving_exist();
-    //cy.get('#main-container > div.content-wrapper > div > div > div.main-content > div > div.matches-block > div.navigation > nav > ul > li:nth-child(1) > a > span');
-    // cy.get('#main-container > div.translation-container > div.translation-container-drag')
-    //     .trigger('dragstart');
-    // cy.get('#main-container > div.translation-container > div.translation-container-drag')
-    //     .trigger('drop');
   });
 });

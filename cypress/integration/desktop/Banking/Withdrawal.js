@@ -2,14 +2,18 @@ import { auth } from "@support/desktop/Authorization";
 import { prof } from "@support/desktop/Profile";
 
 describe("Withdrawal", () => {
+  before(() => {
+    cy.visit("");
+    cy.get(".bonus-modal-button-close", { timeout: 50000 })
+      .click();
+    auth.loginNew();
+    cy.wait(3000);
+  });
   let number = 1;
   let NamePlaceholder;
 
   beforeEach(() => {
-    cy.get(".bonus-modal-button-close", { timeout: 50000 })
-      .click();
-    auth.loginNew();
-    cy.wait(2000);
+    Cypress.Cookies.preserveOnce("session_id");
   });
   it(" - RUB - проверка каждого метода оплаты", function () {
     prof.withdrawal("Вывод средств");

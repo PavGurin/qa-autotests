@@ -11,7 +11,7 @@ function Random (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 const available_for_bet_element = () => cy
-    .wait(1000)
+    .wait(4000)
     .get(".tournament-list", { timeout: 20000 })
     .find(".odd-cell", { timeout: 10000 })
     .not(".disabled")
@@ -19,6 +19,7 @@ const available_for_bet_element = () => cy
     .first();
 //.eq(3)
 const available_for_bet_element2 = () => cy
+     .wait(4000)
     .get(".tournament-list", { timeout: 20000 })
     .find(".odd-cell", { timeout: 10000 })
     .not(".disabled")
@@ -29,7 +30,7 @@ const second_bets_in_one_match = () => cy
     .find(".odd-cell", { timeout: 10000 })
     .not(".disabled")
     .find(".odd-coefficient")
-    .eq(1);
+    .eq(2);
 
 const two_bets_in_different_match = () => cy
     .get(".tournament-list")
@@ -195,8 +196,8 @@ export const bets = {
   },
   // закрывает все отмеченные купоны (жмет 'крестик')
   close_coupons () {
-    cy.get(".remove-button button-clear")
-            .click();
+    cy.get(".remove-button")
+            .click({ multiple: true });
   },
   // закрывает один купон (жмет 'крестик')
   close_one_coupons () {
