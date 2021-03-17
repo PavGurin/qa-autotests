@@ -3,6 +3,7 @@ import { basicCom } from "@support/desktop/BasicCommands";
 
 describe("Bonus", () => {
   beforeEach(() => {
+    cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
       .click();
     auth.login3();

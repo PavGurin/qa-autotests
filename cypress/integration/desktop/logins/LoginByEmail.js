@@ -1,11 +1,13 @@
 import { auth } from "@support/desktop/Authorization";
+import { prof } from "@support/desktop/Profile";
 
 describe("Авторизация", () => {
-  beforeEach(() => {
+
+  beforeEach(function () {
+    cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
       .click();
     cy.wait(2000);
-
   });
   it("C16300 - Авторизация по email", () => {
     auth.login();

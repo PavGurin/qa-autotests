@@ -12,6 +12,11 @@ const NumPay = getRandomInteger(1, 10);
  */
 
 export const prof = {
+
+  close_modal_transfer () {
+    cy.get(".modal-content__header__row__account-number > .icon")
+      .click();
+  },
   // Кнопка "войти в профиль"
   profile_for_mobile () {
     cy.get("#header > div > div > div.control-item > button > span")
@@ -662,7 +667,7 @@ export const prof = {
   // проверка, что появилось описание последующих действий
   assert_transfer_description () {
     cy.get(".transfer__description")
-      .should("have.text", "На Ваш email адрес s...651@mail.ru был отправлен код подтверждения");
+      .should("have.text", "На Ваш email адрес s..651@1win.xyz был отправлен код подтверждения");
   },
   // открыть управление счетами
   account_management_desktop () {

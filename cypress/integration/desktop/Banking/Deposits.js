@@ -84,14 +84,14 @@ describe("Deposit", () => {
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
     .click();
     auth.loginNew();
-    cy.wait(3000);
+    cy.wait(2000);
   });
   beforeEach(function () {
     Cypress.Cookies.preserveOnce("session_id");
   });
   it(" - RUB - проверка каждого метода оплаты", function () {
     prof.deposit();
-    cy.wait(3000);
+    cy.wait(2000);
     cy.document().then((doc1) => {
 
       const elementList = doc1.querySelectorAll(".payment").length;
@@ -104,9 +104,7 @@ describe("Deposit", () => {
     cy.get(".modal-content__header__row__account-number > .icon")
     .click();
     navReg.change_currency(0);
-
-    prof.deposit();
-    cy.wait(1000);
+    cy.wait(2000);
     cy.document().then((doc) => {
 
       const elementList = doc.querySelectorAll(".payment").length;

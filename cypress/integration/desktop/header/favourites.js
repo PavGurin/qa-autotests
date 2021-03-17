@@ -1,11 +1,15 @@
-import { prof } from "@support/desktop/Profile";
 import { navReg } from "@support/desktop/NavReg";
+import { auth } from "@support/desktop/Authorization";
 
 describe("favourites", () => {
-  beforeEach(() => {
+  before(() => {
+    cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
-        .click();
+      .click();
     cy.wait(2000);
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
   it("add  matches in favourites", function () {
     navReg.click_register();
@@ -26,15 +30,8 @@ describe("favourites", () => {
   });
   //Линия -> добавить турнир в избранное -> перейти в линию -> проверить, что в избранном есть турнир
   it("add  tournament in favourites", function () {
-    navReg.click_register();
-    navReg.sign_up();
-    cy.wait(2000);
-    navReg.close_new_user_info();
-    cy.wait(1000);
-    //перейти в Линию
-    cy.get("[href=\"/bets/new/prematch\"]")
-        .click();
-    cy.wait(1000);
+    cy.get(".icon-angle-left")
+      .click();
     //найти первый турнир
     cy.get(".sport-list .list-item").first()
         .click();
@@ -43,7 +40,6 @@ describe("favourites", () => {
     //добавить в избранное
     cy.get("div.tournament-list .list-item svg.icon-star").first()
         .click();
-    cy.reload();
     cy.wait(2000);
     cy.get(".bets-navigation .icon-star").first()
         .click();

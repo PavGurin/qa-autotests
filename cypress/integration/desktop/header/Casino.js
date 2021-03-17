@@ -5,28 +5,29 @@ let money;
 let money2;
 
 describe("Casino", () => {
-  beforeEach(() => {
+  before(() => {
+    cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
       .click();
     auth.loginNew();
     cy.wait(2000);
-
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
   it("Result", function () {
     basicCom.more_button("Казино");
+    cy.wait(2000);
     basicCom.casino_search("Ice Wolf");
     cy.wait(1000);
     basicCom.assert_casino();
   });
   it("assert category", function () {
-    basicCom.more_button("Казино");
     cy.get(".category-list")
       .should("exist");
   });
 
   it("C636545 - assert favorites casino games", function () {
-    basicCom.more_button("Казино");
-    cy.wait(4000);
     cy.get(".game-card-favorite-button")
       .first()
       .click({ force: true });
@@ -37,16 +38,12 @@ describe("Casino", () => {
 
   });
   it("C2150746 - remove favorites casino games", function () {
-    basicCom.more_button("Казино");
-    cy.wait(4000);
     cy.get(".game-card-favorite-button")
       .first()
       .click({ force: true });
     favor.casinoFavoritesRemove();
   });
   it("C1678732 - Jackpot", function () {
-    basicCom.more_button("Казино");
-    cy.wait(2000);
     cy.get(".num-holder-fade > :nth-child(3)")
       .invoke("text").then((price) => {
         money = price;

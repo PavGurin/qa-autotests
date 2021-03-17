@@ -4,36 +4,36 @@ import { bets } from "@support/desktop/Bets";
 import { basicCom } from "@support/desktop/BasicCommands";
 
 describe("Детализация", () => {
-  beforeEach(() => {
+  before(() => {
+    cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
-        .click();
-    cy.wait(2000);
-  });
-  it("Deposits - Transfer", function () {
+      .click();
     auth.login2();
     cy.wait(2000);
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
+  });
+  it("Deposits - Transfer", function () {
     prof.withdrawal("Детализация");
     prof.assert_transfer_detail();
   });
   it("Withdrawals - Bank card", function () {
-    auth.login2();
-    cy.wait(2000);
-    prof.withdrawal("Детализация");
     prof.button_withdrawal_detail();
     prof.assert_withdrawal_detail();
   });
   it("Bets - Single", function () {
-    auth.login2();
-    cy.wait(2000);
-    prof.withdrawal("Детализация");
     prof.button_bets_detail();
     prof.assert_bets_detail();
   });
   it("New bet - Single", function () {
-    auth.login();
-    cy.wait(2000);
+    cy.get(".modal-container__header__row__account-number > .button > .icon-wrap")
+    .click();
     basicCom.live_button();
     basicCom.switch_language("en");
+    cy.get(".bonus-modal-button-close", { timeout: 50000 })
+      .click();
+    auth.login2();
     bets.bet_main_page_en();
     prof.withdrawal("Detailing");
     cy.wait(1000);

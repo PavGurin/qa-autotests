@@ -1,10 +1,16 @@
 import { navReg } from "@support/desktop/NavReg";
+import { auth } from "@support/desktop/Authorization";
 
 describe("Download apps", () => {
-  beforeEach(() => {
+  before(() => {
+    cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
-        .click();
+      .click();
+    auth.login2();
     cy.wait(2000);
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
 
   it("Link Telegram", () => {

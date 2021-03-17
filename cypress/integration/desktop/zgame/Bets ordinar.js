@@ -3,9 +3,16 @@ import { auth } from "@support/desktop/Authorization";
 import { basicCom } from "@support/desktop/BasicCommands";
 
 describe("Ставки - Ординар", () => {
-  beforeEach(() => {
+  before(() => {
+    cy.visit("");
+    cy.get(".bonus-modal-button-close", { timeout: 50000 })
+      .click();
     auth.login();
     basicCom.live_button();
+    cy.wait(2000);
+  });
+  beforeEach(function () {
+    Cypress.Cookies.preserveOnce("session_id");
   });
   it("C422723 - добавить 1 купон - сделать ставку", () => {
     bets.bet_main_page(10);
@@ -20,11 +27,6 @@ describe("Ставки - Ординар", () => {
     bets.bet_main_page_without_click_ok();
     bets.close_one_coupons();
     bets.assert_close_coupons();
-  });
-  it("C422727 - удалить все купоны", () => {
-    bets.two_bets_in_different_match_without_ok();
-    bets.close_coupons();
-    bets.assert_all_close_coupons();
   });
   it("Ставка с \"Сумма ставки\" = 0", () => {
     // делает нулевую ставку

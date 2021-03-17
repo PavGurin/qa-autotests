@@ -45,7 +45,7 @@ export const navReg = {
       .trigger("mouseover");
     cy.wait(1000);
     cy.get(".dropdown-item.nowrap")
-      .first()
+      .last()
       .click();
   },
   // установить основным кошельком случайную валюту с индексом от 3 до 12
