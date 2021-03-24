@@ -1,5 +1,6 @@
 import { auth } from "@support/desktop/Authorization";
 
+
 describe("1Win TV", () => {
   before(() => {
     cy.visit("");
