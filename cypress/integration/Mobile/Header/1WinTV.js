@@ -58,10 +58,10 @@ describe("1Win TV", () => {
     cy.wait(1000);
     cy.get(".movie-card-list .button-movie").first().click();
     cy.get("#tv-player iframe").should("exist").and("be.visible");
-    cy.get(".description-tab-link").not(".active").click();
+    cy.get(".movie-tabs-item").not(".active").click();
     cy.get(".description-full-text").should("not.be.empty");
     cy.get(".movie-tabs button").not(".active").click();
     cy.get("#tv-player iframe").should("exist").and("be.visible");
-    cy.get("a.close-button").click();
+    cy.get(".movie-back").click();
   });
 });
