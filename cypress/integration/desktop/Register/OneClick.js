@@ -5,7 +5,7 @@ function Random (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-describe("Sign up in One click", () => {
+describe.skip("Sign up in One click", () => {
   beforeEach(() => {
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
       .click();

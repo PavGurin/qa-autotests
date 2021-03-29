@@ -8,7 +8,7 @@ describe("Детализация", () => {
     cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
       .click();
-    auth.login2();
+    auth.loginNew();
     cy.wait(2000);
   });
   beforeEach(function () {
@@ -30,9 +30,12 @@ describe("Детализация", () => {
     cy.get(".modal-container__header__row__account-number > .button > .icon-wrap")
     .click();
     basicCom.live_button();
+    cy.wait(1000);
     basicCom.switch_language("en");
+    cy.wait(5000);
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
       .click();
+    cy.wait(5000);
     auth.login2();
     bets.bet_main_page_en();
     prof.withdrawal("Detailing");

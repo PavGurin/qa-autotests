@@ -48,6 +48,14 @@ export const navReg = {
       .last()
       .click();
   },
+  changeCurrencyFastMail (num) {
+    cy.get(".input")
+      .first()
+      .click();
+    cy.get(".currency-name")
+      .eq(num)
+      .click();
+  },
   // установить основным кошельком случайную валюту с индексом от 3 до 12
   change_currency_random () {
     cy.get(".header-balance__value")
@@ -161,19 +169,12 @@ export const navReg = {
             .click();
   },
   // select country from registration page
-  set_country (country) {
-    cy.get(".trigger")
-            .first()
-            .click()
-            .get("div.dropdown-item span")
-            .contains(country)
-            .first()
+  set_country (num) {
+    cy.get(".dropdown-trigger")
+            .last()
             .click();
-    cy.get(".trigger")
-            .first()
-            .click();
-    cy.get(".trigger")
-             .first()
+    cy.get(".dropdown-item")
+            .eq(num)
             .click();
   },
   // select country from registration page
@@ -230,9 +231,9 @@ export const navReg = {
 
   // email form - email
   set_email (email) {
-    cy.get("form .control.row:nth-child(4) .input")
-            .clear()
-            .type(email);
+    cy.get(".input")
+      .eq(2)
+      .type(email);
   },
   // email form - email
   set_email2 (email) {
@@ -252,9 +253,9 @@ export const navReg = {
 
   // email form - password
   set_pwd (password) {
-    cy.get("form .control.row:nth-child(5) .input")
-      .clear()
-            .type(password);
+    cy.get(".input")
+      .eq(3)
+      .type(password);
   },
   set_pwd_for_mobile (password) {
     cy.get(".card-main-content:nth-child(2) div.level:nth-child(3) input")
@@ -303,8 +304,9 @@ export const navReg = {
 
   // email form -  phone
   set_phone_numb (phone) {
-    cy.get("form .tel-input input")
-            .type(phone);
+    cy.get(".input")
+      .eq(1)
+      .type(phone);
   },
   // email form -  phone
   set_phone_numb_for_mobile (phone) {
@@ -402,6 +404,11 @@ export const navReg = {
             .should("not.exist");
     cy.get(".user-name-value")
             .should("have.text", userName);
+  },
+  check_buttonDeposit (userName) {
+    cy.get(".button.green.theme-default")
+      .should("exist")
+      .should("have.text", "Пополнить в 1 Клик");
   },
   check_sign_up_for_mobile (userName) {
     cy.get("#header > div > div > div.control-item > button > span")

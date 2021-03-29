@@ -65,41 +65,22 @@ describe("Profile Settings", () => {
     prof.withdrawal("История ставок");
     prof.bets_history_notBeEmpty();
   });
-  it("1 click registration - change email only once ", function () {
-    cy.clearCookies();
-    cy.reload();
-    cy.wait(3000);
-    navReg.click_register();
-    navReg.sign_up();
-    cy.wait(2000);
-    navReg.close_new_user_info();
-    prof.withdrawal("Настройки");
-    prof.assert_mail_visible();
-
-  });
   it("Email registration - can`t change email", function () {
     cy.clearCookies();
     cy.reload();
     cy.wait(3000);
     navReg.click_register();
-    navReg.registration_form("По e-mail");
+    navReg.set_phone_numb(`981${randomNum}`);
     navReg.set_email(`${randomStr}test@xyz.com`);
     navReg.set_pwd("111111");
-    navReg.repeat_pwd("111111");
-    navReg.set_phone_numb(`921${randomNum}`);
     navReg.sign_up();
     cy.wait(1000);
     prof.withdrawal("Настройки");
     prof.settings_mail_disabled();
+    cy.get(".modal-container__header__row__account-number > .button > .icon-wrap")
+      .click();
   });
   it("Change the phone number to the existing one", function () {
-    cy.clearCookies();
-    cy.reload();
-    cy.wait(3000);
-    auth.login_mail();
-    cy.wait(1000);
-    prof.withdrawal("Настройки");
-    prof.set_country_number_phone("Russia");
     prof.settings_form_numbPhone("9213555555");
     prof.settings_mail_disabled();
     prof.click_save_settings();

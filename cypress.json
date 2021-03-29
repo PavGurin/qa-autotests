@@ -1,5 +1,5 @@
 {
-      "baseUrl": "https://1wlbs.top/bets/home",
+      "baseUrl": "https://1wlbs.top/bets/home/",
        "chromeWebSecurity": true,
        "numTestsKeptInMemory": 1,
       "video": false ,

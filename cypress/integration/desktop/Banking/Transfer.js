@@ -42,13 +42,13 @@ describe("transfer", () => {
     prof.close_modal_transfer();
     prof.withdrawal("Перевод");
     prof.transfer_deposit("20");
-    prof.transfer_assert_disabled2();
+    prof.transfer_assert_disabled();
   });
   it("C1086854 - RUB - Оставить поле суммы пустым ", function () {
     prof.close_modal_transfer();
     prof.withdrawal("Перевод");
     prof.transfer_mail("1wintesting2@mail.ru");
-    prof.transfer_assert_disabled2();
+    prof.transfer_assert_disabled();
   });
   it("C1086855 - RUB - Оставить обязательные поля пустыми ", function () {
     prof.close_modal_transfer();

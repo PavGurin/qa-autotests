@@ -245,11 +245,11 @@ export const auth = {
     // вводим логин/пароль
     // login_input() {
     cy.get(login_input, { timeout: 6000 })
-        .type("where100@mail.ru");
+        .type("sunq22@1win.com");
     // вводим пароль
     // password_input() {
     cy.get(password_input)
-        .type("tk7oqj");
+        .type("k398v2");
     // нажимаем кнопку "войти"
     cy.get("div.modal-container__container > div > form > form > div:nth-child(2) > button")
         .click();

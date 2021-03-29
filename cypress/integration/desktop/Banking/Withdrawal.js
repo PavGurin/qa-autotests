@@ -63,7 +63,7 @@ describe("Withdrawal", () => {
                   .eq(1)
                   .clear();
 
-              } else if (NamePlaceholder === "WMZ кошелек") {
+              } else if (NamePlaceholder === "WMZ кошелек" || NamePlaceholder === "Номер счета ЮMoney" || NamePlaceholder === "Номер счета Payeer") {
                 cy.get(".input.icon-left")
                   .clear()
                   .type(limit - number);
@@ -83,7 +83,7 @@ describe("Withdrawal", () => {
                 cy.get(".input")
                   .eq(1)
                   .clear();
-              } else if (NamePlaceholder === "Номер мобильного телефона Мегафон" || NamePlaceholder === "Номер мобильного телефона Билайн" || NamePlaceholder === "Номер мобильного телефона МТС" || NamePlaceholder === "Номер мобильного телефона Теле2") {
+              } else if (NamePlaceholder === "Номер мобильного телефона Мегафон" || NamePlaceholder === "Номер мобильного телефона Билайн" || NamePlaceholder === "Номер мобильного телефона МТС" || NamePlaceholder === "Номер мобильного телефона Теле2" || NamePlaceholder === "Номер телефона QIWI аккаунта") {
                 cy.get(".input.icon-left")
                   .clear()
                   .type(limit - number);
@@ -131,8 +131,15 @@ describe("Withdrawal", () => {
                   .first()
                   .clear()
                   .type(limit);
+                cy.get(".input")
+                  .eq(1)
+                  .type("sanya@mail.ru");
                 cy.get(".form > .button")
                   .should("be.enabled");
+                cy.get(".input")
+                  .eq(1)
+                  .clear();
+
               }
             });
             });

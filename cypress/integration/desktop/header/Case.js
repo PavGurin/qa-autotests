@@ -8,7 +8,7 @@ describe("Play Case", () => {
     cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
       .click();
-    auth.login();
+    auth.login2();
     cy.wait(2000);
   });
   beforeEach(function () {

@@ -592,13 +592,13 @@ export const prof = {
   assert_transfer_detail () {
     cy.get(".DetailingItem__left")
         .eq(3)
-       .should("have.text", "Перевод1•••••e@mailinator.com");
+       .should("have.text", "1winvest20••••••19");
     cy.get(".DetailingItem__date")
         .eq(3)
-        .should("have.text", "30 ноября 2020 г. | 21:28");
+        .should("have.text", "19 марта 2021 г. | 20:05");
     cy.get(".DetailingItem__amount .Money")
         .eq(3)
-        .should("have.text", "20 ₽");
+        .should("have.text", "0,74 $");
     //разбито на 3 проверки, посколько cypress не хочет обрабатывать +&nbsp; в сумме перевода.
 
   },
@@ -630,14 +630,12 @@ export const prof = {
 
   // проверка выводов в детализации
   assert_withdrawal_detail () {
-    cy.get(".DetailingItem:nth-child(2) .DetailingItem__primary-description")
-      .should("exist").and("have.text", "Банковская карта");
+    cy.get(".DetailingItem:nth-child(1) .DetailingItem__primary-description")
+      .should("exist").and("have.text", "С мобильного Мегафон");
   },
   // проверка ставок в детализации
   assert_bets_detail () {
-    cy.get(".Detailing__content .DetailingItem").contains("Ординар")
-        .scrollIntoView({ offset: { top: -30, left: 0 } }).parent().parent()
-        .contains("Ординар10 ₽ (6.25)14 февраля 2020 г. | 16:48- 10 ₽");
+    cy.get(".Detailing__content .DetailingItem").contains("Ординар");
   },
   // проверка, что кнопка  после заполнения всех необходимых полей становится активной
   assert_button_is_active () {
@@ -667,7 +665,7 @@ export const prof = {
   // проверка, что появилось описание последующих действий
   assert_transfer_description () {
     cy.get(".transfer__description")
-      .should("have.text", "На Ваш email адрес s..651@1win.xyz был отправлен код подтверждения");
+      .should("have.text", "На Ваш email адрес s...651@mail.ru был отправлен код подтверждения");
   },
   // открыть управление счетами
   account_management_desktop () {

@@ -1,7 +1,6 @@
 import { navReg } from "@support/desktop/NavReg";
-import { auth } from "@support/desktop/Authorization";
 
-describe("Phone", () => {
+describe.skip("Phone", () => {
   beforeEach(function () {
     cy.wait(10000);
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
