@@ -1,5 +1,8 @@
 import { navReg } from "@support/desktop/NavReg";
-import { auth } from "@support/desktop/Authorization";
+let randomNum = Math.floor(Math.random() * 9999999) + 1;
+let randomStr = Math.random()
+  .toString(36)
+  .slice(-5);
 
 describe("favourites", () => {
   before(() => {
@@ -13,8 +16,11 @@ describe("favourites", () => {
   });
   it("add  matches in favourites", function () {
     navReg.click_register();
+    navReg.set_phone_numb(`981${randomNum}`);
+    navReg.set_email(`${randomStr}test@xyz.com`);
+    navReg.set_pwd("111111");
+    navReg.add_promocode("test001");
     navReg.sign_up();
-    cy.wait(2000);
     navReg.close_new_user_info();
     cy.wait(1000);
     //добавить матч из раздела "Популярное" в избранное
