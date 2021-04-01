@@ -5,7 +5,7 @@ describe("1Win TV", () => {
   before(() => {
     cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
-      .click();
+        .click();
     cy.contains("Ещё", { timeout: 10000 })
         .trigger("mouseover");
     cy.get(".dropdown-menu [href=\"/tv\"]")
@@ -20,10 +20,10 @@ describe("1Win TV", () => {
     cy.get(".movie-cards-list").should("not.be.empty");
     cy.get("main .title")
         .invoke("text").then((numb) => {
-          let count = numb.split(":").map((str) => parseInt(str.replace(/\D/g, "")))[1];
+      let count = numb.split(":").map((str) => parseInt(str.replace(/\D/g, "")))[1];
 
-          expect(count).to.be.greaterThan(4000); //счётчик фильм больше 4000к
-        });
+      expect(count).to.be.greaterThan(4000); //счётчик фильм больше 4000к
+    });
   });
   it("Search", function () {
     cy.get(".tv-search input").type("Жизнь"); //распространённое слово для названия фильма
@@ -58,9 +58,9 @@ describe("1Win TV", () => {
   });
   it("Non-registered user", function () {
     cy.get(".movie-card-item a.button").first().click();
-    cy.get(".modal-container").contains("Регистрация").should("exist");
+    cy.get(".modal-content__header").contains("Регистрация").should("exist");
     cy.get(".register-button-submit").should("exist");
-    cy.get(".modal-container__header button").click();
+    cy.get("svg[class*=\"icon-close\"]").click();
   });
   it("Registered user", function () {
     auth.login();

@@ -14,3 +14,5 @@ beforeEach(function () {
   // cy.reload();
   // cy.visit("");
 });
+Cypress.moment.locale("ru");
+
