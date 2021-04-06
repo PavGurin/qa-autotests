@@ -115,7 +115,7 @@ export const navReg = {
   },
   //Email -> кнопка Зарегистрироваться (вторая карточка регистрации)
   sign_up_email_continue () {
-    cy.get(".card-with-back-button .submit-btn")
+    cy.get("#reg-full form .submit-btn")
         .click();
   },
   sign_up_check () {
@@ -157,11 +157,11 @@ export const navReg = {
             .type(promocode);
   },
   add_promocode_by_email_for_mobile (promocode) {
-    cy.get(".card-main-content:nth-child(2) .promo-code-button button")
+    cy.get(".promo-code-button")
             .click()
-            .get(".promo-code > .control > .input-container > .input")
+            .get("#reg-full form .level:nth-child(5) input")
             .type(promocode);
-    cy.get(".promo-code-btn").click();
+    cy.get(".promocode-apply-button").click();
   },
   // закрыть (нажать крестик) поле промокода
   close_promocode () {
@@ -179,10 +179,10 @@ export const navReg = {
   },
   // select country from registration page
   set_country_for_mobile (country) {
-    cy.get(".card-main-content:nth-child(2) .dropdown-trigger")
+    cy.get("#reg-full .level:nth-child(2) .dropdown-trigger")
             .click();
     cy.contains(country)
-            .click();
+            .click({ force: true });
   },
 
   // check default country
@@ -243,11 +243,11 @@ export const navReg = {
   set_email_for_mobile (email) {
     cy.get(".input")
             .type(email);
-    cy.get("button.success-reg-modal-send.button.md.primary > span")
+    cy.get("#reg-full form .level:nth-child(2) input")
             .click({ timeout: 10000 });
   },
   set_email_register_for_mobile (email) {
-    cy.get(".card-main-content:nth-child(2) div.level:nth-child(2) input")
+    cy.get("#reg-full form .level:nth-child(3) input")
             .type(email);
   },
 
@@ -258,7 +258,7 @@ export const navReg = {
       .type(password);
   },
   set_pwd_for_mobile (password) {
-    cy.get(".card-main-content:nth-child(2) div.level:nth-child(3) input")
+    cy.get("#reg-full form .level:nth-child(4) input")
             .type(password);
   },
   // email form - repeat password field
@@ -523,7 +523,7 @@ export const navReg = {
             .clear();
   },
   clear_mail_for_mobile () {
-    cy.get(".card-main-content:nth-child(2) div.level:nth-child(2) input")
+    cy.get("#reg-full .level:nth-child(3) input")
             .clear();
   },
 

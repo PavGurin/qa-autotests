@@ -7,47 +7,45 @@ describe("Детализация", () => {
   before(() => {
     cy.visit("");
     cy.get(".bonus-modal-button-close", { timeout: 50000 })
-      .click();
+        .click();
     auth.loginNew();
     cy.wait(2000);
   });
   beforeEach(function () {
     Cypress.Cookies.preserveOnce("session_id");
   });
+  afterEach(function () {
+    cy.get(".modal-container__header button").click();
+  });
   it("Deposits - Transfer", function () {
     prof.withdrawal("Детализация");
     prof.assert_transfer_detail();
   });
   it("Withdrawals - Bank card", function () {
+    prof.withdrawal("Детализация");
     prof.button_withdrawal_detail();
     prof.assert_withdrawal_detail();
   });
   it("Bets - Single", function () {
+    prof.withdrawal("Детализация");
     prof.button_bets_detail();
     prof.assert_bets_detail();
   });
   it("New bet - Single", function () {
-    cy.get(".modal-container__header__row__account-number > .button > .icon-wrap")
-    .click();
+    auth.logout();
+    cy.wait(1000);
     basicCom.live_button();
     cy.wait(1000);
-    basicCom.switch_language("en");
-    cy.wait(5000);
-    cy.get(".bonus-modal-button-close", { timeout: 50000 })
-      .click();
-    cy.wait(5000);
     auth.login2();
-    bets.bet_main_page_en();
-    prof.withdrawal("Detailing");
-    cy.wait(1000);
-    prof.button_bets_detail_en();
-    const todaysDate = Cypress.moment().format("MMMM D, YYYY | hh:mm A");
-
-    cy.wait(1000);
+    bets.bet_main_page();
+    const todaysDate = Cypress.moment().format("D MMMM YYYY г. | hh:mm");
 
     cy.log(todaysDate);
+    prof.withdrawal("Детализация");
+    cy.wait(1000);
+    prof.button_bets_detail();
+    cy.wait(1000);
     cy.get(":nth-child(1) > .DetailingItem__right > .DetailingItem__date")
-            .should("contain", todaysDate);
+        .should("contain", todaysDate);
   });
 });
-
